@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 use App\Repository\AvatarRepository;
 use Doctrine\ORM\Mapping as ORM;
 

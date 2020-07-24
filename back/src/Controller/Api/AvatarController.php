@@ -18,7 +18,7 @@ class AvatarController extends AbstractController
 
         $avatars = $avatarRepo->findAll();
 
-        return $this->json($avatars, 200, []);
+        return $this->json($avatars, 200, [], ['groups' => 'avatars_get']);
     }
 
      /**
