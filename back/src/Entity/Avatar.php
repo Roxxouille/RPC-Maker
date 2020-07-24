@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
 use App\Repository\AvatarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,6 +20,7 @@ class Avatar
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $image;
 
