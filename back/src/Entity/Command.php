@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CommandRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Command
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
      */
     private $user;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="commands")
+     */
+    private $item;
+
+    public function __construct()
+    {
+        $this->item = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,32 @@ class Command
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Item[]
+     */
+    public function getItem(): Collection
+    {
+        return $this->item;
+    }
+
+    public function addItem(Item $item): self
+    {
+        if (!$this->item->contains($item)) {
+            $this->item[] = $item;
+        }
+
+        return $this;
+    }
+
+    public function removeItem(Item $item): self
+    {
+        if ($this->item->contains($item)) {
+            $this->item->removeElement($item);
+        }
 
         return $this;
     }
