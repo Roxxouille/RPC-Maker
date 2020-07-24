@@ -17,7 +17,8 @@ class RpcMakerProvider extends Base
         'Carte wifi',
         'Boitier',
         'Alimentation',
-        'Stockage',
+        'HDDs',
+        'SSDs',
         'Systeme d\'exploitation',
         'Ecran',
         'Clavier',
@@ -49,8 +50,8 @@ class RpcMakerProvider extends Base
     ];
 
     private static $gpuBrands = [
-        'AMD',
-        'Nvidia',
+        'AMD radeon',
+        'Nvidia GeForce gtx',
     ];
 
     private static $processorBrands = [
@@ -512,104 +513,193 @@ class RpcMakerProvider extends Base
         'TP-Link',
     ];
 
+    private static $printerBrands = [
+        'HP',
+        'Canon',
+        'Epson',
+        'Lexmark',
+        'Brother',
+        'Samsung',
+        'Kyocera',
+    ];
+
+    private static $operatingSystemBrands = [
+        'Windows 10',
+        'Linux',
+        'Windows 7',
+        'Windows xp',
+        'Ubuntu',
+        'Debian',
+    ];
+
+    private static $cdPlayerBrands = [
+        'Samsung',
+        'Asus',
+        'Buffalo'
+    ];
+
+    private static $usernames = [
+        'Ryanarex',
+        'IHasEyes',
+        'Ryana Grateful Eyes',
+        'Ryanaasaurus Rex',
+        'Ryana Creepy Ankles',
+        'Ryana Italian',
+        'Uber Grateful Pigeon',
+        'Disguised Pigeon',
+        'GratefulEyesOMG',
+        'CreepyEyesLOL',
+        'GenerousEyesOMG',
+        'GratefulAnklesLOL',
+        'CreepyAnklesOMG',
+        'GenerousAnklesLMAO',
+        'Iamgrateful',
+        'Iamcreepy',
+        'Iamgenerous',
+        'IamRyana',
+        'PigeonMilk',
+        'Ryana Generous Pigeon',
+        'MindOfRyana',
+        'Gamerpigeon',
+        'The Grateful Gamer',
+        'The Creepy Gamer',
+        'The Generous Gamer',
+        'DrGrateful',
+        'RyanaEyespopper',
+        'BigGratefulPigeon',
+        'ItIsYePigeon',
+        'Ry4n4',
+        'Pigeon Boy',
+        'Pigeon Girl',
+        'Pigeon Person',
+        'Captain Grateful',
+        'IHasAnkles',
+        'Total Pigeon',
+        'The Grateful Italian Dude',
+        'The Gaming Pigeon',
+        'Gaming With Ryana',
+        'Mr Game Pigeon',
+        'Ms Game Pigeon',
+    ];
+
+    public function randomUsername()
+    {
+        return $this->generator->randomElement(self::$usernames);
+    }
+
+    public function cdPlayerBrand()
+    {
+        return $this->generator->randomElement(self::$cdPlayerBrands);
+    }
+
+    public function operatingSystemBrand()
+    {
+        return $this->generator->randomElement(self::$operatingSystemBrands);
+    }
+
+    public function printerBrand()
+    {
+        return $this->generator->randomElement(self::$printerBrands);
+    }
+
     public function categoryName()
     {
-        return $this->generator->randomElement($this->categories);
+        return $this->generator->randomElement(self::$categories);
     }
 
     public function graphicCardBrand()
     {
-        return $this->generator->randomElement($this->graphicCardBrands);
+        return $this->generator->randomElement(self::$graphicCardBrands);
     }
 
     public function gpuBrand()
     {
-        return $this->generator->randomElement($this->gpuBrands);
+        return $this->generator->randomElement(self::$gpuBrands);
     }
 
     public function processorBrand()
     {
-        return $this->generator->randomElement($this->processorBrands);
+        return $this->generator->randomElement(self::$processorBrands);
     }
     
     public function caseBrand()
     {
-        return $this->generator->randomElement($this->caseBrands);
+        return $this->generator->randomElement(self::$caseBrands);
     }
 
     public function motherboardBrand()
     {
-        return $this->generator->randomElement($this->motherboardBrands);
+        return $this->generator->randomElement(self::$motherboardBrands);
     }
 
     public function hddsBrand()
     {
-        return $this->generator->randomElement($this->hddsBrands);
+        return $this->generator->randomElement(self::$hddsBrands);
     }
     
     public function ssdsBrand()
     {
-        return $this->generator->randomElement($this->ssdsBrands);
+        return $this->generator->randomElement(self::$ssdsBrands);
     }
 
     public function ventiradBrand()
     {
-        return $this->generator->randomElement($this->ventiradBrands);
+        return $this->generator->randomElement(self::$ventiradBrands);
     }
 
     public function computerMonitorBrand()
     {
-        return $this->generator->randomElement($this->computerMonitorBrands);
+        return $this->generator->randomElement(self::$computerMonitorBrands);
     }
 
     public function keyBoardBrand()
     {
-        return $this->generator->randomElement($this->keyBoardBrands);
+        return $this->generator->randomElement(self::$keyBoardBrands);
     }
 
     public function mouseBrand()
     {
-        return $this->generator->randomElement($this->mouseBrands);
+        return $this->generator->randomElement(self::$mouseBrands);
     }
 
     public function mousePadBrand()
     {
-        return $this->generator->randomElement($this->mousePadBrands);
+        return $this->generator->randomElement(self::$mousePadBrands);
     }
 
     public function speakerBrand()
     {
-        return $this->generator->randomElement($this->speakerBrands);
+        return $this->generator->randomElement(self::$speakerBrands);
     }
 
     public function networkCardBrand()
     {
-        return $this->generator->randomElement($this->networkCardBrands);
+        return $this->generator->randomElement(self::$networkCardBrands);
     }
 
     public function powerSupplyUnitBrand()
     {
-        return $this->generator->randomElement($this->powerSupplyUnitBrands);
+        return $this->generator->randomElement(self::$powerSupplyUnitBrands);
     }
 
     public function ramBrand()
     {
-        return $this->generator->randomElement($this->ramBrands);
+        return $this->generator->randomElement(self::$ramBrands);
     }
 
     public function headphoneBrand()
     {
-        return $this->generator->randomElement($this->headphoneBrands);
+        return $this->generator->randomElement(self::$headphoneBrands);
     }
 
     public function soundCardBrand()
     {
-        return $this->generator->randomElement($this->soundCardBrands);
+        return $this->generator->randomElement(self::$soundCardBrands);
     }
 
     public function webcamBrand()
     {
-        return $this->generator->randomElement($this->webcamBrands);
+        return $this->generator->randomElement(self::$webcamBrands);
     }
 
 
