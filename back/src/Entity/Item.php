@@ -39,6 +39,11 @@ class Item
      */
     private $commands;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="items")
+     */
+    private $category;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -109,6 +114,18 @@ class Item
             $this->commands->removeElement($command);
             $command->removeItem($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }
