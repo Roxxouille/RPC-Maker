@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,11 +22,14 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="json", nullable=true)
+     * @Assert\Json( message = "this is not a valid Json.")
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $specs = [];
 
