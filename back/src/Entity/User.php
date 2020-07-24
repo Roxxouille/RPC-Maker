@@ -43,14 +43,14 @@ class User
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("\d+", message = "please enter a valid number.)
+     * @Assert\Regex("\d+", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $level;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\Json( message = "This is not a valid Json.)
+     * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $role = [];
@@ -75,7 +75,7 @@ class User
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Regex("\d+", message = "please enter a digit number.)
+     * @Assert\Regex("\d+", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $zip_code;
