@@ -67,6 +67,12 @@ class User
      */
     private $adress;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $avatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -188,6 +194,18 @@ class User
     public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
 
         return $this;
     }
