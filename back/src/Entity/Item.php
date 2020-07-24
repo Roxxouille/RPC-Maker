@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ItemRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -21,16 +22,21 @@ class Item
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $name;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
+     * @Assert\Regex("\d+", message = "please enter a digit number.)
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Url( message = "This is not a valid url.")
+     * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $url;
 
