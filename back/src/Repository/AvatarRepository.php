@@ -22,19 +22,18 @@ class AvatarRepository extends ServiceEntityRepository
     // /**
     //  * @return Avatar[] Returns an array of Avatar objects
     //  */
-    /*
-    public function findByExampleField($value)
+
+    public function findOneByUser($avatar)
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('a.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('a', 'u')
+            ->leftJoin('a.user', 'u')
+            ->where('a = :avatar')
+            ->setParameter('avatar', $avatar)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Avatar
