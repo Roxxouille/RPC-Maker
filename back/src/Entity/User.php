@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,12 +18,14 @@ class User
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("users_get")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $username;
 
@@ -31,6 +34,7 @@ class User
      * @Assert\Email(
      *      message = "The email '{{ value }}' is not a valid email.")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $email;
 
@@ -38,6 +42,7 @@ class User
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}", message = "At least one upper case English letter, At least one lower case English letter, At least one digit, At least one special character, Minimum eight in length")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $password;
 
@@ -45,6 +50,7 @@ class User
      * @ORM\Column(type="integer")
      * @Assert\Regex("\d+", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $level;
 
@@ -52,24 +58,28 @@ class User
      * @ORM\Column(type="json")
      * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $role = [];
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=85, nullable=true)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $city;
 
@@ -77,18 +87,21 @@ class User
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Regex("\d+", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $zip_code;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("users_get")
      */
     private $adress;
 
     /**
      * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups("users_get")
      */
     private $avatar;
 
