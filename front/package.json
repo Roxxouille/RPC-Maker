@@ -6,10 +6,7 @@
     "lint": "eslint src/**/*.js",
     "lint:fix": "eslint --fix src/**/*.js",
     "clean": "rm -rf dist",
-    "clean:all": "rm -rf dist node_modules yarn.lock package-lock.json",
-    "test": "cross-env NODE_PATH=./ mocha --require tests/.setup.js tests/**/*.test.js",
-    "test:watch": "cross-env NODE_PATH=./ mocha --watch --require tests/.setup.js tests/**/*.test.js",
-    "save-deps": "node updateDeps.js"
+    "clean:all": "rm -rf dist node_modules yarn.lock package-lock.json"
   },
   "devDependencies": {
     "@babel/core": "*",
@@ -17,19 +14,15 @@
     "@babel/plugin-proposal-object-rest-spread": "*",
     "@babel/preset-env": "*",
     "@babel/preset-react": "*",
-    "@babel/register": "*",
     "babel-eslint": "*",
     "babel-loader": "*",
     "bundle-stats-webpack-plugin": "*",
-    "chai": "*",
     "clean-webpack-plugin": "*",
     "copy-webpack-plugin": "*",
     "cross-env": "*",
     "css-loader": "*",
     "cssnano": "*",
-    "enzyme": "*",
-    "enzyme-adapter-react-16": "*",
-    "eslint": "*",
+    "eslint": "7.2.0",
     "eslint-config-airbnb": "*",
     "eslint-import-resolver-alias": "*",
     "eslint-plugin-import": "*",
@@ -38,9 +31,7 @@
     "eslint-plugin-react-hooks": "*",
     "file-loader": "*",
     "html-webpack-plugin": "*",
-    "ignore-styles": "*",
     "mini-css-extract-plugin": "*",
-    "mocha": "*",
     "optimize-css-assets-webpack-plugin": "*",
     "postcss-loader": "*",
     "postcss-preset-env": "*",
@@ -57,9 +48,6 @@
   "dependencies": {
     "prop-types": "*",
     "react": "*",
-    "react-dom": "*",
-    "react-redux": "*",
-    "redux": "*",
-    "styled-components": "*"
+    "react-dom": "*"
   }
 }
