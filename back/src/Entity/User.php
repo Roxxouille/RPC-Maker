@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -66,6 +68,22 @@ class User
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adress;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $avatar;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
+     */
+    private $commands;
+
+    public function __construct()
+    {
+        $this->commands = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -188,6 +206,49 @@ class User
     public function setAdress(?string $adress): self
     {
         $this->adress = $adress;
+
+        return $this;
+    }
+
+    public function getAvatar(): ?Avatar
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar(Avatar $avatar): self
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Command[]
+     */
+    public function getCommands(): Collection
+    {
+        return $this->commands;
+    }
+
+    public function addCommand(Command $command): self
+    {
+        if (!$this->commands->contains($command)) {
+            $this->commands[] = $command;
+            $command->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCommand(Command $command): self
+    {
+        if ($this->commands->contains($command)) {
+            $this->commands->removeElement($command);
+            // set the owning side to null (unless already changed)
+            if ($command->getUser() === $this) {
+                $command->setUser(null);
+            }
+        }
 
         return $this;
     }
