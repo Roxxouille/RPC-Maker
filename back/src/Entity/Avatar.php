@@ -15,17 +15,20 @@ class Avatar
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("avatars_get")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups("avatars_get")
      */
     private $image;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="avatar", cascade={"persist", "remove"})
+     * @Groups("avatars_get")
      */
     private $user;
 
