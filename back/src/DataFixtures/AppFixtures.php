@@ -23,16 +23,16 @@ class AppFixtures extends Fixture
 
         $categoryList = [];
         // fixtures for Category
-        for ($i = 0; $i < 20; $i++) {
+        foreach($faker->categoryName as $categoryName){
             $category = new Category();
-            $category->setName($faker->unique()->categoryName);
+            $category->setName($categoryName);
             $manager->persist($category);
             $categoryList[] = $category;
         }
 
         $itemList = [];
         // fixtures for Item
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 600; $i++) {
             $item = new Item();
             $randomCategoryObject = $faker->randomElement($categoryList);
             $randomCategory = $randomCategoryObject->getName();
@@ -269,18 +269,22 @@ class AppFixtures extends Fixture
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
-
+            
             // adding 20 item, each of one category, for one command
-            foreach($categoryList as $category){
+            foreach($categoryList as $key => $category ){
+                
                 $item = $faker->randomElement($itemList);
+                dump($key, $item);
                 while($category->getName() != $item->getCategory()->getName()){
                     $item = $faker->randomElement($itemList);
                 }
+                
                 $command->addItem($item);
             }
             $manager->persist($command);
         }
-        
+
         $manager->flush();
     }
+
 }

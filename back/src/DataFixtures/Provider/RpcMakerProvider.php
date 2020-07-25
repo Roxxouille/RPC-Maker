@@ -604,7 +604,7 @@ class RpcMakerProvider extends Base
 
     public function categoryName()
     {
-        return $this->generator->randomElement(self::$categories);
+        return self::$categories;
     }
 
     public function graphicCardBrand()
