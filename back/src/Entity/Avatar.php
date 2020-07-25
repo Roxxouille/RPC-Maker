@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 use App\Repository\AvatarRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,20 +17,21 @@ class Avatar
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("avatars_get")
+     * @Groups("avatar")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups("avatars_get")
+     * @Groups("avatar")
      */
     private $image;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="avatar", cascade={"persist", "remove"})
-     * @Groups("avatars_get")
+     * @Groups("avatar")
+     * @MaxDepth(2)
      */
     private $user;
 
