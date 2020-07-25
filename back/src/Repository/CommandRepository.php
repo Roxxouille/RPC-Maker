@@ -22,19 +22,18 @@ class CommandRepository extends ServiceEntityRepository
     // /**
     //  * @return Command[] Returns an array of Command objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findOneByUser($command)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('c', 'u')
+            ->leftJoin('c.user', 'u')
+            ->where('c = :command')
+            ->setParameter('command', $command)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
+    /*
 
     /*
     public function findOneBySomeField($value): ?Command

@@ -18,14 +18,14 @@ class Command
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("category")
+     * @Groups({"category", "command"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups("category")
+     * @Groups({"category", "command"})
      */
     private $file;
 
@@ -33,7 +33,7 @@ class Command
      * @ORM\Column(type="integer")
      * @Assert\Regex("\d+", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups("category")
+     * @Groups({"category", "command"})
      */
     private $status;
 
@@ -41,18 +41,19 @@ class Command
      * @ORM\Column(type="json")
      * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups("category")
+     * @Groups({"category", "command"})
      */
     private $data = [];
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
-     * @Groups("category")
+     * @Groups({"category", "command"})
      */
     private $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="commands")
+     * @Groups("command")
      */
     private $item;
 
