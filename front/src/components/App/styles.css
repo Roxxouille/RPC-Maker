@@ -1,9 +1,8 @@
 .app {
-  width: 500px;
+  width:100%;
   margin: 1em auto;
   text-align: center;
+  background-color: #dfdfdf;
 }
 
-.app img {
-  max-width: 150px;
-}
+

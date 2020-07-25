@@ -1,0 +1,44 @@
+@use 'src/styles/vars';
+
+//FOOTER
+
+.footer {
+  background-color: vars.$color-blue;
+  width: auto;
+  height: auto;  
+}
+
+.footer__plan {  
+    &__link {
+      text-decoration: none;
+      color: #ffffff;
+    }
+}
+
+.plan-site {
+  float: left;
+
+}
+
+.img-footer {
+
+}
+
+.footer__plan__link {
+  display: block;
+  font-size: 0.5em;
+}
+//HEADER
+
+.topbar {
+    margin-bottom: 1em;
+}
+
+.menu {
+    margin-left: auto;
+    margin-right:0px;
+  //liens menu
+  &__link {
+    
+  }
+}

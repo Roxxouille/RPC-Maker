@@ -16,24 +16,28 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        // use of faker for the fixtures
         $faker = Faker\Factory::create();
+        // adding custom provider
         $faker->addProvider(new RpcMakerProvider($faker));
 
         $categoryList = [];
-        for ($i = 0; $i < 20; $i++) {
+        // fixtures for Category
+        foreach($faker->categoryName as $categoryName => $categorySpec){
             $category = new Category();
-            $category->setName($faker->unique()->categoryName);
+            $category->setName($categoryName);
+            $category->setSpecs($categorySpec);
             $manager->persist($category);
             $categoryList[] = $category;
         }
-
         $itemList = [];
-
-        for ($i = 0; $i < 50; $i++) {
+        // fixtures for Item
+        for ($i = 0; $i < 600; $i++) {
             $item = new Item();
             $randomCategoryObject = $faker->randomElement($categoryList);
             $randomCategory = $randomCategoryObject->getName();
 
+            // custom name for each category of items 
             if ($randomCategory == 'Processeur') {
                 $item->setName(
                     $faker->processorBrand 
@@ -231,9 +235,11 @@ class AppFixtures extends Fixture
             $item->setPrice($faker->numberBetween(50, 500));
             $item->setUrl($faker->url());
             $manager->persist($item);
+            $itemList[] = $item;
         }
 
         $avatarList = [];
+        // fixtures for Avatar
         for($i= 0; $i < 25; $i++){
             $avatar = new Avatar;
             $avatar->setImage($faker->sentence);
@@ -242,6 +248,7 @@ class AppFixtures extends Fixture
         }
 
         $userList = [];
+        // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
             $user->setUsername($faker->randomUsername);
@@ -255,15 +262,27 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $userList[] = $user;
         }
-        
+
+        // fixtures for Command
         for($i= 0; $i < 25; $i++){
             $command = new Command;
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
+            
+            // adding 20 item, each of one category, for one command
+            foreach($categoryList as $key => $category ){
+                
+                $item = $faker->randomElement($itemList);
+                while($category->getName() != $item->getCategory()->getName()){
+                    $item = $faker->randomElement($itemList);
+                }
+                $command->addItem($item);
+            }
             $manager->persist($command);
         }
-        
+
         $manager->flush();
     }
+
 }
