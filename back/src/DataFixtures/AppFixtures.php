@@ -231,6 +231,7 @@ class AppFixtures extends Fixture
             $item->setPrice($faker->numberBetween(50, 500));
             $item->setUrl($faker->url());
             $manager->persist($item);
+            $itemList[] = $item;
         }
 
         $avatarList = [];
@@ -255,12 +256,19 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $userList[] = $user;
         }
-        
+
         for($i= 0; $i < 25; $i++){
             $command = new Command;
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
+            foreach($categoryList as $category){
+                $item = $faker->randomElement($itemList);
+                while($category->getName() != $item->getCategory()->getName()){
+                    $item = $faker->randomElement($itemList);
+                }
+                $command->addItem($item);
+            }
             $manager->persist($command);
         }
         
