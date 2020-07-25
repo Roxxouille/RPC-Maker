@@ -23,13 +23,13 @@ class AppFixtures extends Fixture
 
         $categoryList = [];
         // fixtures for Category
-        foreach($faker->categoryName as $categoryName){
+        foreach($faker->categoryName as $categoryName => $categorySpec){
             $category = new Category();
             $category->setName($categoryName);
+            $category->setSpecs($categorySpec);
             $manager->persist($category);
             $categoryList[] = $category;
         }
-
         $itemList = [];
         // fixtures for Item
         for ($i = 0; $i < 600; $i++) {
@@ -274,11 +274,9 @@ class AppFixtures extends Fixture
             foreach($categoryList as $key => $category ){
                 
                 $item = $faker->randomElement($itemList);
-                dump($key, $item);
                 while($category->getName() != $item->getCategory()->getName()){
                     $item = $faker->randomElement($itemList);
                 }
-                
                 $command->addItem($item);
             }
             $manager->persist($command);

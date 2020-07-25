@@ -7,27 +7,74 @@ use Faker\Provider\Base;
 class RpcMakerProvider extends Base
 {
     private static $categories = [
-        'Processeur',
-        'Carte mère',
-        'Carte graphique',
-        'RAM',
-        'Ventirad / Watercooling',
-        'Lecteur / Graveur',
-        'Carte son',
-        'Carte wifi',
-        'Boitier',
-        'Alimentation',
-        'HDDs',
-        'SSDs',
-        'Systeme d\'exploitation',
-        'Ecran',
-        'Clavier',
-        'Souris',
-        'Tapis',
-        'Micro-Casque',
-        'Enceintes',
-        'Webcam',
-        'Imprimante',
+        'Processeur' => [
+            'coeur' => [
+                '1',
+                '3',
+                '5',
+                '7'
+            ]
+        ],
+        'Carte mère' => [
+
+        ],
+        'Carte graphique'  => [
+            
+        ],
+        'RAM'  => [
+            
+        ],
+        'Ventirad / Watercooling'  => [
+            
+        ],
+        'Lecteur / Graveur'  => [
+            
+        ],
+        'Carte son'  => [
+            
+        ],
+        'Carte wifi'  => [
+            
+        ],
+        'Boitier'  => [
+            
+        ],
+        'Alimentation'  => [
+            
+        ],
+        'HDDs'  => [
+            
+        ],
+        'SSDs'  => [
+            
+        ],
+        'Systeme d\'exploitation'  => [
+            
+        ],
+        'Ecran'  => [
+            
+        ],
+        'Clavier'  => [
+            
+        ],
+        'Souris'  => [
+            
+        ],
+        'Tapis'  => [
+            
+        ],
+        'Micro-Casque'  => [
+            
+        ],
+        'Enceintes'  => [
+            
+        ],
+        'Webcam'  => [
+            
+        ],
+        'Imprimante'  => [
+            
+        ],
     ];
 
     private static $graphicCardBrands = [
