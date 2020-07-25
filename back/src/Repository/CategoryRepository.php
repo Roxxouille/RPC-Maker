@@ -22,20 +22,17 @@ class CategoryRepository extends ServiceEntityRepository
     // /**
     //  * @return Category[] Returns an array of Category objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function findOneByItem($category)
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('c', 'i')
+            ->leftJoin('c.items', 'i')
+            ->where('c = :category')
+            ->setParameter('category', $category)
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
-    */
-
     /*
     public function findOneBySomeField($value): ?Category
     {
