@@ -28,14 +28,14 @@ class Command
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("\d+", message = "please enter a valid number.)
+     * @Assert\Regex("\d+", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $status;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\Json( message = "This is not a valid Json.)
+     * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $data = [];

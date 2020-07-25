@@ -28,7 +28,7 @@ class Item
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
-     * @Assert\Regex("\d+", message = "please enter a digit number.)
+     * @Assert\Regex("\d+", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      */
     private $price;
