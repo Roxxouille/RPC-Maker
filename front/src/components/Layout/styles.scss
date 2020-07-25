@@ -5,13 +5,22 @@
 .footer {
   background-color: vars.$color-blue;
   width: auto;
-  height: auto;
-  
+  height: auto;  
 }
 
 .footer__plan {  
-  float: right;
-  margin-right: 10%;
+    &__link {
+      text-decoration: none;
+      color: #ffffff;
+    }
+}
+
+.plan-site {
+  float: left;
+
+}
+
+.img-footer {
 
 }
 
