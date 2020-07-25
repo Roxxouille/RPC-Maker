@@ -17,20 +17,20 @@ class Avatar
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("avatar")
+     * @Groups({"avatar", "user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups("avatar")
+     * @Groups({"avatar", "user"})
      */
     private $image;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, mappedBy="avatar", cascade={"persist", "remove"})
-     * @Groups("avatar")
+     * @Groups({"avatar"})
      * @MaxDepth(2)
      */
     private $user;

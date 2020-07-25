@@ -18,14 +18,14 @@ class User
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups("avatar")
+     * @Groups({"avatar", "user"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
     private $username;
 
@@ -34,88 +34,89 @@ class User
      * @Assert\Email(
      *      message = "The email '{{ value }}' is not a valid email.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}", message = "At least one upper case English letter, At least one lower case English letter, At least one digit, At least one special character, Minimum eight in length")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $password;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Regex("\d+", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $level;
 
     /**
      * @ORM\Column(type="json")
      * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $role = [];
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $lastname;
 
     /**
      * @ORM\Column(type="string", length=85, nullable=true)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $city;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      * @Assert\Regex("\d+", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $zip_code;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"avatar", "command"})
+     * @Groups({"avatar", "command", "user"})
      */
-    
+
     private $adress;
 
     /**
      * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * 
+     * @Groups({"user"})
      */
     private $avatar;
 
     /**
      * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
+     * @Groups({"user"})
      */
     private $commands;
 

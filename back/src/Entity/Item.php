@@ -18,14 +18,14 @@ class Item
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"category", "command"})
+     * @Groups({"category", "command", "item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"category", "command"})
+     * @Groups({"category", "command", "item"})
      */
     private $name;
 
@@ -33,7 +33,7 @@ class Item
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      * @Assert\Regex("\d+", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"category", "command"})
+     * @Groups({"category", "command", "item"})
      */
     private $price;
 
@@ -41,7 +41,7 @@ class Item
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Url( message = "This is not a valid url.")
      * @Assert\NotBlank(message = "This field should not be blank.")
-     * @Groups({"category", "command"})
+     * @Groups({"category", "command", "item"})
      */
     private $url;
 
@@ -52,7 +52,7 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="items")
-     * @Groups({"command"})
+     * @Groups({"command", "item"})
      */
     private $category;
 
