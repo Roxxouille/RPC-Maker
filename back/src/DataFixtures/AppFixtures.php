@@ -16,10 +16,13 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        // use of faker for the fixtures
         $faker = Faker\Factory::create();
+        // adding custom provider
         $faker->addProvider(new RpcMakerProvider($faker));
 
         $categoryList = [];
+        // fixtures for Category
         for ($i = 0; $i < 20; $i++) {
             $category = new Category();
             $category->setName($faker->unique()->categoryName);
@@ -28,12 +31,13 @@ class AppFixtures extends Fixture
         }
 
         $itemList = [];
-
+        // fixtures for Item
         for ($i = 0; $i < 50; $i++) {
             $item = new Item();
             $randomCategoryObject = $faker->randomElement($categoryList);
             $randomCategory = $randomCategoryObject->getName();
 
+            // custom name for each category of items 
             if ($randomCategory == 'Processeur') {
                 $item->setName(
                     $faker->processorBrand 
@@ -235,6 +239,7 @@ class AppFixtures extends Fixture
         }
 
         $avatarList = [];
+        // fixtures for Avatar
         for($i= 0; $i < 25; $i++){
             $avatar = new Avatar;
             $avatar->setImage($faker->sentence);
@@ -243,6 +248,7 @@ class AppFixtures extends Fixture
         }
 
         $userList = [];
+        // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
             $user->setUsername($faker->randomUsername);
@@ -257,11 +263,14 @@ class AppFixtures extends Fixture
             $userList[] = $user;
         }
 
+        // fixtures for Command
         for($i= 0; $i < 25; $i++){
             $command = new Command;
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
+
+            // adding 20 item, each of one category, for one command
             foreach($categoryList as $category){
                 $item = $faker->randomElement($itemList);
                 while($category->getName() != $item->getCategory()->getName()){
