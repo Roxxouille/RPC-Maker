@@ -1,0 +1,13 @@
+@use 'src/styles/vars';
+
+.contact{
+  margin-left: 5%;
+  margin-right: 5%;
+  &__1{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+}
+

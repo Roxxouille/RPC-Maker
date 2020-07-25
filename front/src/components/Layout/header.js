@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import Home from './../Home';
+import Contact from './../Contact';
 import { Navbar, Nav } from 'react-bootstrap/';
 
 const Header = () => {
@@ -28,7 +29,7 @@ const Header = () => {
             <Link to="/login" className="nav-link menu__link">
               Connexion
             </Link>
-          </Nav>    
+          </Nav>
           </div>
       </Navbar>
       <Switch>
@@ -42,7 +43,7 @@ const Header = () => {
           Team
         </Route>
         <Route path='/contact'>
-          Contact
+          <Contact />
         </Route>
         <Route path='/login'>
           Mon compte
