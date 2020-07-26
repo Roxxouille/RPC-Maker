@@ -72,7 +72,7 @@ class CategoryController extends AbstractController
         $em->flush();
         
         // Send a Json response 
-        return new JsonResponse(['status' => 'Category created'], Response::HTTP_CREATED);
+        return $this->json(['status' => 'Category created'], 201);
     }
 
     /**
@@ -80,12 +80,12 @@ class CategoryController extends AbstractController
      */
     public function delete(Category $category, EntityManagerInterface $em)
     {
-        // get the informations from the request (name of the category)
-        // and transform the json into the object category
 
+        // get the category from the url and remove it from the database
         $em->remove($category);
         $em->flush();
 
+        //send a json response
         return $this->json(['message' => 'Film supprime'], 200);
     }
 }
