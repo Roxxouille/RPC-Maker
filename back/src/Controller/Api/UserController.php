@@ -26,7 +26,7 @@ class UserController extends AbstractController
     public function getOne($id, UserRepository $userRepository, User $user)
     {
 
-        $data = $userRepository->find($id);
+        $data = $userRepository->find($user);
         
 
         return $this->json($data, 200, [], ['groups' => 'user']);
