@@ -38,7 +38,7 @@ class Category
     private $specs = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="category")
+     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="category", nullable = true)
      * @Groups("category")
      */
     private $items;

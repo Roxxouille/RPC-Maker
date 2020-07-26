@@ -4,9 +4,11 @@ namespace App\Controller\Api;
 
 use App\Entity\Category;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class CategoryController extends AbstractController
 {
@@ -31,5 +33,15 @@ class CategoryController extends AbstractController
         
 
         return $this->json($data, 200, [], ['groups' => 'category']);
+    }
+
+    /**
+     * @Route("api/category/add", name="category_add", methods="POST")
+     */
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
+    {
+        $content = $request->getContent();
+
+        dd($content);
     }
 }
