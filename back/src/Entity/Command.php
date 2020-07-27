@@ -39,7 +39,6 @@ class Command
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"category", "command", "user"})
      */

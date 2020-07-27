@@ -46,7 +46,7 @@ class CommandController extends AbstractController
 
         //check if the user received in the request exist
         if ($command === null) {
-            return $this->json(['error' => 'command non trouve'], Response::HTTP_NOT_FOUND);
+            return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
         }
 
         //get the request content (info about new user)
