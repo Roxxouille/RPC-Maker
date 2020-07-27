@@ -25,6 +25,22 @@ const Footer = () => {
                   Contact
                 </Link>
               </div>
+
+              <div className="informations">
+                <h3>Informations légales</h3>
+                <Link className="footer_plan__link">
+                  Mentions légales
+                </Link>
+                <Link className="footer__plan__link">
+                  Utilisation des cookies
+                </Link>
+                <Link className="footer__plan__link">
+                  CGUs
+                </Link>
+                <Link className="footer__plan__link">
+                  Confidentialité
+                </Link>
+              </div>
             </Col>
             <Col>
               <p>1 Rue de la patatate, immeuble 3, Rennes</p>
