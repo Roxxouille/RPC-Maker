@@ -627,6 +627,7 @@ class RpcMakerProvider extends Base
         'Gaming With Ryana',
         'Mr Game Pigeon',
         'Ms Game Pigeon',
+        'XxDarkSasukexX',
     ];
 
     public function randomUsername()

@@ -44,12 +44,13 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        
         if (null === $credentials) {
             // The token header was empty, authentication fails with HTTP Status
             // Code 401 "Unauthorized"
             return null;
         }
-
+        
         // if a User is returned, checkCredentials() is called
         return $this->em->getRepository(User::class)
             ->findOneBy(['apiToken' => $credentials])
@@ -60,7 +61,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     {
         // Check credentials - e.g. make sure the password is valid.
         // In case of an API token, no credential check is needed.
-
+        
         // Return `true` to cause authentication success
         return true;
     }
