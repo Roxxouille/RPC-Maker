@@ -19,6 +19,7 @@ class SecurityController extends AbstractController
             throw $this->createAccessDeniedException();
         }
         
+        $user->setApiToken(md5(uniqid(rand(), true)));
         // @todo Renouveler le token à la connexion
         // @todo Et/ou avec une date d'expiration (mais pourquoi finalement ?)
         // @todo A chaque modif de mot de passe
