@@ -253,7 +253,7 @@ class AppFixtures extends Fixture
         // fixtures for Avatar
         for($i= 0; $i < 25; $i++){
             $avatar = new Avatar;
-            $avatar->setImage($faker->sentence);
+            $avatar->setImage('https://picsum.photos/200');
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
