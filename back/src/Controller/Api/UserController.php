@@ -44,7 +44,17 @@ class UserController extends AbstractController
      */
     public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
+        dd($user);
+        if ($user === null) {
+            return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
+        $content = $request->getContent();
+        $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+
+        $em->flush();
+
+        return $this->json($updatedUser, 200, ['status' => 'user edited']);
     }
 
     /**
@@ -60,27 +70,32 @@ class UserController extends AbstractController
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
 
-        //if there is an error, return them in a json format
-        // if (count($errors) > 0) {
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
 
-        //     $errorsArray = [];
+            $errorsArray = [];
 
-        //     foreach ($errors as $error) {
-        //         $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-        //     }
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
 
-        //     return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
-        // }
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
-        $passwordClear= $user->getPassword();
+        // get the clear password wrote bye the user
+        // encode it
+        // set the encoded password to user
+        $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
-        dd($passwordHashed);
 
         //persist the new user in the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
         $entityManager->flush();
+
+        // Send a Json response 
+        return $this->json(['status' => 'user created'], 201);
     }
 
     /**
