@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import Home from './../Home';
+import SignIn from '../../containers/User/SignIn';
 import { Navbar, Nav } from 'react-bootstrap/';
 
 const Header = () => {
@@ -28,8 +29,8 @@ const Header = () => {
             <Link to="/login" className="nav-link menu__link">
               Connexion
             </Link>
-          </Nav>    
-          </div>
+          </Nav>
+      </div>
       </Navbar>
       <Switch>
         <Route exact path='/'>
@@ -45,7 +46,7 @@ const Header = () => {
           Contact
         </Route>
         <Route path='/login'>
-          Mon compte
+          <SignIn />
         </Route>
       </Switch>
     </Router>

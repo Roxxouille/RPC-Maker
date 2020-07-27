@@ -29,14 +29,12 @@ const Footer = () => {
             <Col>
               <p>1 Rue de la patatate, immeuble 3, Rennes</p>
               <p>Tel : 06 66 66 66 66</p>
-              <p>
-                <ul>
-                  <li>Lundi a jeudi : 9h 18h</li>
-                  <li>Vendre: 9h - 17h</li>
-                  <li>Samedi: 10h - 17h</li>
-                  <li>Dimanche 10h - 17h</li>
-                </ul>
-              </p>
+              <ul>
+                <li>Lundi a jeudi : 9h 18h</li>
+                <li>Vendre: 9h - 17h</li>
+                <li>Samedi: 10h - 17h</li>
+                <li>Dimanche 10h - 17h</li>
+              </ul>
             </Col>
           </Row>
             <Switch>
