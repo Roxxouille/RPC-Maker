@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("api/category", name="categories", methods = "GET")
+     * @Route("api/category", name="category_browse", methods = "GET")
      */
     public function browse(CategoryRepository $categoryRepo)
     {
@@ -28,7 +28,7 @@ class CategoryController extends AbstractController
     }
 
      /**
-     * @Route("api/category/{id<\d+>}", name="category", methods="GET")
+     * @Route("api/category/{id<\d+>}", name="category_read", methods="GET")
      */
     public function read($id, CategoryRepository $categoryRepo, Category $category)
     {
