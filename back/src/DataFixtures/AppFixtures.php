@@ -259,6 +259,7 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
+            $user->setApiToken(md5(uniqid(rand(), true)));
             $manager->persist($user);
             $userList[] = $user;
         }
@@ -269,10 +270,9 @@ class AppFixtures extends Fixture
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
-            
+
             // adding 20 item, each of one category, for one command
-            foreach($categoryList as $key => $category ){
-                
+            foreach($categoryList as $key => $category ){    
                 $item = $faker->randomElement($itemList);
                 while($category->getName() != $item->getCategory()->getName()){
                     $item = $faker->randomElement($itemList);
