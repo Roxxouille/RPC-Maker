@@ -251,11 +251,11 @@ class AppFixtures extends Fixture
         // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
-            $user->setUsername($faker->randomUsername);
-            $user->setEmail($faker->email);
+            $user->setUsername($faker->unique->randomUsername);
+            $user->setEmail($faker->unique->email);
             $user->setPassword($faker->password);
             $user->setLevel($faker->randomDigitNotNull);
-            $user->setRole(['ROLE_USER']);
+            $user->setRoles(['ROLE_USER']);
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
