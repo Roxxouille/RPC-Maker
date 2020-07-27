@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=CategoryRepository::class)
@@ -17,12 +18,14 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"category", "item"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups({"category", "item"})
      */
     private $name;
 
@@ -30,11 +33,13 @@ class Category
      * @ORM\Column(type="json", nullable=true)
      * @Assert\Json( message = "this is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Groups({"category", "item"})
      */
     private $specs = [];
 
     /**
      * @ORM\OneToMany(targetEntity=Item::class, mappedBy="category")
+     * @Groups("category")
      */
     private $items;
 

@@ -2,11 +2,14 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Avatar;
 use App\Entity\User;
+use App\Entity\Avatar;
 use App\Repository\AvatarRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 class AvatarController extends AbstractController
 {
@@ -16,21 +19,21 @@ class AvatarController extends AbstractController
     public function getAll(AvatarRepository $avatarRepo)
     {
 
-        $avatars = $avatarRepo->findAll();
+        $data = $avatarRepo->findAll();
 
-        return $this->json($avatars, 200, []);
+
+        return $this->json($data, 200, [], ['groups' =>'avatar']);
     }
 
      /**
      * @Route("api/avatar/{id<\d+>}", name="avatar", methods="GET")
      */
-    public function getOne($id, AvatarRepository $avatarRepo, Avatar $avatar)
+    public function getOne($id, AvatarRepository $avatarRepo, Avatar $avatar, SerializerInterface $serializer)
     {
 
-        $avatar = $avatarRepo->findOneByUser($avatar);
-
+        $data = $avatarRepo->findOneByUser($avatar);
         
 
-        return $this->json($avatar, 200, []);
+        return $this->json($data, 200, [], ['groups' => 'avatar']);
     }
 }
