@@ -31,8 +31,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Email(
-     *      message = "The email '{{ value }}' is not a valid email.")
+     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -41,7 +40,7 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}", message = "At least one upper case English letter, At least one lower case English letter, At least one digit, At least one special character, Minimum eight in length")
+     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "At least one upper case English letter, At least one lower case English letter, At least one digit, At least one special character, Minimum eight in length")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -59,7 +58,7 @@ class User
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\Json( message = "This is not a valid Json.")
+     * 
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
