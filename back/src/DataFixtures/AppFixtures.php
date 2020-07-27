@@ -4,16 +4,27 @@ namespace App\DataFixtures;
 
 use Faker;
 use App\Entity\Item;
+use App\Entity\User;
+use App\Entity\Avatar;
+use App\Entity\Command;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
-use App\Entity\Avatar;
-use App\Entity\Category;
-use App\Entity\Command;
-use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+        // Une propriété pour accueillir notre encodeur
+        private $encoder;
+
+        // On récupère notre "service" via le constructeur de la fixture
+        // qui est elle-même un service
+        public function __construct(UserPasswordEncoderInterface $encoder)
+        {
+            $this->encoder = $encoder;
+        }
+
     public function load(ObjectManager $manager)
     {
         // use of faker for the fixtures
@@ -253,7 +264,7 @@ class AppFixtures extends Fixture
             $user = new User;
             $user->setUsername($faker->unique->randomUsername);
             $user->setEmail($faker->unique->email);
-            $user->setPassword($faker->password);
+            $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setLevel($faker->randomDigitNotNull);
             $user->setRoles(['ROLE_USER']);
             $user->setFirstname($faker->firstName);
