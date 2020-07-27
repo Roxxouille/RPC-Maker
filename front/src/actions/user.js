@@ -1,4 +1,4 @@
-export const SIGNIN = 'SIGNIN';
+export const LOGIN = 'LOGIN';
 export const CHANGE_FIELD = 'CHANGE_FIELD';
 
 
@@ -8,6 +8,6 @@ export const changeField = (name, value) => ({
   value,
 });
 
-export const signIn = () => ({
-  type: SIGNIN,
+export const login = () => ({
+  type: LOGIN,
 });

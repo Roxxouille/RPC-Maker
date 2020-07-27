@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, SIGNIN } from '../actions/user';
+import { CHANGE_FIELD, LOGIN } from '../actions/user';
 
 export const initialState = {
   email: 'exemple@mail.com',
@@ -7,11 +7,8 @@ export const initialState = {
 };
 
 const user = (state = initialState, action = {}) => {
-console.log('ça réduce');
-
   switch (action.type) {
     case CHANGE_FIELD:
-      console.log('entrée reducer');
       return {
         ...state,
         [action.name]: action.value,
@@ -26,12 +23,12 @@ console.log('ça réduce');
           pseudo: action.username,
         },
       };*/
-   /* case SIGNIN:
+    case LOGIN:
+      console.log('sa passe')
       return {
         ...state,
-        isLogged: true,
         infos: {},
-      };*/
+      };
     default:
       return state;
   }

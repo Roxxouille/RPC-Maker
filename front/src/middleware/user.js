@@ -1,16 +1,15 @@
 import axios from 'axios';
 import {
-  SIGNIN,
+  LOGIN,
 } from '../actions/user';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    case SIGNIN: {
+    case LOGIN: {
       const state = store.getState();
       const email = state.email;
       const password = state.password;
-
-      axios.get('http://localhost:3000/api/user')
+      axios.post('http://localhost:3000/api/login', { email: email, password: password })
         .then((response) => {
           console.log(response);
         })

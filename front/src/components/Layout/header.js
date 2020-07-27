@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import Home from './../Home';
-import SignIn from '../../containers/User/SignIn';
+import Login from '../../containers/User/Login';
 import { Navbar, Nav } from 'react-bootstrap/';
 
 const Header = () => {
@@ -46,7 +46,7 @@ const Header = () => {
           Contact
         </Route>
         <Route path='/login'>
-          <SignIn />
+          <Login />
         </Route>
       </Switch>
     </Router>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import SignIn from '../../components/User/SignIn';
-import { changeField } from '../../actions/user';
+import Login from '../../components/User/Login';
+import { changeField, login } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
   email: state.email,
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
     console.log('entrée container');
     dispatch(changeField(name, value));
   },
+  login: () => {
+    dispatch(login());
+  },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
