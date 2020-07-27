@@ -1,17 +1,19 @@
 import React from 'react';
-import { Form, Col } from 'react-bootstrap';
+import { Form, Col, Button } from 'react-bootstrap';
 import "./styles.scss";
 
 const Contact = () => {
   return (
     <div>
-      <h1>Une Question ? c'est par ici n'hésitez pas ! :D</h1>
+      <div className="contact__space">
+        <h1>Une Question ? c'est par ici n'hésitez pas ! :D</h1>
+      </div>
       <Form>
         <Form className="contact">
           <Form.Row>
             <Col>
               <Form.Control placeholder="Nom" />
-          </Col>
+            </Col>
             <Col>
               <Form.Control placeholder="Prenom" />
             </Col>
@@ -26,6 +28,7 @@ const Contact = () => {
           </Form.Row>
         </Form>
       </Form>
+      <Button className="bouton" variant="primary" type="submit"> GO ! </Button>
     </div>
   );
 };
