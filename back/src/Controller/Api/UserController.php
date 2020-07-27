@@ -46,13 +46,33 @@ class UserController extends AbstractController
      */
     public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
-        dd($user);
+
+
+
+
+
         if ($user === null) {
             return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the request content (info about new user)
+        //transform it into an object user and replace the data
+        //get the validations errors if there is any
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+        $errors = $validator->validate($user);
+
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         $em->flush();
 
@@ -67,7 +87,7 @@ class UserController extends AbstractController
 
         //get the request content (info about new user)
         //transform it into an object user
-        //get the validations errors if there is
+        //get the validations errors if there is any
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
@@ -112,5 +132,11 @@ class UserController extends AbstractController
      */
     public function delete(User $user, EntityManagerInterface $em)
     {
+        // get the user from the url and remove it from the database
+        $em->remove($user);
+        $em->flush();
+
+        //send a json response
+        return $this->json(['message' => 'utilisateur supprime'], 200);
     }
 }
