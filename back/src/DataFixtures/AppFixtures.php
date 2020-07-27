@@ -4,16 +4,27 @@ namespace App\DataFixtures;
 
 use Faker;
 use App\Entity\Item;
+use App\Entity\User;
+use App\Entity\Avatar;
+use App\Entity\Command;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
-use App\Entity\Avatar;
-use App\Entity\Category;
-use App\Entity\Command;
-use App\Entity\User;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
+        // Une propriété pour accueillir notre encodeur
+        private $encoder;
+
+        // On récupère notre "service" via le constructeur de la fixture
+        // qui est elle-même un service
+        public function __construct(UserPasswordEncoderInterface $encoder)
+        {
+            $this->encoder = $encoder;
+        }
+
     public function load(ObjectManager $manager)
     {
         // use of faker for the fixtures
@@ -251,14 +262,15 @@ class AppFixtures extends Fixture
         // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
-            $user->setUsername($faker->randomUsername);
-            $user->setEmail($faker->email);
-            $user->setPassword($faker->password);
+            $user->setUsername($faker->unique->randomUsername);
+            $user->setEmail($faker->unique->email);
+            $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setLevel($faker->randomDigitNotNull);
-            $user->setRole(['ROLE_USER']);
+            $user->setRoles(['ROLE_USER']);
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
+            $user->setApiToken(md5(uniqid(rand(), true)));
             $manager->persist($user);
             $userList[] = $user;
         }
@@ -269,10 +281,9 @@ class AppFixtures extends Fixture
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
-            
+
             // adding 20 item, each of one category, for one command
-            foreach($categoryList as $key => $category ){
-                
+            foreach($categoryList as $key => $category ){    
                 $item = $faker->randomElement($itemList);
                 while($category->getName() != $item->getCategory()->getName()){
                     $item = $faker->randomElement($itemList);

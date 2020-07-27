@@ -6,13 +6,14 @@ use App\Entity\Category;
 use App\Repository\CategoryRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Json;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CategoryController extends AbstractController
 {
@@ -40,6 +41,7 @@ class CategoryController extends AbstractController
     }
     /**
      * @Route("api/category/edit/{id<\d+>}", name="category_edit", methods={"PUT", "PATCH"})
+     * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Category $category, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -58,6 +60,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("api/category/add", name="category_add", methods="POST")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -77,6 +80,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("api/category/delete/{id<\d+>}", name="category_delete", methods="DELETE")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Category $category, EntityManagerInterface $em)
     {
