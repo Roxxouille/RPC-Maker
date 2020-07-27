@@ -32,7 +32,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
@@ -60,7 +60,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * 
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
