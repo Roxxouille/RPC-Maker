@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import Home from './../Home';
 import Contact from './../Contact';
+import Survey from './../Survey';
+
 import { Navbar, Nav } from 'react-bootstrap/';
 
 const Header = () => {
@@ -37,7 +39,7 @@ const Header = () => {
           <Home />
         </Route>
         <Route path='/survey'>
-          Devis
+          <Survey />
         </Route>
         <Route path='/team'>
           Team
