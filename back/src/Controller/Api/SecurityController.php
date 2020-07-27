@@ -12,12 +12,13 @@ class SecurityController extends AbstractController
      */
     public function login()
     {
+
         $user = $this->getUser();
 
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
-
+        
         // @todo Renouveler le token à la connexion
         // @todo Et/ou avec une date d'expiration (mais pourquoi finalement ?)
         // @todo A chaque modif de mot de passe

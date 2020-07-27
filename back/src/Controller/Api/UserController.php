@@ -3,6 +3,8 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
+use App\Entity\Avatar;
+use App\Repository\AvatarRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,8 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
@@ -44,13 +46,33 @@ class UserController extends AbstractController
      */
     public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
-        dd($user);
+
+
+
+
+
         if ($user === null) {
             return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the request content (info about new user)
+        //transform it into an object user and replace the data
+        //get the validations errors if there is any
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+        $errors = $validator->validate($user);
+
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
 
         $em->flush();
 
@@ -60,12 +82,12 @@ class UserController extends AbstractController
     /**
      * @Route("api/user/add", name="user_add", methods="POST")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
     {
 
         //get the request content (info about new user)
         //transform it into an object user
-        //get the validations errors if there is
+        //get the validations errors if there is any
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
@@ -89,6 +111,13 @@ class UserController extends AbstractController
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
 
+        //Create a new avatar
+        //add an random image from lorempicsum
+        //set it into the user object
+        $avatar = new Avatar();
+        $avatar->setImage('https://picsum.photos/200');
+        $user->setAvatar($avatar);
+
         //persist the new user in the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
@@ -103,5 +132,11 @@ class UserController extends AbstractController
      */
     public function delete(User $user, EntityManagerInterface $em)
     {
+        // get the user from the url and remove it from the database
+        $em->remove($user);
+        $em->flush();
+
+        //send a json response
+        return $this->json(['message' => 'utilisateur supprime'], 200);
     }
 }

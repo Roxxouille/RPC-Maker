@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
@@ -31,7 +32,7 @@ class User implements UserInterface
     private $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
@@ -50,7 +51,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("\d+", message = "please enter a valid number.")
+     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -59,7 +60,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * 
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -92,7 +92,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Regex("\d+", message = "please enter a digit number.")
+     * @Assert\Regex("/^\d+/", message = "please enter a digit number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
