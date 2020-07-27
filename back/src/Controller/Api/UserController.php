@@ -3,6 +3,8 @@
 namespace App\Controller\Api;
 
 use App\Entity\User;
+use App\Entity\Avatar;
+use App\Repository\AvatarRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,8 +12,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
@@ -60,7 +62,7 @@ class UserController extends AbstractController
     /**
      * @Route("api/user/add", name="user_add", methods="POST")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
     {
 
         //get the request content (info about new user)
@@ -88,6 +90,13 @@ class UserController extends AbstractController
         $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
+
+        //Create a new avatar
+        //add an random image from lorempicsum
+        //set it into the user object
+        $avatar = new Avatar();
+        $avatar->setImage('https://picsum.photos/200');
+        $user->setAvatar($avatar);
 
         //persist the new user in the database
         $entityManager = $this->getDoctrine()->getManager();
