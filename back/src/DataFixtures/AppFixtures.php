@@ -253,7 +253,7 @@ class AppFixtures extends Fixture
         // fixtures for Avatar
         for($i= 0; $i < 25; $i++){
             $avatar = new Avatar;
-            $avatar->setImage('https://picsum.photos/200');
+            $avatar->setImage($faker->sentence);
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
@@ -262,8 +262,8 @@ class AppFixtures extends Fixture
         // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
-            $user->setUsername($faker->unique()->randomUsername);
-            $user->setEmail($faker->unique()->email);
+            $user->setUsername($faker->unique->randomUsername);
+            $user->setEmail($faker->unique->email);
             $user->setPassword($this->encoder->encodePassword($user, 'user'));
             $user->setLevel($faker->randomDigitNotNull);
             $user->setRoles(['ROLE_USER']);
