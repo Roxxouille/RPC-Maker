@@ -31,7 +31,7 @@ class Command
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("\d+", message = "please enter a valid number.")
+     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"category", "command", "user"})
      */
