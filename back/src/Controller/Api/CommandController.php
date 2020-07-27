@@ -2,10 +2,16 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\User;
 use App\Entity\Command;
 use App\Repository\CommandRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommandController extends AbstractController
 {
@@ -31,4 +37,40 @@ class CommandController extends AbstractController
 
         return $this->json($data, 200, [], ['groups' => 'command']);
     }
+
+     /**
+     * @Route("api/command/edit/{id<\d+>}", name="command_edit", methods={"PUT", "PATCH"})
+     */
+    public function edit(Command $command, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    {
+
+        //check if the user received in the request exist
+        if ($command === null) {
+            return $this->json(['error' => 'command non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
+        //get the request content (info about new user)
+        //transform it into an object user and replace the data
+        //get the validations errors if there is any
+        $content = $request->getContent();
+        $updatedCommand = $serializer->deserialize($content, Command::class, 'json', ['object_to_populate' => $command]);
+        $errors = $validator->validate($updatedCommand);
+
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $em->flush();
+
+        return $this->json(['status' => 'command edited'], 200 );
+    }
+
 }
