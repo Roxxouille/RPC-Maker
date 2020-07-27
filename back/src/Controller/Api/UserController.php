@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\User;
 use App\Entity\Avatar;
+use App\Entity\Command;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -88,36 +89,53 @@ class UserController extends AbstractController
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
-
+        
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
-
+            
             $errorsArray = [];
-
+            
             foreach ($errors as $error) {
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
-
+            
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
-
+        
         // get the clear password wrote bye the user
         // encode it
         // set the encoded password to user
         $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
-
+        
         //Create a new avatar
         //add an random image from lorempicsum
         //set it into the user object
         $avatar = new Avatar();
         $avatar->setImage('https://picsum.photos/200');
         $user->setAvatar($avatar);
+        
+        //transform the content of the request in an object
+        //get the info of the new command
+        //create the new command
+        //set this info to the new command
+        $contentDecode = json_decode($content, true);
+        $commandstatus = 0;
+        $commandData = $contentDecode['command_data'];
+        $command = new Command();
+        $command->setStatus($commandstatus);
+        $command->setData($commandData);
+ 
+
 
         //persist the new user in the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
+
+        //link this user to the new command
+        $command->setUser($user);
+        $entityManager->persist($command);
         $entityManager->flush();
 
         // Send a Json response 

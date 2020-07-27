@@ -115,7 +115,7 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user", cascade={"remove"})
      * @Groups({"user"})
      */
     private $commands;
