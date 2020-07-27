@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
-import "./styles.scss";
+import { Form, Button } from 'react-bootstrap';
+import './styles.scss';
 
 export class Step1 extends Component {
-  continue = e => {
+  continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
   };
 
-  back = e => {
+  back = (e) => {
     e.preventDefault();
     this.props.prevStep();
   };
