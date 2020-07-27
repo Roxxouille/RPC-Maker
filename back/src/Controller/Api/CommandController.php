@@ -119,4 +119,17 @@ class CommandController extends AbstractController
         // Send a Json response 
         return $this->json(['status' => 'commande created'], 201);
     }
+
+    /**
+     * @Route("api/command/delete/{id<\d+>}", name="command_delete", methods="DELETE")
+     */
+    public function delete(Command $command, EntityManagerInterface $em)
+    {
+        // get the command from the url and remove it from the database
+        $em->remove($command);
+        $em->flush();
+
+        //send a json response
+        return $this->json(['message' => 'commande supprime'], 200);
+    }
 }
