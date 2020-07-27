@@ -4,7 +4,6 @@ namespace App\Controller\Api;
 
 use App\Entity\User;
 use App\Entity\Avatar;
-use App\Repository\AvatarRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoder;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -49,10 +47,7 @@ class UserController extends AbstractController
     public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
 
-
-
-
-
+        //check if the user received in the request exist
         if ($user === null) {
             return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
@@ -62,7 +57,7 @@ class UserController extends AbstractController
         //get the validations errors if there is any
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
-        $errors = $validator->validate($user);
+        $errors = $validator->validate($updatedUser);
 
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
@@ -78,7 +73,7 @@ class UserController extends AbstractController
 
         $em->flush();
 
-        return $this->json($updatedUser, 200, ['status' => 'user edited']);
+        return $this->json(['status' => 'user edited'], 200 );
     }
 
     /**
