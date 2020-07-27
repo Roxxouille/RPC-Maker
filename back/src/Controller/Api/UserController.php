@@ -23,9 +23,10 @@ class UserController extends AbstractController
      */
     public function getAll(UserRepository $userRepository)
     {
-
+        // get the data of all the users
         $data = $userRepository->findAll();
 
+        //send it in json
         return $this->json($data, 200, [], ['groups' => 'user']);
     }
 
@@ -35,9 +36,10 @@ class UserController extends AbstractController
     public function getOne($id, UserRepository $userRepository, User $user)
     {
 
+        // get the user data
         $data = $userRepository->find($user);
 
-
+        //send it in json
         return $this->json($data, 200, [], ['groups' => 'user']);
     }
 
