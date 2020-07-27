@@ -24,7 +24,6 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"category", "command", "user"})
      */
     private $file;
