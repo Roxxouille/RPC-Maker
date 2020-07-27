@@ -36,8 +36,8 @@ services:
                 # Evénement Doctrine Entity
                 name: 'doctrine.orm.entity_listener'
                 # Type d'event du cycle de vie (Lifecycle)
-                event: 'preUpdate'
+                event: 'prePersist'
                 # L'entité concernée
                 entity: 'App\Entity\Movie'
                 lazy: true
-                method: updateSlug
+                method: prePersist
