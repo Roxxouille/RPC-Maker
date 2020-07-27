@@ -120,6 +120,11 @@ class User
      */
     private $commands;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     */
+    private $apiToken;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -289,6 +294,18 @@ class User
                 $command->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getApiToken(): ?string
+    {
+        return $this->apiToken;
+    }
+
+    public function setApiToken(?string $apiToken): self
+    {
+        $this->apiToken = $apiToken;
 
         return $this;
     }
