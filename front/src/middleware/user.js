@@ -9,7 +9,7 @@ export default (store) => (next) => (action) => {
       const state = store.getState();
       const {email, password} = state;
       console.log(email, password);
-      axios.post('http://localhost:3000/api/login', { username: 'shessesl@yahoo.com', password: 'user' }, { headers: {'Content-Type': 'application/json' }})
+      axios.post('http://localhost:3000/api/login', { username: 'lbednar@yahoo.com', password: 'user' }, { headers: {'Content-Type': 'application/json' }})
         .then((response) => {
           console.log(response);
         })
