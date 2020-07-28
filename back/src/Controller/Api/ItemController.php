@@ -4,8 +4,9 @@ namespace App\Controller\Api;
 
 use App\Entity\Item;
 use App\Repository\ItemRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ItemController extends AbstractController
 {
@@ -17,7 +18,7 @@ class ItemController extends AbstractController
 
         $data = $itemRepository->findAll();
 
-        return $this->json($data, 200, [], ['groups' =>'item']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' =>'item']);
     }
 
      /**
@@ -29,6 +30,6 @@ class ItemController extends AbstractController
         $data = $itemRepository->findOneByCategory($item);
         
 
-        return $this->json($data, 200, [], ['groups' => 'item']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'item']);
     }
 }
