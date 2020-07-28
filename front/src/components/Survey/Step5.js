@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
-import Collapse from 'react-bootstrap/Collapse';
 import './styles.scss';
 
 export class Step5 extends Component {
@@ -35,8 +34,10 @@ export class Step5 extends Component {
             </div>
           ))}
         </Form>
+        <div>
+          <h2>Voulez vous faire un SLI</h2>
+        </div>
         <Form.Row>
-          <Form.Label>Voulez vous faire un SLI ?</Form.Label>
           <Col>
             <Button className="bouton" variant="primary" type="submit"> Oui  </Button>
           </Col>
@@ -44,9 +45,10 @@ export class Step5 extends Component {
             <Button className="bouton" variant="primary" type="submit"> Non </Button>
           </Col>
         </Form.Row>
-
+        <div>
+          <h2>Voulez vous pouvoir effectuer de l'overclocking ?</h2>
+        </div>
         <Form.Row>
-          <Form.Label>Voulez vous pouvoir effectuer de l'overclocking ?</Form.Label>
           <Col>
             <Button className="bouton" variant="primary" type="submit"> Oui  </Button>
           </Col>
@@ -54,9 +56,10 @@ export class Step5 extends Component {
             <Button className="bouton" variant="primary" type="submit"> Non </Button>
           </Col>
         </Form.Row>
-
+        <div>
+          <h2>Parlons stockage voulez vous ?</h2>
+        </div>
         <Form>
-          <Form.Label>Parlons stockage voulez vous ?</Form.Label>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
               <Form.Check inline label="HDD" type={type} id={`inline-${type}-1`} />
@@ -70,7 +73,7 @@ export class Step5 extends Component {
               <Form.Label>Combien ?</Form.Label>
             </Col>
             <Col>
-            <Form.Control className="Form" placeholder="- GO" />
+              <Form.Control className="Form" placeholder="- GO" />
             </Col>
           </Form.Row>
         </Form>
@@ -136,12 +139,12 @@ export class Step5 extends Component {
           ))}
         </Form>
 
-          <Form>
-            <Form.Label>Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)</Form.Label>
-            <Form.Row className="contact" controlId="exampleForm.ControlTextarea1">
+        <Form>
+          <Form.Label>Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)</Form.Label>
+          <Form.Row className="contact" controlId="exampleForm.ControlTextarea1">
             <Form.Control as="textarea" Rows="3" placeholder="Message" />
-            </Form.Row>
-          </Form>
+          </Form.Row>
+        </Form>
 
         <Form.Row>
           <Col>
