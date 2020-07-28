@@ -38,6 +38,8 @@ class AppFixtures extends Fixture
             $category = new Category();
             $category->setName($categoryName);
             $category->setSpecs($categorySpec);
+            $category->setCreatedAt(new \DateTime);
+            $category->setUpdatedAt(new \DateTime);
             $manager->persist($category);
             $categoryList[] = $category;
         }
@@ -45,6 +47,8 @@ class AppFixtures extends Fixture
         // fixtures for Item
         for ($i = 0; $i < 600; $i++) {
             $item = new Item();
+            $item->setCreatedAt(new \DateTime);
+            $item->setUpdatedAt(new \DateTime);
             $randomCategoryObject = $faker->randomElement($categoryList);
             $randomCategory = $randomCategoryObject->getName();
 
@@ -253,6 +257,8 @@ class AppFixtures extends Fixture
         // fixtures for Avatar
         for($i= 0; $i < 25; $i++){
             $avatar = new Avatar;
+            $avatar->setCreatedAt(new \DateTime);
+            $avatar->setUpdatedAt(new \DateTime);
             $avatar->setImage($faker->sentence);
             $manager->persist($avatar);
             $avatarList[] = $avatar;
@@ -262,6 +268,8 @@ class AppFixtures extends Fixture
         // fixture for User
         for($i= 0; $i < 25; $i++){
             $user = new User;
+            $user->setCreatedAt(new \DateTime);
+            $user->setUpdatedAt(new \DateTime);
             $user->setUsername($faker->unique->randomUsername);
             $user->setEmail($faker->unique->email);
             $user->setPassword($this->encoder->encodePassword($user, 'user'));
@@ -278,6 +286,8 @@ class AppFixtures extends Fixture
         // fixtures for Command
         for($i= 0; $i < 25; $i++){
             $command = new Command;
+            $command->setCreatedAt(new \DateTime);
+            $command->setUpdatedAt(new \DateTime);
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
