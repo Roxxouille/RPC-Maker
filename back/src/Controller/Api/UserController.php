@@ -32,8 +32,13 @@ class UserController extends AbstractController
     /**
      * @Route("api/user/{id<\d+>}", name="user", methods="GET")
      */
-    public function getOne($id, UserRepository $userRepository, User $user)
+    public function getOne($id, UserRepository $userRepository, User $user = null)
     {
+        //send a 404 error if the category does not exist
+        if ($user === null) {
+            return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
 
         // get the user data
         $data = $userRepository->find($user);
@@ -145,8 +150,13 @@ class UserController extends AbstractController
     /**
      * @Route("api/user/delete/{id<\d+>}", name="user_delete", methods="DELETE")
      */
-    public function delete(User $user, EntityManagerInterface $em)
+    public function delete(User $user = null, EntityManagerInterface $em)
     {
+        //send a 404 error if the category does not exist
+        if ($user === null) {
+            return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
         // get the user from the url and remove it from the database
         $em->remove($user);
         $em->flush();
