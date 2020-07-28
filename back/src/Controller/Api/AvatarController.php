@@ -19,10 +19,10 @@ class AvatarController extends AbstractController
      */
     public function getAll(AvatarRepository $avatarRepo)
     {
-
+        //get the avatars data from the database
         $data = $avatarRepo->findAll();
 
-
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' =>'avatar']);
     }
 
@@ -36,9 +36,10 @@ class AvatarController extends AbstractController
             return $this->json(['error' => 'avatar non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the data of one avatar from the database
         $data = $avatarRepo->findOneByUser($avatar);
         
-
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'avatar']);
     }
 }
