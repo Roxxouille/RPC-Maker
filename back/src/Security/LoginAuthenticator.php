@@ -5,22 +5,25 @@ namespace App\Security;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
-class TokenAuthenticator extends AbstractGuardAuthenticator
+class LoginAuthenticator extends AbstractGuardAuthenticator
 {
     private $em;
-
-    public function __construct(EntityManagerInterface $em)
+    private $passwordEncoder;
+    public function __construct(EntityManagerInterface $em, UserPasswordEncoderInterface $passwordEncoder)
     {
         $this->em = $em;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     /**
@@ -30,7 +33,9 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        return $request->headers->has('X-AUTH-TOKEN');
+        $content = (array) json_decode($request->getContent());
+
+        return isset($content['login']);
     }
 
     /**
@@ -39,30 +44,30 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        return $request->headers->get('X-AUTH-TOKEN');
+        $content = (array) json_decode($request->getContent());
+        return [
+        'username' => $content['username'],
+        'password' => $content['password'],
+        ];
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-
-        if (null === $credentials) {
-            // The token header was empty, authentication fails with HTTP Status
-            // Code 401 "Unauthorized"
-            return null;
-        }
+        $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
         
-        // if a User is returned, checkCredentials() is called
-        return $this->em->getRepository(User::class)
-            ->findOneBy(['apiToken' => $credentials])
-        ;
+        if(!$user){
+            throw new CustomUserMessageAuthenticationException('Email could not be found');
+            //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
+        }
+        return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // Check credentials - e.g. make sure the password is valid.
-        // In case of an API token, no credential check is needed.
-        
-        // Return `true` to cause authentication success
+        if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])){
+            throw new CustomUserMessageAuthenticationException('Invalid password');
+        }
+
         return true;
     }
 
