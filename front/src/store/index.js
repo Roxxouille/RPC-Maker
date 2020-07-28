@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import login from '../reducers/login';
+import userReducer from '../reducers/user';
 import user from '../middleware/user';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -9,7 +9,6 @@ const enhancers = composeEnhancers(
     user,
   ),
 );
-
-const store = createStore(login, enhancers);
+const store = createStore(userReducer, enhancers);
 
 export default store;

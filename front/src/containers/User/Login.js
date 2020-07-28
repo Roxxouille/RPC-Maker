@@ -5,6 +5,7 @@ import { changeField, login } from '../../actions/user';
 const mapStateToProps = (state) => ({
   email: state.email,
   password: state.password,
+  error: state.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

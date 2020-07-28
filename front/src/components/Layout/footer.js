@@ -28,16 +28,16 @@ const Footer = () => {
 
               <div className="footer__pages__legal-data">
                 <h3>Informations légales</h3>
-                <Link className="link">
+                <Link className="link" to="/legal">
                   Mentions légales
                 </Link>
-                <Link className="link">
+                <Link className="link" to="/cookies">
                   Utilisation des cookies
                 </Link>
-                <Link className="link">
+                <Link className="link" to="cgu">
                   CGUs
                 </Link>
-                <Link className="link">
+                <Link className="link" to="condifential">
                   Confidentialité
                 </Link>
               </div>
@@ -54,7 +54,7 @@ const Footer = () => {
             </Col>
           </Row>
             <Switch>
-              <Route path="/survey" />
+              <Route path="/legal" />
               <Route path="/team" />
               <Route path="/contact" />
             </Switch>
