@@ -25,7 +25,7 @@ class CommandController extends AbstractController
 
         $data = $commandRepository->findAll();
 
-        return $this->json($data, 200, [], ['groups' => 'command']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
     /**
@@ -37,7 +37,7 @@ class CommandController extends AbstractController
         $data = $commandRepository->findOneByUser($command);
 
 
-        return $this->json($data, 200, [], ['groups' => 'command']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
     /**
@@ -74,7 +74,7 @@ class CommandController extends AbstractController
         $em->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'command edited'], 200);
+        return $this->json(['status' => 'command edited'], Response::HTTP_OK);
     }
 
     /**
@@ -117,7 +117,7 @@ class CommandController extends AbstractController
         $entityManager->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'commande created'], 201);
+        return $this->json(['status' => 'commande created'], Response::HTTP_CREATED);
     }
 
     /**
@@ -130,6 +130,6 @@ class CommandController extends AbstractController
         $em->flush();
 
         //send a json response
-        return $this->json(['message' => 'commande supprime'], 200);
+        return $this->json(['message' => 'commande supprime'], Response::HTTP_OK);
     }
 }
