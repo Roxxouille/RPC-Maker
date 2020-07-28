@@ -61,6 +61,9 @@ class CategoryController extends AbstractController
         $content = $request->getContent();
         $editedCategory = $serializer->deserialize($content, Category::class, 'json', ['object_to_populate' => $category]);
 
+        //Edit the updatedat vlue to the current time
+        $category->setUpdatedAt(new \DateTime());
+
         // edit the dtabase
         $em->flush();
 
