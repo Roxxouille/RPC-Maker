@@ -56,11 +56,13 @@ class Command
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "user"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "user"})
      */
     private $updated_at;
 

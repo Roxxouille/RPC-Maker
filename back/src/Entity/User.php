@@ -131,11 +131,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "command", "user"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "command", "user"})
      */
     private $updated_at;
 

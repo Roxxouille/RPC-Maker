@@ -45,11 +45,13 @@ class Category
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "item"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "item"})
      */
     private $updated_at;
 

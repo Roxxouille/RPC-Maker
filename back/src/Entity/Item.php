@@ -58,11 +58,13 @@ class Item
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "item"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "item"})
      */
     private $updated_at;
 

@@ -38,11 +38,13 @@ class Avatar
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "user"})
      */
     private $created_at;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "user"})
      */
     private $updated_at;
 
