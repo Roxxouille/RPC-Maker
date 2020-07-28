@@ -74,6 +74,9 @@ class CommandController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        //Edit the updatedat vlue to the current time
+        $command->setUpdatedAt(new \DateTime());
+
         //save the new data to the database
         $em->flush();
 
