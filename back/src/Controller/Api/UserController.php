@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
@@ -85,7 +87,7 @@ class UserController extends AbstractController
     /**
      * @Route("api/user/add", name="user_add", methods="POST")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer)
     {
 
         //get the request content (info about new user)
@@ -139,6 +141,14 @@ class UserController extends AbstractController
         $command->setUser($user);
         $entityManager->persist($command);
         $entityManager->flush();
+
+        $email = (new Email())
+            ->from('alienmail@example.com')
+            ->to($user->getEmail())
+            ->subject('Welcome adventurer!')
+            ->text("Nice to meet you {$user->getFirstName()}! ❤️");
+
+        $mailer->send($email);
 
         // Send a Json response 
         return $this->json(['status' => 'user created'], 201);
