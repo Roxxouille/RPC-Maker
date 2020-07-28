@@ -59,6 +59,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+
         // Check credentials - e.g. make sure the password is valid.
         // In case of an API token, no credential check is needed.
         
@@ -90,7 +91,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        
+        dump('coucou');
         $data = [
             // you might translate this message
             'message' => 'Authentication Required',
