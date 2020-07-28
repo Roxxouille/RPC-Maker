@@ -5,11 +5,12 @@ namespace App\Controller\Api;
 use App\Entity\User;
 use App\Entity\Avatar;
 use App\Repository\AvatarRepository;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Serializer\Annotation\Groups;
 
 class AvatarController extends AbstractController
 {
@@ -22,7 +23,7 @@ class AvatarController extends AbstractController
         $data = $avatarRepo->findAll();
 
 
-        return $this->json($data, 200, [], ['groups' =>'avatar']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' =>'avatar']);
     }
 
      /**
@@ -34,6 +35,6 @@ class AvatarController extends AbstractController
         $data = $avatarRepo->findOneByUser($avatar);
         
 
-        return $this->json($data, 200, [], ['groups' => 'avatar']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'avatar']);
     }
 }
