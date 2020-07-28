@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
 use App\Repository\UserRepository;
-use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -68,7 +67,7 @@ class UserController extends AbstractController
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
         $errors = $validator->validate($updatedUser);
 
-        // if there is an error, return them in a json format
+        // if there is errors, return them in a json format
         if (count($errors) > 0) {
 
             $errorsArray = [];
@@ -79,6 +78,9 @@ class UserController extends AbstractController
 
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
+
+        //Edit the updatedat vlue to the current time
+        $user->setUpdatedAt(new \DateTime());
 
         $em->flush();
 
