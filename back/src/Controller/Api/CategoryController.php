@@ -20,7 +20,7 @@ class CategoryController extends AbstractController
      */
     public function browse(CategoryRepository $categoryRepo)
     {
-        //get the avatars data from the database
+        //get the categories data from the database
         $data = $categoryRepo->findAll();
 
         //send a json response with the data

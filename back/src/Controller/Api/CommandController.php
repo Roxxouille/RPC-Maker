@@ -22,9 +22,10 @@ class CommandController extends AbstractController
      */
     public function getAll(CommandRepository $commandRepository)
     {
-
+        //get the commands data from the database
         $data = $commandRepository->findAll();
 
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
@@ -38,9 +39,10 @@ class CommandController extends AbstractController
             return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the data of one command from the database
         $data = $commandRepository->findOneByUser($command);
 
-
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
