@@ -8,8 +8,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\Json;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -22,9 +20,10 @@ class CategoryController extends AbstractController
      */
     public function browse(CategoryRepository $categoryRepo)
     {
-
+        //get the avatars data from the database
         $data = $categoryRepo->findAll();
 
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' =>'category']);
     }
 
@@ -39,10 +38,10 @@ class CategoryController extends AbstractController
             return $this->json(['error' => 'categorie non trouve'], Response::HTTP_NOT_FOUND);
         }
 
-
+        //get the data of one category from the database
         $data = $categoryRepo->findOneByItem($category);
         
-
+        //send a json response with the data
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'category']);
     }
     /**
@@ -79,7 +78,6 @@ class CategoryController extends AbstractController
     {
         // get the informations from the request (name of the category)
         // and transform the json into the object category
-
         $content = $request->getContent();
         $category = $serializer->deserialize($content, Category::class, 'json');
 
