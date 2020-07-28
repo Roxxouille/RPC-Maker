@@ -257,7 +257,7 @@ class AppFixtures extends Fixture
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
-
+        
         $userList = [];
         // fixture for User
         for($i= 0; $i < 25; $i++){
