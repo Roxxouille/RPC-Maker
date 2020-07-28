@@ -24,22 +24,19 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"category", "command", "user"})
      */
     private $file;
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("\d+", message = "please enter a valid number.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
      * @Groups({"category", "command", "user"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\Json( message = "This is not a valid Json.")
      * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"category", "command", "user"})
      */
@@ -81,6 +78,7 @@ class Command
 
     public function getStatus(): ?int
     {
+        
         return $this->status;
     }
 

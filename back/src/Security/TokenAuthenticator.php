@@ -90,6 +90,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
+        
         $data = [
             // you might translate this message
             'message' => 'Authentication Required',
