@@ -25,7 +25,7 @@ class CategoryController extends AbstractController
 
         $data = $categoryRepo->findAll();
 
-        return $this->json($data, 200, [], ['groups' =>'category']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' =>'category']);
     }
 
      /**
@@ -37,7 +37,7 @@ class CategoryController extends AbstractController
         $data = $categoryRepo->findOneByItem($category);
         
 
-        return $this->json($data, 200, [], ['groups' => 'category']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'category']);
     }
     /**
      * @Route("api/category/edit/{id<\d+>}", name="category_edit", methods={"PUT", "PATCH"})
@@ -55,7 +55,7 @@ class CategoryController extends AbstractController
         $em->flush();
 
         // Send a Json response 
-        return $this->json($editedCategory, 200, []);
+        return $this->json($editedCategory, Response::HTTP_OK, []);
     }
 
     /**
@@ -75,7 +75,7 @@ class CategoryController extends AbstractController
         $em->flush();
         
         // Send a Json response 
-        return $this->json(['status' => 'Category created'], 201);
+        return $this->json(['status' => 'Category created'], Response::HTTP_CREATED);
     }
 
     /**
@@ -90,6 +90,6 @@ class CategoryController extends AbstractController
         $em->flush();
 
         //send a json response
-        return $this->json(['message' => 'Film supprime'], 200);
+        return $this->json(['message' => 'Film supprime'], Response::HTTP_OK);
     }
 }
