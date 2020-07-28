@@ -6,13 +6,28 @@
   background-color: vars.$color-blue;
   width: auto;
   height: auto;  
+  padding-top: 2em;
+
+  background-color: #343a40;
+  color: hsla(0,0%,100%,.5);
+
+  a {
+    color: hsla(0,0%,100%,.5);
+    font-size: 16px;
+  }
+
+  a:hover {
+    color: hsla(0,0%,100%,.75);
+    text-decoration: none;
+  }
+}
+
+.informations {
+  float: right;
 }
 
 .footer__plan {  
-    &__link {
-      text-decoration: none;
-      color: #ffffff;
-    }
+
 }
 
 .plan-site {

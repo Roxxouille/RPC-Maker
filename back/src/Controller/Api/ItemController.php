@@ -24,8 +24,12 @@ class ItemController extends AbstractController
      /**
      * @Route("api/item/{id<\d+>}", name="item", methods="GET")
      */
-    public function getOne($id, ItemRepository $itemRepository, Item $item)
+    public function getOne($id, ItemRepository $itemRepository, Item $item = null)
     {
+        //send a 404 error if the item does not exist
+        if ($item === null) {
+            return $this->json(['error' => 'item non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
         $data = $itemRepository->findOneByCategory($item);
         

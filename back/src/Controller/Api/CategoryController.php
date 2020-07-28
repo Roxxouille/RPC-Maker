@@ -31,8 +31,14 @@ class CategoryController extends AbstractController
      /**
      * @Route("api/category/{id<\d+>}", name="category_read", methods="GET")
      */
-    public function read($id, CategoryRepository $categoryRepo, Category $category)
+    public function read($id, CategoryRepository $categoryRepo, Category $category = null)
     {
+
+        //send a 404 error if the category does not exist
+        if ($category === null) {
+            return $this->json(['error' => 'categorie non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
 
         $data = $categoryRepo->findOneByItem($category);
         
@@ -43,8 +49,12 @@ class CategoryController extends AbstractController
      * @Route("api/category/edit/{id<\d+>}", name="category_edit", methods={"PUT", "PATCH"})
      * @IsGranted("ROLE_ADMIN")
      */
-    public function edit(Category $category, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(Category $category = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
+        //send a 404 error if the category does not exist
+        if ($category === null) {
+            return $this->json(['error' => 'categorie non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
         // get the informations from the request (name of the category)
         // transform the json into the already existing object category
@@ -82,8 +92,13 @@ class CategoryController extends AbstractController
      * @Route("api/category/delete/{id<\d+>}", name="category_delete", methods="DELETE")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function delete(Category $category, EntityManagerInterface $em)
+    public function delete(Category $category = null, EntityManagerInterface $em)
     {
+        //send a 404 error if the category does not exist
+        if ($category === null) {
+            return $this->json(['error' => 'categorie non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
 
         // get the category from the url and remove it from the database
         $em->remove($category);

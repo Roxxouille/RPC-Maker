@@ -14,7 +14,6 @@ class SecurityController extends AbstractController
     {
 
         $user = $this->getUser();
-
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
