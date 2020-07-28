@@ -27,7 +27,7 @@ class UserController extends AbstractController
         $data = $userRepository->findAll();
 
         //send it in json
-        return $this->json($data, 200, [], ['groups' => 'user']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'user']);
     }
 
     /**
@@ -45,7 +45,7 @@ class UserController extends AbstractController
         $data = $userRepository->find($user);
 
         //send it in json
-        return $this->json($data, 200, [], ['groups' => 'user']);
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'user']);
     }
 
     /**
@@ -80,7 +80,7 @@ class UserController extends AbstractController
 
         $em->flush();
 
-        return $this->json(['status' => 'user edited'], 200);
+        return $this->json(['status' => 'user edited'], Response::HTTP_OK);
     }
     /**
      * @Route("api/user/add", name="user_add", methods="POST")
@@ -141,7 +141,7 @@ class UserController extends AbstractController
         $entityManager->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'user created'], 201);
+        return $this->json(['status' => 'user created'], Response::HTTP_CREATED);
     }
 
     /**
@@ -159,7 +159,7 @@ class UserController extends AbstractController
         $em->flush();
 
         //send a json response
-        return $this->json(['message' => 'utilisateur supprime'], 200);
+        return $this->json(['message' => 'utilisateur supprime'], Response::HTTP_OK);
     }
 
     /**
@@ -179,6 +179,6 @@ class UserController extends AbstractController
         $this->getDoctrine()->getManager()->flush();
 
         //send a response to the front
-        return $this->json(['status' => 'password edited'], 200);
+        return $this->json(['status' => 'password edited'], Response::HTTP_OK);
     }
 }
