@@ -30,6 +30,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
+        dump('support');
         return $request->headers->has('X-AUTH-TOKEN');
     }
 
@@ -39,12 +40,13 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
+        dump($request->getContent());
         return $request->headers->get('X-AUTH-TOKEN');
     }
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-
+        dump('user');
         if (null === $credentials) {
             // The token header was empty, authentication fails with HTTP Status
             // Code 401 "Unauthorized"
@@ -59,6 +61,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        dump('gros', $user);
         // Check credentials - e.g. make sure the password is valid.
         // In case of an API token, no credential check is needed.
         
@@ -68,6 +71,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
+        dump('success');
         // on success, let the request continue
         return null;
     }
@@ -81,7 +85,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
-
+        dump($data);
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
@@ -90,7 +94,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        
+        dump('start');
         $data = [
             // you might translate this message
             'message' => 'Authentication Required',
