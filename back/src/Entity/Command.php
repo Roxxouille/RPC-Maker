@@ -71,6 +71,7 @@ class Command
         $this->item = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->status = 0;
     }
 
     public function getId(): ?int

@@ -95,7 +95,6 @@ class UserController extends AbstractController
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
-
         
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
@@ -128,10 +127,8 @@ class UserController extends AbstractController
         //create the new command
         //set this info to the new command
         $contentDecode = json_decode($content, true);
-        $commandstatus = 0;
         $commandData = $contentDecode['command_data'];
         $command = new Command();
-        $command->setStatus($commandstatus);
         $command->setData($commandData);
 
 

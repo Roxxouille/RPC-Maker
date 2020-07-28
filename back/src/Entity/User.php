@@ -65,7 +65,6 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\NotBlank(message = "This field should not be blank.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -120,7 +119,7 @@ class User implements UserInterface
     private $avatar;
 
     /**
-     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user", cascade={"persist", "remove"})
      * @Groups({"user"})
      */
     private $commands;
@@ -217,8 +216,10 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        // $roles[] = 'ROLE_USER';
+        
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
 
         return array_unique($roles);
     }
