@@ -9,7 +9,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   changeField: (name, value) => {
-    console.log('entrée container');
     dispatch(changeField(name, value));
   },
   login: () => {

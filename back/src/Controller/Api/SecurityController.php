@@ -13,7 +13,6 @@ class SecurityController extends AbstractController
     public function login()
     {
         $user = $this->getUser();
-
         if (!$user) {
             throw $this->createAccessDeniedException();
         }

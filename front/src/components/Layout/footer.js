@@ -5,39 +5,39 @@ import { Row, Col, Image } from 'react-bootstrap';
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="footer__plan">
+      <div className="container">
        <Router>
           <Row>
-            <Col><Image className="img-footer" src="https://picsum.photos/300/150" /></Col>
-            <Col xs={6}>
-              <div className="plan-site">
+            <Col><Image className="img-footer" src="https://picsum.photos/250/150" /></Col>
+            <Col xs={6} className="footer__pages">
+              <div className="footer__pages__plan-site">
                 <h3>Plan du site</h3>
-                <Link className="footer_plan__link" to="/">
+                <Link className="link" to="/">
                   Accueil
                 </Link>
-                <Link to="/survey" className="footer__plan__link">
+                <Link to="/survey" className="link">
                   Devis
                 </Link>
-                <Link to="/team" className="footer__plan__link">
+                <Link to="/team" className="link">
                   Team
                 </Link>
-                <Link to="/contact" className="footer__plan__link">
+                <Link to="/contact" className="link">
                   Contact
                 </Link>
               </div>
 
-              <div className="informations">
+              <div className="footer__pages__legal-data">
                 <h3>Informations légales</h3>
-                <Link className="footer_plan__link">
+                <Link className="link">
                   Mentions légales
                 </Link>
-                <Link className="footer__plan__link">
+                <Link className="link">
                   Utilisation des cookies
                 </Link>
-                <Link className="footer__plan__link">
+                <Link className="link">
                   CGUs
                 </Link>
-                <Link className="footer__plan__link">
+                <Link className="link">
                   Confidentialité
                 </Link>
               </div>
