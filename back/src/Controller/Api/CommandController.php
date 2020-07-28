@@ -31,8 +31,12 @@ class CommandController extends AbstractController
     /**
      * @Route("api/command/{id<\d+>}", name="command", methods="GET")
      */
-    public function getOne($id, CommandRepository $commandRepository, Command $command)
+    public function getOne($id, CommandRepository $commandRepository, Command $command = null)
     {
+        //send a 404 error if the command does not exist
+        if ($command === null) {
+            return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
         $data = $commandRepository->findOneByUser($command);
 
@@ -43,10 +47,10 @@ class CommandController extends AbstractController
     /**
      * @Route("api/command/edit/{id<\d+>}", name="command_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(Command $command, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
 
-        //check if the user received in the request exist
+        //send a 404 error if the command does not exist
         if ($command === null) {
             return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
         }
@@ -123,8 +127,13 @@ class CommandController extends AbstractController
     /**
      * @Route("api/command/delete/{id<\d+>}", name="command_delete", methods="DELETE")
      */
-    public function delete(Command $command, EntityManagerInterface $em)
+    public function delete(Command $command = null, EntityManagerInterface $em)
     {
+        //send a 404 error if the command does not exist
+        if ($command === null) {
+            return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
         // get the command from the url and remove it from the database
         $em->remove($command);
         $em->flush();
