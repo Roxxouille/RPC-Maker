@@ -5,15 +5,16 @@ namespace App\Security;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
+use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
 
 class LoginAuthenticator extends AbstractGuardAuthenticator
 {
@@ -53,7 +54,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
         
         if(!$user){
-            return null;
+            throw new CustomUserMessageAuthenticationException('Email could not be found');
             //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
         }
         return $user;
@@ -61,7 +62,11 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+        if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])){
+            throw new CustomUserMessageAuthenticationException('Invalid password');
+        }
+
+        return true;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
