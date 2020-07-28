@@ -18,7 +18,6 @@ class ContactController extends AbstractController
     {
         $content = (array) json_decode($request->getContent());
         
-
         $email = (new Email())
             ->from($content['email'])
             ->to('ralflegranddu56@gmail.com')

@@ -33,7 +33,9 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        return true;
+        $content = (array) json_decode($request->getContent());
+
+        return isset($content['login']);
     }
 
     /**
