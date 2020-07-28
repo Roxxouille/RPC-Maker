@@ -82,7 +82,6 @@ class UserController extends AbstractController
 
         return $this->json(['status' => 'user edited'], 200);
     }
-
     /**
      * @Route("api/user/add", name="user_add", methods="POST")
      */
@@ -95,7 +94,7 @@ class UserController extends AbstractController
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
         $errors = $validator->validate($user);
-        
+
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
 
@@ -161,5 +160,25 @@ class UserController extends AbstractController
 
         //send a json response
         return $this->json(['message' => 'utilisateur supprime'], 200);
+    }
+
+    /**
+     * @Route("api/user/edit-password/{id<\d+>}", methods="GET|POST", name="user_edit_password")
+     */
+    public function changePassword($id, User $user, Request $request, UserPasswordEncoderInterface $encoder): Response
+    {
+
+        //get the ne passord from the request
+        $content = $request->getContent();
+        $contentDecode = json_decode($content, true);
+        $newPassword = $contentDecode['newPassword'];
+
+        //encode the ne paasword
+        //save it in the databse
+        $user->setPassword($encoder->encodePassword($user, $newPassword));
+        $this->getDoctrine()->getManager()->flush();
+
+        //send a response to the front
+        return $this->json(['status' => 'password edited'], 200);
     }
 }
