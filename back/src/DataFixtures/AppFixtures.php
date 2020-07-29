@@ -311,7 +311,7 @@ class AppFixtures extends Fixture
         $command = new Command;
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
-        $command->setStatus($faker->numberBetween(1, 5));
+        $command->setStatus(1);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);
 
