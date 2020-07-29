@@ -4,9 +4,13 @@ namespace App\Controller\Api;
 
 use App\Entity\Testimony;
 use App\Repository\TestimonyRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class TestimonyController extends AbstractController
 {
@@ -42,9 +46,38 @@ class TestimonyController extends AbstractController
     /**
      * @Route("api/testimony/{id<\d+>}", name="tesimony_edit", methods={"PUT", "PATCH"})
      */
-    public function edit()
+    public function edit(Testimony $testimony, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
-        
+        //send a 404 error if the category does not exist
+        if ($testimony === null) {
+            return $this->json(['error' => 'témoignage non trouvé'], Response::HTTP_NOT_FOUND);
+        }
+
+        //get the request content (info about current testimony)
+        //transform it into an object testimony and replace the data
+        //get the validations errors if there is any
+        $content = $request->getContent();
+        $updatedTestimony = $serializer->deserialize($content, Testimony::class, 'json', ['object_to_populate' => $testimony]);
+        $errors = $validator->validate($updatedTestimony);
+
+        // if there is errors, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        //Edit the updatedat vlue to the current time
+        $testimony->setUpdatedAt(new \DateTime());
+
+        $em->flush();
+
+        return $this->json(['status' => 'testimony edited'], Response::HTTP_OK);
     }
 
     /**
