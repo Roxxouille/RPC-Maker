@@ -24,7 +24,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "item"})
      */
     private $name;
@@ -32,7 +32,7 @@ class Category
     /**
      * @ORM\Column(type="json", nullable=true)
      * @Assert\Json( message = "this is not a valid Json.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "item"})
      */
     private $specs = [];

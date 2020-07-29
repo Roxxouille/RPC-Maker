@@ -30,14 +30,14 @@ class Command
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
+     * @Assert\Regex("/^\d+/", message = "Veuillez entrer un nombre valide")
      * @Groups({"category", "command", "user"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "command", "user"})
      */
     private $data = [];

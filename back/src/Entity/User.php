@@ -31,15 +31,15 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45, unique=true)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email(message = "The email '{{ value }}' is not a valid email.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -47,8 +47,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "At least one upper case English letter, At least one lower case English letter, At least one digit, At least one special character, Minimum eight in length")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "Au moins une majuscule, une minuscule, un chiffre, un caractère special, et 8 caractère minimum")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -56,8 +56,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Regex("/^\d+/", message = "Entrez un nombre valid")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -72,7 +72,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -80,7 +80,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -88,7 +88,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=85, nullable=true)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -96,8 +96,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Regex("/^\d+/", message = "please enter a digit number.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Regex("/^\d+/", message = "Entrez un nombre valid")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -105,7 +105,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
 

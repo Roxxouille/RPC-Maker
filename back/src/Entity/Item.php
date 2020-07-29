@@ -24,23 +24,23 @@ class Item
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "command", "item"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
-     * @Assert\Regex("\d+", message = "please enter a digit number.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Regex("\d+", message = "Veuillez entrez un nombre valide")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "command", "item"})
      */
     private $price;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url( message = "This is not a valid url.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\Url( message = "Ceci n'est pas une url valide")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "command", "item"})
      */
     private $url;
