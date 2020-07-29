@@ -1,15 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {
+  BrowserRouter as Router, Switch, Route, Link,
+} from 'react-router-dom';
 import './styles.scss';
-import Home from './../Home';
+import { Navbar, Nav } from 'react-bootstrap';
+import Home from '../Home';
 import Login from '../../containers/User/Login';
-import { Navbar, Nav } from 'react-bootstrap/';
+import User from '../../containers/User';
 
 const Header = () => {
   return (
     <Router>
       <Navbar bg="dark" variant="dark" className="topbar">
-      <div className="container">
+        <div className="container">
           <Link to="/" className="menu__link navbar-brand">
             RPC Maker
           </Link>
@@ -30,23 +33,23 @@ const Header = () => {
               Connexion
             </Link>
           </Nav>
-      </div>
+        </div>
       </Navbar>
       <Switch>
-        <Route exact path='/'>
+        <Route exact path="/">
           <Home />
         </Route>
-        <Route path='/survey'>
+        <Route path="/survey">
           Devis
         </Route>
-        <Route path='/team'>
+        <Route path="/team">
           Team
         </Route>
-        <Route path='/contact'>
+        <Route path="/contact">
           Contact
         </Route>
-        <Route path='/login'>
-          <Login />
+        <Route path="/login">
+          <User />
         </Route>
       </Switch>
     </Router>

@@ -5,11 +5,11 @@ import { changeField, login } from '../../actions/user';
 const mapStateToProps = (state) => ({
   email: state.email,
   password: state.password,
+  error: state.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   changeField: (name, value) => {
-    console.log('entrée container');
     dispatch(changeField(name, value));
   },
   login: () => {

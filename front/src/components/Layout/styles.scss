@@ -7,9 +7,15 @@
   width: auto;
   height: auto;  
   padding-top: 2em;
+  margin-top: 2em;
 
   background-color: #343a40;
   color: hsla(0,0%,100%,.5);
+
+  &__pages {
+    display:flex;
+    justify-content: space-between;
+  }
 
   a {
     color: hsla(0,0%,100%,.5);
@@ -22,24 +28,7 @@
   }
 }
 
-.informations {
-  float: right;
-}
-
-.footer__plan {  
-
-}
-
-.plan-site {
-  float: left;
-
-}
-
-.img-footer {
-
-}
-
-.footer__plan__link {
+.link {
   display: block;
   font-size: 0.5em;
 }
@@ -52,8 +41,4 @@
 .menu {
     margin-left: auto;
     margin-right:0px;
-  //liens menu
-  &__link {
-    
-  }
 }
