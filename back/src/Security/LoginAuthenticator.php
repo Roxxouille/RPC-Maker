@@ -57,7 +57,6 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
         
         if(!$user){
             throw new CustomUserMessageAuthenticationException("Cet email n'existe pas");
-            //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
         }
         return $user;
     }
