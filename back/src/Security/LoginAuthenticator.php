@@ -56,7 +56,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
         
         if(!$user){
-            throw new CustomUserMessageAuthenticationException("C'est email n'existe pas");
+            throw new CustomUserMessageAuthenticationException("Cet email n'existe pas");
             //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
         }
         return $user;

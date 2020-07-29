@@ -8,12 +8,7 @@ class RpcMakerProvider extends Base
 {
     private static $categories = [
         'Processeur' => [
-            'coeur' => [
-                '1',
-                '3',
-                '5',
-                '7'
-            ]
+ 
         ],
         'Carte mère' => [
 
@@ -52,7 +47,9 @@ class RpcMakerProvider extends Base
             
         ],
         'Ecran'  => [
-            
+            'size' => [
+                
+            ]
         ],
         'Clavier'  => [
             
