@@ -3,7 +3,7 @@ import {
   LOGIN,
   failLogin,
   setUser,
-  AUTOLOG
+  AUTOLOG,
 } from '../actions/user';
 
 export default (store) => (next) => (action) => {
@@ -20,12 +20,14 @@ export default (store) => (next) => (action) => {
           store.dispatch(setUser(response.data.username));
         })
         .catch((error) => {
+          console.log(error.response);
           const actionToDispatch = failLogin(error.response);
           store.dispatch(actionToDispatch);
         });
       break;
     }
     case AUTOLOG: {
+      console.log('useeffect middleware');
       console.log(localStorage.getItem('token'));
       break;
       //axios.post('/', { data }, { headers: { 'Content-type': 'application/json', Authorization: `${localStorage.getItem('token')}` } });
