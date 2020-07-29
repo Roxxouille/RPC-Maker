@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("api/user", name="users", methods = "GET")
+     * @Route("api/users", name="user_browse", methods = "GET")
      */
     public function browse(UserRepository $userRepository)
     {
@@ -32,7 +32,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/{slug}", name="user", methods="GET")
+     * @Route("api/user/{slug}", name="user_read", methods="GET")
      */
     public function read(User $user = null)
     {
@@ -46,7 +46,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/edit/{slug}", name="user_edit", methods={"PUT", "PATCH"})
+     * @Route("api/user/{slug}", name="user_edit", methods={"PUT", "PATCH"})
      */
     public function edit(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em )
     {
@@ -82,7 +82,7 @@ class UserController extends AbstractController
         return $this->json(['status' => 'user edited'], Response::HTTP_OK);
     }
     /**
-     * @Route("api/user/add", name="user_add", methods="POST")
+     * @Route("api/user", name="user_add", methods="POST")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer)
     {
@@ -152,7 +152,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/delete/{slug}", name="user_delete", methods="DELETE")
+     * @Route("api/user/{slug}", name="user_delete", methods="DELETE")
      */
     public function delete(User $user = null, EntityManagerInterface $em)
     {

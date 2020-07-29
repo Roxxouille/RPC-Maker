@@ -11,9 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AvatarController extends AbstractController
 {
     /**
-     * @Route("api/avatar", name="avatars", methods="GET")
+     * @Route("api/avatars", name="avatar_browse", methods="GET")
      */
-    public function getAll(AvatarRepository $avatarRepo)
+    public function browse(AvatarRepository $avatarRepo)
     {
         //get the avatars data from the database
         $data = $avatarRepo->findAll();
@@ -23,9 +23,9 @@ class AvatarController extends AbstractController
     }
 
      /**
-     * @Route("api/avatar/{slug}", name="avatar", methods="GET")
+     * @Route("api/avatar/{slug}", name="avatar_read", methods="GET")
      */
-    public function getOne(AvatarRepository $avatarRepo, Avatar $avatar = null)
+    public function read(AvatarRepository $avatarRepo, Avatar $avatar = null)
     {
         //send a 404 error if the avatar does not exist
         if ($avatar === null) {
