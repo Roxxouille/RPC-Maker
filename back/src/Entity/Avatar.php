@@ -18,14 +18,14 @@ class Avatar
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"avatar", "user"})
+     * @Groups({"avatar", "user", "testimony"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"avatar", "user"})
+     * @Groups({"avatar", "user", "testimony"})
      */
     private $image;
 

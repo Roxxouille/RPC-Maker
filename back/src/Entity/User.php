@@ -25,14 +25,14 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"avatar", "user"})
+     * @Groups({"avatar", "user", "testimony"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45, unique=true)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "testimony"})
      */
     private $username;
 
@@ -114,7 +114,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user"})
+     * @Groups({"user", "testimony"})
      */
     private $avatar;
 
