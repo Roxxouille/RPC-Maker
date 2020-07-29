@@ -24,7 +24,7 @@ class Avatar
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "user"})
      */
     private $image;
