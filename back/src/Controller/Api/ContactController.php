@@ -22,7 +22,7 @@ class ContactController extends AbstractController
         //create an email with this data
         $email = (new Email())
             ->from($content['email'])
-            ->to('ralflegranddu56@gmail.com')
+            ->to('us80@hotmail.fr')
             ->subject('Contact from '. $content['firstname'] . ' ' . $content['lastname'])
             ->text($content["content"]);
 
