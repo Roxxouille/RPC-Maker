@@ -66,6 +66,11 @@ class Command
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Testimony::class, mappedBy="command", cascade={"persist", "remove"})
+     */
+    private $testimony;
+
     public function __construct()
     {
         $this->item = new ArrayCollection();
@@ -174,6 +179,23 @@ class Command
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getTestimony(): ?Testimony
+    {
+        return $this->testimony;
+    }
+
+    public function setTestimony(Testimony $testimony): self
+    {
+        $this->testimony = $testimony;
+
+        // set the owning side of the relation if necessary
+        if ($testimony->getCommand() !== $this) {
+            $testimony->setCommand($this);
+        }
 
         return $this;
     }

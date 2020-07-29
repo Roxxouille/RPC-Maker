@@ -141,11 +141,17 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Testimony::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $testimonies;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->testimonies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,6 +391,37 @@ class User implements UserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Testimony[]
+     */
+    public function getTestimonies(): Collection
+    {
+        return $this->testimonies;
+    }
+
+    public function addTestimony(Testimony $testimony): self
+    {
+        if (!$this->testimonies->contains($testimony)) {
+            $this->testimonies[] = $testimony;
+            $testimony->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestimony(Testimony $testimony): self
+    {
+        if ($this->testimonies->contains($testimony)) {
+            $this->testimonies->removeElement($testimony);
+            // set the owning side to null (unless already changed)
+            if ($testimony->getUser() === $this) {
+                $testimony->setUser(null);
+            }
+        }
 
         return $this;
     }
