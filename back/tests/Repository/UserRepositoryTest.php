@@ -5,7 +5,7 @@ use App\Entity\User;
 use App\Entity\Command;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
-class CommandRepositoryTest extends KernelTestCase
+class UserRepositoryTest extends KernelTestCase
 {
      /**
      * @var \Doctrine\ORM\EntityManager
@@ -21,17 +21,13 @@ class CommandRepositoryTest extends KernelTestCase
             ->getManager();
     }
 
-    public function testSearchByUser()
+    public function testSearchByEmail()
     {
-        $userId = $this->entityManager
+        $user = $this->entityManager
         ->getRepository(User::class)
-        ->findOneBy(['username' => 'test']);
+        ->findOneBy(['email' => 'test@test.com']);
 
-        $category = $this->entityManager
-            ->getRepository(Command::class)
-            ->findOneBy(['user' => $userId]);
-
-        $this->assertSame(1, $category->getStatus());
+        $this->assertSame("test", $user->getUsername());
     }
 
     protected function tearDown(): void
