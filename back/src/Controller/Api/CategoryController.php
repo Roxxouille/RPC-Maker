@@ -28,9 +28,9 @@ class CategoryController extends AbstractController
     }
 
      /**
-     * @Route("api/category/{id<\d+>}", name="category_read", methods="GET")
+     * @Route("api/category/{slug}", name="category_read", methods="GET")
      */
-    public function read($id, CategoryRepository $categoryRepo, Category $category = null)
+    public function read(CategoryRepository $categoryRepo, Category $category = null)
     {
 
         //send a 404 error if the category does not exist
@@ -45,7 +45,7 @@ class CategoryController extends AbstractController
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'category']);
     }
     /**
-     * @Route("api/category/edit/{id<\d+>}", name="category_edit", methods={"PUT", "PATCH"})
+     * @Route("api/category/edit/{slug}", name="category_edit", methods={"PUT", "PATCH"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Category $category = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
@@ -74,7 +74,7 @@ class CategoryController extends AbstractController
      * @Route("api/category/add", name="category_add", methods="POST")
      * @IsGranted("ROLE_ADMIN")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
     {
         // get the informations from the request (name of the category)
         // and transform the json into the object category
@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("api/category/delete/{id<\d+>}", name="category_delete", methods="DELETE")
+     * @Route("api/category/delete/{slug}", name="category_delete", methods="DELETE")
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Category $category = null, EntityManagerInterface $em)
