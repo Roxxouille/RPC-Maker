@@ -14,6 +14,7 @@ export class Step3 extends Component {
   };
 
   render() {
+    const { values, handleChange, CheckContent } = this.props;
     return (
       <div>
         <div>
@@ -37,11 +38,11 @@ export class Step3 extends Component {
         <Form>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
-              <Form.Check inline label="Gaming" type={type} id={`inline-${type}-1`} />
-              <Form.Check inline label="Graphisme" type={type} id={`inline-${type}-2`} />
-              <Form.Check inline label="Multimedia" type={type} id={`inline-${type}-3`} />
-              <Form.Check inline label="3D" type={type} id={`inline-${type}-4`} />
-              <Form.Check inline label="Autres" type={type} id={`inline-${type}-5`} />
+              <Form.Check inline label="Gaming" name="Gaming" type={type} id={`inline-${type}-1`} onChange={CheckContent('utilisation')} />
+              <Form.Check inline label="Graphisme" name="Graphisme" type={type} id={`inline-${type}-2`} onChange={CheckContent('utilisation')} />
+              <Form.Check inline label="Multimedia" type={type} id={`inline-${type}-3`} name="Multimedia" onChange={CheckContent('utilisation')} />
+              <Form.Check inline label="3D" name="3D" type={type} id={`inline-${type}-4`} onChange={CheckContent('utilisation')} />
+              <Form.Check inline label="Autres" name="Autres" type={type} id={`inline-${type}-5`} onChange={CheckContent('utilisation')} />
               <Form.Control className="Form" placeholder="Preciser" />
             </div>
           ))}
