@@ -14,8 +14,8 @@ export default (store) => (next) => (action) => {
       axios.post('http://localhost:3000/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
           // store.dispatch(loged(response));
-          console.log(response);
           localStorage.setItem('token', response.data.token);
+          localStorage.setItem('id', response.data.id);
           store.dispatch(setUser(response.data.username));
         })
         .catch((error) => {
@@ -26,8 +26,17 @@ export default (store) => (next) => (action) => {
       break;
     }
     case AUTOLOG: {
-      console.log('useeffect middleware');
-      console.log(localStorage.getItem('token'));
+      const token = localStorage.getItem('token');
+      //const token = 'd6081bdf250ec5c06a1bc2dd28bba8b0';
+      const id = localStorage.getItem('id');
+      console.log(token);
+      axios.get(`http://localhost:3000/api/user/1`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
 
       break;
       //axios.post('/', { data }, { headers: { 'Content-type': 'application/json', Authorization: `${localStorage.getItem('token')}` } });
