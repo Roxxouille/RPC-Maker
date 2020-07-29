@@ -46,7 +46,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        dump('user');
         if (null === $credentials) {
             // The token header was empty, authentication fails with HTTP Status
             // Code 401 "Unauthorized"
