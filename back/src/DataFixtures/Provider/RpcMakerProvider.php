@@ -48,29 +48,89 @@ class RpcMakerProvider extends Base
         ],
         'Ecran'  => [
             'size' => [
-                
+                '22"',
+                '23"',
+                '24"',
+                '25"',
+                '27"',
+                '28"',
+                '32"',
+                '34"'
+            ],
+            'resolution' => [
+                '1024 px',
+                '1280 px', 
+                '1360 px',
+                '1366 px',
+                '1440 px',
+                '1600 px',
+                '1680 px',
+                '1920 px',
+                '2560 px +'
             ]
         ],
         'Clavier'  => [
-            
+            'type'=> [
+               'Mécanique',
+               'Membrane'
+            ],
+            'switch' => [
+                'Cherry MX Blue',
+                'Cherry MX Brown',
+                'Cherry MX Black',
+                'Cherry MX Red',
+                'Cherry MX Silent',
+                'Cherry MX Speed',
+                'Razer Green',
+                'Razer Orange',
+                'Logitech Romer-G',
+                'Steelseries QS1'
+            ],
+            'language' => [
+                'azerty',
+                'qwerty'
+            ]
         ],
         'Souris'  => [
-            
+            'type'=> [
+                'Laser',
+                'Optique'
+            ],
         ],
         'Tapis'  => [
-            
+            'type'=> [
+                'Rugueux',
+                'Souple'
+            ],
+            'size' => [
+                'Petit',
+                'Moyen',
+                'Grand',
+                'Très grand',
+            ]
         ],
         'Micro-Casque'  => [
-            
+            'type'=> [
+                'Supra auriculaire',
+                'Circum aural'
+            ],
         ],
         'Enceintes'  => [
             
         ],
         'Webcam'  => [
-            
+            'resolution' => [
+                '720p',
+                '1080p',
+                '4k',
+            ]
         ],
         'Imprimante'  => [
-            
+            'type' => [
+                'Laser',
+                'Jet d\'encre',
+                'LED'
+            ]
         ],
     ];
 
