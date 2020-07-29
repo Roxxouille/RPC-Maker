@@ -147,7 +147,7 @@ class User implements UserInterface
     private $testimonies;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255)
      * @Groups({"avatar", "command", "user"})
      */
     private $slug;

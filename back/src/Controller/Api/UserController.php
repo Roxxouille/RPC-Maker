@@ -6,7 +6,6 @@ use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
 use App\Repository\UserRepository;
-use App\Service\MySlugger;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,7 +16,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 class UserController extends AbstractController
 {

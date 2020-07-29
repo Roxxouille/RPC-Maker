@@ -47,3 +47,16 @@ services:
                 entity: 'App\Entity\User'
                 lazy: true
                 method: prePersist
+
+    App\EventListener\AvatarListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Avatar'
+                lazy: true
+                method: prePersist
