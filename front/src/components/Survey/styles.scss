@@ -1,0 +1,14 @@
+@use 'src/styles/vars';
+
+.Form {
+  margin-left: 5%;
+  margin-right: 5%;
+  &__config {
+    margin-top: 50px;
+  }
+}
+
+.bouton {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
