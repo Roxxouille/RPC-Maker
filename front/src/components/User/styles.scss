@@ -1,0 +1,16 @@
+.user {
+  display: flex;
+  justify-content: space-between;
+  &__nav{
+    display:flex;
+    flex-direction: column;
+    width:20%;
+    background-color:#fff;
+  }
+
+  &__body{
+    width: 70%;
+    background-color: #fff;
+  }
+}
+

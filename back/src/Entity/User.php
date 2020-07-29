@@ -25,14 +25,14 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"avatar", "user"})
+     * @Groups({"avatar", "user", "testimony"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45, unique=true)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "testimony"})
      */
     private $username;
 
@@ -114,7 +114,7 @@ class User implements UserInterface
     /**
      * @ORM\OneToOne(targetEntity=Avatar::class, inversedBy="user", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
-     * @Groups({"user"})
+     * @Groups({"user", "testimony"})
      */
     private $avatar;
 
@@ -141,11 +141,17 @@ class User implements UserInterface
      */
     private $updatedAt;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Testimony::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $testimonies;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
+        $this->testimonies = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -385,6 +391,37 @@ class User implements UserInterface
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Testimony[]
+     */
+    public function getTestimonies(): Collection
+    {
+        return $this->testimonies;
+    }
+
+    public function addTestimony(Testimony $testimony): self
+    {
+        if (!$this->testimonies->contains($testimony)) {
+            $this->testimonies[] = $testimony;
+            $testimony->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestimony(Testimony $testimony): self
+    {
+        if ($this->testimonies->contains($testimony)) {
+            $this->testimonies->removeElement($testimony);
+            // set the owning side to null (unless already changed)
+            if ($testimony->getUser() === $this) {
+                $testimony->setUser(null);
+            }
+        }
 
         return $this;
     }

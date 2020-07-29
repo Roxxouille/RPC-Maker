@@ -9,31 +9,37 @@ import User from '../../containers/User';
 import Contact from './../Contact';
 import Survey from './../Survey';
 
-const Header = () => {
+const Header = ({ isLogged }) => {
+  console.log(isLogged);
   return (
     <Router>
-      <Navbar bg="dark" variant="dark" className="topbar">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="topbar">
         <div className="container">
-          <Link to="/" className="menu__link navbar-brand">
-            RPC Maker
-          </Link>
-          <Nav className="menu">
-            <Link className="nav-link menu__link" to="/">
-              Accueil
-            </Link>
-            <Link to="/survey" className="nav-link menu__link">
-              Devis
-            </Link>
-            <Link to="/team" className="nav-link menu__link">
-              Team
-            </Link>
-            <Link to="/contact" className="nav-link menu__link">
-              Contact
-            </Link>
-            <Link to="/login" className="nav-link menu__link">
-              Connexion
-            </Link>
-          </Nav>
+          <Navbar.Brand href="/">RPC Maker</Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+          <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="menu">
+              <Link className="nav-link menu__link" to="/">
+                Accueil
+              </Link>
+              <Link to="/survey" className="nav-link menu__link">
+                Devis
+              </Link>
+              <Link to="/team" className="nav-link menu__link">
+                Team
+              </Link>
+              <Link to="/contact" className="nav-link menu__link">
+                Contact
+              </Link>
+              <Link to="/user" className="nav-link menu__link">
+                { isLogged === true ? (
+                  <p>Se déconnecter</p>
+                ) : (
+                  <p>Connexion</p>
+                )}
+              </Link>
+            </Nav>
+          </Navbar.Collapse>
         </div>
       </Navbar>
       <Switch>
@@ -49,7 +55,7 @@ const Header = () => {
         <Route path='/contact'>
           <Contact />
         </Route>
-        <Route path="/login">
+        <Route path="/user">
           <User />
         </Route>
       </Switch>
