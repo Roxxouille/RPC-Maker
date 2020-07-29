@@ -33,8 +33,10 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
+        // Getting the content of the request
         $content = (array) json_decode($request->getContent());
 
+        // If the key login doesnt exist, skip this authenticator
         return isset($content['login']);
     }
 
@@ -44,7 +46,10 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
+        // Getting the content of the request
         $content = (array) json_decode($request->getContent());
+
+        // Return the user credentials
         return [
         'username' => $content['username'],
         'password' => $content['password'],
@@ -53,21 +58,24 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        // Checking if the email is in the bdd
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
         
         if(!$user){
+            // if not, throw a exception
             throw new CustomUserMessageAuthenticationException('Email could not be found');
-            //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
         }
+        // return user if found
         return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
+        // Check if the password is valid
         if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])){
             throw new CustomUserMessageAuthenticationException('Invalid password');
         }
-
+        // if the password is valid call onAuthenticationSuccess
         return true;
     }
 
