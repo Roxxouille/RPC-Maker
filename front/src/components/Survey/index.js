@@ -8,6 +8,7 @@ import Step4 from './Step4';
 import Step5 from './Step5';
 import Step6 from './Step6';
 import Step7 from './Step7';
+import Inscription from './inscription';
 import './styles.scss';
 
 export class UserForm extends Component {
@@ -85,6 +86,13 @@ export class UserForm extends Component {
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
               />
+         );
+       case 8:
+         return (
+               <Inscription
+                 nextStep={this.nextStep}
+                 prevStep={this.prevStep}
+               />
          );
      }
    }

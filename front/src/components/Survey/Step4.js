@@ -42,11 +42,12 @@ export class Step4 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Carte mére</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" />
-            <option>Fait ton choix !</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !">
+              <option>Fait ton choix !</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+            </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" />
             <Form.Label>Un lien ?</Form.Label>
