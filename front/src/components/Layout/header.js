@@ -5,10 +5,10 @@ import {
 import './styles.scss';
 import { Navbar, Nav } from 'react-bootstrap';
 import Home from '../Home';
-import Login from '../../containers/User/Login';
 import User from '../../containers/User';
 
-const Header = () => {
+const Header = ({ isLogged }) => {
+  console.log(isLogged);
   return (
     <Router>
       <Navbar bg="dark" variant="dark" className="topbar">
@@ -29,8 +29,12 @@ const Header = () => {
             <Link to="/contact" className="nav-link menu__link">
               Contact
             </Link>
-            <Link to="/login" className="nav-link menu__link">
-              Connexion
+            <Link to="/user" className="nav-link menu__link">
+              { isLogged === true ? (
+                <p>Se déconnecter</p>
+              ) : (
+                <p>Connexion</p>
+              )}
             </Link>
           </Nav>
         </div>
@@ -48,7 +52,7 @@ const Header = () => {
         <Route path="/contact">
           Contact
         </Route>
-        <Route path="/login">
+        <Route path="/user">
           <User />
         </Route>
       </Switch>
