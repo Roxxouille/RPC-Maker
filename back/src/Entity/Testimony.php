@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TestimonyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TestimonyRepository::class)
@@ -19,11 +20,14 @@ class Testimony
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      */
     private $content;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Regex("/^[1-5]$/", message = "Veuillez mettre une note entre 1 et 5")
      */
     private $score;
 
