@@ -14,6 +14,10 @@ import './styles.scss';
 export class UserForm extends Component {
   state = {
     step: 1,
+    surname: '',
+    budget: '',
+    gap: '',
+    utilisation: '',
   };
 
   nextStep = () => {
@@ -35,14 +39,27 @@ export class UserForm extends Component {
      this.setState({ [input]: e.target.value });
    };
 
+   CheckContent = (input) => (e) => {
+     console.log(e.target.name);
+     this.setState({ [input]: e.target.name });
+   };
+
    render() {
      const { step } = this.state;
+     const {
+       surname, utilisation, budget, gap,
+     } = this.state;
+     const values = {
+       surname, utilisation, budget, gap,
+     };
 
      switch (step) {
        case 1:
          return (
           <Step1
             nextStep={this.nextStep}
+            handleChange={this.handleChange}
+            values={values}
           />
          );
        case 2:
@@ -50,6 +67,8 @@ export class UserForm extends Component {
            <Step2
              nextStep={this.nextStep}
              prevStep={this.prevStep}
+             handleChange={this.handleChange}
+             values={values}
            />
          );
        case 3:
@@ -57,6 +76,9 @@ export class UserForm extends Component {
             <Step3
               nextStep={this.nextStep}
               prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              CheckContent={this.CheckContent}
+              values={values}
             />
          );
        case 4:
@@ -64,6 +86,8 @@ export class UserForm extends Component {
              <Step4
                nextStep={this.nextStep}
                prevStep={this.prevStep}
+               handleChange={this.handleChange}
+               values={values}
              />
          );
        case 5:
@@ -71,6 +95,8 @@ export class UserForm extends Component {
             <Step5
               nextStep={this.nextStep}
               prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
             />
          );
        case 6:
@@ -78,6 +104,8 @@ export class UserForm extends Component {
              <Step6
                nextStep={this.nextStep}
                prevStep={this.prevStep}
+               handleChange={this.handleChange}
+               values={values}
              />
          );
        case 7:
@@ -85,6 +113,8 @@ export class UserForm extends Component {
               <Step7
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
+                handleChange={this.handleChange}
+                values={values}
               />
          );
        case 8:
@@ -92,6 +122,8 @@ export class UserForm extends Component {
                <Inscription
                  nextStep={this.nextStep}
                  prevStep={this.prevStep}
+                 handleChange={this.handleChange}
+                 values={values}
                />
          );
      }

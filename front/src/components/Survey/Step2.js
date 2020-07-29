@@ -14,6 +14,7 @@ export class Step2 extends Component {
   };
 
   render() {
+    const { values, handleChange } = this.props;
     return (
       <div>
         <div>
@@ -33,10 +34,10 @@ export class Step2 extends Component {
           </Form.Row>
           <Form.Row>
             <Col>
-              <Form.Control placeholder="Budget" />
+              <Form.Control type="name" placeholder="Budget" defaultValue={values.budget} onChange={handleChange('budget')} />
             </Col>
             <Col>
-              <Form.Control placeholder="Marge" />
+              <Form.Control type="name" placeholder="Marge" defaultValue={values.gap} onChange={handleChange('gap')} />
             </Col>
           </Form.Row>
         </Form>
