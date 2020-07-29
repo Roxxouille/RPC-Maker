@@ -18,9 +18,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class CommandController extends AbstractController
 {
     /**
-     * @Route("api/command", name="commands", methods = "GET")
+     * @Route("api/commands", name="command_browse", methods = "GET")
      */
-    public function getAll(CommandRepository $commandRepository)
+    public function browse(CommandRepository $commandRepository)
     {
         //get the commands data from the database
         $data = $commandRepository->findAll();
@@ -30,9 +30,9 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/{id<\d+>}", name="command", methods="GET")
+     * @Route("api/command/{id<\d+>}", name="command_read", methods="GET")
      */
-    public function getOne($id, CommandRepository $commandRepository, Command $command = null)
+    public function read(CommandRepository $commandRepository, Command $command = null)
     {
         //send a 404 error if the command does not exist
         if ($command === null) {
@@ -47,7 +47,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/edit/{id<\d+>}", name="command_edit", methods={"PUT", "PATCH"})
+     * @Route("api/command/{id<\d+>}", name="command_edit", methods={"PUT", "PATCH"})
      */
     public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -87,9 +87,9 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/add", name="command_add", methods="POST")
+     * @Route("api/command", name="command_add", methods="POST")
      */
-    public function add(UserRepository $userRepo, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder)
+    public function add(UserRepository $userRepo, Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
     {
 
         //get the request content (info about new command)
@@ -137,7 +137,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/delete/{id<\d+>}", name="command_delete", methods="DELETE")
+     * @Route("api/command/{id<\d+>}", name="command_delete", methods="DELETE")
      */
     public function delete(Command $command = null, EntityManagerInterface $em)
     {
