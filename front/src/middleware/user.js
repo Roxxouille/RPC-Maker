@@ -9,7 +9,6 @@ import {
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      console.log('middleware');
       const state = store.getState();
       const { email, password } = state;
       axios.post('http://localhost:3000/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
@@ -29,6 +28,7 @@ export default (store) => (next) => (action) => {
     case AUTOLOG: {
       console.log('useeffect middleware');
       console.log(localStorage.getItem('token'));
+
       break;
       //axios.post('/', { data }, { headers: { 'Content-type': 'application/json', Authorization: `${localStorage.getItem('token')}` } });
     }

@@ -14,29 +14,31 @@ import './styles.scss';
 const User = ({ isLogged }) => {
   const {path, url} = useRouteMatch;
   return (
-    <div>
+    <div className="container">
       {isLogged === true ? (
-        <div>
-          <div className="user-nav">
+        <div className="user">
+          <div className="user__nav">
             <span>AVATAR</span>
-            <Link to='/user/pc'>Mon PC</Link>
-            <Link to='/user/infos'>mes informations</Link>
-            <Link to='/user/message'>Messagerie</Link>
+            <Link to="/user/pc">Mon PC</Link>
+            <Link to="/user/infos">mes informations</Link>
+            <Link to="/user/message">Messagerie</Link>
           </div>
+          <div className="user__body">
             <Switch>
-              <Route exact path='/user'>
+              <Route exact path="/user">
                 Bienvenue dans votre espace membre
               </Route>
-              <Route path='/user/pc'>
+              <Route path="/user/pc">
                 Votre pc
               </Route>
-              <Route path='/user/infos'>
-                votre infos
+              <Route path="/user/infos">
+                vos infos
               </Route>
-              <Route path='/user/message'>
+              <Route path="/user/message">
                 Vos messages
               </Route>
             </Switch>
+          </div>
         </div>
       ) : (
         <Login />

@@ -1,36 +1,80 @@
 @use 'src/styles/vars';
 
-//FOOTER
 
-.footer {
-  background-color: vars.$color-blue;
-  width: auto;
-  height: auto;  
-  padding-top: 2em;
-  margin-top: 2em;
-
-  background-color: #343a40;
-  color: hsla(0,0%,100%,.5);
-
-  &__pages {
-    display:flex;
-    justify-content: space-between;
-  }
-
-  a {
+@media screen and (max-width: 800px) { 
+  .footer {
+    background-color: #343a40;
     color: hsla(0,0%,100%,.5);
-    font-size: 16px;
-  }
+    padding-top: 2em;
+    margin-top: 2em;
+    .row{
+      display: flex;
+      flex-direction: column;
+    }
 
-  a:hover {
-    color: hsla(0,0%,100%,.75);
-    text-decoration: none;
+    &__pages{
+     
+      max-width: 100% !important;
+    
+      h3 {
+        margin-top: 1em;;
+      }
+
+      &__plan-site {
+        display: flex;
+        flex-direction: column;
+      }
+      &__legal-data {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+
+    
+    a {
+      color: hsla(0,0%,100%,.5);
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: hsla(0,0%,100%,.75);
+      text-decoration: none;
+    }
   }
 }
+//FOOTER
+@media screen and (min-width: 800px) { 
 
-.link {
-  display: block;
-  font-size: 0.5em;
+  .footer {
+    background-color: vars.$color-blue;
+    width: auto;
+    height: auto;  
+    padding-top: 2em;
+    margin-top: 2em;
+
+    background-color: #343a40;
+    color: hsla(0,0%,100%,.5);
+
+    &__pages {
+      display:flex;
+      justify-content: space-between;
+    }
+
+    a {
+      color: hsla(0,0%,100%,.5);
+      font-size: 16px;
+    }
+
+    a:hover {
+      color: hsla(0,0%,100%,.75);
+      text-decoration: none;
+    }
+  }
+
+  .link {
+    display: block;
+    font-size: 0.5em;
+  }
 }
 //HEADER
 
