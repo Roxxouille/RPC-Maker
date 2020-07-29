@@ -23,15 +23,9 @@ class AvatarController extends AbstractController
     }
 
      /**
-<<<<<<< HEAD
-     * @Route("api/avatar/{id<\d+>}", name="avatar_read", methods="GET")
-     */
-    public function read($id, AvatarRepository $avatarRepo, Avatar $avatar = null, SerializerInterface $serializer)
-=======
      * @Route("api/avatar/{slug}", name="avatar_read", methods="GET")
      */
     public function read(AvatarRepository $avatarRepo, Avatar $avatar = null)
->>>>>>> slug
     {
         //send a 404 error if the avatar does not exist
         if ($avatar === null) {

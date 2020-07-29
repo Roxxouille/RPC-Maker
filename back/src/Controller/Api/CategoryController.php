@@ -45,11 +45,7 @@ class CategoryController extends AbstractController
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'category']);
     }
     /**
-<<<<<<< HEAD
-     * @Route("api/category/{id<\d+>}", name="category_edit", methods={"PUT", "PATCH"})
-=======
      * @Route("api/category/{slug}", name="category_edit", methods={"PUT", "PATCH"})
->>>>>>> slug
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Category $category = null, Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
@@ -94,11 +90,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
-     * @Route("api/category/{id<\d+>}", name="category_delete", methods="DELETE")
-=======
      * @Route("api/category/{slug}", name="category_delete", methods="DELETE")
->>>>>>> slug
      * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Category $category = null, EntityManagerInterface $em)

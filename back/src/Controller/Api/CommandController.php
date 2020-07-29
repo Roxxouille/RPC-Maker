@@ -28,11 +28,7 @@ class CommandController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
-     * @Route("api/command/{id<\d+>}", name="command_read", methods="GET")
-=======
      * @Route("api/command/{slug}", name="command_read", methods="GET")
->>>>>>> slug
      */
     public function read(CommandRepository $commandRepository, Command $command = null)
     {
@@ -49,11 +45,7 @@ class CommandController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
-     * @Route("api/command/{id<\d+>}", name="command_edit", methods={"PUT", "PATCH"})
-=======
      * @Route("api/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
->>>>>>> slug
      */
     public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -143,11 +135,7 @@ class CommandController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
-     * @Route("api/command/{id<\d+>}", name="command_delete", methods="DELETE")
-=======
      * @Route("api/command/{slug}", name="command_delete", methods="DELETE")
->>>>>>> slug
      */
     public function delete(Command $command = null, EntityManagerInterface $em)
     {
