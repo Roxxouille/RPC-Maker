@@ -83,9 +83,42 @@ class TestimonyController extends AbstractController
     /**
      * @Route("api/testimony", name="tesimony_add", methods="POST")
      */
-    public function add()
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
+        $content = $request->getContent();
+        $contentArray = (array) json_decode($content);
+        $commandId = $contentArray['command'];
         
+        foreach($this->getUser()->getCommands() as $commandObject){
+            dump($commandObject);
+            /*
+            if($commandObject->getTestimony()->getCommand()->getId() == $commandId){
+                return $this->json(['error' => 'témoignage déjà existant'], Response::HTTP_BAD_REQUEST);
+            }
+            */ 
+        }
+        dd();
+        $testimony = $serializer->deserialize($content, Testimony::class, 'json');
+        $errors = $validator->validate($testimony);
+
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        $testimony->setUser($this->getUser());
+
+        $em->persist($testimony);
+        $em->flush();
+
+        return $this->json(['status' => 'testimony created'], Response::HTTP_OK);
     }
 
     /**
