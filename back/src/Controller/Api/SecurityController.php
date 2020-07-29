@@ -28,6 +28,7 @@ class SecurityController extends AbstractController
 
         //return a json response with the main infos
         return $this->json([
+            'id' => $user->getId(),
             'username' => $user->getUsername(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
