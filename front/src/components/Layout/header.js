@@ -3,10 +3,18 @@ import {
   BrowserRouter as Router, Switch, Route, Link,
 } from 'react-router-dom';
 import './styles.scss';
+<<<<<<< HEAD
 import { Navbar, Nav } from 'react-bootstrap';
 import Home from '../Home';
 import Login from '../../containers/User/Login';
 import User from '../../containers/User';
+=======
+import Home from './../Home';
+import Contact from './../Contact';
+import Survey from './../Survey';
+
+import { Navbar, Nav } from 'react-bootstrap/';
+>>>>>>> Survey
 
 const Header = () => {
   return (
@@ -33,20 +41,34 @@ const Header = () => {
               Connexion
             </Link>
           </Nav>
+<<<<<<< HEAD
         </div>
+=======
+          </div>
+>>>>>>> Survey
       </Navbar>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
+<<<<<<< HEAD
         <Route path="/survey">
           Devis
+=======
+        <Route path='/survey'>
+          <Survey />
+>>>>>>> Survey
         </Route>
         <Route path="/team">
           Team
         </Route>
+<<<<<<< HEAD
         <Route path="/contact">
           Contact
+=======
+        <Route path='/contact'>
+          <Contact />
+>>>>>>> Survey
         </Route>
         <Route path="/login">
           <User />
