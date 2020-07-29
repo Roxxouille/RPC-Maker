@@ -2,11 +2,11 @@
 
 namespace App\EventListener;
 
-use App\Entity\User;
+use App\Entity\Avatar;
 use App\Service\MySlugger;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-class UserListener
+class AvatarListener
 {
     private $slugger;
 
@@ -22,9 +22,8 @@ class UserListener
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(User $user, LifecycleEventArgs $event)
+    public function prePersist(Avatar $avatar, LifecycleEventArgs $event)
     {
-        $user->setApiToken(md5(uniqid(rand(), true)));
-        $user->setSlug($this->slugger->slugify($user->getUsername()));
+        $avatar->setSlug($this->slugger->slugify($avatar->getImage()));
     }
 }

@@ -32,29 +32,34 @@ class UserController extends AbstractController
     }
 
     /**
+<<<<<<< HEAD
      * @Route("api/user/{id<\d+>}", name="user_read", methods="GET")
      */
     public function read(UserRepository $userRepository, User $user = null)
+=======
+     * @Route("api/user/{slug}", name="user_read", methods="GET")
+     */
+    public function read(User $user = null)
+>>>>>>> slug
     {
-        //send a 404 error if the category does not exist
+        //send a 404 error if the user does not exist
         if ($user === null) {
             return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
-
-        // get the user data
-        $data = $userRepository->find($user);
-
         //send it in json
-        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'user']);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'user']);
     }
 
     /**
+<<<<<<< HEAD
      * @Route("api/user/{id<\d+>}", name="user_edit", methods={"PUT", "PATCH"})
+=======
+     * @Route("api/user/{slug}", name="user_edit", methods={"PUT", "PATCH"})
+>>>>>>> slug
      */
-    public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em )
     {
-
         //check if the user received in the request exist
         if ($user === null) {
             return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
@@ -157,7 +162,11 @@ class UserController extends AbstractController
     }
 
     /**
+<<<<<<< HEAD
      * @Route("api/user/{id<\d+>}", name="user_delete", methods="DELETE")
+=======
+     * @Route("api/user/{slug}", name="user_delete", methods="DELETE")
+>>>>>>> slug
      */
     public function delete(User $user = null, EntityManagerInterface $em)
     {
@@ -175,10 +184,18 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/edit-password/{id<\d+>}", methods="GET|POST", name="user_edit_password")
+     * @Route("api/user/edit-password/{slug}", methods="GET|POST", name="user_edit_password")
      */
+<<<<<<< HEAD
     public function changePassword(User $user, Request $request, UserPasswordEncoderInterface $encoder): Response
+=======
+    public function changePassword(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
+>>>>>>> slug
     {
+           //send a 404 error if the user does not exist
+        if ($user === null) {
+            return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
         //get the ne passord from the request
         $content = $request->getContent();

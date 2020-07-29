@@ -2,11 +2,11 @@
 
 namespace App\EventListener;
 
-use App\Entity\User;
+use App\Entity\Item;
 use App\Service\MySlugger;
 use Doctrine\Persistence\Event\LifecycleEventArgs;
 
-class UserListener
+class ItemListener
 {
     private $slugger;
 
@@ -18,13 +18,12 @@ class UserListener
     /**
      * Creation of tokenApi when user is created
      *
-     * @param User $user Entity of User
+     * @param Item $user Entity of Item
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(User $user, LifecycleEventArgs $event)
+    public function prePersist(Item $item, LifecycleEventArgs $event)
     {
-        $user->setApiToken(md5(uniqid(rand(), true)));
-        $user->setSlug($this->slugger->slugify($user->getUsername()));
+        $item->setSlug($this->slugger->slugify($item->getName()));
     }
 }

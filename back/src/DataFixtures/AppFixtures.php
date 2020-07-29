@@ -270,6 +270,7 @@ class AppFixtures extends Fixture
             $command = new Command;
             $command->setCreatedAt(new \DateTime);
             $command->setUpdatedAt(new \DateTime);
+            $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
@@ -326,6 +327,7 @@ class AppFixtures extends Fixture
         $command = new Command;
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
+        $command->setName('test');
         $command->setStatus(1);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);

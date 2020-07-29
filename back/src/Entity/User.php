@@ -146,6 +146,12 @@ class User implements UserInterface
      */
     private $testimonies;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     * @Groups({"avatar", "command", "user"})
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -422,6 +428,18 @@ class User implements UserInterface
                 $testimony->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
