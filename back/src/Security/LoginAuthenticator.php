@@ -86,6 +86,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
+        dump($data);
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
