@@ -27,10 +27,14 @@ class AvatarController extends AbstractController
     }
 
      /**
-     * @Route("api/avatar/{id<\d+>}", name="avatar", methods="GET")
+     * @Route("api/avatar/{slug}", name="avatar", methods="GET")
      */
-    public function getOne($id, AvatarRepository $avatarRepo, Avatar $avatar = null, SerializerInterface $serializer)
+    public function getOne(String $slug, AvatarRepository $avatarRepo, Avatar $avatar = null)
     {
+         // get the user data
+         $avatar = ['username' => $slug];
+         $avatar = $avatarRepo->findOneBy($avatar);
+
         //send a 404 error if the avatar does not exist
         if ($avatar === null) {
             return $this->json(['error' => 'avatar non trouve'], Response::HTTP_NOT_FOUND);
