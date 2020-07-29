@@ -73,3 +73,16 @@ services:
                 entity: 'App\Entity\Category'
                 lazy: true
                 method: prePersist
+
+    App\EventListener\CommandListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: prePersist
