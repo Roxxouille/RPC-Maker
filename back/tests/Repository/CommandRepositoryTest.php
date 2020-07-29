@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Tests\Repository;
 
 use App\Entity\User;
@@ -7,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class CommandRepositoryTest extends KernelTestCase
 {
-     /**
+    /**
      * @var \Doctrine\ORM\EntityManager
      */
     private $entityManager;
@@ -24,8 +25,8 @@ class CommandRepositoryTest extends KernelTestCase
     public function testSearchByUser()
     {
         $userId = $this->entityManager
-        ->getRepository(User::class)
-        ->findOneBy(['username' => 'test']);
+            ->getRepository(User::class)
+            ->findOneBy(['username' => 'test']);
 
         $category = $this->entityManager
             ->getRepository(Command::class)
