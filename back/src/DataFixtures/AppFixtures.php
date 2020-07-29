@@ -342,6 +342,22 @@ class AppFixtures extends Fixture
         }
         $manager->persist($command);
 
+            $category = new Category();
+            $category->setName('test');
+            $category->setSpecs($categorySpec);
+            $category->setCreatedAt(new \DateTime);
+            $category->setUpdatedAt(new \DateTime);
+            $manager->persist($category);
+
+            $item = new Item();
+            $item->setName('test');
+            $item->setCreatedAt(new \DateTime);
+            $item->setUpdatedAt(new \DateTime);
+            $item->setCategory($category);
+            $item->setPrice($faker->numberBetween(50, 500));
+            $item->setUrl($faker->url());
+            $manager->persist($item);
+
         $manager->flush();
     }
 
