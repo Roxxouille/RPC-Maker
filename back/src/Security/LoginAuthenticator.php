@@ -33,7 +33,9 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function supports(Request $request)
     {
-        return true;
+        $content = (array) json_decode($request->getContent());
+
+        return isset($content['login']);
     }
 
     /**
@@ -54,7 +56,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
         
         if(!$user){
-            throw new CustomUserMessageAuthenticationException('Email could not be found');
+            throw new CustomUserMessageAuthenticationException("C'est email n'existe pas");
             //return new JsonResponse(['error' => 'Email could not be found'], Response::HTTP_UNAUTHORIZED);
         }
         return $user;
@@ -63,7 +65,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
     public function checkCredentials($credentials, UserInterface $user)
     {
         if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])){
-            throw new CustomUserMessageAuthenticationException('Invalid password');
+            throw new CustomUserMessageAuthenticationException('Mot de passe invalide');
         }
 
         return true;

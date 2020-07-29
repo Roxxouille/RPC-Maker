@@ -22,10 +22,11 @@ class CommandController extends AbstractController
      */
     public function getAll(CommandRepository $commandRepository)
     {
-
+        //get the commands data from the database
         $data = $commandRepository->findAll();
 
-        return $this->json($data, 200, [], ['groups' => 'command']);
+        //send a json response with the data
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
     /**
@@ -38,10 +39,11 @@ class CommandController extends AbstractController
             return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the data of one command from the database
         $data = $commandRepository->findOneByUser($command);
 
-
-        return $this->json($data, 200, [], ['groups' => 'command']);
+        //send a json response with the data
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command']);
     }
 
     /**
@@ -74,11 +76,14 @@ class CommandController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        //Edit the updatedat vlue to the current time
+        $command->setUpdatedAt(new \DateTime());
+
         //save the new data to the database
         $em->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'command edited'], 200);
+        return $this->json(['status' => 'command edited'], Response::HTTP_OK);
     }
 
     /**
@@ -121,7 +126,7 @@ class CommandController extends AbstractController
         $entityManager->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'commande created'], 201);
+        return $this->json(['status' => 'commande created'], Response::HTTP_CREATED);
     }
 
     /**
@@ -139,6 +144,6 @@ class CommandController extends AbstractController
         $em->flush();
 
         //send a json response
-        return $this->json(['message' => 'commande supprime'], 200);
+        return $this->json(['message' => 'commande supprime'], Response::HTTP_OK);
     }
 }

@@ -24,7 +24,7 @@ class Category
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "item"})
      */
     private $name;
@@ -32,7 +32,7 @@ class Category
     /**
      * @ORM\Column(type="json", nullable=true)
      * @Assert\Json( message = "this is not a valid Json.")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "item"})
      */
     private $specs = [];
@@ -43,9 +43,23 @@ class Category
      */
     private $items;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"category", "item"})
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"category", "item"})
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
     }
 
     public function getId(): ?int
@@ -104,6 +118,30 @@ class Category
                 $item->setCategory(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

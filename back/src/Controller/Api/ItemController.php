@@ -15,10 +15,11 @@ class ItemController extends AbstractController
      */
     public function getAll(ItemRepository $itemRepository)
     {
-
+        //get the items data from the database
         $data = $itemRepository->findAll();
 
-        return $this->json($data, 200, [], ['groups' =>'item']);
+        //send a json response with the data
+        return $this->json($data, Response::HTTP_OK, [], ['groups' =>'item']);
     }
 
      /**
@@ -31,9 +32,10 @@ class ItemController extends AbstractController
             return $this->json(['error' => 'item non trouve'], Response::HTTP_NOT_FOUND);
         }
 
+        //get the data of one item from the database
         $data = $itemRepository->findOneByCategory($item);
         
-
-        return $this->json($data, 200, [], ['groups' => 'item']);
+        //send a json response with the data
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'item']);
     }
 }

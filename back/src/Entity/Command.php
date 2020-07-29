@@ -30,14 +30,14 @@ class Command
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("/^\d+/", message = "please enter a valid number.")
+     * @Assert\Regex("/^\d+/", message = "Veuillez entrer un nombre valide")
      * @Groups({"category", "command", "user"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="json")
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"category", "command", "user"})
      */
     private $data = [];
@@ -54,9 +54,24 @@ class Command
      */
     private $item;
 
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "user"})
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"category", "command", "user"})
+     */
+    private $updatedAt;
+
     public function __construct()
     {
         $this->item = new ArrayCollection();
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+        $this->status = 0;
     }
 
     public function getId(): ?int
@@ -135,6 +150,30 @@ class Command
         if ($this->item->contains($item)) {
             $this->item->removeElement($item);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

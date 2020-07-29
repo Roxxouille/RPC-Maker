@@ -24,7 +24,7 @@ class Avatar
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "This field should not be blank.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "user"})
      */
     private $image;
@@ -35,6 +35,25 @@ class Avatar
      * @MaxDepth(2)
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "user"})
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Groups({"avatar", "user"})
+     */
+    private $updatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
+
 
     public function getId(): ?int
     {
@@ -66,6 +85,30 @@ class Avatar
         if ($user->getAvatar() !== $this) {
             $user->setAvatar($this);
         }
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeInterface
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
