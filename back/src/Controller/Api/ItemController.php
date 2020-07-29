@@ -23,9 +23,9 @@ class ItemController extends AbstractController
     }
 
      /**
-     * @Route("api/item/{id<\d+>}", name="item", methods="GET")
+     * @Route("api/item/{slug}", name="item", methods="GET")
      */
-    public function getOne($id, ItemRepository $itemRepository, Item $item = null)
+    public function getOne(ItemRepository $itemRepository, Item $item = null)
     {
         //send a 404 error if the item does not exist
         if ($item === null) {
