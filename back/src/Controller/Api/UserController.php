@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("api/user", name="user_browse", methods = "GET")
+     * @Route("api/users", name="user_browse", methods = "GET")
      */
     public function browse(UserRepository $userRepository)
     {
