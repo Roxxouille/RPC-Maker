@@ -1,0 +1,25 @@
+@use 'src/styles/vars';
+
+.contact{
+  margin-left: 5%;
+  margin-right: 5%;
+  &__1{
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+    &__space{
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+  
+}
+
+.bouton {
+  margin-bottom: 30px;
+}
+
+.btn-primary {
+  background-color: red;
+}

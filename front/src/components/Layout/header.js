@@ -6,6 +6,8 @@ import './styles.scss';
 import { Navbar, Nav } from 'react-bootstrap';
 import Home from '../Home';
 import User from '../../containers/User';
+import Contact from './../Contact';
+import Survey from './../Survey';
 
 const Header = ({ isLogged }) => {
   console.log(isLogged);
@@ -43,14 +45,14 @@ const Header = ({ isLogged }) => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route path="/survey">
-          Devis
+        <Route path='/survey'>
+          <Survey />
         </Route>
         <Route path="/team">
           Team
         </Route>
-        <Route path="/contact">
-          Contact
+        <Route path='/contact'>
+          <Contact />
         </Route>
         <Route path="/user">
           <User />
