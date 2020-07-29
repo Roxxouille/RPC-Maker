@@ -2,12 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\TestimonyRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\TestimonyRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TestimonyRepository::class)
+ * @UniqueEntity("command")
  */
 class Testimony
 {
@@ -15,12 +18,14 @@ class Testimony
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"testimony"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Groups({"testimony"})
      */
     private $content;
 
@@ -28,12 +33,14 @@ class Testimony
      * @ORM\Column(type="integer")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Assert\Regex("/^[1-5]$/", message = "Veuillez mettre une note entre 1 et 5")
+     * @Groups({"testimony"})
      */
     private $score;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="testimonies")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"testimony"})
      */
     private $user;
 
@@ -52,6 +59,12 @@ class Testimony
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updatedAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+        $this->updatedAt = new \DateTime();
+    }
 
     public function getId(): ?int
     {
