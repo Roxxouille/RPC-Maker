@@ -161,7 +161,7 @@ class UserController extends AbstractController
      */
     public function delete(User $user = null, EntityManagerInterface $em)
     {
-        //send a 404 error if the category does not exist
+        //send a 404 error if the user does not exist
         if ($user === null) {
             return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
         }

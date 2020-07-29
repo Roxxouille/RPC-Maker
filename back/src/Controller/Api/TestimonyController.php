@@ -46,7 +46,7 @@ class TestimonyController extends AbstractController
     /**
      * @Route("api/testimony/{id<\d+>}", name="tesimony_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(Testimony $testimony, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(Testimony $testimony = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
         //send a 404 error if the category does not exist
         if ($testimony === null) {
@@ -72,7 +72,7 @@ class TestimonyController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        //Edit the updatedat vlue to the current time
+        //Edit the updatedat value to the current time
         $testimony->setUpdatedAt(new \DateTime());
 
         $em->flush();
@@ -85,19 +85,10 @@ class TestimonyController extends AbstractController
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
+        //get the request content (info about new testimony)
+        //transform it into an object testimony
+        //get the validations errors if there is any
         $content = $request->getContent();
-        $contentArray = (array) json_decode($content);
-        $commandId = $contentArray['command'];
-        
-        foreach($this->getUser()->getCommands() as $commandObject){
-            dump($commandObject);
-            /*
-            if($commandObject->getTestimony()->getCommand()->getId() == $commandId){
-                return $this->json(['error' => 'témoignage déjà existant'], Response::HTTP_BAD_REQUEST);
-            }
-            */ 
-        }
-        dd();
         $testimony = $serializer->deserialize($content, Testimony::class, 'json');
         $errors = $validator->validate($testimony);
 
@@ -113,19 +104,32 @@ class TestimonyController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        // get the user that wrote the testimony
         $testimony->setUser($this->getUser());
 
+        // send the new testimony in database
         $em->persist($testimony);
-        $em->flush();
+        $em->flush();   
 
+        // send a json response
         return $this->json(['status' => 'testimony created'], Response::HTTP_OK);
     }
 
     /**
      * @Route("api/testimony/{id<\d+>}", name="tesimony_delete", methods="DELETE")
      */
-    public function delete()
+    public function delete(Testimony $testimony = null, EntityManagerInterface $em)
     {
-        
+        //send a 404 error if the testimony does not exist
+        if($testimony === null){
+            return $this->json(['error' => 'témoignage non trouvé'], Response::HTTP_NOT_FOUND);
+        }
+
+        //get the testimony from the url and remove it form the database
+        $em->remove($testimony);
+        $em->flush();
+
+        // send a json response
+        return $this->json(['message' => 'témoignage supprime'], Response::HTTP_OK);
     }
 }

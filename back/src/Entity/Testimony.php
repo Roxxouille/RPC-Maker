@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\TestimonyRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use App\Repository\TestimonyRepository;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=TestimonyRepository::class)
+ * @UniqueEntity("command")
  */
 class Testimony
 {
