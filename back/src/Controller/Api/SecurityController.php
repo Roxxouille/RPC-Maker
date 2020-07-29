@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
         // @todo Et/ou avec une date d'expiration (mais pourquoi finalement ?)
         // @todo A chaque modif de mot de passe
         $em->persist($user);
-        $em->flush;
+        $em->flush();
         //return a json response with the main infos
         return $this->json([
             'id' => $user->getId(),
