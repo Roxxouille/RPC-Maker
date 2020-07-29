@@ -11,9 +11,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ItemController extends AbstractController
 {
     /**
-     * @Route("api/item", name="items", methods = "GET")
+     * @Route("api/items", name="item_browse", methods = "GET")
      */
-    public function getAll(ItemRepository $itemRepository)
+    public function browse(ItemRepository $itemRepository)
     {
         //get the items data from the database
         $data = $itemRepository->findAll();
@@ -23,9 +23,9 @@ class ItemController extends AbstractController
     }
 
      /**
-     * @Route("api/item/{id<\d+>}", name="item", methods="GET")
+     * @Route("api/{id<\d+>}", name="item_read", methods="GET")
      */
-    public function getOne($id, ItemRepository $itemRepository, Item $item = null)
+    public function read(ItemRepository $itemRepository, Item $item = null)
     {
         //send a 404 error if the item does not exist
         if ($item === null) {
