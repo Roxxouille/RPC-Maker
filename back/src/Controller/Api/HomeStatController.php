@@ -22,6 +22,6 @@ class HomeStatController extends AbstractController
      */
     public function quoteFinished(CommandRepository $commandRepo)
     {
-        return $this->json(['quote' => $commandRepo->findNumerOfPcBuilded()], Response::HTTP_OK);
+        return $this->json(['quote' => $commandRepo->findNumerOfQuoteCreated()], Response::HTTP_OK);
     }
 }
