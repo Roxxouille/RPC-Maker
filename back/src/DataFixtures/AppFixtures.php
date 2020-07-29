@@ -11,6 +11,7 @@ use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
+use App\Entity\Testimony;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -284,6 +285,7 @@ class AppFixtures extends Fixture
         }
 
         // fixtures for Command
+        $commandList = [];
         for($i= 0; $i < 25; $i++){
             $command = new Command;
             $command->setCreatedAt(new \DateTime);
@@ -300,7 +302,21 @@ class AppFixtures extends Fixture
                 }
                 $command->addItem($item);
             }
+            $commandList[] = $command;
             $manager->persist($command);
+        }
+
+        // fixtures for Testimony
+        for($i= 0; $i < 10; $i++){
+            $testimony = new Testimony;
+            $testimony->setContent($faker->text($faker->numberBetween(30, 255)));
+            $testimony->setScore($faker->numberBetween(1, 5));
+            $command = $faker->unique->randomElement($commandList);
+            $testimony->setCommand($command);
+            $testimony->setUser($command->getUser());
+            $testimony->setCreatedAt(new \DateTime);
+            $testimony->setUpdatedAt(new \DateTime);
+            $manager->persist($testimony);
         }
 
         $manager->flush();
