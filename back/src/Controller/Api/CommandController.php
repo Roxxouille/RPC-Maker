@@ -114,8 +114,8 @@ class CommandController extends AbstractController
         //find the user correspondant to the id
         //set this user to the command
         $contentDecode = json_decode($content, true);
-        $userId = $contentDecode['user_id'];
-        $user = $userRepo->find($userId);
+        $username = $contentDecode['username'];
+        $user = $userRepo->findOneBy(['username' => $username]);
 
          //send a 404 error if the command does not exist
          if ($user === null) {
@@ -124,14 +124,13 @@ class CommandController extends AbstractController
 
         $command->setUser($user);
 
-        dd($userId);
         //persist the new command in the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($command);
         $entityManager->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'La commande a bien ete trouve'], Response::HTTP_CREATED);
+        return $this->json(['status' => 'La commande a bien ete cree'], Response::HTTP_CREATED);
     }
 
     /**
