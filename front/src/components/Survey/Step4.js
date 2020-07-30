@@ -27,7 +27,7 @@ export class Step4 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Processeur</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_proc')} >
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_proc')}>
               <option>Fait ton choix !</option>
               <option>i9</option>
               <option>i7</option>

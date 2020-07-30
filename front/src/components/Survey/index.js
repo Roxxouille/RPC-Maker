@@ -56,7 +56,40 @@ export class UserForm extends Component {
     spec_sound_utilisation: '',
     spec_sound_utilisation_other: '',
     spec_light: '',
-
+    os: '',
+    os_name: '',
+    os_active: '',
+    option: '',
+    option_screen: '',
+    option_screen_model: '',
+    option_screen_size: '',
+    option_screen_res: '',
+    option_keyboard: '',
+    option_keyboard_type: '',
+    option_keyboard_switch: '',
+    option_keyboard_language: '',
+    option_mouse: '',
+    option_mouse_model: '',
+    option_mouse_type: '',
+    option_mouse_filaire: '',
+    option_mousepad: '',
+    option_mousepad_model: '',
+    option_mousepad_type: '',
+    option_mousepad_size: '',
+    option_headphone: '',
+    option_headphone_model: '',
+    option_headphone_type: '',
+    option_headphone_size: '',
+    option_enceinte: '',
+    option_enceinte_model: '',
+    option_enceinte_type: '',
+    option_enceinte_bass: '',
+    option_webcam: '',
+    option_webcam_model: '',
+    option_webcam_res: '',
+    option_printer: '',
+    option_printer_model: '',
+    option_printer_type: '',
   };
 
   nextStep = () => {
@@ -129,6 +162,40 @@ export class UserForm extends Component {
        spec_sound_utilisation,
        spec_sound_utilisation_other,
        spec_light,
+       os,
+       os_name,
+       os_active,
+       option,
+       option_screen,
+       option_screen_model,
+       option_screen_size,
+       option_screen_res,
+       option_keyboard,
+       option_keyboard_type,
+       option_keyboard_switch,
+       option_keyboard_language,
+       option_mouse,
+       option_mouse_model,
+       option_mouse_type,
+       option_mouse_filaire,
+       option_mousepad,
+       option_mousepad_model,
+       option_mousepad_type,
+       option_mousepad_size,
+       option_headphone,
+       option_headphone_model,
+       option_headphone_type,
+       option_headphone_size,
+       option_enceinte,
+       option_enceinte_model,
+       option_enceinte_type,
+       option_enceinte_bass,
+       option_webcam,
+       option_webcam_model,
+       option_webcam_res,
+       option_printer,
+       option_printer_model,
+       option_printer_type,
      } = this.state;
      const values = {
        surname,
@@ -175,6 +242,40 @@ export class UserForm extends Component {
        spec_sound_utilisation,
        spec_sound_utilisation_other,
        spec_light,
+       os,
+       os_name,
+       os_active,
+       option,
+       option_screen,
+       option_screen_model,
+       option_screen_size,
+       option_screen_res,
+       option_keyboard,
+       option_keyboard_type,
+       option_keyboard_switch,
+       option_keyboard_language,
+       option_mouse,
+       option_mouse_model,
+       option_mouse_type,
+       option_mouse_filaire,
+       option_mousepad,
+       option_mousepad_model,
+       option_mousepad_type,
+       option_mousepad_size,
+       option_headphone,
+       option_headphone_model,
+       option_headphone_type,
+       option_headphone_size,
+       option_enceinte,
+       option_enceinte_model,
+       option_enceinte_type,
+       option_enceinte_bass,
+       option_webcam,
+       option_webcam_model,
+       option_webcam_res,
+       option_printer,
+       option_printer_model,
+       option_printer_type,
      };
 
      switch (step) {
@@ -230,6 +331,7 @@ export class UserForm extends Component {
                nextStep={this.nextStep}
                prevStep={this.prevStep}
                handleChange={this.handleChange}
+               CheckContent={this.CheckContent}
                values={values}
              />
          );
@@ -239,6 +341,7 @@ export class UserForm extends Component {
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 handleChange={this.handleChange}
+                CheckContent={this.CheckContent}
                 values={values}
               />
          );

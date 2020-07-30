@@ -14,6 +14,7 @@ export class Step7 extends Component {
   };
 
   render() {
+    const { values, handleChange, CheckContent } = this.props;
     return (
       <div>
         <div>
@@ -24,33 +25,33 @@ export class Step7 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('option')}> Oui  </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('option')}> Non </Button>
           </Col>
         </Form.Row>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Ecran1</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_screen')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" />
+            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('option_screen_model')} />
             <Form.Label>Taille d'ecran</Form.Label>
-            <Form.Control as="select" defaultValue="24 pouces !">
+            <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('option_screen_size')}>
               <option>24 pouces</option>
               <option>25</option>
               <option>27</option>
               <option>30</option>
             </Form.Control>
             <Form.Label>Resolution</Form.Label>
-            <Form.Control as="select" defaultValue="full HD">
+            <Form.Control as="select" defaultValue="full HD" onChange={handleChange('option_screen_res')}>
               <option>144hz</option>
               <option>25</option>
               <option>27</option>
@@ -65,7 +66,7 @@ export class Step7 extends Component {
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Type</Form.Label>
-                  <Form.Control as="select" defaultValue="Mecanique">
+                  <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('option_keyboard_type')}>
                     <option>Mecanique</option>
                     <option>1</option>
                     <option>2</option>
@@ -76,7 +77,7 @@ export class Step7 extends Component {
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Switch</Form.Label>
-                  <Form.Control as="select" defaultValue="Red">
+                  <Form.Control as="select" defaultValue="Red" onChange={handleChange('option_keyboard_switch')}>
                     <option>Red</option>
                     <option>1</option>
                     <option>2</option>
@@ -87,7 +88,7 @@ export class Step7 extends Component {
             </Form.Row>
           </Form.Group>
           <Form.Label>Langue</Form.Label>
-          <Form.Control as="select" defaultValue="azerty">
+          <Form.Control as="select" defaultValue="azerty" onChange={handleChange('option_keyboard_language')}>
             <option>azerty</option>
             <option>qwerty</option>
             <option>2</option>
@@ -97,21 +98,21 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Sourie</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mouse')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')}/>
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="laser">
+            <Form.Control as="select" defaultValue="laser" onChange={handleChange('option_mouse_type')}>
               <option>Optique</option>
               <option>laser</option>
             </Form.Control>
             <Form.Label>Filaire</Form.Label>
-            <Form.Control as="select" defaultValue="oui">
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_mouse_filaire')}>
               <option>Non</option>
               <option>Oui</option>
             </Form.Control>
@@ -120,20 +121,20 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Tapis</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mousepad')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_mousepad_model')} />
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="rugueux">
+            <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('option_mousepad_type')}>
               <option>dur</option>
             </Form.Control>
             <Form.Label>Taille</Form.Label>
-            <Form.Control as="select" defaultValue="Petit">
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_mousepad_size')}>
               <option>Moyen</option>
               <option>Grand</option>
               <option>Petit</option>
@@ -143,22 +144,22 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Casque-micro</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_headphone')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="Supra auriculaire">
+            <Form.Control as="select" defaultValue="Supra auriculaire" option_headphone_model onChange={handleChange('option_headphone_type')}>
               <option>Supra auriculaire</option>
               <option>isolant</option>
               <option>Ouvert</option>
             </Form.Control>
             <Form.Label>Taille</Form.Label>
-            <Form.Control as="select" defaultValue="Petit">
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_headphone_size')}>
               <option>Petit</option>
               <option>Moyen</option>
               <option>Grand</option>
@@ -168,22 +169,22 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Enceinte</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_enceinte')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_enceinte_model')}/>
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="1 enceinte">
+            <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('option_enceinte_type')}>
               <option>1 enceinte</option>
               <option>2 enceintes</option>
               <option>3 enceintes</option>
             </Form.Control>
             <Form.Label>Caisson de basses</Form.Label>
-            <Form.Control as="select" defaultValue="oui">
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_enceinte_bass')}>
               <option>Non</option>
             </Form.Control>
           </Form.Group>
@@ -191,39 +192,34 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Webcam</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_webcam')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_webcam_model')} />
             <Form.Label>Resolution</Form.Label>
-            <Form.Control as="select" defaultValue="720p">
+            <Form.Control as="select" defaultValue="720p" onChange={handleChange('option_webcam_res')}>
               <option>1080p</option>
               <option>720p</option>
-            </Form.Control>
-            <Form.Label>Caisson de basses</Form.Label>
-            <Form.Control as="select" defaultValue="oui">
-              <option>Non</option>
-              <option>Oui</option>
             </Form.Control>
           </Form.Group>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Imprimante</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !">
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_printer')}>
               <option>Fait ton choix !</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" />
+            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_printer_model')} />
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="Laser">
+            <Form.Control as="select" defaultValue="Laser" onChange={handleChange('option_printer_type')}>
               <option>Laser</option>
               <option>Encre</option>
             </Form.Control>
