@@ -236,7 +236,7 @@ class AppFixtures extends Fixture
 
         $avatarList = [];
         // fixtures for Avatar
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 26; $i++) {
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
@@ -262,6 +262,7 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $userList[] = $user;
         }
+
         // add one user with builder roles
         $user = new User;
         $user->setCreatedAt(new \DateTime);

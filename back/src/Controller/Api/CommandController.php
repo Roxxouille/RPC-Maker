@@ -148,4 +148,203 @@ class CommandController extends AbstractController
         //send a json response
         return $this->json(['message' => 'commande supprime'], Response::HTTP_OK);
     }
+
+    /**
+     * @Route("api/command/{slug}/data", name="command_data", methods="GET")
+     */
+    public function sendCommandData(Command $command, CommandRepository $commandRepo)
+    {
+        //send a 404 error if the command does not exist
+        if ($command === null) {
+            return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
+        // getting the data of the command
+        $data = $commandRepo->find($command)->getData();
+
+        $firstMessage = "Salut ! Je suis " . $data['surname'] . '. ';
+
+        // config part of the data
+        if($data['config'] == "yes"){
+            $firstMessage .= "J'ai déjà des idées de pièces : ";
+
+            if($data['config_proc'] == "yes"){
+                $firstMessage .= "je voudrais ce processeur : " . $data['config_proc_model'] . " le lien : " . $data['config_proc_link'];
+            }
+
+            if($data['config_board'] == "yes"){
+                $firstMessage .= "je voudrais cette carte mère : " . $data['config_board_model'] . " le lien : " . $data['config_board_link'];
+            }
+            
+            if($data['config_gc'] == "yes"){
+                $firstMessage .= "je voudrais cette carte graphique : " . $data['config_gc_model'] . " le lien : " . $data['config_gc_link'];
+            }
+            
+            if($data['config_ram'] == "yes"){
+                $firstMessage .= "je voudrais cette ram : " . $data['config_ram_model'] . " le lien : " . $data['config_ram_link'];
+            }
+
+            if($data['config_refresh'] == "yes"){
+                $firstMessage .= "je voudrais ce systeme de refroidissement : " . $data['config_refresh_model'] . " le lien : " . $data['config_refresh_link'];
+            }
+
+            if($data['config_storage'] == "yes"){
+                $firstMessage .= "je voudrais ce stockage : " . $data['config_storage_model'] . " le lien : " . $data['config_storage_link'];
+            }
+
+            if($data['config_boardsound'] == "yes"){
+                $firstMessage .= "je voudrais cette carte son : " . $data['config_boardsound_model'] . " le lien : " . $data['config_boardsound_link'];
+            }
+
+            if($data['config_case'] == "yes"){
+                $firstMessage .= "je voudrais ce boitier: " . $data['config_case_model'] . " le lien : " . $data['config_case_link'];
+            }
+
+            if($data['config_power'] == "yes"){
+                $firstMessage .= "je voudrais cette alimentation : " . $data['config_power_model'] . " le lien : " . $data['config_power_link'];
+            }
+
+        } else {
+            $firstMessage .= "Je n'ai pas d'idée prédéfinie concernant les pièces du pc. ";
+        }
+        
+
+        // spec part of the data
+        $secondMessage = '';
+        if($data['spec_sli'] == "yes"){
+            $secondMessage .= "Je suis intéressé par le SLI ";
+        }
+
+        if($data['spec_overclock'] == "yes"){
+            $secondMessage .= "Je suis intéressé par l'overclocking. ";
+        }
+
+        $secondMessage .= "Je voudrais comme stockage du " . $data['spec_storage'] . ", d'au moins " . $data['spec_storage_quantity'] . ". ";
+
+        if($data['spec_wifi'] == "yes"){
+
+            $secondMessage .= "Je suis intéréssé par une carte wifi, ";
+
+            if($data['spec_wifi_room'] == "yes"){
+                $secondMessage .= "je me trouve dans la même pièce que le routeur, ";
+            } else {
+                $secondMessage .= "je ne me trouve pas dans la même pièce que le routeur, ";
+            }
+
+            if($data['spec_fiber'] == "yes"){
+                $secondMessage .= "je possède la fibre ";
+            } else {
+                $secondMessage .= "je ne possède pas la fibre ";
+            }
+        }
+
+        if($data['spec_sound'] == "yes"){
+
+            $secondMessage .= "Je suis intéréssé par une carte son pour du " . $data['spec_sound_utilisation'] . ". ";
+
+            if(!empty($data['spec_sound_utilisation_other'])){
+                $secondMessage .= " Précision : " . $data['spec_sound_utilisation_other'];
+            }
+        }
+
+        if($data['spec_light'] == "yes"){
+            $secondMessage .= "Je suis intéréssé par les LED. ";
+        } else {
+            $secondMessage .= "Je ne suis pas intéréssé par les LED. ";
+        }
+
+        if($data['os'] == "yes"){
+            $secondMessage .= "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation. ";
+
+            if($data['os_active'] == "yes"){
+                $secondMessage .= "Et je souhaiterais que vous me l'activez. ";
+            }
+        } else {
+            $secondMessage .= "Je ne souhaite pas de systeme d'exploiration. ";
+        }
+
+        // option part of data
+        $thirdMessage = '';
+        if($data['option'] == "yes"){
+            $thirdMessage .= "Je souhaiterais ajouter quelques périphériques : ";
+
+            if($data['option_screen'] == "yes"){
+                if(!empty($data['option_screen_model'])){
+                    $thirdMessage .= "Je voudrais cet écran : " . $data['option_screen_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais un écran de taille : " . $data['option_screen_size'] . " avec une résolution de : ". $data['option_screen_res'];
+                }
+            }
+
+            if($data['option_keyboard'] == "yes"){
+                if(!empty($data['option_keyboard_model'])){
+                    $thirdMessage .= "Je voudrais ce clavier : " . $data['option_keyboard_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais un clavier de type: " . $data['option_keyboard_type'] . " avec des switch : ". $data['option_keyboard_switch'] . " en ". $data['option_keyboard_language'];
+                }
+            }
+
+            if($data['option_mouse'] == "yes"){
+                if(!empty($data['option_mouse_model'])){
+                    $thirdMessage .= "Je voudrais cette souris : " . $data['option_mouse_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais une souris de type: " . $data['option_mouse_type'];
+                    if($data['option_mouse_filaire']){
+                        $thirdMessage .= "et qu'elle soit fillaire";
+                    }
+                    $thirdMessage .= ". ";
+                }
+            }
+
+            if($data['option_mousepad'] == "yes"){
+                if(!empty($data['option_mousepad_model'])){
+                    $thirdMessage .= "Je voudrais ce tapis de souris : " . $data['option_mousepad_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais un tapis de souris de type : " . $data['option_mousepad_type'] . " et de taille : ". $data['option_mousepad_size'];
+                }
+            }
+
+            if($data['option_headphone'] == "yes"){
+                if(!empty($data['option_headphone_model'])){
+                    $thirdMessage .= "Je voudrais ce casque : " . $data['option_headphone_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais un casque de type : " . $data['option_headphone_type'] . " et de taille : ". $data['option_headphone_size'];
+                }
+            }
+
+            if($data['option_enceinte'] == "yes"){
+                if(!empty($data['option_enceinte_model'])){
+                    $thirdMessage .= "Je voudrais cette enceinte : " . $data['option_enceinte_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais une enceinte de type : " . $data['option_enceinte_type'] . " et de basse : ". $data['option_enceinte_bass'];
+                }
+            }
+
+            if($data['option_webcam'] == "yes"){
+                if(!empty($data['option_webcam_model'])){
+                    $thirdMessage .= "Je voudrais cette webcam : " . $data['option_webcam_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais une webcam de résolution : " . $data['option_webcam_res'];
+                }
+            }
+
+            if($data['option_printer'] == "yes"){
+                if(!empty($data['option_printer_model'])){
+                    $thirdMessage .= "Je voudrais cette imprimante : " . $data['option_printer_model'];
+                } else {
+                    $thirdMessage .= "Je voudrais une imprimante de type : " . $data['option_printer_type'];
+                }
+            }
+
+        }
+
+        return $this->json(
+            [
+                'firstMessage' => $firstMessage,
+                'secondMessage' => $secondMessage,
+                'thirdMessage' => $thirdMessage
+            ], 
+            Response::HTTP_OK
+        );
+    }
 }
