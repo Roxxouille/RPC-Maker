@@ -21,11 +21,11 @@ class ApplicationAvailabilityFunctionalTest extends WebTestCase
 
     public function urlProvider()
     {
-        yield ['/api/avatar'];
-        yield ['/api/category'];
-        yield ['/api/command'];
-        yield ['/api/item'];
-        yield ['/api/user'];
+        yield ['/api/avatars'];
+        yield ['/api/categories'];
+        yield ['/api/commands'];
+        yield ['/api/items'];
+        yield ['/api/users'];
         // ...
     }
 }

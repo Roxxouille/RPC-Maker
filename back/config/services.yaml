@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    slugger_to_lower: '%env(bool:SLUGGER_TO_LOWER)%'
 
 services:
     # default configuration for services in *this* file
@@ -27,6 +28,11 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+    App\Service\MySlugger:
+        # Les arguments du constructeur
+        arguments:
+            $toLower: '%slugger_to_lower%'
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
     App\EventListener\UserListener:
@@ -41,3 +47,136 @@ services:
                 entity: 'App\Entity\User'
                 lazy: true
                 method: prePersist
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\User'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\User'
+                lazy: true
+                method: sluggify
+
+    App\EventListener\AvatarListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Avatar'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Avatar'
+                lazy: true
+                method: sluggify
+
+    App\EventListener\CategoryListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Category'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Category'
+                lazy: true
+                method: sluggify
+
+
+    App\EventListener\CommandListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postPersist'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
+
+    App\EventListener\ItemListener:
+        tags:
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\Item'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Item'
+                lazy: true
+                method: sluggify

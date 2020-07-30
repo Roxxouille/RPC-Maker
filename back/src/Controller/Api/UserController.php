@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("api/user", name="users", methods = "GET")
+     * @Route("api/users", name="user_browse", methods = "GET")
      */
     public function browse(UserRepository $userRepository)
     {
@@ -32,29 +32,24 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/{id<\d+>}", name="user", methods="GET")
+     * @Route("api/user/{slug}", name="user_read", methods="GET")
      */
-    public function read($id, UserRepository $userRepository, User $user = null)
+    public function read(User $user = null)
     {
-        //send a 404 error if the category does not exist
+        //send a 404 error if the user does not exist
         if ($user === null) {
             return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
-
-        // get the user data
-        $data = $userRepository->find($user);
-
         //send it in json
-        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'user']);
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'user']);
     }
 
     /**
-     * @Route("api/user/edit/{id<\d+>}", name="user_edit", methods={"PUT", "PATCH"})
+     * @Route("api/user/{slug}", name="user_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(User $user, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em )
     {
-
         //check if the user received in the request exist
         if ($user === null) {
             return $this->json(['error' => 'utiisateur non trouve'], Response::HTTP_NOT_FOUND);
@@ -87,7 +82,7 @@ class UserController extends AbstractController
         return $this->json(['status' => 'user edited'], Response::HTTP_OK);
     }
     /**
-     * @Route("api/user/add", name="user_add", methods="POST")
+     * @Route("api/user", name="user_add", methods="POST")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer)
     {
@@ -157,7 +152,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/delete/{id<\d+>}", name="user_delete", methods="DELETE")
+     * @Route("api/user/{slug}", name="user_delete", methods="DELETE")
      */
     public function delete(User $user = null, EntityManagerInterface $em)
     {
@@ -175,10 +170,14 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("api/user/edit-password/{id<\d+>}", methods="GET|POST", name="user_edit_password")
+     * @Route("api/user/edit-password/{slug}", methods="GET|POST", name="user_edit_password")
      */
-    public function changePassword($id, User $user, Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function changePassword(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
     {
+           //send a 404 error if the user does not exist
+        if ($user === null) {
+            return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
+        }
 
         //get the ne passord from the request
         $content = $request->getContent();

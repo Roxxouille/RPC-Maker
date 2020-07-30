@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ContactController extends AbstractController
 {
     /**
-     * @Route("/api/email")
+     * @Route("/api/email", name="email", methods="POST")
      */
     public function sendEmail(MailerInterface $mailer, Request $request)
     {

@@ -33,7 +33,28 @@ class CommandRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-    /*
+    
+    public function findNumerOfPcBuilded()
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('count(c)');
+        $qb->where('c.status >= 4');
+
+        $count = $qb->getQuery()->getSingleScalarResult();
+
+        return $count;
+    }
+
+    public function findNumerOfQuoteCreated()
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb->select('count(c)');
+        $qb->where('c.status >= 1');
+
+        $count = $qb->getQuery()->getSingleScalarResult();
+
+        return $count;
+    }
 
     /*
     public function findOneBySomeField($value): ?Command

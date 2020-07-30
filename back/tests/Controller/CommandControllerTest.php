@@ -3,14 +3,14 @@ namespace App\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class UserControllerTest extends WebTestCase
+class CommandControllerTest extends WebTestCase
 {
 
     public function testReadUser()
     {
         $client = static::createClient();
 
-        $client->request('GET', '/api/user/test');
+        $client->request('GET', '/api/command/test');
 
         $this->assertResponseIsSuccessful();
     }

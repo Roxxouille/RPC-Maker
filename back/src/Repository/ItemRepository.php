@@ -23,11 +23,11 @@ class ItemRepository extends ServiceEntityRepository
     //  * @return Item[] Returns an array of Item objects
     //  */
 
-    public function findOneByUser($item)
+    public function findOneByCategory($item)
     {
         return $this->createQueryBuilder('i')
-            ->select('i', 'u')
-            ->leftJoin('i.user', 'u')
+            ->select('i', 'c')
+            ->leftJoin('i.category', 'c')
             ->where('i = :item')
             ->setParameter('item', $item)
             ->getQuery()

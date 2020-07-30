@@ -270,6 +270,7 @@ class AppFixtures extends Fixture
             $command = new Command;
             $command->setCreatedAt(new \DateTime);
             $command->setUpdatedAt(new \DateTime);
+            $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
@@ -326,6 +327,7 @@ class AppFixtures extends Fixture
         $command = new Command;
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
+        $command->setName('test');
         $command->setStatus(1);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);
@@ -339,6 +341,22 @@ class AppFixtures extends Fixture
             $command->addItem($item);
         }
         $manager->persist($command);
+
+            $category = new Category();
+            $category->setName('test');
+            $category->setSpecs($categorySpec);
+            $category->setCreatedAt(new \DateTime);
+            $category->setUpdatedAt(new \DateTime);
+            $manager->persist($category);
+
+            $item = new Item();
+            $item->setName('test');
+            $item->setCreatedAt(new \DateTime);
+            $item->setUpdatedAt(new \DateTime);
+            $item->setCategory($category);
+            $item->setPrice($faker->numberBetween(50, 500));
+            $item->setUrl($faker->url());
+            $manager->persist($item);
 
         $manager->flush();
     }
