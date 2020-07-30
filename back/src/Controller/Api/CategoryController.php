@@ -72,7 +72,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("api/category", name="category_add", methods="POST")
-     * @IsGranted("ROLE_ADMIN")
+     * 
      */
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
     {
@@ -91,7 +91,7 @@ class CategoryController extends AbstractController
 
     /**
      * @Route("api/category/{slug}", name="category_delete", methods="DELETE")
-     * @IsGranted("ROLE_ADMIN")
+     * 
      */
     public function delete(Category $category = null, EntityManagerInterface $em)
     {
