@@ -113,13 +113,7 @@ class CommandController extends AbstractController
         //get the id of the user
         //find the user correspondant to the id
         //set this user to the command
-<<<<<<< HEAD
-        $contentDecode = json_decode($content, true);
-        $username = $contentDecode['username'];
-        $user = $userRepo->findOneBy(['username' => $username]);
-=======
         $user = $this->getUser();
->>>>>>> f98ab8d4eb9e3442b9a4f29a8e02ed151e442163
 
          //send a 404 error if the command does not exist
          if ($user === null) {
