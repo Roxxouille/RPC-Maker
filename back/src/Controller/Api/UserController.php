@@ -124,9 +124,11 @@ class UserController extends AbstractController
         //get the info of the new command
         //create the new command
         //set this info to the new command
+        $userFirstname = $user->getFirstname();
         $contentDecode = json_decode($content, true);
         $commandData = $contentDecode['command_data'];
         $command = new Command();
+        $command->setName('Pc numero 1 de '. $userFirstname );
         $command->setData($commandData);
 
 

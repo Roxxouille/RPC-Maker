@@ -26,4 +26,28 @@ class UserControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testAdd()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', 'api/user', [], [], [], '{
+            "username" : "testadd",
+            "password" : "T3stadd.",
+            "email" : "testadd@testadd.com",
+            "level" : 3,
+            "firstname" : "alexis",
+            "lastname" : "d\'angelo",
+            "city" : "france",
+            "zip_code" : 33000,
+            "adress" : "DTC",
+            "command_data" : 
+                {
+                    "Data":"Oui",
+                    "0":"Non"
+                }
+        }');
+
+        $this->assertResponseIsSuccessful();
+    }
+
 }
