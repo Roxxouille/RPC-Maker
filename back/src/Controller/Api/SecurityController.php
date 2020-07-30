@@ -30,8 +30,8 @@ class SecurityController extends AbstractController
         $em->flush();
         //return a json response with the main infos
         return $this->json([
-            'id' => $user->getId(),
             'username' => $user->getUsername(),
+            'slug' => $user->getSlug(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
         ]);

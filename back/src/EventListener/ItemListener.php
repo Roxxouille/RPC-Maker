@@ -16,13 +16,13 @@ class ItemListener
     }
 
     /**
-     * Creation of tokenApi when user is created
+     * Creation of tokenApi when item is created
      *
      * @param Item $user Entity of Item
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(Item $item, LifecycleEventArgs $event)
+    public function sluggify(Item $item, LifecycleEventArgs $event)
     {
         $item->setSlug($this->slugger->slugify($item->getName()));
     }

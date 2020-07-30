@@ -47,6 +47,26 @@ services:
                 entity: 'App\Entity\User'
                 lazy: true
                 method: prePersist
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'prePersist'
+                # L'entité concernée
+                entity: 'App\Entity\User'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\User'
+                lazy: true
+                method: sluggify
 
     App\EventListener\AvatarListener:
         tags:
@@ -59,7 +79,17 @@ services:
                 # L'entité concernée
                 entity: 'App\Entity\Avatar'
                 lazy: true
-                method: prePersist
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Avatar'
+                lazy: true
+                method: sluggify
 
     App\EventListener\CategoryListener:
         tags:
@@ -72,7 +102,18 @@ services:
                 # L'entité concernée
                 entity: 'App\Entity\Category'
                 lazy: true
-                method: prePersist
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Category'
+                lazy: true
+                method: sluggify
+
 
     App\EventListener\CommandListener:
         tags:
@@ -85,7 +126,37 @@ services:
                 # L'entité concernée
                 entity: 'App\Entity\Command'
                 lazy: true
-                method: prePersist
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postPersist'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
 
     App\EventListener\ItemListener:
         tags:
@@ -98,4 +169,14 @@ services:
                 # L'entité concernée
                 entity: 'App\Entity\Item'
                 lazy: true
-                method: prePersist
+                method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'preUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Item'
+                lazy: true
+                method: sluggify

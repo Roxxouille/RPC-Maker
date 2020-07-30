@@ -16,13 +16,13 @@ class AvatarListener
     }
 
     /**
-     * Creation of tokenApi when user is created
+     * Sluggify the name of Avatar on creation or update
      *
-     * @param User $user Entity of User
+     * @param Avatar $avatar Entity of Avatar
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(Avatar $avatar, LifecycleEventArgs $event)
+    public function sluggify(Avatar $avatar, LifecycleEventArgs $event)
     {
         $avatar->setSlug($this->slugger->slugify($avatar->getImage()));
     }

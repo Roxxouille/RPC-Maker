@@ -158,6 +158,7 @@ class User implements UserInterface
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->testimonies = new ArrayCollection();
+        $this->level = 1;
     }
 
     public function getId(): ?int
