@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 class UserControllerTest extends WebTestCase
 {
 
-    public function testReadUser()
+    public function testRead()
     {
         $client = static::createClient();
 
@@ -49,5 +49,25 @@ class UserControllerTest extends WebTestCase
 
         $this->assertResponseIsSuccessful();
     }
+
+    public function testDelete()
+    {
+        $client = static::createClient();
+
+        $client->request('DELETE', 'api/user/test');
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testEditPassword()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', 'api/user/edit-password/test',[], [], [],'{"newPassword" : "T3stT3st."}');
+
+        $this->assertResponseIsSuccessful();
+    }
+
+
 
 }
