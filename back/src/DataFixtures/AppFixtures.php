@@ -259,10 +259,22 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
-            $user->setApiToken(md5(uniqid(rand(), true)));
             $manager->persist($user);
             $userList[] = $user;
         }
+        // add one user with builder roles
+        $user = new User;
+        $user->setCreatedAt(new \DateTime);
+        $user->setUpdatedAt(new \DateTime);
+        $user->setUsername('builder');
+        $user->setEmail('builder@builder.com');
+        $user->setPassword($this->encoder->encodePassword($user, 'builder'));
+        $user->setLevel($faker->randomDigitNotNull);
+        $user->setRoles(['ROLE_BUILDER']);
+        $user->setFirstname($faker->firstName);
+        $user->setLastname($faker->lastName);
+        $user->setAvatar($faker->unique->randomElement($avatarList));
+        $manager->persist($user);
 
         // fixtures for Command
         $commandList = [];
@@ -320,7 +332,6 @@ class AppFixtures extends Fixture
         $user->setFirstname('test');
         $user->setLastname('test');
         $user->setAvatar($avatar);
-        $user->setApiToken(md5(uniqid(rand(), true)));
         $manager->persist($user);
 
         // fixtures for Command

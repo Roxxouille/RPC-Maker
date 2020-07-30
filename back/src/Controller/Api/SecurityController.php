@@ -40,8 +40,18 @@ class SecurityController extends AbstractController
     /**
      * @Route("/api/logout", name="api_logout", methods={"GET"})
      */
-    public function logout()
+    public function logout(EntityManagerInterface $em)
     {
-        
+        $user = $this->getUser();
+
+        //if there is not, throw an exception
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user->setApiToken(null);
+
+        $em->persist($user);
+        $em->flush();
     }
 }
