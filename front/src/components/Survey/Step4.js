@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
+import axios from 'axios';
 
 export class Step4 extends Component {
+  componentDidMount() {
+    axios.get('http://localhost:3000/api/categories').then((result) => {
+      console.log(result);
+    });
+  }
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -15,6 +22,9 @@ export class Step4 extends Component {
 
   render() {
     const { values, handleChange, CheckContent } = this.props;
+    const options = (
+      results.map((result) => <option>result.value</option>);
+  );
     return (
       <div>
         <div>
@@ -34,7 +44,7 @@ export class Step4 extends Component {
               <option>i5</option>
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')}/>
+            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')} />
             <Form.Label>Un lien ?</Form.Label>
             <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_proc_link')} />
           </Form.Group>
