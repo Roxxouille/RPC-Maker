@@ -16,7 +16,7 @@ class AvatarListener
     }
 
     /**
-     * Creation of tokenApi when avatar is created
+     * Sluggify the name of Avatar on creation or update
      *
      * @param Avatar $avatar Entity of Avatar
      * @param LifecycleEventArgs $event

@@ -16,7 +16,7 @@ class CategoryListener
     }
 
     /**
-     * Creation of tokenApi when category is created
+     *  Sluggify the name of Category on creation or update
      *
      * @param Category $category Entity of Category
      * @param LifecycleEventArgs $event
