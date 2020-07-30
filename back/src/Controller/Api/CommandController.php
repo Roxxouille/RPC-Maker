@@ -162,12 +162,48 @@ class CommandController extends AbstractController
         // getting the data of the command
         $data = $commandRepo->find($command)->getData();
 
-
         $message = "Salut ! Je suis " . $data['surname'] . '. ';
 
         // config part of the data
         if($data['config'] == "yes"){
             $message .= "J'ai déjà des idées de pièces : ";
+
+            if($data['config_proc'] == "yes"){
+                $message .= "je voudrais ce processeur : " . $data['config_proc_model'] . " le lien : " . $data['config_proc_link'];
+            }
+
+            if($data['config_board'] == "yes"){
+                $message .= "je voudrais cette carte mère : " . $data['config_board_model'] . " le lien : " . $data['config_board_link'];
+            }
+            
+            if($data['config_gc'] == "yes"){
+                $message .= "je voudrais cette carte graphique : " . $data['config_gc_model'] . " le lien : " . $data['config_gc_link'];
+            }
+            
+            if($data['config_ram'] == "yes"){
+                $message .= "je voudrais cette ram : " . $data['config_ram_model'] . " le lien : " . $data['config_ram_link'];
+            }
+
+            if($data['config_refresh'] == "yes"){
+                $message .= "je voudrais ce systeme de refroidissement : " . $data['config_refresh_model'] . " le lien : " . $data['config_refresh_link'];
+            }
+
+            if($data['config_storage'] == "yes"){
+                $message .= "je voudrais ce stockage : " . $data['config_storage_model'] . " le lien : " . $data['config_storage_link'];
+            }
+
+            if($data['config_boardsound'] == "yes"){
+                $message .= "je voudrais cette carte son : " . $data['config_boardsound_model'] . " le lien : " . $data['config_boardsound_link'];
+            }
+
+            if($data['config_case'] == "yes"){
+                $message .= "je voudrais ce boitier: " . $data['config_case_model'] . " le lien : " . $data['config_case_link'];
+            }
+
+            if($data['config_power'] == "yes"){
+                $message .= "je voudrais cette alimentation : " . $data['config_power_model'] . " le lien : " . $data['config_power_link'];
+            }
+
         } else {
             $message .= "Je n'ai pas d'idée prédéfinie concernant les pièces du pc. ";
         }
@@ -250,10 +286,54 @@ class CommandController extends AbstractController
                     $message .= "Je voudrais cette souris : " . $data['option_mouse_model'];
                 } else {
                     $message .= "Je voudrais une souris de type: " . $data['option_mouse_type'];
-                    if($data['option_mouse_'])
+                    if($data['option_mouse_filaire']){
+                        $message .= "et qu'elle soit fillaire";
+                    }
+                    $message .= ". ";
                 }
             }
+
+            if($data['option_mousepad'] == "yes"){
+                if(!empty($data['option_mousepad_model'])){
+                    $message .= "Je voudrais ce tapis de souris : " . $data['option_mousepad_model'];
+                } else {
+                    $message .= "Je voudrais un tapis de souris de type : " . $data['option_mousepad_type'] . " et de taille : ". $data['option_mousepad_size'];
+                }
+            }
+
+            if($data['option_headphone'] == "yes"){
+                if(!empty($data['option_headphone_model'])){
+                    $message .= "Je voudrais ce casque : " . $data['option_headphone_model'];
+                } else {
+                    $message .= "Je voudrais un casque de type : " . $data['option_headphone_type'] . " et de taille : ". $data['option_headphone_size'];
+                }
+            }
+
+            if($data['option_enceinte'] == "yes"){
+                if(!empty($data['option_enceinte_model'])){
+                    $message .= "Je voudrais cette enceinte : " . $data['option_enceinte_model'];
+                } else {
+                    $message .= "Je voudrais une enceinte de type : " . $data['option_enceinte_type'] . " et de basse : ". $data['option_enceinte_bass'];
+                }
+            }
+
+            if($data['option_webcam'] == "yes"){
+                if(!empty($data['option_webcam_model'])){
+                    $message .= "Je voudrais cette webcam : " . $data['option_webcam_model'];
+                } else {
+                    $message .= "Je voudrais une webcam de résolution : " . $data['option_webcam_res'];
+                }
+            }
+
+            if($data['option_printer'] == "yes"){
+                if(!empty($data['option_printer_model'])){
+                    $message .= "Je voudrais cette imprimante : " . $data['option_printer_model'];
+                } else {
+                    $message .= "Je voudrais une imprimante de type : " . $data['option_printer_type'];
+                }
+            }
+
         }
-        dd($message, $data);
+        return $this->json(['message' => $message], Response::HTTP_OK);
     }
 }
