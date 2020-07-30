@@ -113,9 +113,7 @@ class CommandController extends AbstractController
         //get the id of the user
         //find the user correspondant to the id
         //set this user to the command
-        $contentDecode = json_decode($content, true);
-        $userId = $contentDecode['user_id'];
-        $user = $userRepo->find($userId);
+        $user = $this->getUser();
 
          //send a 404 error if the command does not exist
          if ($user === null) {
@@ -124,7 +122,6 @@ class CommandController extends AbstractController
 
         $command->setUser($user);
 
-        dd($userId);
         //persist the new command in the database
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($command);

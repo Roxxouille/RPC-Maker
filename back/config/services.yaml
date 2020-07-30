@@ -137,6 +137,26 @@ services:
                 entity: 'App\Entity\Command'
                 lazy: true
                 method: sluggify
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postUpdate'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
+            -
+                # these are the options required to define the entity listener
+                # Evénement Doctrine Entity
+                name: 'doctrine.orm.entity_listener'
+                # Type d'event du cycle de vie (Lifecycle)
+                event: 'postPersist'
+                # L'entité concernée
+                entity: 'App\Entity\Command'
+                lazy: true
+                method: levelChange
 
     App\EventListener\ItemListener:
         tags:
