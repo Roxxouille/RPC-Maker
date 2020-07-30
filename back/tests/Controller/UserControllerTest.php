@@ -15,4 +15,15 @@ class UserControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    public function testEdit()
+    {
+        $client = static::createClient();
+
+        $client->request('PUT', 'api/user/test', [], [], [], '{"city" : "bordeaux",
+            "zip_code" : 33000,
+            "adress" : "DTC"}');
+
+        $this->assertResponseIsSuccessful();
+    }
+
 }
