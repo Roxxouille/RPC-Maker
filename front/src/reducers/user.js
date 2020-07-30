@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED } from '../actions/user';
+import { CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER } from '../actions/user';
 
 export const initialState = {
   email: '',
@@ -34,6 +34,12 @@ const user = (state = initialState, action = {}) => {
     case IS_LOGGED:
       return {
         ...state,
+      };
+    case UNSET_USER:
+      localStorage.clear();
+      return {
+        ...state,
+        isLogged: false,
       };
     default:
       return state;

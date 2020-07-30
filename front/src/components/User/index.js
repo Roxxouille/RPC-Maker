@@ -6,6 +6,7 @@ import {
   Link,
   useParams,
   useRouteMatch,
+  Redirect
 } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Login from '../../containers/User/Login';
@@ -41,7 +42,7 @@ const User = ({ isLogged }) => {
           </div>
         </div>
       ) : (
-        <Login />
+        <Redirect to={{pathname:"/login"}}/>
       )}
     </div>
   );

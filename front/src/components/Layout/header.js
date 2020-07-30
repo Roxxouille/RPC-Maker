@@ -8,11 +8,18 @@ import Home from '../Home';
 import User from '../../containers/User';
 import Contact from './../Contact';
 import Survey from './../Survey';
+import Login from '../../containers/User/Login';
+import Proptypes from 'prop-types';
 
-const Header = ({ isLogged }) => {
+const Header = ({ isLogged, logout }) => {
+
+  const handleClick = () => {
+    logout();
+  };
+
   console.log(isLogged);
   return (
-    <Router>
+    <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="topbar">
         <div className="container">
           <Navbar.Brand href="/">RPC Maker</Navbar.Brand>
@@ -33,7 +40,7 @@ const Header = ({ isLogged }) => {
               </Link>
               <Link to="/user" className="nav-link menu__link">
                 { isLogged === true ? (
-                  <p>Se déconnecter</p>
+                  <p onClick={handleClick}>Se déconnecter </p>
                 ) : (
                   <p>Connexion</p>
                 )}
@@ -58,9 +65,17 @@ const Header = ({ isLogged }) => {
         <Route path="/user">
           <User />
         </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
       </Switch>
-    </Router>
+    </div>
   );
+};
+
+Header.propTypes = {
+  isLogged: Proptypes.bool.isRequired,
+  logout: Proptypes.func.isRequired,
 };
 
 export default Header;
