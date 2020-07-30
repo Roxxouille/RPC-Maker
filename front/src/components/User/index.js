@@ -4,16 +4,13 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
-  useRouteMatch,
-  Redirect
+  Redirect,
 } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Login from '../../containers/User/Login';
 import './styles.scss';
 
 const User = ({ isLogged }) => {
-  const {path, url} = useRouteMatch;
   return (
     <div className="container">
       {isLogged === true ? (

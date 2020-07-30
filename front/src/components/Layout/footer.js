@@ -52,11 +52,11 @@ const Footer = () => {
             </ul>
           </Col>
         </Row>
-          <Switch>
-            <Route path="/legal" />
-            <Route path="/team" />
-            <Route path="/contact" />
-          </Switch>
+        <Switch>
+          <Route path="/legal" />
+          <Route path="/team" />
+          <Route path="/contact" />
+        </Switch>
       </div>
     </div>
   );

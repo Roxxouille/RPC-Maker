@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 //
 import Header from '../../containers/Layout/header';
@@ -7,7 +8,6 @@ import Footer from '../Layout/footer';
 // == Import
 import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import PropTypes from 'prop-types';
 
 // == Composant
 const App = ({ autoLog, isLogged }) => {
