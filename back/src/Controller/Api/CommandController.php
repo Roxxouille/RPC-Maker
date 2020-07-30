@@ -166,6 +166,7 @@ class CommandController extends AbstractController
 
         // config part of the data
         if($data['config'] == "yes"){
+            
             $firstMessage .= "J'ai déjà des idées de pièces : ";
 
             if($data['config_proc'] == "yes"){
