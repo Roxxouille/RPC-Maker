@@ -15,4 +15,41 @@ class CommandControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    // public function testEdit()
+    // {
+    //     $client = static::createClient();
+
+    //     $client->request('PUT', 'api/command/test', [], [], [], '{"city" : "bordeaux",
+    //         "zip_code" : 33000,
+    //         "adress" : "DTC"}');
+
+    //     $this->assertResponseIsSuccessful();
+    // }
+
+    // public function testAdd()
+    // {
+    //     $client = static::createClient();
+
+    //     $client->request('POST', 'api/command', [], [], [], '{
+    //         "username" : "test",
+    //         "name" : "test",
+    //         "data" : 
+    //             {
+    //                 "Data":"Oui",
+    //                 "0":"Non"
+    //             }
+    //     }');
+
+    //     $this->assertResponseIsSuccessful();
+    // }
+
+    public function testDelete()
+    {
+        $client = static::createClient();
+
+        $client->request('DELETE', 'api/command/test');
+
+        $this->assertResponseIsSuccessful();
+    }
+
 }

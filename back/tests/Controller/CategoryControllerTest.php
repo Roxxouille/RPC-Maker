@@ -15,4 +15,30 @@ class CategoryControllerTest extends WebTestCase
         $this->assertResponseIsSuccessful();
     }
 
+    // public function testEdit()
+    // {
+    //     $client = static::createClient();
+
+    //     $client->request('PUT', 'api/category/test', [], [], [], '{"name" : "test"}');
+
+    //     $this->assertResponseIsSuccessful();
+    // }
+
+    // public function testAdd()
+    // {
+    //     $client = static::createClient();
+
+    //     $client->request('POST', 'api/category', [], [], [], '{"name" : "test"}');
+
+    //     $this->assertResponseIsSuccessful();
+    // }
+
+    // public function testDelete()
+    // {
+    //     $client = static::createClient();
+
+    //     $client->request('DELETE', 'api/category/test');
+
+    //     $this->assertResponseIsSuccessful();
+    // }
 }
