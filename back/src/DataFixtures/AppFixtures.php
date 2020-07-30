@@ -259,7 +259,6 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
-            $user->setApiToken(md5(uniqid(rand(), true)));
             $manager->persist($user);
             $userList[] = $user;
         }
@@ -275,7 +274,6 @@ class AppFixtures extends Fixture
         $user->setFirstname($faker->firstName);
         $user->setLastname($faker->lastName);
         $user->setAvatar($faker->unique->randomElement($avatarList));
-        $user->setApiToken(md5(uniqid(rand(), true)));
         $manager->persist($user);
 
         // fixtures for Command
@@ -334,7 +332,6 @@ class AppFixtures extends Fixture
         $user->setFirstname('test');
         $user->setLastname('test');
         $user->setAvatar($avatar);
-        $user->setApiToken(md5(uniqid(rand(), true)));
         $manager->persist($user);
 
         // fixtures for Command
