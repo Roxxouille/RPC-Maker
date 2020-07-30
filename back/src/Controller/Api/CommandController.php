@@ -128,7 +128,7 @@ class CommandController extends AbstractController
         $entityManager->flush();
 
         // Send a Json response 
-        return $this->json(['status' => 'La commande a bien ete trouve'], Response::HTTP_CREATED);
+        return $this->json(['status' => 'La commande a bien ete cree'], Response::HTTP_CREATED);
     }
 
     /**
