@@ -14,6 +14,7 @@ export class Step5 extends Component {
   };
 
   render() {
+    const { values, handleChange, CheckContent } = this.props;
     return (
       <div>
         <div>
@@ -28,9 +29,9 @@ export class Step5 extends Component {
         <Form>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
-              <Form.Check inline label="Le silence" type={type} id={`inline-${type}-1`} />
-              <Form.Check inline label="Un juste milieux" type={type} id={`inline-${type}-2`} />
-              <Form.Check inline label="Les performances" type={type} id={`inline-${type}-3`} />
+              <Form.Check inline name="La silence" label="Le silence" type={type} id={`inline-${type}-1`} onChange={CheckContent('spec_important')} />
+              <Form.Check inline name="Un juste milieux" label="Un juste milieux" type={type} id={`inline-${type}-2`} onChange={CheckContent('spec_important')} />
+              <Form.Check inline name="Les performances" label="Les performances" type={type} id={`inline-${type}-3`} onChange={CheckContent('spec_important')} />
             </div>
           ))}
         </Form>
@@ -39,10 +40,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Oui  </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -50,10 +51,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Oui  </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -62,10 +63,10 @@ export class Step5 extends Component {
         <Form>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
-              <Form.Check inline label="HDD" type={type} id={`inline-${type}-1`} />
-              <Form.Check inline label="SSD" type={type} id={`inline-${type}-2`} />
-              <Form.Check inline label="SSHD" type={type} id={`inline-${type}-3`} />
-              <Form.Check inline label="NVME" type={type} id={`inline-${type}-4`} />
+              <Form.Check name="HDD" inline label="HDD" type={type} id={`inline-${type}-1`} onChange={CheckContent('spec_storage')} />
+              <Form.Check name="SSD" inline label="SSD" type={type} id={`inline-${type}-2`} onChange={CheckContent('spec_storage')} />
+              <Form.Check name="SSHD" inline label="SSHD" type={type} id={`inline-${type}-3`} onChange={CheckContent('spec_storage')} />
+              <Form.Check name="NVME" inline label="NVME" type={type} id={`inline-${type}-4`} onChange={CheckContent('spec_storage')} />
             </div>
           ))}
           <Form.Row>
@@ -73,7 +74,7 @@ export class Step5 extends Component {
               <Form.Label>Combien ?</Form.Label>
             </Col>
             <Col>
-              <Form.Control className="Form" placeholder="- GO" />
+              <Form.Control className="Form" placeholder="- GO" onChange={handleChange('spec_storage_quantity')} />
             </Col>
           </Form.Row>
         </Form>
@@ -83,10 +84,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -95,10 +96,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -107,10 +108,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -119,30 +120,30 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit"> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Non </Button>
           </Col>
         </Form.Row>
 
         <Form>
-          <Form.Label>Parlons stockage voulez vous ?</Form.Label>
+          <Form.Label>Pour quel utilisation ?</Form.Label>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
-              <Form.Check inline label="Jeux" type={type} id={`inline-${type}-1`} />
-              <Form.Check inline label="Home cinéma" type={type} id={`inline-${type}-2`} />
-              <Form.Check inline label="Musique" type={type} id={`inline-${type}-3`} />
-              <Form.Check inline label="Autres" type={type} id={`inline-${type}-4`} />
-              <Form.Control className="Form" placeholder="Précisez" />
+              <Form.Check name="Jeux" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={CheckContent('spec_sound_utilisation')} />
+              <Form.Check name="Home cinema" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={CheckContent('spec_sound_utilisation')} />
+              <Form.Check name="Musique" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={CheckContent('spec_sound_utilisation')} />
+              <Form.Check name="Autres" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={CheckContent('spec_sound_utilisation')} />
+              <Form.Control className="Form" placeholder="Précisez" onChange={handleChange('spec_sound_utilisation_other')} />
             </div>
           ))}
         </Form>
 
         <Form>
           <Form.Label>Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)</Form.Label>
-          <Form.Row className="contact" controlId="exampleForm.ControlTextarea1">
-            <Form.Control as="textarea" Rows="3" placeholder="Message" />
+          <Form.Row className="contact">
+            <Form.Control as="textarea" placeholder="Message" onChange={handleChange('spec_light')} />
           </Form.Row>
         </Form>
 
