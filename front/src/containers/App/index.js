@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { autoLog } from '../../actions/user';
+import { autoLog, isLoading } from '../../actions/user';
 import App from '../../components/App';
 
 const mapStateToProps = (state) => ({
@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   autoLog: () => {
+    dispatch(isLoading());
     dispatch(autoLog());
   },
 });

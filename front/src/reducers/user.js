@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER } from '../actions/user';
+import { CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING } from '../actions/user';
 
 export const initialState = {
   email: '',
@@ -6,6 +6,7 @@ export const initialState = {
   error: '',
   isLogged: false,
   username: 'Mon compte',
+  isLoading: false,
 };
 
 const user = (state = initialState, action = {}) => {
@@ -25,6 +26,7 @@ const user = (state = initialState, action = {}) => {
         ...state,
         username: action.username,
         isLogged: true,
+        isLoading: false,
       };
     case LOGIN:
       return {
@@ -40,6 +42,11 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         isLogged: false,
+      };
+    case IS_LOADING:
+      return {
+        ...state,
+        isLoading: true,
       };
     default:
       return state;

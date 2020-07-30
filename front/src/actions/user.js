@@ -6,6 +6,7 @@ export const AUTOLOG = 'AUTOLOG';
 export const IS_LOGGED = 'IS_LOGGED';
 export const LOGOUT = 'LOGOUT';
 export const UNSET_USER = 'UNSET_USER';
+export const IS_LOADING = 'IS_LOADING';
 
 export const autoLog = () => ({
   type: AUTOLOG,
@@ -41,4 +42,8 @@ export const isLogged = () => ({
 
 export const unsetUser = () => ({
   type: UNSET_USER,
+});
+
+export const isLoading = () => ({
+  type: IS_LOADING,
 });

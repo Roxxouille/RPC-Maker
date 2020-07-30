@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
 const Login = ({
-  email, password, changeField, login, error, isLogged,
+  email, password, changeField, login, error, isLogged, isLoading,
 }) => {
   const handleChange = (e) => {
     changeField(e.target.name, e.target.value);
@@ -29,9 +29,12 @@ const Login = ({
             <Form.Control onChange={handleChange} name="password" type="password" value={password} placeholder="********" />
           </Form.Group>
           {error !== '' && (
-          <Alert variant="danger">
-            {error}
-          </Alert>
+            <Alert variant="danger">
+              {error}
+            </Alert>
+          )}
+          {isLoading === true && (
+            <p>ça charge mec</p>
           )}
           <Button variant="primary" type="submit">
             Se connecter
@@ -52,6 +55,7 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   error: PropTypes.string.isRequired,
   isLogged: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default Login;
