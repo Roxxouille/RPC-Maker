@@ -148,4 +148,112 @@ class CommandController extends AbstractController
         //send a json response
         return $this->json(['message' => 'commande supprime'], Response::HTTP_OK);
     }
+
+    /**
+     * @Route("api/command/{slug}/data", name="command_data", methods="GET")
+     */
+    public function sendCommandData(Command $command, CommandRepository $commandRepo)
+    {
+        //send a 404 error if the command does not exist
+        if ($command === null) {
+            return $this->json(['error' => 'commande non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
+        // getting the data of the command
+        $data = $commandRepo->find($command)->getData();
+
+
+        $message = "Salut ! Je suis " . $data['surname'] . '. ';
+
+        // config part of the data
+        if($data['config'] == "yes"){
+            $message .= "J'ai déjà des idées de pièces : ";
+        } else {
+            $message .= "Je n'ai pas d'idée prédéfinie concernant les pièces du pc. ";
+        }
+        
+        // spec part of the data
+        if($data['spec_sli'] == "yes"){
+            $message .= "Je suis intéressé par le SLI ";
+        }
+
+        if($data['spec_overclock'] == "yes"){
+            $message .= "Je suis intéressé par l'overclocking. ";
+        }
+
+        $message .= "Je voudrais comme stockage du " . $data['spec_storage'] . ", d'au moins " . $data['spec_storage_quantity'] . ". ";
+
+        if($data['spec_wifi'] == "yes"){
+
+            $message .= "Je suis intéréssé par une carte wifi, ";
+
+            if($data['spec_wifi_room'] == "yes"){
+                $message .= "je me trouve dans la même pièce que le routeur, ";
+            } else {
+                $message .= "je ne me trouve pas dans la même pièce que le routeur, ";
+            }
+
+            if($data['spec_fiber'] == "yes"){
+                $message .= "je possède la fibre ";
+            } else {
+                $message .= "je ne possède pas la fibre ";
+            }
+        }
+
+        if($data['spec_sound'] == "yes"){
+
+            $message .= "Je suis intéréssé par une carte son pour du " . $data['spec_sound_utilisation'] . ". ";
+
+            if(!empty($data['spec_sound_utilisation_other'])){
+                $message .= " Précision : " . $data['spec_sound_utilisation_other'];
+            }
+        }
+
+        if($data['spec_light'] == "yes"){
+            $message .= "Je suis intéréssé par les LED. ";
+        } else {
+            $message .= "Je ne suis pas intéréssé par les LED. ";
+        }
+
+        if($data['os'] == "yes"){
+            $message .= "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation. ";
+
+            if($data['os_active'] == "yes"){
+                $message .= "Et je souhaiterais que vous me l'activez. ";
+            }
+        } else {
+            $message .= "Je ne souhaite pas de systeme d'exploiration. ";
+        }
+
+        // option part of data
+        if($data['option'] == "yes"){
+            $message .= "Je souhaiterais ajouter quelques périphériques : ";
+
+            if($data['option_screen'] == "yes"){
+                if(!empty($data['option_screen_model'])){
+                    $message .= "Je voudrais cet écran : " . $data['option_screen_model'];
+                } else {
+                    $message .= "Je voudrais un écran de taille : " . $data['option_screen_size'] . " avec une résolution de : ". $data['option_screen_res'];
+                }
+            }
+
+            if($data['option_keyboard'] == "yes"){
+                if(!empty($data['option_keyboard_model'])){
+                    $message .= "Je voudrais ce clavier : " . $data['option_keyboard_model'];
+                } else {
+                    $message .= "Je voudrais un clavier de type: " . $data['option_keyboard_type'] . " avec des switch : ". $data['option_keyboard_switch'] . " en ". $data['option_keyboard_language'];
+                }
+            }
+
+            if($data['option_mouse'] == "yes"){
+                if(!empty($data['option_mouse_model'])){
+                    $message .= "Je voudrais cette souris : " . $data['option_mouse_model'];
+                } else {
+                    $message .= "Je voudrais une souris de type: " . $data['option_mouse_type'];
+                    if($data['option_mouse_'])
+                }
+            }
+        }
+        dd($message, $data);
+    }
 }
