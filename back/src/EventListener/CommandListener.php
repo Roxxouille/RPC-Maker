@@ -16,14 +16,16 @@ class CommandListener
     }
 
     /**
-     * Creation of tokenApi when user is created
+     * Creation of tokenApi when command is created
      *
-     * @param User $user Entity of User
+     * @param Command $command Entity of Command
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(Command $command, LifecycleEventArgs $event)
+    public function sluggify(Command $command, LifecycleEventArgs $event)
     {
         $command->setSlug($this->slugger->slugify($command->getName()));
     }
+
+
 }

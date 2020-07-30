@@ -16,13 +16,13 @@ class CategoryListener
     }
 
     /**
-     * Creation of tokenApi when user is created
+     * Creation of tokenApi when category is created
      *
-     * @param User $user Entity of User
+     * @param Category $category Entity of Category
      * @param LifecycleEventArgs $event
      * @return void
      */
-    public function prePersist(Category $category, LifecycleEventArgs $event)
+    public function sluggify(Category $category, LifecycleEventArgs $event)
     {
         $category->setSlug($this->slugger->slugify($category->getName()));
     }
