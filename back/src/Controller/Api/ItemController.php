@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ItemController extends AbstractController
 {
     /**
-     * @Route("api/items", name="item_browse", methods = "GET")
+     * @Route("/items", name="item_browse", methods = "GET")
      */
     public function browse(ItemRepository $itemRepository)
     {
@@ -23,7 +23,7 @@ class ItemController extends AbstractController
     }
 
      /**
-     * @Route("api/item/{slug}", name="item_read", methods="GET")
+     * @Route("/item/{slug}", name="item_read", methods="GET")
      */
     public function read(ItemRepository $itemRepository, Item $item = null)
     {
