@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("api/categories", name="category_browse", methods = "GET")
+     * @Route("/categories", name="category_browse", methods = "GET")
      */
     public function browse(CategoryRepository $categoryRepo)
     {
@@ -28,7 +28,7 @@ class CategoryController extends AbstractController
     }
 
      /**
-     * @Route("api/category/{slug}", name="category_read", methods="GET")
+     * @Route("/category/{slug}", name="category_read", methods="GET")
      */
     public function read(CategoryRepository $categoryRepo, Category $category = null)
     {
@@ -45,7 +45,7 @@ class CategoryController extends AbstractController
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'category']);
     }
     /**
-     * @Route("api/category/{slug}", name="category_edit", methods={"PUT", "PATCH"})
+     * @Route("/category/{slug}", name="category_edit", methods={"PUT", "PATCH"})
      * @IsGranted("ROLE_ADMIN")
      */
     public function edit(Category $category = null, Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
@@ -71,7 +71,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("api/category", name="category_add", methods="POST")
+     * @Route("/category", name="category_add", methods="POST")
      * 
      */
     public function add(Request $request, SerializerInterface $serializer, EntityManagerInterface $em)
@@ -90,7 +90,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("api/category/{slug}", name="category_delete", methods="DELETE")
+     * @Route("/category/{slug}", name="category_delete", methods="DELETE")
      * 
      */
     public function delete(Category $category = null, EntityManagerInterface $em)

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 class TestimonyController extends AbstractController
 {
     /**
-     * @Route("api/testimonies", name="tesimony_browse", methods="GET")
+     * @Route("/testimonies", name="tesimony_browse", methods="GET")
      */
     public function browse(TestimonyRepository $testimonyRepository)
     {
@@ -27,7 +27,7 @@ class TestimonyController extends AbstractController
     }
 
     /**
-     * @Route("api/testimony/{id<\d+>}", name="tesimony_read", methods="GET")
+     * @Route("/testimony/{id<\d+>}", name="tesimony_read", methods="GET")
      */
     public function read(Testimony $testimony = null, TestimonyRepository $testimonyRepository)
     {
@@ -44,7 +44,7 @@ class TestimonyController extends AbstractController
     }
 
     /**
-     * @Route("api/testimony/{id<\d+>}", name="tesimony_edit", methods={"PUT", "PATCH"})
+     * @Route("/testimony/{id<\d+>}", name="tesimony_edit", methods={"PUT", "PATCH"})
      */
     public function edit(Testimony $testimony = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -81,7 +81,7 @@ class TestimonyController extends AbstractController
     }
 
     /**
-     * @Route("api/testimony", name="tesimony_add", methods="POST")
+     * @Route("/testimony", name="tesimony_add", methods="POST")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -116,7 +116,7 @@ class TestimonyController extends AbstractController
     }
 
     /**
-     * @Route("api/testimony/{id<\d+>}", name="tesimony_delete", methods="DELETE")
+     * @Route("/testimony/{id<\d+>}", name="tesimony_delete", methods="DELETE")
      */
     public function delete(Testimony $testimony = null, EntityManagerInterface $em)
     {

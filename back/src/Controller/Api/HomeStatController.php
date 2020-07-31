@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class HomeStatController extends AbstractController
 {
     /**
-     * @Route("/api/build", name="pc_build", methods = "GET")
+     * @Route("/build", name="pc_build", methods = "GET")
      */
     public function pcCount(CommandRepository $commandRepo)
     {
@@ -18,7 +18,7 @@ class HomeStatController extends AbstractController
     }
 
     /**
-     * @Route("/api/quote", name="quote_created", methods = "GET")
+     * @Route("/quote", name="quote_created", methods = "GET")
      */
     public function quoteFinished(CommandRepository $commandRepo)
     {

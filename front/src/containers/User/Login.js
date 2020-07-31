@@ -3,11 +3,11 @@ import Login from '../../components/User/Login';
 import { changeField, login, isLoading } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
-  email: state.email,
-  password: state.password,
-  error: state.error,
-  isLogged: state.isLogged,
-  isLoading: state.isLoading,
+  email: state.user.email,
+  password: state.user.password,
+  error: state.user.error,
+  isLogged: state.user.isLogged,
+  isLoading: state.user.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
