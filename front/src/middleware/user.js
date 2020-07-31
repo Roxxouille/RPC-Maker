@@ -13,7 +13,7 @@ export default (store) => (next) => (action) => {
     case LOGIN: {
       const state = store.getState();
       const { email, password } = state;
-      axios.post('http://localhost:3000/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
+      axios.post('http://54.173.92.69/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
