@@ -29,7 +29,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('token');
       //const token = 'd6081bdf250ec5c06a1bc2dd28bba8b0';
       const slug = localStorage.getItem('slug');
-      axios.get(`http://localhost:3000/api/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get(`http://54.173.92.69/api/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(setUser(response.data.username));
