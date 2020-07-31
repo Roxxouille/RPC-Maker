@@ -15,6 +15,7 @@ export default (store) => (next) => (action) => {
       const { email, password } = state;
       axios.post('http://54.173.92.69/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
+          console.log(response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
           store.dispatch(setUser(response.data.username));
