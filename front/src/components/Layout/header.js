@@ -57,13 +57,13 @@ const Header = ({ isLogged, logout, username }) => {
                   <NavDropdown.Divider />
                   <Link to="/user/pc" className="dropdown-item">
                     Mon PC
-                    </Link>
+                  </Link>
                   <Link to="/user/message" className="dropdown-item">
                     Messagerie
-                    </Link>
+                  </Link>
                   <Link to="/user/infos" className="dropdown-item">
                     Mes informations
-                    </Link>
+                  </Link>
                 </>
               )}
             </NavDropdown>
