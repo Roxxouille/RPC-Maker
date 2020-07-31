@@ -4,9 +4,15 @@ import './styles.scss';
 import axios from 'axios';
 
 export class Step4 extends Component {
+  state = {
+    proc: [],
+  }
+
   componentDidMount() {
-    axios.get('http://localhost:3000/api/categories').then((result) => {
-      console.log(result);
+    axios.get('http://localhost:3000/api/category/processeur/').then((res) => {
+      const proc = res.data.items;
+      // console.log('TEST 0', proc);
+      this.setState({proc});
     });
   }
 
@@ -22,9 +28,16 @@ export class Step4 extends Component {
 
   render() {
     const { values, handleChange, CheckContent } = this.props;
-    const options = (
-      results.map((result) => <option>result.value</option>);
-  );
+
+    console.log('test1', this.state.proc);
+
+    const optionItems = this.state.proc.map(( proc ) => {
+      console.log('test2', proc.name);
+      console.log('test3', proc.id);
+      return (
+        <option key={`${proc.id}`}>{`${proc.name}`}</option>
+      );
+    });
     return (
       <div>
         <div>
@@ -37,12 +50,11 @@ export class Step4 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Processeur</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_proc')}>
-              <option>Fait ton choix !</option>
-              <option>i9</option>
-              <option>i7</option>
-              <option>i5</option>
+
+            <Form.Control as="select" onChange={handleChange('config_proc')} >
+              {optionItems}
             </Form.Control>
+
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')} />
             <Form.Label>Un lien ?</Form.Label>
