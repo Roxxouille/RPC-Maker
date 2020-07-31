@@ -15,11 +15,13 @@ export default (store) => (next) => (action) => {
       const { email, password } = state;
       axios.post('http://localhost:3000/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
+          console.log(response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
           store.dispatch(setUser(response.data.username));
         })
         .catch((error) => {
+          console.log(error.repsonse);
           const actionToDispatch = failLogin(error.response);
           store.dispatch(actionToDispatch);
         });
