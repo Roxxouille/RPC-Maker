@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class SecurityController extends AbstractController
 {
     /**
-     * @Route("/api/login", name="api_login", methods={"POST"})
+     * @Route("/login", name="api_login", methods={"POST"})
      */
     public function login(EntityManagerInterface $em)
     {
@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
     }
 
     /**
-     * @Route("/api/logout", name="api_logout", methods={"GET"})
+     * @Route("/logout", name="api_logout", methods={"GET"})
      */
     public function logout(EntityManagerInterface $em)
     {

@@ -11,7 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AvatarController extends AbstractController
 {
     /**
-     * @Route("api/avatars", name="avatar_browse", methods="GET")
+     * @Route("/avatars", name="avatar_browse", methods="GET")
      */
     public function browse(AvatarRepository $avatarRepo)
     {
@@ -23,7 +23,7 @@ class AvatarController extends AbstractController
     }
 
      /**
-     * @Route("api/avatar/{slug}", name="avatar_read", methods="GET")
+     * @Route("/avatar/{slug}", name="avatar_read", methods="GET")
      */
     public function read(AvatarRepository $avatarRepo, Avatar $avatar = null)
     {

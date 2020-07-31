@@ -6,7 +6,7 @@ export const initialState = {
   error: '',
   isLogged: false,
   username: 'Mon compte',
-  isLoading: true,
+  isLoading: false,
 };
 
 const user = (state = initialState, action = {}) => {

@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommandController extends AbstractController
 {
     /**
-     * @Route("api/commands", name="command_browse", methods = "GET")
+     * @Route("/commands", name="command_browse", methods = "GET")
      */
     public function browse(CommandRepository $commandRepository)
     {
@@ -28,7 +28,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/{slug}", name="command_read", methods="GET")
+     * @Route("/command/{slug}", name="command_read", methods="GET")
      */
     public function read(CommandRepository $commandRepository, Command $command = null)
     {
@@ -45,7 +45,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
+     * @Route("/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
      */
     public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
@@ -85,7 +85,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command", name="command_add", methods="POST")
+     * @Route("/command", name="command_add", methods="POST")
      */
     public function add(UserRepository $userRepo, Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
     {
@@ -132,7 +132,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/{slug}", name="command_delete", methods="DELETE")
+     * @Route("/command/{slug}", name="command_delete", methods="DELETE")
      */
     public function delete(Command $command = null, EntityManagerInterface $em)
     {
@@ -150,7 +150,7 @@ class CommandController extends AbstractController
     }
 
     /**
-     * @Route("api/command/{slug}/data", name="command_data", methods="GET")
+     * @Route("/command/{slug}/data", name="command_data", methods="GET")
      */
     public function sendCommandData(Command $command, CommandRepository $commandRepo)
     {
