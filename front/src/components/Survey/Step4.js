@@ -1,8 +1,60 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
+import axios from 'axios';
 
 export class Step4 extends Component {
+  state = {
+    proc: [],
+    cm: [],
+    cg: [],
+    ram: [],
+    vw: [],
+    lg: [],
+    cs: [],
+    boit: [],
+    alim: [],
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/api/category/processeur/').then((res) => {
+      const proc = res.data.items;
+      this.setState({proc});
+    });
+    axios.get('http://localhost:3000/api/category/carte-mere/').then((res) => {
+      const cm = res.data.items;
+      this.setState({cm});
+    });
+    axios.get('http://localhost:3000/api/category/carte-graphique/').then((res) => {
+      const cg = res.data.items;
+      this.setState({cg});
+    });
+    axios.get('http://localhost:3000/api/category/ram/').then((res) => {
+      const ram = res.data.items;
+      this.setState({ram});
+    });
+    axios.get('http://localhost:3000/api/category/ventirad-watercooling/').then((res) => {
+      const vw = res.data.items;
+      this.setState({vw});
+    });
+    axios.get('http://localhost:3000/api/category/lecteur-graveur/').then((res) => {
+      const lg = res.data.items;
+      this.setState({lg});
+    });
+    axios.get('http://localhost:3000/api/category/carte-son/').then((res) => {
+      const cs = res.data.items;
+      this.setState({cs});
+    });
+    axios.get('http://localhost:3000/api/category/boitier/').then((res) => {
+      const boit = res.data.items;
+      this.setState({boit});
+    });
+    axios.get('http://localhost:3000/api/category/alimentation/').then((res) => {
+      const alim = res.data.items;
+      this.setState({alim});
+    });
+  }
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -15,6 +67,51 @@ export class Step4 extends Component {
 
   render() {
     const { values, handleChange, CheckContent } = this.props;
+    const optionProc = this.state.proc.map((proc) => {
+      return (
+        <option key={`${proc.id}`}>{`${proc.name}`}</option>
+      );
+    });
+    const optionCM = this.state.cm.map((cm) => {
+      return (
+        <option key={`${cm.id}`}>{`${cm.name}`}</option>
+      );
+    });
+    const optionCG = this.state.cg.map((cg) => {
+      return (
+        <option key={`${cg.id}`}>{`${cg.name}`}</option>
+      );
+    });
+    const optionRAM = this.state.ram.map((ram) => {
+      return (
+        <option key={`${ram.id}`}>{`${ram.name}`}</option>
+      );
+    });
+    const optionVW = this.state.vw.map((vw) => {
+      return (
+        <option key={`${vw.id}`}>{`${vw.name}`}</option>
+      );
+    });
+    const optionLG = this.state.lg.map((lg) => {
+      return (
+        <option key={`${lg.id}`}>{`${lg.name}`}</option>
+      );
+    });
+    const optionCS = this.state.cs.map((cs) => {
+      return (
+        <option key={`${cs.id}`}>{`${cs.name}`}</option>
+      );
+    });
+    const optionBOIT = this.state.boit.map((boit) => {
+      return (
+        <option key={`${boit.id}`}>{`${boit.name}`}</option>
+      );
+    });
+    const optionALIM = this.state.alim.map((alim) => {
+      return (
+        <option key={`${alim.id}`}>{`${alim.name}`}</option>
+      );
+    });
     return (
       <div>
         <div>
@@ -27,14 +124,12 @@ export class Step4 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Processeur</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_proc')}>
-              <option>Fait ton choix !</option>
-              <option>i9</option>
-              <option>i7</option>
-              <option>i5</option>
+
+            <Form.Control as="select" onChange={handleChange('config_proc')}>
+              {optionProc}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')}/>
+            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')} />
             <Form.Label>Un lien ?</Form.Label>
             <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_proc_link')} />
           </Form.Group>
@@ -44,10 +139,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Carte mére</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_board')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionCM}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_board_model')} />
@@ -60,10 +152,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Carte graphique</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_cg')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionCG}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_cg_model')} />
@@ -76,10 +165,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>RAM</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_ram')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionRAM}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_ram_model')} />
@@ -92,10 +178,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Ventirad / Water cooling</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_refresh')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionVW}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_refresh_model')} />
@@ -108,10 +191,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Stockage</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_storage')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionLG}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_storage_model')} />
@@ -124,10 +204,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Carte son</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_boardsound')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionCS}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_boardsound_model')} />
@@ -140,10 +217,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Boitier</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_case')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionBOIT}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_case_model')} />
@@ -156,10 +230,7 @@ export class Step4 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Alimentation</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_power')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionALIM}
             </Form.Control>
             <Form.Label>Un autre modele ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_power_model')} />
