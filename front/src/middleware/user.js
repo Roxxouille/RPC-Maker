@@ -37,6 +37,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(setUser(response.data.username));
         })
         .catch((error) => {
+          localStorage.clear();
           console.log(error.response);
         });
 

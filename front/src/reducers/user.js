@@ -1,4 +1,4 @@
-import { CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING } from '../actions/user';
+import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING } from '../actions/user';
 
 export const initialState = {
   email: '',
@@ -6,7 +6,7 @@ export const initialState = {
   error: '',
   isLogged: false,
   username: 'Mon compte',
-  isLoading: true,
+  isLoading: false,
 };
 
 const user = (state = initialState, action = {}) => {
@@ -41,9 +41,16 @@ const user = (state = initialState, action = {}) => {
       localStorage.clear();
       return {
         ...state,
+        username: 'Mon compte',
         isLogged: false,
       };
     case IS_LOADING:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case ACTIVATE_LOAD:
+      console.log('reducer activate');
       return {
         ...state,
         isLoading: true,

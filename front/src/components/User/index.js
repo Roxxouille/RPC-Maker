@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   Switch,
   Route,
@@ -7,20 +7,24 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles.scss';
+import { activateLoad } from '../../actions/user';
 
 const User = ({ isLogged, isLoading }) => {
-  if (!localStorage.getItem('token')) {
-    console.log('pas de token');
+  let load = isLoading;
+  if (localStorage.getItem('token')) {
+    console.log('ça rentre');
+    activateLoad();
   }
+  console.log(isLoading);
 
   return (
     <div className="container">
 
-      {isLoading && (
+      {isLoading && localStorage.getItem('token') && (
         <p>ça charge gros</p>
       )}
 
-      {isLoading === false && isLogged === false && (
+      {isLoading === false && isLogged === false && !localStorage.getItem('token') && (
         <Redirect to={{ pathname: '/login' }} />
       )}
 
