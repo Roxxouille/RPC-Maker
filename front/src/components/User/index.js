@@ -1,17 +1,15 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link,
   Redirect,
-} from "react-router-dom";
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles.scss';
 
-const User = (props, { isLogged, isLoading }) => {
-  console.log('props:', props);
-  if(!localStorage.getItem('token')){
+const User = ({ isLogged, isLoading }) => {
+  if (!localStorage.getItem('token')) {
     console.log('pas de token');
   }
 
@@ -58,10 +56,7 @@ const User = (props, { isLogged, isLoading }) => {
 
 User.propTypes = {
   isLogged: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired,
 };
 
 export default User;
-
-
-
-
