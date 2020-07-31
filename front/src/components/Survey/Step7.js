@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 
+
 export class Step7 extends Component {
   continue = (e) => {
     e.preventDefault();
