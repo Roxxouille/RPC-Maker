@@ -13,7 +13,7 @@ export default (store) => (next) => (action) => {
     case LOGIN: {
       const state = store.getState();
       const { email, password } = state;
-      axios.post('http://localhost:3000/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
+      axios.post('http://localhost:3000/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
@@ -29,7 +29,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('token');
       //const token = 'd6081bdf250ec5c06a1bc2dd28bba8b0';
       const slug = localStorage.getItem('slug');
-      axios.get(`http://localhost:3000/api/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(setUser(response.data.username));
