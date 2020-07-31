@@ -3,8 +3,8 @@ import Header from '../../components/Layout/header';
 import { logout } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
-  isLogged: state.isLogged,
-  username: state.username,
+  isLogged: state.user.isLogged,
+  username: state.user.username,
 });
 
 const mapDispatchToProps = (dispatch) => ({

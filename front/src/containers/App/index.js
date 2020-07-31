@@ -3,7 +3,7 @@ import { autoLog, isLoading } from '../../actions/user';
 import App from '../../components/App';
 
 const mapStateToProps = (state) => ({
-  isLogged: state.isLogged,
+  isLogged: state.user.isLogged,
 });
 
 const mapDispatchToProps = (dispatch) => ({

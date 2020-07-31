@@ -12,7 +12,8 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
       const state = store.getState();
-      const { email, password } = state;
+      console.log('middleware login :', state);
+      const { email, password } = state.user;
       axios.post('http://localhost:3000/api/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
           localStorage.setItem('slug', response.data.slug);

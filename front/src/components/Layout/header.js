@@ -7,7 +7,7 @@ import './styles.scss';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import Home from '../Home';
 import User from '../../containers/User';
-import Contact from '../Contact';
+import Contact from '../../containers/Contact';
 import Survey from '../Survey';
 import Login from '../../containers/User/Login';
 

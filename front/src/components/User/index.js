@@ -7,10 +7,14 @@ import {
   Redirect,
 } from "react-router-dom";
 import PropTypes from 'prop-types';
-import Login from '../../containers/User/Login';
 import './styles.scss';
 
-const User = ({ isLogged, isLoading }) => {
+const User = (props, { isLogged, isLoading }) => {
+  console.log('props:', props);
+  if(!localStorage.getItem('token')){
+    console.log('pas de token');
+  }
+
   return (
     <div className="container">
 
