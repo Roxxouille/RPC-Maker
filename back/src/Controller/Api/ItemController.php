@@ -23,7 +23,7 @@ class ItemController extends AbstractController
     }
 
      /**
-     * @Route("api/{id<\d+>}", name="item_read", methods="GET")
+     * @Route("api/item/{slug}", name="item_read", methods="GET")
      */
     public function read(ItemRepository $itemRepository, Item $item = null)
     {

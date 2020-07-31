@@ -1,18 +1,16 @@
 import { connect } from 'react-redux';
-import { autoLog } from '../../actions/user';
+import { autoLog, isLoading } from '../../actions/user';
 import App from '../../components/App';
 
-
-/*
 const mapStateToProps = (state) => ({
-  loading: state.recipes.loading,
-  error: state.recipes.error,
-});*/
+  isLogged: state.isLogged,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   autoLog: () => {
+    dispatch(isLoading());
     dispatch(autoLog());
   },
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

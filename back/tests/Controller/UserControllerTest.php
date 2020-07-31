@@ -5,41 +5,67 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase
 {
-      /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    private $entityManager;
 
-    protected function setUp(): void
-    {
-        $kernel = self::bootKernel();
-
-        $this->entityManager = $kernel->getContainer()
-            ->get('doctrine')
-            ->getManager();
-    }
-
-    public function testReadUser()
+    public function testRead()
     {
         $client = static::createClient();
 
-        $user = $this->entityManager
-        ->getRepository(User::class)
-        ->findOneBy(['username' => 'test']);
-
-        $userId = $user->getId();
-
-        $client->request('GET', '/api/user/',$userId);
+        $client->request('GET', '/api/user/test');
 
         $this->assertResponseIsSuccessful();
     }
 
-    protected function tearDown(): void
+    public function testEdit()
     {
-        parent::tearDown();
+        $client = static::createClient();
 
-        // doing this is recommended to avoid memory leaks
-        $this->entityManager->close();
-        $this->entityManager = null;
+        $client->request('PUT', 'api/user/test', [], [], [], '{"city" : "bordeaux",
+            "zip_code" : 33000,
+            "adress" : "DTC"}');
+
+        $this->assertResponseIsSuccessful();
     }
+
+    public function testAdd()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', 'api/user', [], [], [], '{
+            "username" : "testadd",
+            "password" : "T3stadd.",
+            "email" : "testadd@testadd.com",
+            "level" : 3,
+            "firstname" : "alexis",
+            "lastname" : "d\'angelo",
+            "city" : "france",
+            "zip_code" : 33000,
+            "adress" : "DTC",
+            "command_data" : 
+                {
+                    "Data":"Oui",
+                    "0":"Non"
+                }
+        }');
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testDelete()
+    {
+        $client = static::createClient();
+
+        $client->request('DELETE', 'api/user/test');
+
+        $this->assertResponseIsSuccessful();
+    }
+
+    public function testEditPassword()
+    {
+        $client = static::createClient();
+
+        $client->request('POST', 'api/user/edit-password/test',[], [], [],'{"newPassword" : "T3stT3st."}');
+
+        $this->assertResponseIsSuccessful();
+    }
+
 }

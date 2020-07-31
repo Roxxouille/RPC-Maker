@@ -4,18 +4,25 @@ import {
   Switch,
   Route,
   Link,
-  useParams,
-  useRouteMatch,
+  Redirect,
 } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Login from '../../containers/User/Login';
 import './styles.scss';
 
-const User = ({ isLogged }) => {
-  const {path, url} = useRouteMatch;
+const User = ({ isLogged, isLoading }) => {
   return (
     <div className="container">
-      {isLogged === true ? (
+
+      {isLoading && (
+        <p>ça charge gros</p>
+      )}
+
+      {isLoading === false && isLogged === false && (
+        <Redirect to={{ pathname: '/login' }} />
+      )}
+
+      {isLogged === true && isLoading === false && (
         <div className="user">
           <div className="user__nav">
             <span>AVATAR</span>
@@ -40,8 +47,6 @@ const User = ({ isLogged }) => {
             </Switch>
           </div>
         </div>
-      ) : (
-        <Login />
       )}
     </div>
   );
@@ -52,3 +57,7 @@ User.propTypes = {
 };
 
 export default User;
+
+
+
+

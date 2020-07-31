@@ -236,7 +236,7 @@ class AppFixtures extends Fixture
 
         $avatarList = [];
         // fixtures for Avatar
-        for ($i = 0; $i < 25; $i++) {
+        for ($i = 0; $i < 26; $i++) {
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
@@ -259,10 +259,23 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
-            $user->setApiToken(md5(uniqid(rand(), true)));
             $manager->persist($user);
             $userList[] = $user;
         }
+
+        // add one user with builder roles
+        $user = new User;
+        $user->setCreatedAt(new \DateTime);
+        $user->setUpdatedAt(new \DateTime);
+        $user->setUsername('builder');
+        $user->setEmail('builder@builder.com');
+        $user->setPassword($this->encoder->encodePassword($user, 'builder'));
+        $user->setLevel($faker->randomDigitNotNull);
+        $user->setRoles(['ROLE_BUILDER']);
+        $user->setFirstname($faker->firstName);
+        $user->setLastname($faker->lastName);
+        $user->setAvatar($faker->unique->randomElement($avatarList));
+        $manager->persist($user);
 
         // fixtures for Command
         $commandList = [];
@@ -270,6 +283,7 @@ class AppFixtures extends Fixture
             $command = new Command;
             $command->setCreatedAt(new \DateTime);
             $command->setUpdatedAt(new \DateTime);
+            $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->randomElement($userList));
@@ -319,13 +333,13 @@ class AppFixtures extends Fixture
         $user->setFirstname('test');
         $user->setLastname('test');
         $user->setAvatar($avatar);
-        $user->setApiToken(md5(uniqid(rand(), true)));
         $manager->persist($user);
 
         // fixtures for Command
         $command = new Command;
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
+        $command->setName('test');
         $command->setStatus(1);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);
@@ -339,6 +353,22 @@ class AppFixtures extends Fixture
             $command->addItem($item);
         }
         $manager->persist($command);
+
+            $category = new Category();
+            $category->setName('test');
+            $category->setSpecs($categorySpec);
+            $category->setCreatedAt(new \DateTime);
+            $category->setUpdatedAt(new \DateTime);
+            $manager->persist($category);
+
+            $item = new Item();
+            $item->setName('test');
+            $item->setCreatedAt(new \DateTime);
+            $item->setUpdatedAt(new \DateTime);
+            $item->setCategory($category);
+            $item->setPrice($faker->numberBetween(50, 500));
+            $item->setUrl($faker->url());
+            $manager->persist($item);
 
         $manager->flush();
     }

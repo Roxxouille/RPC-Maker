@@ -30,8 +30,8 @@ class SecurityController extends AbstractController
         $em->flush();
         //return a json response with the main infos
         return $this->json([
-            'id' => $user->getId(),
             'username' => $user->getUsername(),
+            'slug' => $user->getSlug(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
         ]);
@@ -40,8 +40,18 @@ class SecurityController extends AbstractController
     /**
      * @Route("/api/logout", name="api_logout", methods={"GET"})
      */
-    public function logout()
+    public function logout(EntityManagerInterface $em)
     {
-        
+        $user = $this->getUser();
+
+        //if there is not, throw an exception
+        if (!$user) {
+            throw $this->createAccessDeniedException();
+        }
+
+        $user->setApiToken(null);
+
+        $em->persist($user);
+        $em->flush();
     }
 }

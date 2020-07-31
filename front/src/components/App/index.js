@@ -1,5 +1,6 @@
 // == Import npm
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 
 //
 import Header from '../../containers/Layout/header';
@@ -9,9 +10,13 @@ import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // == Composant
-const App = ({ autoLog }) => {
+const App = ({ autoLog, isLogged }) => {
   useEffect(() => {
-    autoLog();
+    const slug = localStorage.getItem('slug');
+    if (slug !== null && isLogged !== true) {
+      console.log('localstorage:');
+      autoLog();
+    }
   });
 
   return (
@@ -21,5 +26,11 @@ const App = ({ autoLog }) => {
     </div>
   );
 };
+
+App.propTypes = {
+  autoLog: PropTypes.func.isRequired,
+  isLogged: PropTypes.bool.isRequired,
+};
+
 // == Export
 export default App;
