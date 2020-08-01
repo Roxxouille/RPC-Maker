@@ -7,10 +7,7 @@ export const changeContact = (name, value) => ({
   value,
 });
 
-export const sendMessage = (firstname, lastname, email, message) => ({
+export const sendMessage = () => ({
   type: SEND_MESSAGE,
-  firstname,
-  lastname,
-  email,
-  message,
 });
+
