@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use Symfony\Component\Mime\Email;
+use Symfony\Component\Validator\Validation;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,20 +17,42 @@ class ContactController extends AbstractController
     /**
      * @Route("/email", name="email", methods="POST")
      */
-    public function sendEmail(MailerInterface $mailer, Request $request, ValidatorInterface $validator)
+    public function sendEmail(MailerInterface $mailer, Request $request)
     {
         //get the data send by the user
         $content = (array) json_decode($request->getContent());
         
-        // check if the email is correct
-        $emailConstraint = new Assert\Email();
-        $emailConstraint->message = "L'email {{ value }} n'est pas valide";
-        $errors = $validator->validate($content['email'], $emailConstraint);
+        // Check if the value are correct
+        $validator = Validation::createValidator();
 
-        // if there is an error, return them in a json format
+        $input = [
+            'email' => $content['email'],
+            'content' => $content['content'],
+            'firstname' => $content['firstname'],
+            'lastname' => $content['lastname'],
+        ];
+
+        $constraint = new Assert\Collection([
+            'email' => [
+                new Assert\Email(['message' => "L'email {{ value }} n'est pas valide"]),
+                new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
+            ],
+            'content' => new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
+            'firstname' => new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
+            'lastname' => new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
+        ]);
+
+        $errors = $validator->validate($input, $constraint);
+
         if (count($errors) > 0) {
-            $errorMessage = $errors[0]->getMessage();
-            return $this->json(['error' => $errorMessage], Response::HTTP_UNPROCESSABLE_ENTITY);
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
         //create an email with this data
