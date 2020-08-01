@@ -5,20 +5,33 @@ namespace App\Controller\Api;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ContactController extends AbstractController
 {
     /**
      * @Route("/email", name="email", methods="POST")
      */
-    public function sendEmail(MailerInterface $mailer, Request $request)
+    public function sendEmail(MailerInterface $mailer, Request $request, ValidatorInterface $validator)
     {
         //get the data send by the user
         $content = (array) json_decode($request->getContent());
         
+        // check if the email is correct
+        $emailConstraint = new Assert\Email();
+        $emailConstraint->message = "L'email {{ value }} n'est pas valide";
+        $errors = $validator->validate($content['email'], $emailConstraint);
+
+        // if there is an error, return them in a json format
+        if (count($errors) > 0) {
+            $errorMessage = $errors[0]->getMessage();
+            return $this->json(['error' => $errorMessage], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
         //create an email with this data
         $email = (new Email())
             ->from($content['email'])
