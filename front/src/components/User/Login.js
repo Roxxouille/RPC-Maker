@@ -1,7 +1,10 @@
 import React from 'react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
+
+import Field from './Field';
+import StateField from './Field/StateField';
 
 const Login = ({
   email, password, changeField, login, error, isLogged, isLoading,
@@ -19,23 +22,9 @@ const Login = ({
     <div className="container">
       { isLogged === false ? (
         <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
-            <Form.Control onChange={handleChange} name="email" type="email" value={email} placeholder="Entrez votre email" />
-          </Form.Group>
-
-          <Form.Group controlId="formBasicPassword">
-            <Form.Label>Mot de passe</Form.Label>
-            <Form.Control onChange={handleChange} name="password" type="password" value={password} placeholder="********" />
-          </Form.Group>
-          {error !== '' && (
-            <Alert variant="danger">
-              {error}
-            </Alert>
-          )}
-          {isLoading === true && (
-            <p>ça charge mec</p>
-          )}
+          <Field name="email" type="email" label="Email" value={email} placeholder="Entrez votre email" handleChange={handleChange} controlId="email" />
+          <Field name="password" type="password" label="Mot de passe" value={password} placeholder="********" handleChange={handleChange} controlId="password" />
+          <StateField error={error} isLoading={isLoading} />
           <Button variant="primary" type="submit">
             Se connecter
           </Button>

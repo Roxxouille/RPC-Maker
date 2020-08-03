@@ -78,6 +78,10 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\Length(
+     *      max = 45,
+     *      maxMessage = "Le nom de la commande est trop long",
+     * )
      */
     private $name;
 

@@ -25,6 +25,10 @@ class Testimony
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Votre témoignage doit faire moins de {{ limit }} caractères",
+     * )
      * @Groups({"testimony"})
      */
     private $content;

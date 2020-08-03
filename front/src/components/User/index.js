@@ -29,7 +29,6 @@ import { FaDownload } from 'react-icons/fa';
 const User = ({ isLogged, isLoading }) => {
   let load = isLoading;
   if (localStorage.getItem('token')) {
-    console.log('ça rentre');
     activateLoad();
   }
   console.log(isLoading);
