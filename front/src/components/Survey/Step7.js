@@ -1,9 +1,63 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
-
+import axios from 'axios';
 
 export class Step7 extends Component {
+  state = {
+    screen: [],
+    inch: [],
+    reso: [],
+    keyboard: [],
+    type: [],
+    swytch: [],
+    language: [],
+    mouse: [],
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+      const screen = res.data.itanguageems;
+      console.log(screen);
+      this.setState({screen});
+    });
+    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+      const inch = res.data.specs.size;
+      console.log(inch);
+      this.setState({inch});
+    });
+    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+      const reso = res.data.specs.resolution;
+      console.log(reso);
+      this.setState({reso});
+    });
+    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+      const keyboard = res.data.items;
+      console.log(keyboard);
+      this.setState({keyboard});
+    });
+    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+      const type = res.data.specs.type;
+      console.log(type);
+      this.setState({type});
+    });
+    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+      const swytch = res.data.specs.switch;
+      console.log(swytch);
+      this.setState({swytch});
+    });
+    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+      const language = res.data.specs.language;
+      console.log(language);
+      this.setState({language});
+    });
+    axios.get('http://localhost:3000/api/category/souris/').then((res) => {
+      const mouse = res.data.items;
+      console.log(mouse);
+      this.setState({mouse});
+    });
+  }
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -16,6 +70,46 @@ export class Step7 extends Component {
 
   render() {
     const { values, handleChange, CheckContent } = this.props;
+    const optionScreen = this.state.screen.map((screen) => {
+      return (
+        <option key={`${screen.id}`}>{`${screen.name}`}</option>
+      );
+    });
+    const optionSize = this.state.inch.map((inch) => {
+      return (
+        <option key={`${inch}`}>{`${inch}`}</option>
+      );
+    });
+    const optionResolution = this.state.reso.map((reso) => {
+      return (
+        <option key={`${reso}`}>{`${reso}`}</option>
+      );
+    });
+    const optionKeyboard = this.state.keyboard.map((keyboard) => {
+      return (
+        <option key={`${keyboard.id}`}>{`${keyboard.name}`}</option>
+      );
+    });
+    const optionType = this.state.type.map((type) => {
+      return (
+        <option key={`${type}`}>{`${type}`}</option>
+      );
+    });
+    const optionSwitch = this.state.swytch.map((swytch) => {
+      return (
+        <option key={`${swytch}`}>{`${swytch}`}</option>
+      );
+    });
+    const optionLanguage = this.state.language.map((language) => {
+      return (
+        <option key={`${language}`}>{`${language}`}</option>
+      );
+    });
+    const optionMouse = this.state.mouse.map((mouse) => {
+      return (
+        <option key={`${mouse.id}`}>{`${mouse.name}`}</option>
+      );
+    });
     return (
       <div>
         <div>
@@ -37,41 +131,32 @@ export class Step7 extends Component {
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Ecran1</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_screen')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionScreen}
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
             <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('option_screen_model')} />
             <Form.Label>Taille d'ecran</Form.Label>
             <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('option_screen_size')}>
-              <option>24 pouces</option>
-              <option>25</option>
-              <option>27</option>
-              <option>30</option>
+              {optionSize}
             </Form.Control>
             <Form.Label>Resolution</Form.Label>
             <Form.Control as="select" defaultValue="full HD" onChange={handleChange('option_screen_res')}>
-              <option>144hz</option>
-              <option>25</option>
-              <option>27</option>
-              <option>30</option>
+              {optionResolution}
             </Form.Control>
           </Form.Group>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Clavier</Form.Label>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_keyboard')}>
+              {optionKeyboard}
+            </Form.Control>
             <Form.Row>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Type</Form.Label>
                   <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('option_keyboard_type')}>
-                    <option>Mecanique</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {optionType}
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -79,10 +164,7 @@ export class Step7 extends Component {
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label>Switch</Form.Label>
                   <Form.Control as="select" defaultValue="Red" onChange={handleChange('option_keyboard_switch')}>
-                    <option>Red</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    {optionSwitch}
                   </Form.Control>
                 </Form.Group>
               </Col>
@@ -90,20 +172,14 @@ export class Step7 extends Component {
           </Form.Group>
           <Form.Label>Langue</Form.Label>
           <Form.Control as="select" defaultValue="azerty" onChange={handleChange('option_keyboard_language')}>
-            <option>azerty</option>
-            <option>qwerty</option>
-            <option>2</option>
-            <option>3</option>
+            {optionLanguage}
           </Form.Control>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label>Sourie</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mouse')}>
-              <option>Fait ton choix !</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
+              {optionMouse}
             </Form.Control>
             <Form.Label>Un modele en tete ?</Form.Label>
             <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')}/>
