@@ -11,6 +11,32 @@
   &__body{
     width: 70%;
     background-color: #fff;
+    text-align: left;
+
+    h1{
+     margin: 25px;
+    }
+
+    #center{
+      text-align: center;
+    }
+
+
+
+    #just-center{
+      justify-content: center;
+    }
+
+    #chat-avatar{
+      height: 40px;
+    }
+    &__messages{
+      justify-content: center;
+      
+      #right{
+        text-align: right;
+    }
+    }
   }
 }
 
