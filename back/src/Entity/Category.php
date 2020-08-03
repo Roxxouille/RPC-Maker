@@ -25,6 +25,10 @@ class Category
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 45,
+     *      maxMessage = "Le nom de la catégorie est trop long",
+     * )
      * @Groups({"category", "item"})
      */
     private $name;
