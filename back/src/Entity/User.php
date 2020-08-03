@@ -44,7 +44,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide"
+     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide")
      * @Assert\Length(
      *      max = 255,
      *      maxMessage = "L'email est trop long",
