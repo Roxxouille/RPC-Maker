@@ -25,6 +25,10 @@ class Item
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le nom est trop long",
+     * )
      * @Groups({"category", "command", "item"})
      */
     private $name;
@@ -41,6 +45,10 @@ class Item
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Url( message = "Ceci n'est pas une url valide")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "L'url est trop longue",
+     * )
      * @Groups({"category", "command", "item"})
      */
     private $url;

@@ -41,7 +41,7 @@ class ContactController extends AbstractController
             'firstname' => new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
             'lastname' => new Assert\NotBlank(['message' => "Ce champ ne peut pas être vide."]),
         ]);
-
+ 
         $errors = $validator->validate($input, $constraint);
 
         if (count($errors) > 0) {
