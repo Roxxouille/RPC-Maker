@@ -44,7 +44,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide")
+     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide"
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "L'email est trop long",
+     * )
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -54,6 +58,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "Au moins une majuscule, une minuscule, un chiffre, un caractère special, et 8 caractère minimum")
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "Le mot de passe est trop long",
+     * )
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */
@@ -79,6 +87,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 45,
+     *      maxMessage = "Le prénom est trop long",
+     * )
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -87,6 +99,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=45)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 45,
+     *      maxMessage = "Le nom est trop long",
+     * )
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -95,6 +111,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=85, nullable=true)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 85,
+     *      maxMessage = "Le nom de la ville est trop long",
+     * )
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -112,6 +132,10 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      max = 255,
+     *      maxMessage = "L'adresse est trop longue",
+     * )
      * @Groups({"avatar", "command", "user"})
      */
 
