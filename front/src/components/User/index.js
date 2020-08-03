@@ -12,7 +12,6 @@ import { activateLoad } from '../../actions/user';
 const User = ({ isLogged, isLoading }) => {
   let load = isLoading;
   if (localStorage.getItem('token')) {
-    console.log('ça rentre');
     activateLoad();
   }
   console.log(isLoading);
