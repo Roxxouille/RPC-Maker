@@ -32,6 +32,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=45, unique=true)
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 25,
+     *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
+     *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
+     * )
      * @Groups({"avatar", "command", "user", "testimony"})
      */
     private $username;
