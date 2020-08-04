@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Link } from 'react-router-dom'; 
 import './styles.scss';
 import { Image } from 'react-bootstrap';
+import Orders from './Orders';
 
 const BackOffice = ({ getCommands, commands }) => {
   useEffect(() => {
@@ -25,7 +26,7 @@ const BackOffice = ({ getCommands, commands }) => {
             backoffice
           </Route>
           <Route path="/backoffice/commands">
-            les commandes clients
+            <Orders commands={commands} />
           </Route>
           <Route path="/backoffice/message">
             Vos conversations
