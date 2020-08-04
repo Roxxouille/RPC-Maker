@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import {
   Switch,
   Route,
@@ -18,9 +19,8 @@ import {
   Image,
   Button,
 } from 'react-bootstrap';
-import { FaDownload } from 'react-icons/fa';
 
-const User = ({ isLogged, isLoading }) => {
+const User = ({ isLogged, isLoading, username, level, firstname, email }) => {
   let load = isLoading;
   if (localStorage.getItem('token')) {
     activateLoad();
@@ -33,7 +33,7 @@ const User = ({ isLogged, isLoading }) => {
 
       <Jumbotron fluid className="jumbotron">
         <Container>
-          <h1>Bienvenu "username"</h1>
+          <h1>Bienvenu {username}</h1>
           <p>
             Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
           </p>
@@ -58,9 +58,10 @@ const User = ({ isLogged, isLoading }) => {
 
           <div className="user__nav">
             <Image src="https://picsum.photos/240" rounded fluid />
-            <Link to="/user/pc">"username"</Link>
-            <a>"Level"</a>
-            <a>"firstname" "lastname"</a>
+            <Link to="/user/pc">{username}</Link>
+            <a>level {level}</a>
+            <a>{email}</a>
+            <a>{firstname} "lastname"</a>
             <a>"adress"</a>
             <Link to="/user/edit-info">Editer mes infos</Link>
             <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
@@ -70,33 +71,24 @@ const User = ({ isLogged, isLoading }) => {
             <Switch>
               <Route path="/user/edit-info">
                 <Info />
-
               </Route>
-
-
               <Route exact path="/user">
                 Bienvenue dans votre espace membre
               </Route>
-
-
               <Route path="/user/pc">
                 <Pc />
               </Route>
-
               <Route path="/user/commands">
                 <Command />
               </Route>
-
-
               <Route path="/user/message">
                 <Message />
               </Route>
-
-
             </Switch>
           </div>
         </div>
       )}
+
     </Container>
   );
 };

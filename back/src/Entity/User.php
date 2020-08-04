@@ -122,7 +122,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Regex("/^\d+/", message = "Entrez un nombre valid")
+     * @Assert\Regex("/^[1-9]\d*$/", message = "Entrez un nombre valide")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      * @Groups({"avatar", "command", "user"})
      */

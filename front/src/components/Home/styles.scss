@@ -1,3 +1,6 @@
+.checked {
+  color: orange;
+}
 @media screen and (max-width: 800px) { 
   .pres {
     &__firstrow {
@@ -78,5 +81,6 @@
     &__img {
       margin: 0em 1em 0em 1em;
     }
+
   }
 }

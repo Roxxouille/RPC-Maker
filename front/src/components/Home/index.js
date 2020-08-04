@@ -9,8 +9,8 @@ import './styles.scss';
 
 const Home = () => {
   const [dataPres, setDataPres] = useState({ build: '', quote: '' });
+  const [dataTestimony, setDataTestimony] = useState({ testimonies: [] });
   useEffect(() => {
-    console.log(dataPres);
     if (dataPres.build === '' && dataPres.quote === '') {
       axios.get('http://localhost:3000/build').then((res) => {
         const dataBuild = res.data.build;
@@ -20,7 +20,14 @@ const Home = () => {
         });
       });
     }
+    if (dataTestimony.testimonies.length === 0) {
+      axios.get('http://localhost:3000/testimonies/random').then((res) => {
+        const dataTes = res.data;
+        setDataTestimony({ testimonies: dataTes });
+      });
+    }
   });
+
   return (
     <div className="container">
       <CarouselHome />
@@ -29,7 +36,7 @@ const Home = () => {
         <h2>la team</h2>
         <Cards />
       </div>
-      <Testimony />
+      <Testimony testimonies={dataTestimony} />
     </div>
   );
 };
