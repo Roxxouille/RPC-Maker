@@ -21,7 +21,7 @@ const Home = () => {
       });
     }
     if (dataTestimony.testimonies.length === 0) {
-      axios.get('http://localhost:3000/testimonies').then((res) => {
+      axios.get('http://localhost:3000/testimonies/random').then((res) => {
         const dataTes = res.data;
         setDataTestimony({ testimonies: dataTes });
       });

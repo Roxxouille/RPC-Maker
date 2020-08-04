@@ -19,6 +19,19 @@ class TestimonyRepository extends ServiceEntityRepository
         parent::__construct($registry, Testimony::class);
     }
 
+    /**
+     * Get random testimonies
+     */
+    public function findRandoms()
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('RAND()')
+            ->setMaxResults(10) // On LIMIT à 1 résultat
+            ->where('m.score >= 4')
+            ->getQuery()
+            ->getResult(); // On en veut un seul (pas de tableau)
+    }
+
     // /**
     //  * @return Testimony[] Returns an array of Testimony objects
     //  */
