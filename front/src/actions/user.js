@@ -30,9 +30,10 @@ export const failLogin = (error) => ({
   error,
 });
 
-export const setUser = (username) => ({
+export const setUser = (username, role) => ({
   type: SET_USER,
   username,
+  role,
 });
 
 export const logout = () => ({

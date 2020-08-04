@@ -9,7 +9,7 @@ import {
 import PropTypes from 'prop-types';
 import Command from './Command.js';
 import Message from './Message.js';
-import Info from './Info.js';
+import BackOffice from './BackOffice';
 import Pc from './Pc.js';
 import './styles.scss';
 import { activateLoad } from '../../actions/user';
@@ -21,13 +21,11 @@ import {
   Button,
 } from 'react-bootstrap';
 
-const User = ({ isLogged, isLoading, username, level, firstname, email }) => {
-  let load = isLoading;
+const User = ({ isLogged, isLoading, username, level, firstname, email, role }) => {
   if (localStorage.getItem('token')) {
     activateLoad();
   }
-  console.log(isLoading);
-
+  console.log('role:', role);
   return (
 
     <Container fluid>
@@ -49,14 +47,17 @@ const User = ({ isLogged, isLoading, username, level, firstname, email }) => {
         <p>ça charge gros</p>
       )}
 
+
       {isLoading === false && isLogged === false && !localStorage.getItem('token') && (
         <Redirect to={{ pathname: '/login' }} />
       )}
 
+      {role === 'ROLE_BUILDER' && isLogged === true && (
+        <Redirect to={{ pathname: '/backoffice' }} />
+      )}
+
       {isLogged === true && isLoading === false && (
         <div className="user">
-
-
           <div className="user__nav">
             <Image src="https://picsum.photos/240" rounded fluid />
             <Link to="/user/pc">{username}</Link>
@@ -85,11 +86,11 @@ const User = ({ isLogged, isLoading, username, level, firstname, email }) => {
               <Route path="/user/message">
                 <Message />
               </Route>
+              
             </Switch>
           </div>
         </div>
       )}
-
     </Container>
   );
 };

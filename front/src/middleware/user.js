@@ -18,7 +18,7 @@ export default (store) => (next) => (action) => {
           console.log(response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
-          store.dispatch(setUser(response.data.username));
+          store.dispatch(setUser(response.data.username, response.data.roles[0]));
         })
         .catch((error) => {
           console.log(error.repsonse);
@@ -33,7 +33,7 @@ export default (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(setUser(response.data.username));
+          store.dispatch(setUser(response.data.username, response.data.roles[0]));
         })
         .catch((error) => {
           localStorage.clear();

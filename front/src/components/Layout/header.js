@@ -4,12 +4,13 @@ import {
   BrowserRouter as Router, Switch, Route, Link,
 } from 'react-router-dom';
 import './styles.scss';
-import { Navbar, Nav, NavDropdown, Container, Col, Row } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
 import Home from '../Home';
 import User from '../../containers/User';
 import Contact from '../../containers/Contact';
 import Survey from '../Survey';
 import Login from '../../containers/User/Login';
+import BackOffice from '../../containers/User/BackOffice';
 
 const Header = ({ isLogged, logout, username }) => {
   const handleClick = () => {
@@ -89,6 +90,9 @@ const Header = ({ isLogged, logout, username }) => {
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/backoffice">
+          <BackOffice />
         </Route>
       </Switch>
     </div>

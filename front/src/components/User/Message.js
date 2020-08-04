@@ -12,7 +12,7 @@ import './styles.scss';
 
 const Message = () => {
     return (
-        <Container classname="user__body__messages">
+        <Container className="user__body__messages">
             <div id="center">
                 <h1>Vous etes en conversation avec "nom-monteur"</h1>
             </div>
