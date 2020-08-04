@@ -8,6 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import './styles.scss';
 import { activateLoad } from '../../actions/user';
+import EditProfile from '../../containers/User/EditProfile';
 
 const User = ({ isLogged, isLoading }) => {
   let load = isLoading;
@@ -44,7 +45,7 @@ const User = ({ isLogged, isLoading }) => {
                 Votre pc
               </Route>
               <Route path="/user/infos">
-                vos infos
+                <EditProfile />
               </Route>
               <Route path="/user/message">
                 Vos messages

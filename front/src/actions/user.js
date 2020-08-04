@@ -8,6 +8,18 @@ export const LOGOUT = 'LOGOUT';
 export const UNSET_USER = 'UNSET_USER';
 export const IS_LOADING = 'IS_LOADING';
 export const ACTIVATE_LOAD = 'ACTIVATE_LOAD';
+export const CHANGE_PROFILE = 'CHANGE_PROFILE';
+export const SUBMIT_PROFILE = 'SUBMIT_PROFILE';
+
+export const submitProfile = () => ({
+  type: SUBMIT_PROFILE,
+});
+
+export const changeProfile = (name, value) => ({
+  type: CHANGE_PROFILE,
+  name,
+  value,
+});
 
 export const autoLog = () => ({
   type: AUTOLOG,
