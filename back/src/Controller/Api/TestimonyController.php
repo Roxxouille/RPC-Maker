@@ -138,8 +138,8 @@ class TestimonyController extends AbstractController
      */
     public function randomTen(TestimonyRepository $testimonyRepository)
     {
-        // get the data of all testimony
-        $data = $testimonyRepository->findAll();
+        // get the data of random testimony
+        $data = $testimonyRepository->findRandoms();
 
         // send it in json
         return $this->json($data, Response::HTTP_OK, [], ['groups' => 'testimony']);
