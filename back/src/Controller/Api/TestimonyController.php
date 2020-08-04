@@ -132,4 +132,17 @@ class TestimonyController extends AbstractController
         // send a json response
         return $this->json(['message' => 'témoignage supprime'], Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/testimonies/random", name="tesimony_random", methods="GET")
+     */
+    public function randomTen(TestimonyRepository $testimonyRepository)
+    {
+        // get the data of all testimony
+        $data = $testimonyRepository->findAll();
+
+        // send it in json
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'testimony']);
+    }
+
 }
