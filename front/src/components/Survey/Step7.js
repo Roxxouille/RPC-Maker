@@ -26,87 +26,87 @@ export class Step7 extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+    axios.get('http://localhost:3000/category/ecran/').then((res) => {
       const screen = res.data.items;
       console.log(screen);
       this.setState({ screen });
     });
-    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+    axios.get('http://localhost:3000/category/ecran/').then((res) => {
       const inch = res.data.specs.size;
       console.log(inch);
       this.setState({ inch });
     });
-    axios.get('http://localhost:3000/api/category/ecran/').then((res) => {
+    axios.get('http://localhost:3000/category/ecran/').then((res) => {
       const reso = res.data.specs.resolution;
       console.log("resolution", reso);
-      this.setState(reso);
+      this.setState({reso});
     });
-    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+    axios.get('http://localhost:3000/category/clavier/').then((res) => {
       const keyboard = res.data.items;
       console.log(keyboard);
       this.setState({ keyboard });
     });
-    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+    axios.get('http://localhost:3000/category/clavier/').then((res) => {
       const { type } = res.data.specs;
       console.log(type);
       this.setState({ type });
     });
-    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+    axios.get('http://localhost:3000/category/clavier/').then((res) => {
       const swytch = res.data.specs.switch;
       console.log(swytch);
       this.setState({ swytch });
     });
-    axios.get('http://localhost:3000/api/category/clavier/').then((res) => {
+    axios.get('http://localhost:3000/category/clavier/').then((res) => {
       const { language } = res.data.specs;
       console.log(language);
       this.setState({ language });
     });
-    axios.get('http://localhost:3000/api/category/souris/').then((res) => {
+    axios.get('http://localhost:3000/category/souris/').then((res) => {
       const mouse = res.data.items;
       console.log('mouse', mouse);
       this.setState({ mouse });
     });
-    axios.get('http://localhost:3000/api/category/souris/').then((res) => {
+    axios.get('http://localhost:3000/category/souris/').then((res) => {
       const mouseType = res.data.specs.type;
       this.setState({ mouseType });
     });
-    axios.get('http://localhost:3000/api/category/tapis/').then((res) => {
+    axios.get('http://localhost:3000/category/tapis/').then((res) => {
       const pad = res.data.items;
       this.setState({ pad });
     });
-    axios.get('http://localhost:3000/api/category/tapis/').then((res) => {
+    axios.get('http://localhost:3000/category/tapis/').then((res) => {
       const pad = res.data.items;
       this.setState({ pad });
     });
-    axios.get('http://localhost:3000/api/category/tapis/').then((res) => {
+    axios.get('http://localhost:3000/category/tapis/').then((res) => {
       const padType = res.data.specs.type;
       this.setState({ padType });
     });
-    axios.get('http://localhost:3000/api/category/tapis/').then((res) => {
+    axios.get('http://localhost:3000/category/tapis/').then((res) => {
       const padSize = res.data.specs.size;
       this.setState({ padSize });
     });
-    axios.get('http://localhost:3000/api/category/enceintes/').then((res) => {
+    axios.get('http://localhost:3000/category/enceintes/').then((res) => {
       const hifi = res.data.items;
       this.setState({ hifi });
     });
-    axios.get('http://localhost:3000/api/category/micro-casque/').then((res) => {
+    axios.get('http://localhost:3000/category/micro-casque/').then((res) => {
       const headset = res.data.items;
       this.setState({ headset });
     });
-    axios.get('http://localhost:3000/api/category/webcam/').then((res) => {
+    axios.get('http://localhost:3000/category/webcam/').then((res) => {
       const webcam = res.data.items;
       this.setState({ webcam });
     });
-    axios.get('http://localhost:3000/api/category/webcam/').then((res) => {
+    axios.get('http://localhost:3000/category/webcam/').then((res) => {
       const webcamRes = res.data.specs.resolution;
       this.setState({ webcamRes });
     });
-    axios.get('http://localhost:3000/api/category/imprimante/').then((res) => {
+    axios.get('http://localhost:3000/category/imprimante/').then((res) => {
       const imprimante = res.data.items;
       this.setState({ imprimante });
     });
-    axios.get('http://localhost:3000/api/category/imprimante/').then((res) => {
+    axios.get('http://localhost:3000/category/imprimante/').then((res) => {
       const imprimanteType = res.data.specs.type;
       this.setState({ imprimanteType });
     });
