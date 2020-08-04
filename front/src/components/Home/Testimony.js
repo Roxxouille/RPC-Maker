@@ -1,37 +1,61 @@
 import React from 'react';
 import './styles.scss';
 import { Row, Col, Image } from 'react-bootstrap';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-const Testimony = () => {
+const Testimony = ({ testimonies }) => {
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 2,
+      slidesToSlide: 2,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      slidesToSlide: 1,
+    },
+  };
+  const aled = testimonies.testimonies.map((testimony) => {
+    const stars = testimony.score;
+    const html = [];
+    for (let i = 0; i < 5; i++) {
+      if (i < stars) {
+        html.push(<span className="fa fa-star checked" />);
+      }
+      else {
+        html.push(<span className="fa fa-star" />);
+      }
+    }
+    console.log(html, stars);
+    return (
+      <div className="testimony">
+        <div className="testimony__img"><Image src={testimony.user.avatar.image} roundedCircle /></div>
+        <div>
+          <h3 className="testimony__name">{testimony.user.username}</h3>
+          { html }
+          <p className="testimony__content"> {testimony.content}</p>
+        </div>
+      </div>
+    );
+  });
+
   return (
     <div className="testimonies">
       <h2>Les avis de nos clients</h2>
-        <Row className="testimonies__row"> 
-          <Col className="testimony">
-            <div className="testimony__img"><Image src="https://picsum.photos/171/180" roundedCircle /></div>    
-            <div>
-              <h3 className="testimony__name">Robert</h3>
-              <span className="fa fa-star checked"></span>
-              <span className="fa fa-star checked"></span>
-              <span className="fa fa-star checked"></span>
-              <span className="fa fa-star checked"></span>
-              <span className="fa fa-star"></span>
-              <p className="testimony__content"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-            </div>
-          </Col>
-          <Col className="testimony">
-            <div className="testimony__img"><Image src="https://picsum.photos/171/180" roundedCircle /></div>
-              <div>
-                <h3 className="testimony__name">Robert</h3>      
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star checked"></span>
-                <span className="fa fa-star"></span>
-                <p className="testimony__content"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
-              </div>
-            </Col>
-        </Row>
+      <Carousel
+        showDots
+        responsive={responsive}
+        infinite
+      >
+        { aled }
+      </Carousel>
     </div>
   );
 };

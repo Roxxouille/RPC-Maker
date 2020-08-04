@@ -240,7 +240,7 @@ class AppFixtures extends Fixture
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
-            $avatar->setImage('https://picsum.photos/' . $faker->unique->numberBetween(100, 500));
+            $avatar->setImage('https://picsum.photos/200');
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
