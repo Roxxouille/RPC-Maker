@@ -90,6 +90,14 @@ export class UserForm extends Component {
     option_printer: '',
     option_printer_model: '',
     option_printer_type: '',
+    inscr_nom: '',
+    inscr_prenom: '',
+    inscr_email: '',
+    inscr_mdp: '',
+    inscr_adress1: '',
+    inscr_adress2: '',
+    inscr_ville: '',
+    inscr_zip: '',
   };
 
   nextStep = () => {
@@ -196,6 +204,14 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
+       inscr_nom,
+       inscr_prenom,
+       inscr_email,
+       inscr_mdp,
+       inscr_adress1,
+       inscr_adress2,
+       inscr_ville,
+       inscr_zip,
      } = this.state;
      const values = {
        surname,
@@ -276,6 +292,14 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
+       inscr_nom,
+       inscr_prenom,
+       inscr_email,
+       inscr_mdp,
+       inscr_adress1,
+       inscr_adress2,
+       inscr_ville,
+       inscr_zip
      };
 
      switch (step) {
@@ -351,6 +375,7 @@ export class UserForm extends Component {
                  nextStep={this.nextStep}
                  prevStep={this.prevStep}
                  handleChange={this.handleChange}
+                 CheckContent={this.CheckContent}
                  values={values}
                />
          );

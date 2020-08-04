@@ -289,7 +289,7 @@ export class Step7 extends Component {
             <Form.Label>Un modele en tete ?</Form.Label>
             <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
             <Form.Label>Type</Form.Label>
-            <Form.Control as="select" defaultValue="Supra auriculaire" option_headphone_model onChange={handleChange('option_headphone_type')}>
+            <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('option_headphone_type')}>
               <option>Supra auriculaire</option>
               <option>isolant</option>
               <option>Ouvert</option>
