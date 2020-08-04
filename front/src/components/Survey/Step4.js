@@ -17,39 +17,39 @@ export class Step4 extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/category/processeur/').then((res) => {
+    axios.get('http://localhost:3000/category/processeur/').then((res) => {
       const proc = res.data.items;
       this.setState({proc});
     });
-    axios.get('http://localhost:3000/api/category/carte-mere/').then((res) => {
+    axios.get('http://localhost:3000/category/carte-mere/').then((res) => {
       const cm = res.data.items;
       this.setState({cm});
     });
-    axios.get('http://localhost:3000/api/category/carte-graphique/').then((res) => {
+    axios.get('http://localhost:3000/category/carte-graphique/').then((res) => {
       const cg = res.data.items;
       this.setState({cg});
     });
-    axios.get('http://localhost:3000/api/category/ram/').then((res) => {
+    axios.get('http://localhost:3000/category/ram/').then((res) => {
       const ram = res.data.items;
       this.setState({ram});
     });
-    axios.get('http://localhost:3000/api/category/ventirad-watercooling/').then((res) => {
+    axios.get('http://localhost:3000/category/ventirad-watercooling/').then((res) => {
       const vw = res.data.items;
       this.setState({vw});
     });
-    axios.get('http://localhost:3000/api/category/lecteur-graveur/').then((res) => {
+    axios.get('http://localhost:3000/category/lecteur-graveur/').then((res) => {
       const lg = res.data.items;
       this.setState({lg});
     });
-    axios.get('http://localhost:3000/api/category/carte-son/').then((res) => {
+    axios.get('http://localhost:3000/category/carte-son/').then((res) => {
       const cs = res.data.items;
       this.setState({cs});
     });
-    axios.get('http://localhost:3000/api/category/boitier/').then((res) => {
+    axios.get('http://localhost:3000/category/boitier/').then((res) => {
       const boit = res.data.items;
       this.setState({boit});
     });
-    axios.get('http://localhost:3000/api/category/alimentation/').then((res) => {
+    axios.get('http://localhost:3000/category/alimentation/').then((res) => {
       const alim = res.data.items;
       this.setState({alim});
     });
