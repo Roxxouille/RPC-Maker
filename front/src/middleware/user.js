@@ -29,7 +29,6 @@ export default (store) => (next) => (action) => {
     }
     case AUTOLOG: {
       const token = localStorage.getItem('token');
-      //const token = 'd6081bdf250ec5c06a1bc2dd28bba8b0';
       const slug = localStorage.getItem('slug');
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {

@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE } from '../actions/profile';
+import { CHANGE_PROFILE, ERROR_PROFILE } from '../actions/profile';
 
 export const initialState = {
   email: '',
@@ -10,7 +10,17 @@ export const initialState = {
   zipCode: 75015,
   status: '',
   adressComplement: '',
-  error: {},
+  error: {
+    lastname: [''],
+    firstname: [''],
+    city: [''],
+    email: [''],
+    age: [''],
+    ville: [''],
+    zipCode: [''],
+    adress: [''],
+    adressComplement: [''],
+  },
   loading: false,
 };
 
@@ -20,6 +30,13 @@ const profile = (state = initialState, action = {}) => {
       return {
         ...state,
         [action.name]: action.value,
+      };
+    case ERROR_PROFILE:
+      console.log('reducer', action.value);
+
+      return {
+        ...state,
+        error: { ...state.error, ...action.value },
       };
     default:
       return state;
