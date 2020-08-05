@@ -12,94 +12,92 @@ import Inscription from './inscription';
 import './styles.scss';
 
 export class UserForm extends Component {
-  state = {
-    step: 1,
-    surname: '',
-    budget: '',
-    gap: '',
-    utilisation: '',
-    config_proc: '',
-    config_proc_model: '',
-    config_proc_link: '',
-    config_board: '',
-    config_board_model: '',
-    config_board_link: '',
-    config_gc: '',
-    config_gc_model: '',
-    config_gc_link: '',
-    config_ram: '',
-    config_ram_model: '',
-    config_ram_link: '',
-    config_refresh: '',
-    config_refresh_model: '',
-    config_refresh_link: '',
-    config_storage: '',
-    config_storage_model: '',
-    config_storage_link: '',
-    config_boardsound: '',
-    config_boardsound_model: '',
-    config_boardsound_link: '',
-    config_case: '',
-    config_case_model: '',
-    config_case_link: '',
-    config_power: '',
-    config_power_model: '',
-    config_power_link: '',
-    spec_sli: '',
-    spec_overclock: '',
-    spec_storage: '',
-    spec_storage_quantity: '',
-    spec_wifi: '',
-    spec_wifi_room: '',
-    spec_fiber: '',
-    spec_sound: '',
-    spec_sound_utilisation: '',
-    spec_sound_utilisation_other: '',
-    spec_light: '',
-    os: '',
-    os_name: '',
-    os_active: '',
-    option: '',
-    option_screen: '',
-    option_screen_model: '',
-    option_screen_size: '',
-    option_screen_res: '',
-    option_keyboard: '',
-    option_keyboard_type: '',
-    option_keyboard_switch: '',
-    option_keyboard_language: '',
-    option_mouse: '',
-    option_mouse_model: '',
-    option_mouse_type: '',
-    option_mouse_filaire: '',
-    option_mousepad: '',
-    option_mousepad_model: '',
-    option_mousepad_type: '',
-    option_mousepad_size: '',
-    option_headphone: '',
-    option_headphone_model: '',
-    option_headphone_type: '',
-    option_headphone_size: '',
-    option_enceinte: '',
-    option_enceinte_model: '',
-    option_enceinte_type: '',
-    option_enceinte_bass: '',
-    option_webcam: '',
-    option_webcam_model: '',
-    option_webcam_res: '',
-    option_printer: '',
-    option_printer_model: '',
-    option_printer_type: '',
-    inscr_nom: '',
-    inscr_prenom: '',
-    inscr_email: '',
-    inscr_mdp: '',
-    inscr_adress1: '',
+  state = {   
+      step: 1,
+      budget: '',
+      gap: '',
+      utilisation: '',
+      config_proc: '',
+      config_proc_model: '',
+      config_proc_link: '',
+      config_board: '',
+      config_board_model: '',
+      config_board_link: '',
+      config_gc: '',
+      config_gc_model: '',
+      config_gc_link: '',
+      config_ram: '',
+      config_ram_model: '',
+      config_ram_link: '',
+      config_refresh: '',
+      config_refresh_model: '',
+      config_refresh_link: '',
+      config_storage: '',
+      config_storage_model: '',
+      config_storage_link: '',
+      config_boardsound: '',
+      config_boardsound_model: '',
+      config_boardsound_link: '',
+      config_case: '',
+      config_case_model: '',
+      config_case_link: '',
+      config_power: '',
+      config_power_model: '',
+      config_power_link: '',
+      spec_sli: '',
+      spec_overclock: '',
+      spec_storage: '',
+      spec_storage_quantity: '',
+      spec_wifi: '',
+      spec_wifi_room: '',
+      spec_fiber: '',
+      spec_sound: '',
+      spec_light: '',
+      os: '',
+      os_name: '',
+      os_active: '',
+      option: '',
+      option_screen: '',
+      option_screen_model: '',
+      option_screen_size: '',
+      option_screen_res: '',
+      option_keyboard: '',
+      option_keyboard_type: '',
+      option_keyboard_switch: '',
+      option_keyboard_language: '',
+      option_mouse: '',
+      option_mouse_model: '',
+      option_mouse_type: '',
+      option_mouse_filaire: '',
+      option_mousepad: '',
+      option_mousepad_model: '',
+      option_mousepad_type: '',
+      option_mousepad_size: '',
+      option_headphone: '',
+      option_headphone_model: '',
+      option_headphone_type: '',
+      option_headphone_size: '',
+      option_enceinte: '',
+      option_enceinte_model: '',
+      option_enceinte_type: '',
+      option_enceinte_bass: '',
+      option_webcam: '',
+      option_webcam_model: '',
+      option_webcam_res: '',
+      option_printer: '',
+      option_printer_model: '',
+      option_printer_type: '',
+    username: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    adress: '',
     inscr_adress2: '',
-    inscr_ville: '',
-    inscr_zip: '',
+    city: '',
+    zip_code: parseInt(''),
   };
-
+  // Gerer les pages dynamiques
   nextStep = () => {
     const { step } = this.state;
     this.setState({
@@ -114,17 +112,23 @@ export class UserForm extends Component {
     });
   };
 
-   // Handle fields change
+   // Handle pour un int
    handleChange = (input) => (e) => {
      this.setState({ [input]: e.target.value });
    };
 
+   // Handle pour un nombre
+   handleAsNumber = (input) => (e) => {
+    this.setState({ [input]: e.target.valueAsNumber });
+  };
+  // Envoi vers le back
    handleSubmit = (event) => {
-     alert(`A form was submitted: ${this.state}`);
+     alert(`formulaire envoyer ! : ${this.state}`);
 
-     fetch('http://localhost:3000/user/', {
+     fetch('http://localhost:3000/user', {
        method: 'POST',
-       // We convert the React state to JSON and send it as the POST body
+       // conversion du state vers un JSON
+       
        body: JSON.stringify(this.state),
      }).then((response) => {
        console.log(response);
@@ -133,7 +137,7 @@ export class UserForm extends Component {
 
      event.preventDefault();
    }
-
+   // handle pour les checkbox
    CheckContent = (input) => (e) => {
      this.setState({ [input]: e.target.name });
    };
@@ -141,7 +145,6 @@ export class UserForm extends Component {
    render() {
      const { step } = this.state;
      const {
-       surname,
        utilisation,
        other_utilisation,
        budget,
@@ -219,17 +222,18 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
-       inscr_nom,
-       inscr_prenom,
-       inscr_email,
-       inscr_mdp,
-       inscr_adress1,
+       username,
+       firstname,
+       lastname,
+       email,
+       password,
+       adress,
        inscr_adress2,
-       inscr_ville,
-       inscr_zip,
+       city,
+       zip_code,
      } = this.state;
      const values = {
-       surname,
+       username,
        utilisation,
        other_utilisation,
        budget,
@@ -279,7 +283,6 @@ export class UserForm extends Component {
        option,
        option_screen,
        option_screen_model,
-       option_screen_size,
        option_screen_res,
        option_keyboard,
        option_keyboard_type,
@@ -303,18 +306,14 @@ export class UserForm extends Component {
        option_enceinte_bass,
        option_webcam,
        option_webcam_model,
-       option_webcam_res,
-       option_printer,
-       option_printer_model,
-       option_printer_type,
-       inscr_nom,
-       inscr_prenom,
-       inscr_email,
-       inscr_mdp,
-       inscr_adress1,
+       lastname,
+       email,
+       password,
+       adress,
        inscr_adress2,
-       inscr_ville,
-       inscr_zip,
+       city,
+       zip_code,
+       firstname,
      };
 
      switch (step) {
@@ -392,6 +391,7 @@ export class UserForm extends Component {
                  handleChange={this.handleChange}
                  CheckContent={this.CheckContent}
                  handleSubmit={this.handleSubmit}
+                 handleAsNumber={this.handleAsNumber}
                  values={values}
                />
          );

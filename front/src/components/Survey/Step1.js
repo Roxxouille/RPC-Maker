@@ -26,7 +26,7 @@ export class Step1 extends Component {
         </div>
         <Form className="Form">
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control type="name" placeholder="Ton petit nom :)" defaultValue={values.surnom} onChange={handleChange('surnom')} />
+            <Form.Control type="name" placeholder="Ton petit nom :)" defaultValue={values.username} onChange={handleChange('username')} />
           </Form.Group>
         </Form>
         <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
