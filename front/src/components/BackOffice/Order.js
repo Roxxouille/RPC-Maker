@@ -1,9 +1,11 @@
 import React from 'react';
 import './styles.scss';
+import { useParams } from 'react-router-dom';
 
-const Order = ({ command }) => {
+const Order = ({ command, getCommand }) => {
+  const { id } = useParams();
+  getCommand(id);
 
-  console.log(command);
   let total = 0;
 
   const dataCommand = command.item.map((data) => {
@@ -23,6 +25,7 @@ const Order = ({ command }) => {
       total: {total} €
     </div>
   );
+
 };
 
 export default Order;

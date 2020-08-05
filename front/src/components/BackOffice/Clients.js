@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import { Link } from 'react-router-dom';
+import { Link, Switch, Route} from 'react-router-dom';
+import Order from '../../containers/BackOffice/Order';
 
 const Clients = ({ clients }) => {
   console.log('client:', clients);
@@ -13,7 +14,7 @@ const Clients = ({ clients }) => {
         <div className='clients__row__cell'>{client.username}</div>
         <div className='clients__row__cell'>{client.commands[0].id}</div>
         <div className='clients__row__cell'>{clients.createdAt}</div>
-        <div className='clients__row__cell'><Link to='/backoffice/client/order/21'>Voir</Link></div>
+        <div className='clients__row__cell'><Link to='/backoffice/client/order/accusantium'>Voir</Link></div>
         <div className='clients__row__cell'>lien messagerie</div>
         <div className='clients__row__cell'>liens infos sur client</div>
       </div>
@@ -34,6 +35,8 @@ const Clients = ({ clients }) => {
         <div className='clients__row__cell'>informations</div>
       </div>
       {dataClients}
+
+      
     </div>
   );
 };

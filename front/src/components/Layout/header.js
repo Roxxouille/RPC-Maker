@@ -10,7 +10,7 @@ import User from '../../containers/User';
 import Contact from '../../containers/Contact';
 import Survey from '../Survey';
 import Login from '../../containers/User/Login';
-import BackOffice from '../../containers/User/BackOffice';
+import BackOffice from '../../containers/BackOffice';
 
 const Header = ({ isLogged, logout, username }) => {
   const handleClick = () => {

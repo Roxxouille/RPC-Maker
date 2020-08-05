@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS } from '../actions/backoffice';
+import { commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -25,6 +25,19 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
+        });
+      break;
+    }
+    case GET_COMMAND: {
+      const slug = action.id;
+      const token = localStorage.getItem('token');
+      axios.get(`http://localhost:3000/command/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(commandToFront(response.data));
+        })
+        .catch((error) => {
+          console.log(error);
         });
       break;
     }

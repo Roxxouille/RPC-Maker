@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Link } from 'react-router-dom'; 
 import './styles.scss';
 import { Image } from 'react-bootstrap';
-import Orders from './Orders';
+import Order from '../../containers/BackOffice/Order';
 import Clients from './Clients';
 import {
   Redirect,
@@ -19,7 +19,7 @@ const BackOffice = ({ getClients, clients, user }) => {
     <div className="user">
       <div className="user__nav">
         <Image src="https://picsum.photos/240" rounded fluid />
-        <Link to="/backoffice/commands">Mes clients</Link>
+        <Link to="/backoffice/clients">Mes clients</Link>
         <Link to="/backoffice/message">Mes conversations</Link>
 
         <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
@@ -30,11 +30,14 @@ const BackOffice = ({ getClients, clients, user }) => {
           <Route exact path="/backoffice">
             backoffice
           </Route>
-          <Route path="/backoffice/commands">
+          <Route path="/backoffice/clients">
             <Clients clients={clients} />
           </Route>
           <Route path="/backoffice/message">
             Vos conversations
+          </Route>
+          <Route path="/backoffice/client/order/:id">
+            <Order />
           </Route>
         </Switch>
       </div>

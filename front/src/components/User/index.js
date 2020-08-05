@@ -9,7 +9,6 @@ import {
 import PropTypes from 'prop-types';
 import Command from './Command.js';
 import Message from './Message.js';
-import BackOffice from './BackOffice';
 import Pc from './Pc.js';
 import './styles.scss';
 import { activateLoad } from '../../actions/user';
@@ -87,7 +86,6 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
               <Route path="/user/message">
                 <Message />
               </Route>
-              
             </Switch>
           </div>
         </div>
