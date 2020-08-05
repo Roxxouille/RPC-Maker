@@ -16,7 +16,7 @@ export class Step2 extends Component {
   render() {
     const { values, handleChange } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question budget</h2>
         </div>
@@ -24,12 +24,12 @@ export class Step2 extends Component {
           <h1>Pour mieux vous servir un budget pourrait nous servir, En avez vous defini un?</h1>
         </div>
         <Form className="Form">
-          <Form.Row>
+          <Form.Row className="Form__button">
             <Col>
-              <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+              <Button className="Form__button" variant="primary" type="submit"> Oui </Button>
             </Col>
             <Col>
-              <Button className="bouton" variant="primary" type="submit"> Non </Button>
+              <Button className="Form__button" variant="primary" type="submit"> Non </Button>
             </Col>
           </Form.Row>
           <Form.Row>
@@ -41,12 +41,12 @@ export class Step2 extends Component {
             </Col>
           </Form.Row>
         </Form>
-        <Form.Row>
+        <Form.Row className="Form__button">
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>

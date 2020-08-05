@@ -16,7 +16,7 @@ export class Step5 extends Component {
   render() {
     const { values, handleChange, CheckContent } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question Systeme</h2>
         </div>
@@ -28,26 +28,26 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('os')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('os')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('os')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('os')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
-          <h1>De quel(s) systeme(s) auriez vous besoin ?</h1>
+          <h1 className="Form__config">De quel(s) systeme(s) auriez vous besoin ?</h1>
         </div>
-        <Form.Control className="Form" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." onChange={handleChange('os_name')} />
+        <Form.Control className="Form__inside" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." onChange={handleChange('os_name')} />
         <div>
-          <h1>Voulez vous qu'on vous l'active ?</h1>
+          <h1 className="Form__inside">Voulez vous qu'on vous l'active ?</h1>
         </div>
-        <Form.Control className="Form" placeholder="Si oui precisez la version" onChange={handleChange('os_active')} />
+        <Form.Control className="Form__inside" placeholder="Si oui precisez la version" onChange={handleChange('os_active')} />
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>

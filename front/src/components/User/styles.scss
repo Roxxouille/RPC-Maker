@@ -1,3 +1,5 @@
+@use 'src/styles/vars';
+
 .user {
   display: flex;
   justify-content: space-between;
@@ -42,4 +44,10 @@
 
 .jumbotron{
   background-image: url(https://picsum.photos/1366/720);
+}
+
+.fullform {
+  max-width: vars.$max-width;
+  align-items: center;
+  margin: auto;
 }

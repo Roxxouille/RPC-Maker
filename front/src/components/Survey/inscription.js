@@ -16,13 +16,13 @@ export class Inscription extends Component {
   render() {
     const { values, handleChange, CheckContent, handleSubmit, handleAsNumber } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Entre vous et votre pc il ne reste qu’un pas!</h2>
           <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’etait long mais avec ca rien ne sera laisser au hasard et vous aurez un environnement numerique qui vous correspond =)</h1>
           <h1>Il ne vous reste plus qu’a vous inscrire et le  monteur vous contactera au plus vite pourfinaliser votre commande, et en plus un avatar personnaliser vous sera attribue, elle est pas belle la vie?</h1>
         </div>
-        <Form>
+        <Form className="Form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Nom</Form.Label>
