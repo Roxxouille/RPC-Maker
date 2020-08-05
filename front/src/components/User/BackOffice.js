@@ -3,13 +3,15 @@ import { Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import { Image } from 'react-bootstrap';
 import Orders from './Orders';
+import {
+  Redirect,
+} from 'react-router-dom';
 
-const BackOffice = ({ getCommands, commands, getClients }) => {
+const BackOffice = ({ getCommands, commands, getClients, user }) => {
   useEffect(() => {
     if (commands.length === 0) {
       getCommands();
     }
-    getClients();
   });
   return (
     <div className="user">
