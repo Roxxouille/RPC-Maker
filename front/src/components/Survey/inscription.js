@@ -14,41 +14,41 @@ export class Inscription extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent, handleSubmit } = this.props;
+    const { values, handleChange, CheckContent, handleSubmit, handleAsNumber } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Entre vous et votre pc il ne reste qu’un pas!</h2>
           <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’etait long mais avec ca rien ne sera laisser au hasard et vous aurez un environnement numerique qui vous correspond =)</h1>
           <h1>Il ne vous reste plus qu’a vous inscrire et le  monteur vous contactera au plus vite pourfinaliser votre commande, et en plus un avatar personnaliser vous sera attribue, elle est pas belle la vie?</h1>
         </div>
-        <Form>
+        <Form className="Form">
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="Nom" placeholder="Ton nom ?" onChange={handleChange('inscr_nom')} />
+              <Form.Control type="Nom" placeholder="Ton nom ?" onChange={handleChange('lastname')} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Prenom</Form.Label>
-              <Form.Control type="Prenom" placeholder="TOn prénom ?" onChange={handleChange('inscr_prenom')} />
+              <Form.Control type="Prenom" placeholder="TOn prénom ?" onChange={handleChange('firstname')} />
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail2">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="E-Mail" onChange={handleChange('inscr_email')} />
+              <Form.Control type="email" placeholder="E-Mail" onChange={handleChange('email')} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword2">
               <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange('inscr_mdp')} />
+              <Form.Control type="password" placeholder="Password" onChange={handleChange('password')} />
             </Form.Group>
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="Rue de la patate ?" onChange={handleChange('inscr_adress1')} />
+            <Form.Control placeholder="Rue de la patate ?" onChange={handleChange('adress')} />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
@@ -59,11 +59,11 @@ export class Inscription extends Component {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Ville</Form.Label>
-              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('inscr_ville')} />
+              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('city')} />
             </Form.Group>
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Code Postale</Form.Label>
-              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('inscr_zip')} />
+              <Form.Control type="number" placeholder="Apartment, studio, cage ?" onChange={handleAsNumber('zip_code')} />
             </Form.Group>
           </Form.Row>
 
