@@ -194,7 +194,7 @@ class User implements UserInterface
         $this->updatedAt = new \DateTime();
         $this->testimonies = new ArrayCollection();
         $this->level = 1;
-        $this->builder = new ArrayCollection();
+        //$this->builder = new ArrayCollection();
     }
 
     public function getId(): ?int
