@@ -4,11 +4,12 @@ import './styles.scss';
 import { Image } from 'react-bootstrap';
 import Orders from './Orders';
 
-const BackOffice = ({ getCommands, commands }) => {
+const BackOffice = ({ getCommands, commands, getClients }) => {
   useEffect(() => {
     if (commands.length === 0) {
       getCommands();
     }
+    getClients();
   });
   return (
     <div className="user">

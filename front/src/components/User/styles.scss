@@ -40,6 +40,18 @@
   }
 }
 
+.order {
+  &__items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    &__one {
+      width: 25%;
+      padding: 1em 2em 1em 2em;
+    }
+  }
+}
+
 .jumbotron{
   background-image: url(https://picsum.photos/1366/720);
 }

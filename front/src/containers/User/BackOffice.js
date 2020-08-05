@@ -10,6 +10,9 @@ const mapDispatchToProps = (dispatch) => ({
   getCommands: () => {
     dispatch(getCommands());
   },
+  getClients: () => {
+    dispatch(getClients());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(BackOffice);

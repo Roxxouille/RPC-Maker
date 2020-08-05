@@ -1,33 +1,26 @@
 import React from 'react';
+import './styles.scss';
 
 const Order = ({ command }) => {
+
+  console.log(command);
+  let total = 0;
+
+  const dataCommand = command.item.map((data) => {
+    const price = parseInt(data.price);
+    total += price;
+    return (
+      <div className="order__items__one" key={data.id}>
+        {data.category.name}: <a href={data.url}>{data.name}</a> {data.price}€
+      </div>
+    );
+  });
+
   return (
-    <div>
-      <h3>PC 453 de ezinz</h3>
-      <div>
-        Carte Graphique : 
-      </div>
-      <div>
-        Processeur :
-      </div>
-      <div>
-        Boitier: 
-      </div>
-      <div>
-        Refroidissement: 
-      </div>
-      <div>
-        Stockage: 
-      </div>
-      <div>
-        Ecran: 
-      </div>
-      <div>
-        Souris: 
-      </div>
-      <div>
-        Clavier:
-      </div>
+    <div className="order">
+      <h3>PC {command.id} pour {command.user.firstname} {command.user.lastname} allias {command.user.username}</h3>
+      <div className="order__items">{dataCommand}</div>
+      total: {total} €
     </div>
   );
 };
