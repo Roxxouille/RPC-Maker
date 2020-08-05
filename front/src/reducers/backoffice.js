@@ -1,7 +1,8 @@
-import { COMMANDS_TO_STATE } from '../actions/backoffice';
+import { COMMANDS_TO_STATE, CLIENTS_TO_STATE } from '../actions/backoffice';
 
 export const initialState = {
   commands: [],
+  clients: [],
 };
 
 const contact = (state = initialState, action = {}) => {
@@ -10,6 +11,11 @@ const contact = (state = initialState, action = {}) => {
       return {
         ...state,
         commands: action.commands,
+      };
+    case CLIENTS_TO_STATE:
+      return {
+        ...state,
+        clients: action.clients,
       };
     default:
       return state;

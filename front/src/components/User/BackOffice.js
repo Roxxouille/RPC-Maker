@@ -12,6 +12,7 @@ const BackOffice = ({ getCommands, commands, getClients, user }) => {
     if (commands.length === 0) {
       getCommands();
     }
+    getClients();
   });
   return (
     <div className="user">
