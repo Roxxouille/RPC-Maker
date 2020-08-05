@@ -18,7 +18,7 @@ class Category
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"category", "item"})
+     * @Groups({"category", "item", "command"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Category
      *      max = 45,
      *      maxMessage = "Le nom de la catégorie est trop long",
      * )
-     * @Groups({"category", "item"})
+     * @Groups({"category", "item", "command"})
      */
     private $name;
 
