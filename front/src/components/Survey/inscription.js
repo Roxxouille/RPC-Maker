@@ -14,6 +14,7 @@ export class Inscription extends Component {
   };
 
   render() {
+    const { values, handleChange, CheckContent, handleSubmit } = this.props;
     return (
       <div>
         <div>
@@ -25,53 +26,44 @@ export class Inscription extends Component {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="Nom" placeholder="Enter email" />
+              <Form.Control type="Nom" placeholder="Ton nom ?" onChange={handleChange('inscr_nom')} />
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Prenom</Form.Label>
-              <Form.Control type="Prenom" placeholder="Le nom de ton chat ?" />
+              <Form.Control type="Prenom" placeholder="TOn prénom ?" onChange={handleChange('inscr_prenom')} />
             </Form.Group>
           </Form.Row>
           <Form.Row>
-            <Form.Group as={Col} controlId="formGridEmail">
+            <Form.Group as={Col} controlId="formGridEmail2">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="E-Mail" />
+              <Form.Control type="email" placeholder="E-Mail" onChange={handleChange('inscr_email')} />
             </Form.Group>
 
-            <Form.Group as={Col} controlId="formGridPassword">
+            <Form.Group as={Col} controlId="formGridPassword2">
               <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control type="password" placeholder="Password" onChange={handleChange('inscr_mdp')} />
             </Form.Group>
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="Rue de la patate ?" />
+            <Form.Control placeholder="Rue de la patate ?" onChange={handleChange('inscr_adress1')} />
           </Form.Group>
 
           <Form.Group controlId="formGridAddress2">
             <Form.Label>Address complement</Form.Label>
-            <Form.Control placeholder="Apartment, studio, cage ?" />
+            <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('inscr_adress2')} />
           </Form.Group>
 
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Ville</Form.Label>
-              <Form.Control />
+              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('inscr_ville')} />
             </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridState">
-              <Form.Label>Departement</Form.Label>
-              <Form.Control as="select" defaultValue="Choisi">
-                <option>Choisi...</option>
-                <option>...</option>
-              </Form.Control>
-            </Form.Group>
-
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Code Postale</Form.Label>
-              <Form.Control />
+              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('inscr_zip')} />
             </Form.Group>
           </Form.Row>
 
@@ -79,11 +71,11 @@ export class Inscription extends Component {
             <Form.Check type="checkbox" label="Je ne suis pas un robot" />
           </Form.Group>
 
-          <Form.Group id="formGridCheckbox">
+          <Form.Group id="formGridCheckbox2">
             <Form.Check type="checkbox" label="J'accepte les CGU" />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             C'est parti
           </Button>
         </Form>

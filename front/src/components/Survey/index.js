@@ -90,6 +90,14 @@ export class UserForm extends Component {
     option_printer: '',
     option_printer_model: '',
     option_printer_type: '',
+    inscr_nom: '',
+    inscr_prenom: '',
+    inscr_email: '',
+    inscr_mdp: '',
+    inscr_adress1: '',
+    inscr_adress2: '',
+    inscr_ville: '',
+    inscr_zip: '',
   };
 
   nextStep = () => {
@@ -110,6 +118,21 @@ export class UserForm extends Component {
    handleChange = (input) => (e) => {
      this.setState({ [input]: e.target.value });
    };
+
+   handleSubmit = (event) => {
+     alert(`A form was submitted: ${this.state}`);
+
+     fetch('http://localhost:3000/user/', {
+       method: 'POST',
+       // We convert the React state to JSON and send it as the POST body
+       body: JSON.stringify(this.state),
+     }).then((response) => {
+       console.log(response);
+       return response.json();
+     });
+
+     event.preventDefault();
+   }
 
    CheckContent = (input) => (e) => {
      this.setState({ [input]: e.target.name });
@@ -196,6 +219,14 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
+       inscr_nom,
+       inscr_prenom,
+       inscr_email,
+       inscr_mdp,
+       inscr_adress1,
+       inscr_adress2,
+       inscr_ville,
+       inscr_zip,
      } = this.state;
      const values = {
        surname,
@@ -276,6 +307,14 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
+       inscr_nom,
+       inscr_prenom,
+       inscr_email,
+       inscr_mdp,
+       inscr_adress1,
+       inscr_adress2,
+       inscr_ville,
+       inscr_zip,
      };
 
      switch (step) {
@@ -351,6 +390,8 @@ export class UserForm extends Component {
                  nextStep={this.nextStep}
                  prevStep={this.prevStep}
                  handleChange={this.handleChange}
+                 CheckContent={this.CheckContent}
+                 handleSubmit={this.handleSubmit}
                  values={values}
                />
          );
