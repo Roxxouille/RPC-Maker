@@ -48,7 +48,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user/{slug}", name="user_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em )
+    public function edit(User $user = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
         //check if the user received in the request exist
         if ($user === null) {
@@ -127,12 +127,12 @@ class UserController extends AbstractController
         $userFirstname = $user->getFirstname();
         $contentDecode = json_decode($content, true);
         $commandData = [];
-        foreach($contentDecode as $key => $contentData){
+        foreach ($contentDecode as $key => $contentData) {
             $commandData[$key] = $contentData;
         }
         array_splice($commandData, 0, 11);
         $command = new Command();
-        $command->setName('Pc numero 1 de '. $userFirstname );
+        $command->setName('Pc numero 1 de ' . $userFirstname);
         $command->setData($commandData);
 
 
@@ -178,21 +178,38 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit-password/{slug}", methods="GET|POST", name="user_edit_password")
      */
-    public function changePassword(User $user = null, Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function changePassword(User $user = null, Request $request, UserPasswordEncoderInterface $encoder, SerializerInterface $serializer, ValidatorInterface $validator): Response
     {
-           //send a 404 error if the user does not exist
+        //send a 404 error if the user does not exist
         if ($user === null) {
             return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
-        //get the ne passord from the request
+        //get the request content (info about new user)
+        //transform it into an object user and replace the data
+        //get the validations errors if there is any
         $content = $request->getContent();
-        $contentDecode = json_decode($content, true);
-        $newPassword = $contentDecode['newPassword'];
+        $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
+        $errors = $validator->validate($updatedUser);
 
-        //encode the ne paasword
-        //save it in the databse
-        $user->setPassword($encoder->encodePassword($user, $newPassword));
+        // if there is errors, return them in a json format
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+
+        //get the new validated password
+        $password = $updatedUser->getPassword();
+
+        //Encode the new validated password
+        $updatedUser->setPassword($encoder->encodePassword($updatedUser, $password));
         $this->getDoctrine()->getManager()->flush();
 
         //send a response to the front
@@ -210,7 +227,7 @@ class UserController extends AbstractController
         }
 
         $users = $userRepository->findBy(['builder' => $user]);
-        
+
         return $this->json($users, Response::HTTP_OK, [], ['groups' => 'user']);
     }
 }
