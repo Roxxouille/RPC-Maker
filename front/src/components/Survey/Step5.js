@@ -16,7 +16,7 @@ export class Step5 extends Component {
   render() {
     const { values, handleChange, CheckContent } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question Specifique</h2>
         </div>
@@ -40,10 +40,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -51,10 +51,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -74,7 +74,7 @@ export class Step5 extends Component {
               <Form.Label>Combien ?</Form.Label>
             </Col>
             <Col>
-              <Form.Control className="Form" placeholder="- GO" onChange={handleChange('spec_storage_quantity')} />
+              <Form.Control placeholder="- GO" onChange={handleChange('spec_storage_quantity')} />
             </Col>
           </Form.Row>
         </Form>
@@ -84,10 +84,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -96,10 +96,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -108,10 +108,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -120,10 +120,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -135,7 +135,7 @@ export class Step5 extends Component {
               <Form.Check name="Home cinema" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={CheckContent('spec_sound_utilisation')} />
               <Form.Check name="Musique" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={CheckContent('spec_sound_utilisation')} />
               <Form.Check name="Autres" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={CheckContent('spec_sound_utilisation')} />
-              <Form.Control className="Form" placeholder="Précisez" onChange={handleChange('spec_sound_utilisation_other')} />
+              <Form.Control placeholder="Précisez" onChange={handleChange('spec_sound_utilisation_other')} />
             </div>
           ))}
         </Form>
@@ -149,10 +149,10 @@ export class Step5 extends Component {
 
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>

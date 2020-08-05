@@ -16,7 +16,7 @@ export class Step3 extends Component {
   render() {
     const { values, handleChange, CheckContent } = this.props;
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question pratique</h2>
         </div>
@@ -27,10 +27,10 @@ export class Step3 extends Component {
         <Form className="Form">
           <Form.Row>
             <Col>
-              <Button className="bouton" variant="primary" type="submit"> Oui </Button>
+              <Button className="Form__button" variant="primary" type="submit"> Oui </Button>
             </Col>
             <Col>
-              <Button className="bouton" variant="primary" type="submit"> Non </Button>
+              <Button className="Form__button" variant="primary" type="submit"> Non </Button>
             </Col>
           </Form.Row>
         </Form>
@@ -49,10 +49,10 @@ export class Step3 extends Component {
         </Form>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>
