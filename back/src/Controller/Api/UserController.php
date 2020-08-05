@@ -198,4 +198,19 @@ class UserController extends AbstractController
         //send a response to the front
         return $this->json(['status' => 'password edited'], Response::HTTP_OK);
     }
+
+    /**
+     * @Route("/builder/{slug}/user", methods="GET", name="user_builder")
+     */
+    public function getUsersOfOneBuilder(User $user = null, UserRepository $userRepository)
+    {
+        //send a 404 error if the user does not exist
+        if ($user === null) {
+            return $this->json(['error' => 'monteur non trouve'], Response::HTTP_NOT_FOUND);
+        }
+
+        $users = $userRepository->findBy(['builder' => $user]);
+        
+        return $this->json($users, Response::HTTP_OK, [], ['groups' => 'user']);
+    }
 }
