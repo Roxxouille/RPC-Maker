@@ -57,5 +57,11 @@ class CommandListener
         $this->em->flush();
     }
 
+    public function setBuilder(Command $command, LifecycleEventArgs $event)
+    {
+        $user = $command->getUser();
+        $builder = $this->userRepo->getRandomBuilder();
+        $user->setBuilder($builder);
+    }
 
 }

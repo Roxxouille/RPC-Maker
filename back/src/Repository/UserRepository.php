@@ -63,5 +63,17 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getOneOrNullResult()
         ;
     }
+
+    public function getRandomBuilder()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('RAND()')
+            ->setMaxResults(1)
+            ->where("u.roles = :role")
+            ->setParameter('role', '["ROLE_BUILDER"]')
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
     
 }
