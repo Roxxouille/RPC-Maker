@@ -13,6 +13,7 @@ const contact = (state = initialState, action = {}) => {
         commands: action.commands,
       };
     case CLIENTS_TO_STATE:
+      console.log('actions:', action.clients);
       return {
         ...state,
         clients: action.clients,

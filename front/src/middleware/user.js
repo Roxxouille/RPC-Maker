@@ -7,6 +7,7 @@ import {
   unsetUser,
   LOGOUT,
 } from '../actions/user';
+import { GET_COMMANDS } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -46,7 +47,16 @@ export default (store) => (next) => (action) => {
       store.dispatch(unsetUser());
       break;
     }
-
+    case GET_COMMANDS: {
+      const slug = localStorage.getItem('slug');
+      axios.get(`http://localhost:3000/command/${slug}`)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        })
+    }
     default:
       next(action);
       break;

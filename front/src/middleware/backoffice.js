@@ -1,10 +1,9 @@
 import axios from 'axios';
-import { GET_COMMANDS, commandsToState, GET_CLIENTS } from '../actions/backoffice';
+import { GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_COMMANDS: {
-      console.log('get commands');
       const token = localStorage.getItem('token');
       axios.get('http://localhost:3000/commands', { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
@@ -22,7 +21,7 @@ export default (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/builder/${slug}/user`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(commandsToState(response.data));
+          store.dispatch(clientsToState(response.data));
         })
         .catch((error) => {
           console.log(error.response);

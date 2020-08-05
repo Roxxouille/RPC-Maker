@@ -3,16 +3,17 @@ import { Switch, Route, Link } from 'react-router-dom';
 import './styles.scss';
 import { Image } from 'react-bootstrap';
 import Orders from './Orders';
+import Clients from './Clients';
 import {
   Redirect,
 } from 'react-router-dom';
 
-const BackOffice = ({ getCommands, commands, getClients, user }) => {
+const BackOffice = ({ getClients, clients, user }) => {
   useEffect(() => {
-    if (commands.length === 0) {
-      getCommands();
+    if (clients.length === 0 && user.isLogged === true) {
+      console.log('useefectbackoffice');
+      getClients();
     }
-    getClients();
   });
   return (
     <div className="user">
@@ -30,7 +31,7 @@ const BackOffice = ({ getCommands, commands, getClients, user }) => {
             backoffice
           </Route>
           <Route path="/backoffice/commands">
-            <Orders commands={commands} />
+            <Clients clients={clients} />
           </Route>
           <Route path="/backoffice/message">
             Vos conversations

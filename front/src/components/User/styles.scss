@@ -52,6 +52,18 @@
   }
 }
 
+.clients {
+  &__row{
+    display: flex;
+
+    &__cell{
+      padding: 1em;
+      width: 12.5%;
+      font-size: 12px;
+    }
+  }
+}
+
 .jumbotron{
   background-image: url(https://picsum.photos/1366/720);
 }

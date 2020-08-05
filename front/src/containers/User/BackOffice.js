@@ -5,6 +5,7 @@ import { getCommands, getClients } from '../../actions/backoffice';
 const mapStateToProps = (state) => ({
   commands: state.backoffice.commands,
   user: state.user,
+  clients: state.backoffice.clients,
 });
 
 const mapDispatchToProps = (dispatch) => ({

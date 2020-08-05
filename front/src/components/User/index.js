@@ -21,15 +21,16 @@ import {
   Button,
 } from 'react-bootstrap';
 
-const User = ({ isLogged, isLoading, username, level, firstname, email, role }) => {
+const User = ({ isLogged, isLoading, username, level, firstname, email, role, commands, getCommands }) => {
   if (localStorage.getItem('token')) {
     activateLoad();
   }
-  console.log('role:', role);
+  /*if (isLogged === true && commands.length === 0 && role === 'ROLE_USER') {
+    getCommands();
+  }*/
+
   return (
-
     <Container fluid>
-
       <Jumbotron fluid className="jumbotron">
         <Container>
           <h1>Bienvenu {username}</h1>

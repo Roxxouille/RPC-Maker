@@ -8,6 +8,7 @@ export const initialState = {
   username: 'Mon compte',
   isLoading: false,
   role: '',
+  commands: [],
 };
 
 const user = (state = initialState, action = {}) => {

@@ -10,6 +10,11 @@ export const IS_LOADING = 'IS_LOADING';
 export const ACTIVATE_LOAD = 'ACTIVATE_LOAD';
 export const CHANGE_PROFILE = 'CHANGE_PROFILE';
 export const SUBMIT_PROFILE = 'SUBMIT_PROFILE';
+export const GET_COMMANDS = 'GET_COMMANDS';
+
+export const getCommands = () => ({
+  type: GET_COMMANDS,
+});
 
 export const autoLog = () => ({
   type: AUTOLOG,
