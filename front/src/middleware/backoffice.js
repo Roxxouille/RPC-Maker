@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_COMMANDS, commandsToState } from '../actions/backoffice';
+import { GET_COMMANDS, commandsToState, GET_CLIENTS } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -13,6 +13,17 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+        });
+      break;
+    }
+    case GET_CLIENTS: {
+      const token = localStorage.getItem('token');
+      axios.get('http://localhost:3000/builder/54/user', {headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
         });
       break;
     }
