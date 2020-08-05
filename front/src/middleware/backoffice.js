@@ -18,9 +18,11 @@ export default (store) => (next) => (action) => {
     }
     case GET_CLIENTS: {
       const token = localStorage.getItem('token');
-      axios.get('http://localhost:3000/builder/54/user', {headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      const slug = localStorage.getItem('slug');
+      axios.get(`http://localhost:3000/builder/${slug}/user`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
+          store.dispatch(commandsToState(response.data));
         })
         .catch((error) => {
           console.log(error.response);
