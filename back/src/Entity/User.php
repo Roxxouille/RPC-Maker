@@ -182,6 +182,11 @@ class User implements UserInterface
      */
     private $slug;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="builder")
+     */
+    private $builder;
+
     public function __construct()
     {
         $this->commands = new ArrayCollection();
@@ -189,6 +194,7 @@ class User implements UserInterface
         $this->updatedAt = new \DateTime();
         $this->testimonies = new ArrayCollection();
         $this->level = 1;
+        $this->builder = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -471,6 +477,41 @@ class User implements UserInterface
     public function setSlug(?string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getBuilder(): ?self
+    {
+        return $this->builder;
+    }
+
+    public function setBuilder(?self $builder): self
+    {
+        $this->builder = $builder;
+
+        return $this;
+    }
+
+    public function addBuilder(self $builder): self
+    {
+        if (!$this->builder->contains($builder)) {
+            $this->builder[] = $builder;
+            $builder->setBuilder($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBuilder(self $builder): self
+    {
+        if ($this->builder->contains($builder)) {
+            $this->builder->removeElement($builder);
+            // set the owning side to null (unless already changed)
+            if ($builder->getBuilder() === $this) {
+                $builder->setBuilder(null);
+            }
+        }
 
         return $this;
     }

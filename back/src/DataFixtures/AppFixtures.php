@@ -279,7 +279,7 @@ class AppFixtures extends Fixture
 
         // fixtures for Command
         $commandList = [];
-        for($i= 0; $i < 25; $i++){
+        for ($i = 0; $i < 25; $i++) {
             $command = new Command;
             $command->setCreatedAt(new \DateTime);
             $command->setUpdatedAt(new \DateTime);
@@ -301,7 +301,7 @@ class AppFixtures extends Fixture
         }
 
         // fixtures for Testimony
-        for($i= 0; $i < 10; $i++){
+        for ($i = 0; $i < 10; $i++) {
             $testimony = new Testimony;
             $testimony->setContent($faker->text($faker->numberBetween(30, 255)));
             $testimony->setScore($faker->numberBetween(1, 5));
@@ -354,23 +354,22 @@ class AppFixtures extends Fixture
         }
         $manager->persist($command);
 
-            $category = new Category();
-            $category->setName('test');
-            $category->setSpecs($categorySpec);
-            $category->setCreatedAt(new \DateTime);
-            $category->setUpdatedAt(new \DateTime);
-            $manager->persist($category);
+        $category = new Category();
+        $category->setName('test');
+        $category->setSpecs($categorySpec);
+        $category->setCreatedAt(new \DateTime);
+        $category->setUpdatedAt(new \DateTime);
+        $manager->persist($category);
 
-            $item = new Item();
-            $item->setName('test');
-            $item->setCreatedAt(new \DateTime);
-            $item->setUpdatedAt(new \DateTime);
-            $item->setCategory($category);
-            $item->setPrice($faker->numberBetween(50, 500));
-            $item->setUrl($faker->url());
-            $manager->persist($item);
+        $item = new Item();
+        $item->setName('test');
+        $item->setCreatedAt(new \DateTime);
+        $item->setUpdatedAt(new \DateTime);
+        $item->setCategory($category);
+        $item->setPrice($faker->numberBetween(50, 500));
+        $item->setUrl($faker->url());
+        $manager->persist($item);
 
         $manager->flush();
     }
-
 }
