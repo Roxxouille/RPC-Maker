@@ -236,7 +236,7 @@ class AppFixtures extends Fixture
 
         $avatarList = [];
         // fixtures for Avatar
-        for ($i = 0; $i < 26; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
@@ -245,23 +245,32 @@ class AppFixtures extends Fixture
             $avatarList[] = $avatar;
         }
 
+        $builderList = [];
+        $builders = [
+            'Raphaël' => 'raphael@gmail.com',
+            'Alexis' => 'alexis@gmail.com',
+            'Paul' => 'paul@gmail.com',
+            'Sebastien' => 'sebastien@gmail.com',
+        ];
         // add one user with builder roles
-        $user = new User;
-        $user->setCreatedAt(new \DateTime);
-        $user->setUpdatedAt(new \DateTime);
-        $user->setUsername('builder');
-        $user->setEmail('builder@builder.com');
-        $user->setPassword($this->encoder->encodePassword($user, 'builder'));
-        $user->setLevel($faker->randomDigitNotNull);
-        $user->setRoles(['ROLE_BUILDER']);
-        $user->setFirstname($faker->firstName);
-        $user->setLastname($faker->lastName);
-        $user->setAvatar($faker->unique->randomElement($avatarList));
-        $builder = $user;
-        $manager->persist($user);
-        
+        foreach($builders as $key => $builder){
+            $user = new User;
+            $user->setCreatedAt(new \DateTime);
+            $user->setUpdatedAt(new \DateTime);
+            $user->setUsername($key);
+            $user->setEmail($builder);
+            $user->setPassword($this->encoder->encodePassword($user, 'builder'));
+            $user->setLevel($faker->randomDigitNotNull);
+            $user->setRoles(['ROLE_BUILDER']);
+            $user->setFirstname($faker->firstName);
+            $user->setLastname($faker->lastName);
+            $user->setAvatar($faker->unique->randomElement($avatarList));
+            $builderList[] = $user;
+            $manager->persist($user);   
+        }
+
         $userList = [];
-        // fixture for User
+
         for ($i = 0; $i < 25; $i++) {
             $user = new User;
             $user->setCreatedAt(new \DateTime);
@@ -274,12 +283,10 @@ class AppFixtures extends Fixture
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
-            $user->setBuilder($builder);
+            $user->setBuilder($faker->randomElement($builderList));
             $manager->persist($user);
             $userList[] = $user;
         }
-
-
 
         // fixtures for Command
         $commandList = [];
@@ -337,7 +344,7 @@ class AppFixtures extends Fixture
         $user->setFirstname('test');
         $user->setLastname('test');
         $user->setAvatar($avatar);
-        $user->setBuilder($builder);
+        $user->setBuilder($faker->randomElement($builderList));
         $manager->persist($user);
 
         // fixtures for Command
