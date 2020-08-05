@@ -113,7 +113,7 @@ export class Step4 extends Component {
       );
     });
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question configuration</h2>
         </div>
@@ -128,123 +128,123 @@ export class Step4 extends Component {
             <Form.Control as="select" onChange={handleChange('config_proc')}>
               {optionProc}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_proc_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_proc_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_proc_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_proc_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Carte mére</Form.Label>
+            <Form.Label className="Form__inside">Carte mére</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_board')}>
               {optionCM}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_board_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_board_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_board_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control className="Fo" placeholder="Si non laissez vide" onChange={handleChange('config_board_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Carte graphique</Form.Label>
+            <Form.Label className="Form__inside">Carte graphique</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_cg')}>
               {optionCG}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_cg_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_cg_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_cg_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_cg_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>RAM</Form.Label>
+            <Form.Label className="Form__inside">RAM</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_ram')}>
               {optionRAM}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_ram_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_ram_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_ram_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_ram_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Ventirad / Water cooling</Form.Label>
+            <Form.Label className="Form__inside">Ventirad / Water cooling</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_refresh')}>
               {optionVW}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_refresh_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_refresh_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_refresh_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_refresh_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Stockage</Form.Label>
+            <Form.Label className="Form__inside">Stockage</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_storage')}>
               {optionLG}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_storage_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_storage__link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_storage_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_storage__link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Carte son</Form.Label>
+            <Form.Label className="Form__inside">Carte son</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_boardsound')}>
               {optionCS}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_boardsound_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_boardsound_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_boardsound_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_boardsound_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Boitier</Form.Label>
+            <Form.Label className="Form__inside">Boitier</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_case')}>
               {optionBOIT}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_case_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_case_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_case_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_case_link')} />
           </Form.Group>
         </Form>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Alimentation</Form.Label>
+            <Form.Label className="Form__inside">Alimentation</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('config_power')}>
               {optionALIM}
             </Form.Control>
-            <Form.Label>Un autre modele ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('config_power_model')} />
-            <Form.Label>Un lien ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laissez vide" onChange={handleChange('config_power_link')} />
+            <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('config_power_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_power_link')} />
           </Form.Group>
         </Form>
 
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>

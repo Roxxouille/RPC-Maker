@@ -25,15 +25,15 @@ class CommandRepository extends ServiceEntityRepository
     public function findOneByUser($command)
     {
         return $this->createQueryBuilder('c')
-            ->select('c', 'u')
+            ->select('c', 'u', 'i')
             ->leftJoin('c.user', 'u')
+            ->leftJoin('c.item', 'i')
             ->where('c = :command')
             ->setParameter('command', $command)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
-    
+
     public function findNumerOfPcBuilded()
     {
         $qb = $this->createQueryBuilder('c');

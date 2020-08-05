@@ -179,7 +179,7 @@ export class Step7 extends Component {
       <option key={`${imprimanteType}`}>{`${imprimanteType}`}</option>
     ));
     return (
-      <div>
+      <div className="fullform">
         <div>
           <h2>Question d'options</h2>
         </div>
@@ -197,17 +197,17 @@ export class Step7 extends Component {
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Ecran1</Form.Label>
+            <Form.Label className="Form__inside">Ecran1</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_screen')}>
               {optionScreen}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('option_screen_model')} />
-            <Form.Label>Taille d'ecran</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Preciser" onChange={handleChange('option_screen_model')} />
+            <Form.Label className="Form__inside">Taille d'ecran</Form.Label>
             <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('option_screen_size')}>
               {optionSize}
             </Form.Control>
-            <Form.Label>Resolution</Form.Label>
+            <Form.Label className="Form__inside">Resolution</Form.Label>
             <Form.Control as="select" defaultValue="full HD" onChange={handleChange('option_screen_res')}>
               {optionResolution}
             </Form.Control>
@@ -215,14 +215,14 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Clavier</Form.Label>
+            <Form.Label className="Form__inside">Clavier</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_keyboard')}>
               {optionKeyboard}
             </Form.Control>
             <Form.Row>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Type</Form.Label>
+                  <Form.Label className="Form__inside">Type</Form.Label>
                   <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('option_keyboard_type')}>
                     {optionType}
                   </Form.Control>
@@ -230,7 +230,7 @@ export class Step7 extends Component {
               </Col>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
-                  <Form.Label>Switch</Form.Label>
+                  <Form.Label className="Form__inside">Switch</Form.Label>
                   <Form.Control as="select" defaultValue="Red" onChange={handleChange('option_keyboard_switch')}>
                     {optionSwitch}
                   </Form.Control>
@@ -238,24 +238,24 @@ export class Step7 extends Component {
               </Col>
             </Form.Row>
           </Form.Group>
-          <Form.Label>Langue</Form.Label>
+          <Form.Label className="Form__inside">Langue</Form.Label>
           <Form.Control as="select" defaultValue="azerty" onChange={handleChange('option_keyboard_language')}>
             {optionLanguage}
           </Form.Control>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Sourie</Form.Label>
+            <Form.Label className="Form__inside">Sourie</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mouse')}>
               {optionMouse}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')} />
-            <Form.Label>Type</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')} />
+            <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="laser" onChange={handleChange('option_mouse_type')}>
               {optionMouseType}
             </Form.Control>
-            <Form.Label>Filaire</Form.Label>
+            <Form.Label className="Form__inside">Filaire</Form.Label>
             <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_mouse_filaire')}>
               <option>Non</option>
               <option>Oui</option>
@@ -264,17 +264,17 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Tapis</Form.Label>
+            <Form.Label className="Form__inside">Tapis</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mousepad')}>
               {optionPad}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_mousepad_model')} />
-            <Form.Label>Type</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mousepad_model')} />
+            <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('option_mousepad_type')}>
               {optionPadType}
             </Form.Control>
-            <Form.Label>Taille</Form.Label>
+            <Form.Label className="Form__inside">Taille</Form.Label>
             <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_mousepad_size')}>
               {optionPadSize}
             </Form.Control>
@@ -282,19 +282,19 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Casque-micro</Form.Label>
+            <Form.Label className="Form__inside">Casque-micro</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_headphone')}>
               {optionHeadSet}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
-            <Form.Label>Type</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
+            <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('option_headphone_type')}>
               <option>Supra auriculaire</option>
               <option>isolant</option>
               <option>Ouvert</option>
             </Form.Control>
-            <Form.Label>Taille</Form.Label>
+            <Form.Label className="Form__inside">Taille</Form.Label>
             <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_headphone_size')}>
               <option>Petit</option>
               <option>Moyen</option>
@@ -304,19 +304,19 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Enceinte</Form.Label>
+            <Form.Label className="Form__inside">Enceinte</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_enceinte')}>
               {optionHiFi}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_enceinte_model')} />
-            <Form.Label>Type</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_enceinte_model')} />
+            <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('option_enceinte_type')}>
               <option>1 enceinte</option>
               <option>2 enceintes</option>
               <option>3 enceintes</option>
             </Form.Control>
-            <Form.Label>Caisson de basses</Form.Label>
+            <Form.Label className="Form__inside">Caisson de basses</Form.Label>
             <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_enceinte_bass')}>
               <option>Non</option>
               <option>Oui</option>
@@ -325,13 +325,13 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Webcam</Form.Label>
+            <Form.Label className="Form__inside">Webcam</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_webcam')}>
               {optionWebCam}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_webcam_model')} />
-            <Form.Label>Resolution</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_webcam_model')} />
+            <Form.Label className="Form__inside">Resolution</Form.Label>
             <Form.Control as="select" defaultValue="720p" onChange={handleChange('option_webcam_res')}>
               {optionWebCamResolution}
             </Form.Control>
@@ -339,13 +339,13 @@ export class Step7 extends Component {
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
-            <Form.Label>Imprimante</Form.Label>
+            <Form.Label className="Form__inside">Imprimante</Form.Label>
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_printer')}>
               {optionPrinter}
             </Form.Control>
-            <Form.Label>Un modele en tete ?</Form.Label>
-            <Form.Control className="Form" placeholder="Si non laisser vide" onChange={handleChange('option_printer_model')} />
-            <Form.Label>Type</Form.Label>
+            <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_printer_model')} />
+            <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="Laser" onChange={handleChange('option_printer_type')}>
               {optionPrinterType}
             </Form.Control>
@@ -353,10 +353,10 @@ export class Step7 extends Component {
         </Form>
         <Form.Row>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
           <Col>
-            <Button className="bouton" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
+            <Button className="Form__button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
           </Col>
         </Form.Row>
       </div>

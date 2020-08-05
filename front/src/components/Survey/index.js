@@ -14,7 +14,6 @@ import './styles.scss';
 export class UserForm extends Component {
   state = {
     step: 1,
-    surname: '',
     budget: '',
     gap: '',
     utilisation: '',
@@ -53,8 +52,6 @@ export class UserForm extends Component {
     spec_wifi_room: '',
     spec_fiber: '',
     spec_sound: '',
-    spec_sound_utilisation: '',
-    spec_sound_utilisation_other: '',
     spec_light: '',
     os: '',
     os_name: '',
@@ -90,16 +87,17 @@ export class UserForm extends Component {
     option_printer: '',
     option_printer_model: '',
     option_printer_type: '',
-    inscr_nom: '',
-    inscr_prenom: '',
-    inscr_email: '',
-    inscr_mdp: '',
-    inscr_adress1: '',
+    username: '',
+    firstname: '',
+    lastname: '',
+    email: '',
+    password: '',
+    adress: '',
     inscr_adress2: '',
-    inscr_ville: '',
-    inscr_zip: '',
+    city: '',
+    zip_code: parseInt(''),
   };
-
+  // Gerer les pages dynamiques
   nextStep = () => {
     const { step } = this.state;
     this.setState({
@@ -114,17 +112,23 @@ export class UserForm extends Component {
     });
   };
 
-   // Handle fields change
+   // Handle pour un int
    handleChange = (input) => (e) => {
      this.setState({ [input]: e.target.value });
    };
 
+   // Handle pour un nombre
+   handleAsNumber = (input) => (e) => {
+    this.setState({ [input]: e.target.valueAsNumber });
+  };
+  // Envoi vers le back
    handleSubmit = (event) => {
-     alert(`A form was submitted: ${this.state}`);
+     alert(`formulaire envoyer ! : ${this.state}`);
 
-     fetch('http://localhost:3000/user/', {
+     fetch('http://localhost:3000/user', {
        method: 'POST',
-       // We convert the React state to JSON and send it as the POST body
+       // conversion du state vers un JSON
+       
        body: JSON.stringify(this.state),
      }).then((response) => {
        console.log(response);
@@ -133,7 +137,7 @@ export class UserForm extends Component {
 
      event.preventDefault();
    }
-
+   // handle pour les checkbox
    CheckContent = (input) => (e) => {
      this.setState({ [input]: e.target.name });
    };
@@ -141,7 +145,6 @@ export class UserForm extends Component {
    render() {
      const { step } = this.state;
      const {
-       surname,
        utilisation,
        other_utilisation,
        budget,
@@ -219,17 +222,18 @@ export class UserForm extends Component {
        option_printer,
        option_printer_model,
        option_printer_type,
-       inscr_nom,
-       inscr_prenom,
-       inscr_email,
-       inscr_mdp,
-       inscr_adress1,
+       username,
+       firstname,
+       lastname,
+       email,
+       password,
+       adress,
        inscr_adress2,
-       inscr_ville,
-       inscr_zip,
+       city,
+       zip_code,
      } = this.state;
      const values = {
-       surname,
+       username,
        utilisation,
        other_utilisation,
        budget,
@@ -279,7 +283,6 @@ export class UserForm extends Component {
        option,
        option_screen,
        option_screen_model,
-       option_screen_size,
        option_screen_res,
        option_keyboard,
        option_keyboard_type,
@@ -303,18 +306,14 @@ export class UserForm extends Component {
        option_enceinte_bass,
        option_webcam,
        option_webcam_model,
-       option_webcam_res,
-       option_printer,
-       option_printer_model,
-       option_printer_type,
-       inscr_nom,
-       inscr_prenom,
-       inscr_email,
-       inscr_mdp,
-       inscr_adress1,
+       lastname,
+       email,
+       password,
+       adress,
        inscr_adress2,
-       inscr_ville,
-       inscr_zip,
+       city,
+       zip_code,
+       firstname,
      };
 
      switch (step) {
@@ -392,6 +391,7 @@ export class UserForm extends Component {
                  handleChange={this.handleChange}
                  CheckContent={this.CheckContent}
                  handleSubmit={this.handleSubmit}
+                 handleAsNumber={this.handleAsNumber}
                  values={values}
                />
          );
