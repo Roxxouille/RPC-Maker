@@ -18,7 +18,7 @@ class Item
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"category", "command", "item"})
+     * @Groups({"category", "command", "item", "user"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Item
      *      max = 255,
      *      maxMessage = "Le nom est trop long",
      * )
-     * @Groups({"category", "command", "item"})
+     * @Groups({"category", "command", "item", "user"})
      */
     private $name;
 
@@ -37,7 +37,7 @@ class Item
      * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
      * @Assert\Regex("\d+", message = "Veuillez entrez un nombre valide")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"category", "command", "item"})
+     * @Groups({"category", "command", "item", "user"})
      */
     private $price;
 
@@ -49,7 +49,7 @@ class Item
      *      max = 255,
      *      maxMessage = "L'url est trop longue",
      * )
-     * @Groups({"category", "command", "item"})
+     * @Groups({"category", "command", "item", "user"})
      */
     private $url;
 
@@ -60,7 +60,7 @@ class Item
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="items")
-     * @Groups({"command", "item"})
+     * @Groups({"command", "item", "user"})
      */
     private $category;
 
