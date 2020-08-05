@@ -31,12 +31,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45, unique=true)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Assert\Length(
      *      min = 3,
      *      max = 25,
      *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
      *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
+     *      groups = {"registration","edit-profile"},
      * )
      * @Groups({"avatar", "command", "user", "testimony"})
      */
@@ -44,12 +45,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
-     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide")
+     * @Assert\Email(message = "L'email '{{ value }}' n'est pas valide", groups = {"registration","edit-profile"})
      * @Assert\Length(
      *      max = 255,
      *      maxMessage = "L'email est trop long",
+     *       groups = {"registration","edit-profile"},
      * )
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -57,12 +59,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "Au moins une majuscule, une minuscule, un chiffre, un caractère special, et 8 caractère minimum")
+     * @Assert\Regex("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[[:punct:]]).{8,}/", message = "Au moins une majuscule, une minuscule, un chiffre, un caractère special, et 8 caractère minimum", groups = {"password-edit", "registration","edit-profile"},)
      * @Assert\Length(
      *      max = 255,
      *      maxMessage = "Le mot de passe est trop long",
+     *      groups = {"password-edit", "registration","edit-profile"},
      * )
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"password-edit", "registration"},)
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -70,8 +73,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer")
-     * @Assert\Regex("/^\d+/", message = "Entrez un nombre valid")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Regex("/^\d+/", message = "Entrez un nombre valid", groups = {"registration","edit-profile"})
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -86,10 +89,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Assert\Length(
      *      max = 45,
      *      maxMessage = "Le prénom est trop long",
+     *       groups = {"registration","edit-profile"},
      * )
      * @Groups({"avatar", "command", "user"})
      */
@@ -98,10 +102,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Assert\Length(
      *      max = 45,
      *      maxMessage = "Le nom est trop long",
+     *       groups = {"registration","edit-profile"},
      * )
      * @Groups({"avatar", "command", "user"})
      */
@@ -110,10 +115,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=85, nullable=true)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Assert\Length(
      *      max = 85,
      *      maxMessage = "Le nom de la ville est trop long",
+     *      groups = {"registration","edit-profile"}
      * )
      * @Groups({"avatar", "command", "user"})
      */
@@ -122,8 +128,8 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Assert\Regex("/^[1-9]\d*$/", message = "Entrez un nombre valide")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\Regex("/^[1-9]\d*$/", message = "Entrez un nombre valide", groups = {"registration","edit-profile"})
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Groups({"avatar", "command", "user"})
      */
 
@@ -131,10 +137,11 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
      * @Assert\Length(
      *      max = 255,
      *      maxMessage = "L'adresse est trop longue",
+     *       groups = {"registration","edit-profile"},
      * )
      * @Groups({"avatar", "command", "user"})
      */
@@ -265,7 +272,7 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        
+
         if (empty($roles)) {
             $roles[] = 'ROLE_USER';
         }
@@ -515,5 +522,4 @@ class User implements UserInterface
 
         return $this;
     }
-
 }
