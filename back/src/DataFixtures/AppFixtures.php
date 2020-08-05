@@ -297,7 +297,7 @@ class AppFixtures extends Fixture
             $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setData(['Data' => 'Oui', 'Non']);
-            $command->setUser($faker->randomElement($userList));
+            $command->setUser($faker->unique->randomElement($userList));
 
             // adding 20 item, each of one category, for one command
             foreach ($categoryList as $key => $category) {
