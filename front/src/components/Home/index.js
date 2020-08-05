@@ -4,7 +4,6 @@ import CarouselHome from './CarouselHome';
 import Cards from './Cards';
 import Testimony from './Testimony';
 import PresHome from './PresHome';
-
 import './styles.scss';
 
 const Home = () => {

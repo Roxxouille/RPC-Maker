@@ -14,7 +14,7 @@ export class Inscription extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { values, handleChange, CheckContent, handleSubmit } = this.props;
     return (
       <div>
         <div>
@@ -75,7 +75,7 @@ export class Inscription extends Component {
             <Form.Check type="checkbox" label="J'accepte les CGU" />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="primary" type="submit" onClick={handleSubmit}>
             C'est parti
           </Button>
         </Form>

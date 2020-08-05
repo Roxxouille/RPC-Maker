@@ -7,6 +7,7 @@ export const initialState = {
   isLogged: false,
   username: 'Mon compte',
   isLoading: false,
+  role: '',
 };
 
 const user = (state = initialState, action = {}) => {
@@ -27,6 +28,7 @@ const user = (state = initialState, action = {}) => {
         username: action.username,
         isLogged: true,
         isLoading: false,
+        role: action.role,
       };
     case LOGIN:
       return {
@@ -42,6 +44,7 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         username: 'Mon compte',
+        role: '',
         isLogged: false,
       };
     case IS_LOADING:

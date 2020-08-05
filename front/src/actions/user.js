@@ -8,6 +8,8 @@ export const LOGOUT = 'LOGOUT';
 export const UNSET_USER = 'UNSET_USER';
 export const IS_LOADING = 'IS_LOADING';
 export const ACTIVATE_LOAD = 'ACTIVATE_LOAD';
+export const CHANGE_PROFILE = 'CHANGE_PROFILE';
+export const SUBMIT_PROFILE = 'SUBMIT_PROFILE';
 
 export const autoLog = () => ({
   type: AUTOLOG,
@@ -28,9 +30,10 @@ export const failLogin = (error) => ({
   error,
 });
 
-export const setUser = (username) => ({
+export const setUser = (username, role) => ({
   type: SET_USER,
   username,
+  role,
 });
 
 export const logout = () => ({

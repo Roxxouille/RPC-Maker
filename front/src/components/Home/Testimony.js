@@ -33,7 +33,6 @@ const Testimony = ({ testimonies }) => {
         html.push(<span className="fa fa-star" />);
       }
     }
-    console.log(html, stars);
     return (
       <div className="testimony">
         <div className="testimony__img"><Image src={testimony.user.avatar.image} roundedCircle /></div>

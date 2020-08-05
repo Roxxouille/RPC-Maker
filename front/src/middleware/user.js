@@ -18,7 +18,7 @@ export default (store) => (next) => (action) => {
           console.log(response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.token);
-          store.dispatch(setUser(response.data.username));
+          store.dispatch(setUser(response.data.username, response.data.roles[0]));
         })
         .catch((error) => {
           console.log(error.repsonse);
@@ -29,12 +29,11 @@ export default (store) => (next) => (action) => {
     }
     case AUTOLOG: {
       const token = localStorage.getItem('token');
-      //const token = 'd6081bdf250ec5c06a1bc2dd28bba8b0';
       const slug = localStorage.getItem('slug');
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(setUser(response.data.username));
+          store.dispatch(setUser(response.data.username, response.data.roles[0]));
         })
         .catch((error) => {
           localStorage.clear();
