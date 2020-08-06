@@ -7,7 +7,7 @@ import {
   Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Command from './Command.js';
+import Commands from '../../containers/User/Commands';
 import Message from './Message.js';
 import Pc from './Pc.js';
 import './styles.scss';
@@ -81,7 +81,7 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
                 <EditProfile />
               </Route>
               <Route path="/user/commands">
-                <Command />
+                <Commands />
               </Route>
               <Route path="/user/message">
                 <Message />

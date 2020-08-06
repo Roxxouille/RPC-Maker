@@ -32,8 +32,6 @@ const profile = (state = initialState, action = {}) => {
         [action.name]: action.value,
       };
     case ERROR_PROFILE:
-      console.log('reducer', action.value);
-
       return {
         ...state,
         error: { ...state.error, ...action.value },

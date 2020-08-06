@@ -18,8 +18,8 @@ export default (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           localStorage.setItem('slug', response.data.slug);
-          localStorage.setItem('token', response.data.token);
-          store.dispatch(setUser(response.data.username, response.data.roles[0]));
+          localStorage.setItem('token', response.data.apiToken);
+          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands));
         })
         .catch((error) => {
           console.log(error.repsonse);
@@ -34,7 +34,7 @@ export default (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(setUser(response.data.username, response.data.roles[0]));
+          store.dispatch(setUser(response.data.username, response.data.roles[0]), response.data.commands);
         })
         .catch((error) => {
           localStorage.clear();
@@ -55,7 +55,8 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
-        })
+        });
+      break;
     }
     default:
       next(action);

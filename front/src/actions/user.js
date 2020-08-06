@@ -35,10 +35,11 @@ export const failLogin = (error) => ({
   error,
 });
 
-export const setUser = (username, role) => ({
+export const setUser = (username, role, commands) => ({
   type: SET_USER,
   username,
   role,
+  commands,
 });
 
 export const logout = () => ({

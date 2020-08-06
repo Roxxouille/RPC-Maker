@@ -4,7 +4,11 @@ import { useParams } from 'react-router-dom';
 
 const Order = ({ command, getCommand }) => {
   const { id } = useParams();
-  getCommand(id);
+  console.log(command);
+  if (command.slug !== id ) {
+    console.log('ça rentre');
+    getCommand(id);
+  }
 
   let total = 0;
 

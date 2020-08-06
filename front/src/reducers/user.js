@@ -30,6 +30,7 @@ const user = (state = initialState, action = {}) => {
         isLogged: true,
         isLoading: false,
         role: action.role,
+        commands: action.commands,
       };
     case LOGIN:
       return {
