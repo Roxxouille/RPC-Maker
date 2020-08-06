@@ -188,10 +188,10 @@ export class Step7 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="submit" onClick={CheckContent('option')}> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="select" onClick={CheckContent('option')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="submit" onClick={CheckContent('option')}> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="select" onClick={CheckContent('option')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -203,6 +203,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Preciser" onChange={handleChange('option_screen_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_screen_link')} />
             <Form.Label className="Form__inside">Taille d'ecran</Form.Label>
             <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('option_screen_size')}>
               {optionSize}
@@ -219,6 +221,10 @@ export class Step7 extends Component {
             <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_keyboard')}>
               {optionKeyboard}
             </Form.Control>
+            <Form.Label className="Form__inside">Un Modéle en téte ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_keyboard_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_keyboard_link')} />
             <Form.Row>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
@@ -251,6 +257,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mouse_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="laser" onChange={handleChange('option_mouse_type')}>
               {optionMouseType}
@@ -270,6 +278,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mousepad_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_mousepad_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('option_mousepad_type')}>
               {optionPadType}
@@ -288,6 +298,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_headphone_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('option_headphone_type')}>
               <option>Supra auriculaire</option>
@@ -310,6 +322,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_enceinte_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_enceinte_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('option_enceinte_type')}>
               <option>1 enceinte</option>
@@ -331,6 +345,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_webcam_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_webcam_link')} />
             <Form.Label className="Form__inside">Resolution</Form.Label>
             <Form.Control as="select" defaultValue="720p" onChange={handleChange('option_webcam_res')}>
               {optionWebCamResolution}
@@ -345,6 +361,8 @@ export class Step7 extends Component {
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
             <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_printer_model')} />
+            <Form.Label className="Form__inside">Un lien ?</Form.Label>
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_printer_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
             <Form.Control as="select" defaultValue="Laser" onChange={handleChange('option_printer_type')}>
               {optionPrinterType}
