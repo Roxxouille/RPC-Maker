@@ -4,6 +4,7 @@ namespace App\Controller\Api;
 
 use App\Entity\Command;
 use App\Repository\CommandRepository;
+use App\Repository\ItemRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -152,7 +153,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/{slug}/data", name="command_data", methods="GET")
      */
-    public function sendCommandData(Command $command, CommandRepository $commandRepo)
+    public function sendCommandData(Command $command, CommandRepository $commandRepo, ItemRepository $itemRepository)
     {
         //send a 404 error if the command does not exist
         if ($command === null) {
@@ -162,190 +163,387 @@ class CommandController extends AbstractController
         // getting the data of the command
         $data = $commandRepo->find($command)->getData();
 
-        $firstMessage = "Salut ! Je suis " . $data['surname'] . '. ';
+        $dataToSend['username'] = "Salut ! Je suis " . $data['username'] . '. ';
 
+        if(!empty($data['budget'] == 'yes')){
+            if(!empty($data['amount'])){
+                $dataToSend['budget'] = "J'ai un budget de : " . $data['amount'];
+            }
+            if(!empty($data['gap']) && array_key_exists('budget', $dataToSend)){
+                $dataToSend['budget'] .= ", avec une marge de :" . $data['gap'];
+            }
+        }
+
+        if(!empty($data['utilisation'])){
+            $dataToSend['utilisation'] = "J'utiliserais ce pc pour du " . $data['utilisation'];
+        }
         // config part of the data
-        if($data['config'] == "yes"){
+        if($data['preconfiguration'] == "yes"){
+            // message for the config
+            $dataToSend['config']['message'] = "J'ai déjà des idées de pièces tel que : ";
+
+            // processor 
+            if(!empty($data['config_proc_model'])){
+                $dataToSend['config']['proc'] = "Ce processeur : " . $data['config_proc_model'];
+                if(!empty($data['config_proc_link'])){
+                    $dataToSend['config']['proc'] .= " le lien : " . $data['config_proc_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_proc'])){
+                    $proc = $itemRepository->findBy(['name' => $data['config_proc']]);
+                    $dataToSend['config']['proc'] = "Ce processeur : " . $proc[0]->getName() . " le lien : " . $proc[0]->getUrl();
+                }
+            }
             
-            $firstMessage .= "J'ai déjà des idées de pièces : ";
-
-            if($data['config_proc'] == "yes"){
-                $firstMessage .= "je voudrais ce processeur : " . $data['config_proc_model'] . " le lien : " . $data['config_proc_link'];
-            }
-
-            if($data['config_board'] == "yes"){
-                $firstMessage .= "je voudrais cette carte mère : " . $data['config_board_model'] . " le lien : " . $data['config_board_link'];
+            // motherboard
+            if(!empty($data['config_board_model'])){
+                $dataToSend['config']['board'] = "Cette carte mère : " . $data['config_board_model'];
+                if(!empty($data['config_board_link'])){
+                    $dataToSend['config']['board'] .= " le lien : " . $data['config_board_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_board'])){
+                    $board = $itemRepository->findBy(['name' => $data['config_board']]);
+                    $dataToSend['config']['board'] = "Cette carte mère  : " . $board[0]->getName() . " le lien : " . $board[0]->getUrl();
+                }
             }
             
-            if($data['config_gc'] == "yes"){
-                $firstMessage .= "je voudrais cette carte graphique : " . $data['config_gc_model'] . " le lien : " . $data['config_gc_link'];
+            // graphic card
+            if(!empty($data['config_cg_model'])){
+                $dataToSend['config']['cg'] = "Cette carte graphique : " . $data['config_cg_model'];
+                if(!empty($data['config_cg_link'])){
+                    $dataToSend['config']['cg'] .= " le lien : " . $data['config_cg_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_cg'])){
+                    $cg = $itemRepository->findBy(['name' => $data['config_cg']]);
+                    $dataToSend['config']['cg'] = "Cette carte graphique : " . $cg[0]->getName() . " le lien : " . $cg[0]->getUrl();
+                }
             }
             
-            if($data['config_ram'] == "yes"){
-                $firstMessage .= "je voudrais cette ram : " . $data['config_ram_model'] . " le lien : " . $data['config_ram_link'];
+            // ram
+            if(!empty($data['config_ram_model'])){
+                $dataToSend['config']['ram'] = "Cette ram : " . $data['config_ram_model'];
+                if(!empty($data['config_ram_link'])){
+                    $dataToSend['config']['ram'] .= " le lien : " . $data['config_ram_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_ram'])){
+                    $ram = $itemRepository->findBy(['name' => $data['config_ram']]);
+                    $dataToSend['config']['ram'] = "Cette ram : " . $ram[0]->getName() . " le lien : " . $ram[0]->getUrl();
+                }
             }
 
-            if($data['config_refresh'] == "yes"){
-                $firstMessage .= "je voudrais ce systeme de refroidissement : " . $data['config_refresh_model'] . " le lien : " . $data['config_refresh_link'];
+            // ventirad
+            if(!empty($data['config_refresh_model'])){
+                $dataToSend['config']['refresh'] = "Ce ventilateur : " . $data['config_refresh_model'];
+                if(!empty($data['config_refresh_link'])){
+                    $dataToSend['config']['refresh'] .= " le lien : " . $data['config_refresh_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_refresh'])){
+                    $refresh = $itemRepository->findBy(['name' => $data['config_refresh']]);
+                    $dataToSend['config']['refresh'] = "Ce ventilateur : " . $refresh[0]->getName() . " le lien : " . $refresh[0]->getUrl();
+                }
             }
 
-            if($data['config_storage'] == "yes"){
-                $firstMessage .= "je voudrais ce stockage : " . $data['config_storage_model'] . " le lien : " . $data['config_storage_link'];
+            // hard drive
+            if(!empty($data['config_storage_model'])){
+                $dataToSend['config']['storage'] = "Ce disque dur : " . $data['config_storage_model'];
+                if(!empty($data['config_storage_link'])){
+                    $dataToSend['config']['storage'] .= " le lien : " . $data['config_storage_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_storage'])){
+                    $storage = $itemRepository->findBy(['name' => $data['config_storage']]);
+                    $dataToSend['config']['storage'] = "Ce disque dur : " . $storage[0]->getName() . " le lien : " . $storage[0]->getUrl();
+                }
             }
 
-            if($data['config_boardsound'] == "yes"){
-                $firstMessage .= "je voudrais cette carte son : " . $data['config_boardsound_model'] . " le lien : " . $data['config_boardsound_link'];
+            // boardsound
+            if(!empty($data['config_boardsound_model'])){
+                $dataToSend['config']['boardsound'] = "Cette carte son : " . $data['config_boardsound_model'] . " le lien : " . $data['config_boardsound_link'];
+                if(!empty($data['config_boardsound_link'])){
+                    $dataToSend['config']['boardsound'] .= " le lien : " . $data['config_boardsound_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_boardsound'])){
+                    $boardsound = $itemRepository->findBy(['name' => $data['config_boardsound']]);
+                    $dataToSend['config']['boardsound'] = "Cette carte son : " . $boardsound[0]->getName() . " le lien : " . $boardsound[0]->getUrl();
+                }
             }
 
-            if($data['config_case'] == "yes"){
-                $firstMessage .= "je voudrais ce boitier: " . $data['config_case_model'] . " le lien : " . $data['config_case_link'];
+            // case
+            if(!empty($data['config_case_model'])){
+                $dataToSend['config']['case'] = "Ce boiter: " . $data['config_case_model'] . " le lien : " . $data['config_case_link'];
+                if(!empty($data['config_case_link'])){
+                    $dataToSend['config']['case'] .= " le lien : " . $data['config_case_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_case'])){
+                    $case = $itemRepository->findBy(['name' => $data['config_case']]);
+                    $dataToSend['config']['case'] = "Ce boiter: " . $case[0]->getName() . " le lien : " . $case[0]->getUrl();
+                }
             }
 
-            if($data['config_power'] == "yes"){
-                $firstMessage .= "je voudrais cette alimentation : " . $data['config_power_model'] . " le lien : " . $data['config_power_link'];
+            // power supply
+            if(!empty($data['config_power_model'])){
+                $dataToSend['config']['power'] = "Cette alimentation : " . $data['config_power_model'] . " le lien : " . $data['config_power_link'];
+                if(!empty($data['config_power_link'])){
+                    $dataToSend['config']['power'] .= " le lien : " . $data['config_power_link'];
+                }
+            } 
+            else {
+                if(!empty($data['config_power'])){
+                    $power = $itemRepository->findBy(['name' => $data['config_power']]);
+                    $dataToSend['config']['power'] = "Cette alimentation : " . $power[0]->getName() . " le lien : " . $power[0]->getUrl();
+                }
             }
 
         } else {
-            $firstMessage .= "Je n'ai pas d'idée prédéfinie concernant les pièces du pc. ";
+            $dataToSend['config']['message'] = "Je n'ai pas d'idée prédéfinie concernant les pièces du pc. ";
         }
-        
+
 
         // spec part of the data
-        $secondMessage = '';
+        if(!empty($data['spec_important'])){
+            $dataToSend['spec']['important'] = "Le plus important pour moi est : " . $data['spec_important'];
+        }
+
         if($data['spec_sli'] == "yes"){
-            $secondMessage .= "Je suis intéressé par le SLI ";
+            $dataToSend['spec']['sli'] = "Je suis intéressé par le SLI ";
         }
 
         if($data['spec_overclock'] == "yes"){
-            $secondMessage .= "Je suis intéressé par l'overclocking. ";
+            $dataToSend['spec']['overclock'] = "Je suis intéressé par l'overclocking. ";
         }
 
-        $secondMessage .= "Je voudrais comme stockage du " . $data['spec_storage'] . ", d'au moins " . $data['spec_storage_quantity'] . ". ";
+        if(!empty($data['spec_storage'])){
+            $dataToSend['spec']['storage'] = "Je voudrais comme stockage du " . $data['spec_storage'];
+        }
+
+        if(!empty($data['spec_storage_quantity'])){
+            $dataToSend['spec']['storage'] .= ", d'au moins " . $data['spec_storage_quantity'] . ". ";
+        }
 
         if($data['spec_wifi'] == "yes"){
 
-            $secondMessage .= "Je suis intéréssé par une carte wifi, ";
+            $dataToSend['spec']['wifi'] = "Je suis intéréssé par une carte wifi, ";
 
             if($data['spec_wifi_room'] == "yes"){
-                $secondMessage .= "je me trouve dans la même pièce que le routeur, ";
+                $dataToSend['spec']['wifi'] .= "je me trouve dans la même pièce que le routeur, ";
             } else {
-                $secondMessage .= "je ne me trouve pas dans la même pièce que le routeur, ";
+                $dataToSend['spec']['wifi'] .= "je ne me trouve pas dans la même pièce que le routeur, ";
             }
 
             if($data['spec_fiber'] == "yes"){
-                $secondMessage .= "je possède la fibre ";
+                $dataToSend['spec']['wifi'] .= "et je possède la fibre ";
             } else {
-                $secondMessage .= "je ne possède pas la fibre ";
+                $dataToSend['spec']['wifi'] .= "et je ne possède pas la fibre ";
             }
         }
 
         if($data['spec_sound'] == "yes"){
-
-            $secondMessage .= "Je suis intéréssé par une carte son pour du " . $data['spec_sound_utilisation'] . ". ";
+            if(!empty($data['spec_sound_utilisation'])){
+                $dataToSend['spec']['sound'] = "Je suis intéréssé par une carte son pour du " . $data['spec_sound_utilisation'] . ". ";
+            }
 
             if(!empty($data['spec_sound_utilisation_other'])){
-                $secondMessage .= " Précision : " . $data['spec_sound_utilisation_other'];
+                $dataToSend['spec']['sound'] .= " Précision : " . $data['spec_sound_utilisation_other'];
             }
         }
 
-        if($data['spec_light'] == "yes"){
-            $secondMessage .= "Je suis intéréssé par les LED. ";
-        } else {
-            $secondMessage .= "Je ne suis pas intéréssé par les LED. ";
+        if(!empty($data['spec_light'])){
+            $dataToSend['spec']['light'] = $data['spec_light'];
         }
 
         if($data['os'] == "yes"){
-            $secondMessage .= "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation. ";
+            if(!empty($data['os_name'])){
+                $dataToSend['spec']['os'] = "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation";
+            }
 
             if($data['os_active'] == "yes"){
-                $secondMessage .= "Et je souhaiterais que vous me l'activez. ";
+                $dataToSend['spec']['os'] .= ", et je souhaiterais que vous me l'activez. ";
             }
-        } else {
-            $secondMessage .= "Je ne souhaite pas de systeme d'exploiration. ";
+            else $dataToSend['spec']['os'] .= ", et je l'activerais moi même. ";
+        } 
+        else {
+            $dataToSend['spec']['os'] = "Je ne souhaite pas de systeme d'exploiration. ";
         }
 
         // option part of data
-        $thirdMessage = '';
-        if($data['option'] == "yes"){
-            $thirdMessage .= "Je souhaiterais ajouter quelques périphériques : ";
+        if(true /*$data['option'] == "yes"*/){
+            $dataToSend['option']['message'] = "Je souhaiterais ajouter quelques périphériques : ";
 
-            if($data['option_screen'] == "yes"){
-                if(!empty($data['option_screen_model'])){
-                    $thirdMessage .= "Je voudrais cet écran : " . $data['option_screen_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais un écran de taille : " . $data['option_screen_size'] . " avec une résolution de : ". $data['option_screen_res'];
+            if(!empty($data['option_screen_model'])){
+                $dataToSend['option']['screen']['message'] = "Cet écran : " . $data['option_screen_model'];
+                if(!empty($data['option_screen_link'])){
+                    $dataToSend['option']['screen']['message'] .= " le lien : " . $data['option_screen_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_screen'])){
+                    $screen = $itemRepository->findBy(['name' => $data['option_screen']]);
+                    $dataToSend['option']['screen']['message'] = "Cet écran : " . $screen[0]->getName() . " le lien : " . $screen[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_screen_size'])){
+                $dataToSend['option']['screen']['size'] = "Je voudrais que l'écran fasse " . $data['option_screen_size']; 
+            }
+            if(!empty($data['option_screen_res'])){
+                $dataToSend['option']['screen']['res'] = "Je voudrais que l'écran est une résolution de " . $data['option_screen_res'];
+            }
+
+            if(!empty($data['option_keyboard_model'])){
+                $dataToSend['option']['keyboard']['message'] = "Ce clavier : " . $data['option_keyboard_model'];
+                if(!empty($data['option_keyboard_link'])){
+                    $dataToSend['option']['keyboard']['message'] .= " le lien : " . $data['option_keyboard_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_keyboard'])){
+                    $keyboard = $itemRepository->findBy(['name' => $data['option_keyboard']]);
+                    $dataToSend['option']['keyboard']['message'] = "Ce clavier : " . $keyboard[0]->getName() . " le lien : " . $keyboard[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_keyboard_type'])){
+                $dataToSend['option']['keyboard']['type'] = "Je voudrais que le clavier soit du type " . $data['option_keyboard_type'];
+            }
+            if(!empty($data['option_keyboard_switch'])){
+                $dataToSend['option']['keyboard']['switch'] = "Je voudrais que le clavier est des switchs  " . $data['option_keyboard_switch'];
+            }
+            if(!empty($data['option_keyboard_language'])){
+                $dataToSend['option']['keyboard']['language'] = "Je voudrais que le clavier soit en " . $data['option_keyboard_language'];
+            }
+
+
+            if(!empty($data['option_mouse_model'])){
+                $dataToSend['option']['mouse']['message'] = "Cette souris : " . $data['option_mouse_model'];
+                if(!empty($data['option_mouse_link'])){
+                    $dataToSend['option']['mouse']['message'] .= " le lien : " . $data['option_mouse_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_mouse'])){
+                    $mouse = $itemRepository->findBy(['name' => $data['option_mouse']]);
+                    $dataToSend['option']['mouse']['message'] = "Cette souris : " . $mouse[0]->getName() . " le lien : " . $mouse[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_mouse_type'])){
+                $dataToSend['option']['mouse']['type'] = "Je voudrais que la souris soit du type  " . $data['option_mouse_type'];
+            }
+            if(!empty($data['option_mouse_filaire'])){
+                if($data['option_mouse_filaire'] == "Oui"){
+                    $dataToSend['option']['mouse']['filaire'] = "Je voudrais une souris filaire";
+                } 
+                else {
+                    $dataToSend['option']['mouse']['filaire'] = "Je voudrais une souris sans fil";
                 }
             }
 
-            if($data['option_keyboard'] == "yes"){
-                if(!empty($data['option_keyboard_model'])){
-                    $thirdMessage .= "Je voudrais ce clavier : " . $data['option_keyboard_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais un clavier de type: " . $data['option_keyboard_type'] . " avec des switch : ". $data['option_keyboard_switch'] . " en ". $data['option_keyboard_language'];
+            if(!empty($data['option_mousepad_model'])){
+                $dataToSend['option']['mousepad']['message'] = "Ce tapis de souris : " . $data['option_mousepad_model'];
+                if(!empty($data['option_mousepad_link'])){
+                    $dataToSend['option']['mousepad']['message'] .= " le lien : " . $data['option_mousepad_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_mousepad'])){
+                    $mousepad = $itemRepository->findBy(['name' => $data['option_mousepad']]);
+                    $dataToSend['option']['mousepad']['message'] = "Ce tapis de souris : " . $mousepad[0]->getName() . " le lien : " . $mousepad[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_mousepad_type'])){
+                $dataToSend['option']['mousepad']['type'] = "Je voudrais que le tapis de souris soit " . $data['option_mousepad_type'];
+            }
+            if(!empty($data['option_mousepad_size'])){
+                $dataToSend['option']['mousepad']['size'] = "Je voudrais que le tapis de souris est une taille " . $data['option_mousepad_size'];
+            }
+
+            if(!empty($data['option_headphone_model'])){
+                $dataToSend['option']['headphone']['message'] = "Ce casque : " . $data['option_headphone_model'];
+                if(!empty($data['option_headphone_link'])){
+                    $dataToSend['option']['headphone']['message'] .= " le lien : " . $data['option_headphone_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_headphone'])){
+                    $headphone = $itemRepository->findBy(['name' => $data['option_headphone']]);
+                    $dataToSend['option']['headphone']['message'] = "Ce casque : " . $headphone[0]->getName() . " le lien : " . $headphone[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_headphone_type'])){
+                $dataToSend['option']['headphone']['type'] = "Je voudrais que le casque soit de type " . $data['option_headphone_type'];
+            }
+            if(!empty($data['option_headphone_size'])){
+                $dataToSend['option']['headphone']['size'] = "Je voudrais que le casque soit de taille " . $data['option_headphone_size'];
+            }
+
+            if(!empty($data['option_enceinte_model'])){
+                $dataToSend['option']['enceinte']['message'] = "Cette enceinte : " . $data['option_enceinte_model'];
+                if(!empty($data['option_enceinte_link'])){
+                    $dataToSend['option']['enceinte']['message'] .= " le lien : " . $data['option_enceinte_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_enceinte'])){
+                    $enceinte = $itemRepository->findBy(['name' => $data['option_enceinte']]);
+                    $dataToSend['option']['enceinte']['message'] = "Cette enceinte : " . $enceinte[0]->getName() . " le lien : " . $enceinte[0]->getUrl();
+                }
+            }
+            if(!empty($data['option_enceinte_type'])){
+                $dataToSend['option']['enceinte']['type'] = "Je voudrais  " . $data['option_enceinte_type'];
+            }
+            if(!empty($data['option_enceinte_bass'])){
+                if($data['option_enceinte_bass'] == "Oui"){
+                    $dataToSend['option']['enceinte']['bass'] = "Je voudrais des basses";
+                } 
+                else {
+                    $dataToSend['option']['enceinte']['bass'] = "Je voudrais pas de basses";
                 }
             }
 
-            if($data['option_mouse'] == "yes"){
-                if(!empty($data['option_mouse_model'])){
-                    $thirdMessage .= "Je voudrais cette souris : " . $data['option_mouse_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais une souris de type: " . $data['option_mouse_type'];
-                    if($data['option_mouse_filaire']){
-                        $thirdMessage .= "et qu'elle soit fillaire";
-                    }
-                    $thirdMessage .= ". ";
+            if(!empty($data['option_webcam_model'])){
+                $dataToSend['option']['webcam']['message'] = "Cette webcam : " . $data['option_webcam_model'];
+                if(!empty($data['option_webcam_link'])){
+                    $dataToSend['option']['webcam']['message'] .= " le lien : " . $data['option_webcam_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_webcam'])){
+                    $webcam = $itemRepository->findBy(['name' => $data['option_webcam']]);
+                    $dataToSend['option']['webcam']['message'] = "Cette webcam : " . $webcam[0]->getName() . " le lien : " . $webcam[0]->getUrl();
                 }
             }
-
-            if($data['option_mousepad'] == "yes"){
-                if(!empty($data['option_mousepad_model'])){
-                    $thirdMessage .= "Je voudrais ce tapis de souris : " . $data['option_mousepad_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais un tapis de souris de type : " . $data['option_mousepad_type'] . " et de taille : ". $data['option_mousepad_size'];
-                }
+            if(!empty($data['option_webcam_res'])){
+                $dataToSend['option']['webcam']['res'] = "Je voudrais que la webcam est une résolution de " . $data['option_webcam_res'];
             }
 
-            if($data['option_headphone'] == "yes"){
-                if(!empty($data['option_headphone_model'])){
-                    $thirdMessage .= "Je voudrais ce casque : " . $data['option_headphone_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais un casque de type : " . $data['option_headphone_type'] . " et de taille : ". $data['option_headphone_size'];
+            if(!empty($data['option_printer_model'])){
+                $dataToSend['option']['printer']['message'] = "Cette imprimante : " . $data['option_printer_model'];
+                if(!empty($data['option_printer_link'])){
+                    $dataToSend['option']['printer']['message'] .= " le lien : " . $data['option_printer_link'];
+                }
+            } 
+            else {
+                if(!empty($data['option_printer'])){
+                    $printer = $itemRepository->findBy(['name' => $data['option_printer']]);
+                    $dataToSend['option']['printer']['message'] = "Cette imprimante : " . $printer[0]->getName() . " le lien : " . $printer[0]->getUrl();
                 }
             }
-
-            if($data['option_enceinte'] == "yes"){
-                if(!empty($data['option_enceinte_model'])){
-                    $thirdMessage .= "Je voudrais cette enceinte : " . $data['option_enceinte_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais une enceinte de type : " . $data['option_enceinte_type'] . " et de basse : ". $data['option_enceinte_bass'];
-                }
+            if(!empty($data['option_printer_type'])){
+                $dataToSend['option']['printer']['type'] = "Je voudrais  que l'imprimante soit de type " . $data['option_printer_type'];
             }
-
-            if($data['option_webcam'] == "yes"){
-                if(!empty($data['option_webcam_model'])){
-                    $thirdMessage .= "Je voudrais cette webcam : " . $data['option_webcam_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais une webcam de résolution : " . $data['option_webcam_res'];
-                }
-            }
-
-            if($data['option_printer'] == "yes"){
-                if(!empty($data['option_printer_model'])){
-                    $thirdMessage .= "Je voudrais cette imprimante : " . $data['option_printer_model'];
-                } else {
-                    $thirdMessage .= "Je voudrais une imprimante de type : " . $data['option_printer_type'];
-                }
-            }
-
         }
 
-        return $this->json(
-            [
-                'firstMessage' => $firstMessage,
-                'secondMessage' => $secondMessage,
-                'thirdMessage' => $thirdMessage
-            ], 
-            Response::HTTP_OK
-        );
+        return $this->json($dataToSend, Response::HTTP_OK);
     }
 }
