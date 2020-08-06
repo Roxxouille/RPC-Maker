@@ -60,7 +60,7 @@ class UserController extends AbstractController
         //get the validations errors if there is any
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
-        $errors = $validator->validate($updatedUser);
+        $errors = $validator->validate($updatedUser, null, ['edit-profile']);
 
         // if there is errors, return them in a json format
         if (count($errors) > 0) {
@@ -92,7 +92,7 @@ class UserController extends AbstractController
         //get the validations errors if there is any
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
-        $errors = $validator->validate($user);
+        $errors = $validator->validate($user, null, ['registration']);
 
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
@@ -192,7 +192,7 @@ class UserController extends AbstractController
         //get the validations errors if there is any
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
-        $errors = $validator->validate($updatedUser);
+        $errors = $validator->validate($updatedUser, null, ['password-edit']);
 
         // if there is errors, return them in a json format
         if (count($errors) > 0) {
