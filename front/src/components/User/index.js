@@ -39,9 +39,7 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
         <Redirect to={{ pathname: '/login' }} />
       )}
 
-      {role === 'ROLE_BUILDER' && isLogged === true && (
-        <Redirect to={{ pathname: '/backoffice' }} />
-      )}
+
 
       {isLogged === true && isLoading === false && (
         <div>
@@ -51,9 +49,9 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
               <p>
                 Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
               </p>
-              <Button variant="light"><Link to="/user/commands">mes commandes</Link></Button>{' '}
-              <Button variant="light"> <Link to="/user/message">Messagerie</Link></Button>{' '}
-              <Button variant="light"><Link to="/user/pc">Mon PC</Link></Button>{' '}
+              <Button variant="light"><Link to="/user/commands">mes commandes</Link></Button>
+              <Button variant="light"> <Link to="/user/message">Messagerie</Link></Button>
+              <Button variant="light"><Link to="/user/pc">Mon PC</Link></Button>
             </Container>
           </Jumbotron>
           <div className="user">

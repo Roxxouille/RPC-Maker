@@ -57,7 +57,6 @@ const user = (state = initialState, action = {}) => {
         isLoading: true,
       };
     case ACTIVATE_LOAD:
-      console.log('reducer activate');
       return {
         ...state,
         isLoading: true,

@@ -13,7 +13,7 @@ import Login from '../../containers/User/Login';
 import BackOffice from '../../containers/BackOffice';
 import NoMatch from './NoMatch';
 
-const Header = ({ isLogged, logout, username }) => {
+const Header = ({ isLogged, logout, username, role }) => {
   const handleClick = () => {
     if (isLogged === true) {
       logout();
@@ -35,16 +35,16 @@ const Header = ({ isLogged, logout, username }) => {
             <Nav className="menu">
               <Link className="nav-link menu__link" to="/">
                 Accueil
-                </Link>
+              </Link>
               <Link to="/survey" className="nav-link menu__link">
                 Devis
-                </Link>
+              </Link>
               <Link to="/team" className="nav-link menu__link">
                 Team
-                </Link>
+              </Link>
               <Link to="/contact" className="nav-link menu__link">
                 Contact
-                </Link>
+              </Link>
             </Nav>
           </Navbar.Collapse>
 
@@ -56,6 +56,7 @@ const Header = ({ isLogged, logout, username }) => {
               {isLogged === true && (
                 <>
                   <NavDropdown.Divider />
+                  <h6>Espace utilisateur</h6>
                   <Link to="/user/pc" className="dropdown-item">
                     Mon PC
                   </Link>
@@ -67,17 +68,15 @@ const Header = ({ isLogged, logout, username }) => {
                   </Link>
                 </>
               )}
-              {isLogged === true && (
+              {isLogged === true && role === 'ROLE_BUILDER' && (
                 <>
                   <NavDropdown.Divider />
-                  <Link to="/user/pc" className="dropdown-item">
-                    Mon PC
-                  </Link>
-                  <Link to="/user/message" className="dropdown-item">
+                  <h6>Back office</h6>
+                  <Link to="/backoffice/messages" className="dropdown-item">
                     Messagerie
                   </Link>
-                  <Link to="/user/infos" className="dropdown-item">
-                    Mes informations
+                  <Link to="/backoffice/clients" className="dropdown-item">
+                    Mes Clients
                   </Link>
                 </>
               )}
