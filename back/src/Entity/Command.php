@@ -87,6 +87,11 @@ class Command
      */
     private $name;
 
+    /**
+     * @ORM\OneToOne(targetEntity=CommandData::class, mappedBy="command", cascade={"persist", "remove"})
+     */
+    private $commandData;
+
     public function __construct()
     {
         $this->item = new ArrayCollection();
@@ -236,6 +241,23 @@ class Command
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCommandData(): ?CommandData
+    {
+        return $this->commandData;
+    }
+
+    public function setCommandData(CommandData $commandData): self
+    {
+        $this->commandData = $commandData;
+
+        // set the owning side of the relation if necessary
+        if ($commandData->getCommand() !== $this) {
+            $commandData->setCommand($this);
+        }
 
         return $this;
     }
