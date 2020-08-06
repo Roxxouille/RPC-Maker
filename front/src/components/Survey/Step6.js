@@ -10,7 +10,7 @@ export class Step5 extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:3000/category/systeme-d-exploitation/').then((res) => {
-      const oschoice = res.data.items;
+      const oschoice = res.data.specs;
       console.log(oschoice);
       this.setState({ oschoice });
     });
@@ -29,7 +29,7 @@ export class Step5 extends Component {
   render() {
     const { values, handleChange, CheckContent } = this.props;
     const optionOS = this.state.oschoice.map((oschoice) => (
-      <option key={`${oschoice.id}`}>{`${oschoice.name}`}</option>
+      <option key={`${oschoice}`}>{`${oschoice}`}</option>
     ));
     return (
       <div className="fullform">

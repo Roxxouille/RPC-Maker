@@ -366,14 +366,18 @@ class CommandController extends AbstractController
         }
 
         if($data['os'] == "yes"){
-            if(!empty($data['os_name'])){
-                $dataToSend['spec']['os'] = "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation";
+            if(!empty($data['oschoice'])){
+                $dataToSend['spec']['os'] = "Je voudrais " . $data['oschoice'] . " comme systeme d'exploitation";
+
+                if($data['os_active'] == "yes"){
+                    $dataToSend['spec']['os'] .= ", et je souhaiterais que vous me l'activez. ";
+                }
+                else $dataToSend['spec']['os'] .= ", et je l'activerais moi même. ";
             }
 
-            if($data['os_active'] == "yes"){
-                $dataToSend['spec']['os'] .= ", et je souhaiterais que vous me l'activez. ";
+            if(!empty($data['os_name'])){
+                $dataToSend['spec']['os'] .= "Est ce que se serait possible d'avoir " . $data['os_name'] . " comme système d'exploitation.";
             }
-            else $dataToSend['spec']['os'] .= ", et je l'activerais moi même. ";
         } 
         else {
             $dataToSend['spec']['os'] = "Je ne souhaite pas de systeme d'exploiration. ";
@@ -399,7 +403,7 @@ class CommandController extends AbstractController
                 $dataToSend['option']['screen']['size'] = "Je voudrais que l'écran fasse " . $data['option_screen_size']; 
             }
             if(!empty($data['option_screen_res'])){
-                $dataToSend['option']['screen']['res'] = "Je voudrais que l'écran est une résolution de " . $data['option_screen_res'];
+                $dataToSend['option']['screen']['res'] = "Je voudrais que l'écran ait une résolution de " . $data['option_screen_res'];
             }
 
             if(!empty($data['option_keyboard_model'])){
@@ -418,7 +422,7 @@ class CommandController extends AbstractController
                 $dataToSend['option']['keyboard']['type'] = "Je voudrais que le clavier soit du type " . $data['option_keyboard_type'];
             }
             if(!empty($data['option_keyboard_switch'])){
-                $dataToSend['option']['keyboard']['switch'] = "Je voudrais que le clavier est des switchs  " . $data['option_keyboard_switch'];
+                $dataToSend['option']['keyboard']['switch'] = "Je voudrais que le clavier ait des switchs  " . $data['option_keyboard_switch'];
             }
             if(!empty($data['option_keyboard_language'])){
                 $dataToSend['option']['keyboard']['language'] = "Je voudrais que le clavier soit en " . $data['option_keyboard_language'];
@@ -465,7 +469,7 @@ class CommandController extends AbstractController
                 $dataToSend['option']['mousepad']['type'] = "Je voudrais que le tapis de souris soit " . $data['option_mousepad_type'];
             }
             if(!empty($data['option_mousepad_size'])){
-                $dataToSend['option']['mousepad']['size'] = "Je voudrais que le tapis de souris est une taille " . $data['option_mousepad_size'];
+                $dataToSend['option']['mousepad']['size'] = "Je voudrais que le tapis de souris ait une taille " . $data['option_mousepad_size'];
             }
 
             if(!empty($data['option_headphone_model'])){
@@ -524,7 +528,7 @@ class CommandController extends AbstractController
                 }
             }
             if(!empty($data['option_webcam_res'])){
-                $dataToSend['option']['webcam']['res'] = "Je voudrais que la webcam est une résolution de " . $data['option_webcam_res'];
+                $dataToSend['option']['webcam']['res'] = "Je voudrais que la webcam ait une résolution de " . $data['option_webcam_res'];
             }
 
             if(!empty($data['option_printer_model'])){
