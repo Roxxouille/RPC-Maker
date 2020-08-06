@@ -24,14 +24,14 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "login"})
      */
     private $file;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Regex("/^\d+/", message = "Veuillez entrer un nombre valide")
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "login"})
      */
     private $status;
 
@@ -50,7 +50,7 @@ class Command
 
     /**
      * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="commands")
-     * @Groups({"command", "user"})
+     * @Groups({"command", "user", "login"})
      */
     private $item;
 

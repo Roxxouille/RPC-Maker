@@ -29,7 +29,7 @@ class Category
      *      max = 45,
      *      maxMessage = "Le nom de la catégorie est trop long",
      * )
-     * @Groups({"category", "item", "command", "user"})
+     * @Groups({"category", "item", "command", "user", "login"})
      */
     private $name;
 
@@ -37,7 +37,7 @@ class Category
      * @ORM\Column(type="json", nullable=true)
      * @Assert\Json( message = "this is not a valid Json.")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"category", "item", "user"})
+     * @Groups({"category", "item", "user", "login"})
      */
     private $specs = [];
 

@@ -3,8 +3,9 @@
 namespace App\Controller\Api;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SecurityController extends AbstractController
 {
@@ -29,13 +30,13 @@ class SecurityController extends AbstractController
         $em->persist($user);
         $em->flush();
         //return a json response with the main infos
-        return $this->json([
-            'username' => $user->getUsername(),
-            'slug' => $user->getSlug(),
-            'roles' => $user->getRoles(),
-            'token' => $user->getApiToken(),
+        return $this->json($user, Response::HTTP_OK, [], ['groups' => 'login']
+            // 'username' => $user->getUsername(),
+            // 'slug' => $user->getSlug(),
+            // 'roles' => $user->getRoles(),
+            // 'token' => $user->getApiToken(),
             // 'commands' => $user->getCommands(),
-        ]);
+        );
     }
 
     /**

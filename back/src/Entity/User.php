@@ -39,7 +39,7 @@ class User implements UserInterface
      *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
      *      groups = {"registration","edit-profile"},
      * )
-     * @Groups({"avatar", "command", "user", "testimony"})
+     * @Groups({"avatar", "command", "user", "testimony", "login"})
      */
     private $username;
 
@@ -82,7 +82,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="json")
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "login"})
      */
 
     private $roles = [];
@@ -157,12 +157,13 @@ class User implements UserInterface
 
     /**
      * @ORM\OneToMany(targetEntity=Command::class, mappedBy="user", cascade={"persist", "remove"})
-     * @Groups({"user"})
+     * @Groups({"user", "login"})
      */
     private $commands;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true, unique=true)
+     * @groups({"login"})
      */
     private $apiToken;
 
@@ -185,7 +186,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "login"})
      */
     private $slug;
 
