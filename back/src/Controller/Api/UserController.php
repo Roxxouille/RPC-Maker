@@ -5,6 +5,10 @@ namespace App\Controller\Api;
 use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
+use App\Entity\CommandConfigData;
+use App\Entity\CommandData;
+use App\Entity\CommandDeviceData;
+use App\Entity\CommandSpecData;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,28 +85,57 @@ class UserController extends AbstractController
 
         return $this->json(['status' => 'user edited'], Response::HTTP_OK);
     }
+
     /**
      * @Route("/user", name="user_add", methods="POST")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository)
     {
-
+        
         //get the request content (info about new user)
         //transform it into an object user
         //get the validations errors if there is any
         $content = $request->getContent();
         $user = $serializer->deserialize($content, User::class, 'json');
-        $errors = $validator->validate($user, null, ['registration']);
+        $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+        $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+        $commndSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+        $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
+        $errorsArray = [];
+        $errorsUser = $validator->validate($user, null, ['registration']);
+        $errorsCommandData = $validator->validate($commandData);
+        $errorsCommandConfigData = $validator->validate($commandConfigData);
+        $errorsCommandSpecData = $validator->validate($commndSpecData);
+        $errorsCommandDeviceData = $validator->validate($commandDeviceData);
+
 
         // if there is an error, return them in a json format
-        if (count($errors) > 0) {
-
-            $errorsArray = [];
-
-            foreach ($errors as $error) {
+        if (count($errorsUser) > 0) {
+            foreach ($errorsUser as $error) {
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
-
+        }
+        if (count($errorsCommandData) > 0) {
+            foreach ($errorsCommandData as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+        }
+        if (count($errorsCommandConfigData) > 0) {
+            foreach ($errorsCommandConfigData as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+        }
+        if (count($errorsCommandSpecData) > 0) {
+            foreach ($errorsCommandSpecData as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+        }
+        if (count($errorsCommandDeviceData) > 0) {
+            foreach ($errorsCommandDeviceData as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+        }
+        if(count($errorsArray) > 0){
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -130,24 +163,12 @@ class UserController extends AbstractController
         //create the new command
         //set this info to the new command
         $username = $user->getUsername();
-        $contentDecode = json_decode($content, true);
-        $commandData = [];
-        foreach ($contentDecode as $key => $contentData) {
-            $commandData[$key] = $contentData;
-        }
-        unset($commandData['password'],
-            $commandData['email'],
-            $commandData['level'],
-            $commandData['roles'],
-            $commandData['firstname'],
-            $commandData['lastname'],
-            $commandData['city'],
-            $commandData['zip_code'],
-            $commandData['adress']
-        );
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $username);
-        $command->setData($commandData);
+        $command->setCommandData($commandData);
+        $commandData->setCommandConfigData($commandConfigData);
+        $commandData->setCommandSpecData($commndSpecData);
+        $commandData->setCommandDeviceData($commandDeviceData);
 
 
         //persist the new user in the database
@@ -157,6 +178,10 @@ class UserController extends AbstractController
         //link this user to the new command
         $command->setUser($user);
         $entityManager->persist($command);
+        $entityManager->persist($commandData);
+        $entityManager->persist($commandConfigData);
+        $entityManager->persist($commndSpecData);
+        $entityManager->persist($commandDeviceData);
         $entityManager->flush();
 
         $email = (new Email())
