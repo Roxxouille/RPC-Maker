@@ -22,6 +22,7 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         error: action.error.data.message,
+        isLoading: false,
       };
     case SET_USER:
       console.log('setuser', action);

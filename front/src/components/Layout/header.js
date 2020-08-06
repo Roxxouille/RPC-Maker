@@ -11,6 +11,7 @@ import Contact from '../../containers/Contact';
 import Survey from '../Survey';
 import Login from '../../containers/User/Login';
 import BackOffice from '../../containers/BackOffice';
+import NoMatch from './NoMatch';
 
 const Header = ({ isLogged, logout, username }) => {
   const handleClick = () => {
@@ -26,7 +27,6 @@ const Header = ({ isLogged, logout, username }) => {
         <Container fluid >
 
           <div className="logo"><Navbar.Brand href="/" >RPC Maker</Navbar.Brand></div>
-
 
           <span className="vr" ></span>
 
@@ -67,6 +67,20 @@ const Header = ({ isLogged, logout, username }) => {
                   </Link>
                 </>
               )}
+              {isLogged === true && (
+                <>
+                  <NavDropdown.Divider />
+                  <Link to="/user/pc" className="dropdown-item">
+                    Mon PC
+                  </Link>
+                  <Link to="/user/message" className="dropdown-item">
+                    Messagerie
+                  </Link>
+                  <Link to="/user/infos" className="dropdown-item">
+                    Mes informations
+                  </Link>
+                </>
+              )}
             </NavDropdown>
           </Nav>
 
@@ -93,6 +107,9 @@ const Header = ({ isLogged, logout, username }) => {
         </Route>
         <Route path="/backoffice">
           <BackOffice />
+        </Route>
+        <Route path="*">
+          <NoMatch />
         </Route>
       </Switch>
     </div>

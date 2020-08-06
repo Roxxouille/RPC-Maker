@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
+import Loader from '../../Loader';
 
 const StateField = ({error, isLoading}) => {
   return (
@@ -11,7 +12,7 @@ const StateField = ({error, isLoading}) => {
         </Alert>
       )}
       {isLoading === true && (
-        <p>ça charge mec</p>
+        <Loader />
       )}
     </div>
   );
