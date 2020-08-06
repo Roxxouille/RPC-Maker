@@ -1,8 +1,21 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
+import axios from 'axios';
 
 export class Step5 extends Component {
+  state = {
+    oschoice: [],
+  }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/category/systeme-d-exploitation/').then((res) => {
+      const oschoice = res.data.items;
+      console.log(oschoice);
+      this.setState({ oschoice });
+    });
+  }
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -15,6 +28,9 @@ export class Step5 extends Component {
 
   render() {
     const { values, handleChange, CheckContent } = this.props;
+    const optionOS = this.state.oschoice.map((oschoice) => (
+      <option key={`${oschoice.id}`}>{`${oschoice.name}`}</option>
+    ));
     return (
       <div className="fullform">
         <div>
@@ -37,11 +53,24 @@ export class Step5 extends Component {
         <div>
           <h1 className="Form__config">De quel(s) systeme(s) auriez vous besoin ?</h1>
         </div>
+        <Form.Control as="select" defaultValue="OS ?" onChange={handleChange('oschoice')}>
+          {optionOS}
+        </Form.Control>
+        <div>
+          <h1>Une autre idée en téte ?</h1>
+        </div>
         <Form.Control className="Form__inside" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." onChange={handleChange('os_name')} />
         <div>
           <h1 className="Form__inside">Voulez vous qu'on vous l'active ?</h1>
         </div>
-        <Form.Control className="Form__inside" placeholder="Si oui precisez la version" onChange={handleChange('os_active')} />
+        <Form.Row>
+          <Col>
+            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContent('os_active')}> Oui </Button>
+          </Col>
+          <Col>
+            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContent('os_active')}> Non </Button>
+          </Col>
+        </Form.Row>
         <Form.Row>
           <Col>
             <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>

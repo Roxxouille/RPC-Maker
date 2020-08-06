@@ -24,16 +24,14 @@ export class Step3 extends Component {
           <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur votre idee.</h1>
           <h2>Auriez vous une configuration en tete?</h2>
         </div>
-        <Form className="Form">
-          <Form.Row>
-            <Col>
-              <Button className="Form__button" variant="primary" type="submit"> Oui </Button>
-            </Col>
-            <Col>
-              <Button className="Form__button" variant="primary" type="submit"> Non </Button>
-            </Col>
-          </Form.Row>
-        </Form>
+        <Form.Row>
+          <Col>
+            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContent('preconfiguration')}> Oui </Button>
+          </Col>
+          <Col>
+            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContent('preconfiguration')}> Non </Button>
+          </Col>
+        </Form.Row>
         <h2>Ce serait pour quel utilisation ?</h2>
         <Form>
           {['checkbox'].map((type) => (

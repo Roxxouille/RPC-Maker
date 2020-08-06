@@ -44,7 +44,12 @@ class RpcMakerProvider extends Base
             
         ],
         'Systeme d\'exploitation'  => [
-            
+            'Windows 10',
+            'Linux',
+            'Windows 7',
+            'Windows xp',
+            'Ubuntu',
+            'Debian',
         ],
         'Ecran'  => [
             'size' => [
