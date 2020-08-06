@@ -73,7 +73,7 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user"})
+     * @Groups({"user", "command"})
      */
     private $slug;
 
@@ -114,7 +114,7 @@ class Command
 
     public function getStatus(): ?int
     {
-        
+
         return $this->status;
     }
 
