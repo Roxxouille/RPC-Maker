@@ -366,14 +366,18 @@ class CommandController extends AbstractController
         }
 
         if($data['os'] == "yes"){
-            if(!empty($data['os_name'])){
-                $dataToSend['spec']['os'] = "Je voudrais " . $data['os_name'] . " comme systeme d'exploitation";
+            if(!empty($data['oschoice'])){
+                $dataToSend['spec']['os'] = "Je voudrais " . $data['oschoice'] . " comme systeme d'exploitation";
             }
 
             if($data['os_active'] == "yes"){
                 $dataToSend['spec']['os'] .= ", et je souhaiterais que vous me l'activez. ";
             }
             else $dataToSend['spec']['os'] .= ", et je l'activerais moi même. ";
+
+            if(!empty($data['os_name'])){
+                $dataToSend['spec']['os'] .= "Est ce que se serait possible d'avoir " . $data['os_name'] . " comme système d'exploitation.";
+            }
         } 
         else {
             $dataToSend['spec']['os'] = "Je ne souhaite pas de systeme d'exploiration. ";
