@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Edit from '../../components/User/Edit';
-import { changeProfile, submitProfile } from '../../actions/profile';
+import { changeProfile, submitProfile, getData } from '../../actions/profile';
 
 const mapStateToProps = (state) => ({
-  infos: state.profile,
+  profile: state.profile,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -12,6 +12,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   submitProfile: () => {
     dispatch(submitProfile());
+  },
+  getData: () => {
+    dispatch(getData());
   },
 });
 

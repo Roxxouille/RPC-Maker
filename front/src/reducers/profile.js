@@ -1,27 +1,26 @@
-import { CHANGE_PROFILE, ERROR_PROFILE } from '../actions/profile';
+import { CHANGE_PROFILE, ERROR_PROFILE, SET_DATA } from '../actions/profile';
 
 export const initialState = {
-  email: '',
-  lastname: '',
-  firstname: '',
-  old: '',
-  city: '',
-  adress: '',
-  zipCode: 75015,
-  status: '',
-  adressComplement: '',
+  infos: {
+    email: '',
+    lastname: '',
+    firstname: '',
+    city: '',
+    adress: '',
+    zip_code: 75015,
+    status: '',
+    loading: false,
+    set: false,
+  },
   error: {
     lastname: [''],
     firstname: [''],
     city: [''],
     email: [''],
-    age: [''],
     ville: [''],
-    zipCode: [''],
+    zip_code: [''],
     adress: [''],
-    adressComplement: [''],
   },
-  loading: false,
 };
 
 const profile = (state = initialState, action = {}) => {
@@ -29,12 +28,20 @@ const profile = (state = initialState, action = {}) => {
     case CHANGE_PROFILE:
       return {
         ...state,
-        [action.name]: action.value,
+        infos: {
+          ...state.infos,
+          [action.name]: action.value,
+        },
       };
     case ERROR_PROFILE:
       return {
         ...state,
         error: { ...state.error, ...action.value },
+      };
+    case SET_DATA:
+      return {
+        ...state,
+        infos: { ...state.infos, ...action.data, set: true },
       };
     default:
       return state;

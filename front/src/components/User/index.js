@@ -39,8 +39,6 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
         <Redirect to={{ pathname: '/login' }} />
       )}
 
-
-
       {isLogged === true && isLoading === false && (
         <div>
           <Jumbotron fluid className="jumbotron">

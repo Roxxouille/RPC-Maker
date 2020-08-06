@@ -4,12 +4,14 @@ import StateField from './Field/StateField';
 import Field from './Field';
 import ErrorField from './Field/ErrorField';
 
-const Edit = ({ changeProfile, submitProfile, infos }) => {
+const Edit = ({ changeProfile, submitProfile, profile, getData }) => {
+  if (profile.infos.set === false) {
+    getData();
+  }
+  console.log(profile);
   const handleChange = (e) => {
     changeProfile(e.target.name, e.target.value);
   };
-  console.log('data:', infos);
-  console.log('error:', infos.error);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,23 +20,19 @@ const Edit = ({ changeProfile, submitProfile, infos }) => {
   return (
     <div className="container">
       <Form onSubmit={handleSubmit}>
-        <Field handleChange={handleChange} label="Nom" name="lastname" type="text" value={infos.lastname} placeholder="Nom" controlId="lastname" />
-        <ErrorField error={infos.error.lastname[0]} />
-        <Field handleChange={handleChange} label="Prénom" name="firstname" type="text" value={infos.firstname} placeholder="Prénom" controlId="firstname" />
-        <ErrorField error={infos.error.firstname[0]} />
-        <Field handleChange={handleChange} label="Email" name="email" type="text" value={infos.email} placeholder="Email" controlId="email" />
-        <ErrorField error={infos.error.email[0]} />
-        <Field handleChange={handleChange} label="Age" name="old" type="text" value={infos.old} placeholder="Age" controlId="old" />
-        <ErrorField error={infos.error.age[0]} />
-        <Field handleChange={handleChange} label="Ville" name="city" type="text" value={infos.city} placeholder="Ville" controlId="city" />
-        <ErrorField error={infos.error.city[0]} />
-        <Field handleChange={handleChange} label="Code postal" name="zipCode" type="number" value={infos.zipCode} placeholder="Code postal" controlId="zipCode" />
-        <ErrorField error={infos.error.zipCode[0]} />
-        <Field handleChange={handleChange} label="Adresse" name="adress" type="text" value={infos.adress} placeholder="Adresse" controlId="adress" />
-        <ErrorField error={infos.error.adress[0]} />
-        <Field handleChange={handleChange} label="Complément d'adresse" name="adressComplement" value={infos.adressComplement} type="text" placeholder="Complément d'adresse" controlId="adressComplement" />
-        <ErrorField error={infos.error.adressComplement[0]} />
-        <StateField error='' isLoading={infos.loading} />
+        <Field handleChange={handleChange} label="Nom" name="lastname" type="text" value={profile.infos.lastname} placeholder="Nom" controlId="lastname" />
+        <ErrorField error={profile.error.lastname[0]} />
+        <Field handleChange={handleChange} label="Prénom" name="firstname" type="text" value={profile.infos.firstname} placeholder="Prénom" controlId="firstname" />
+        <ErrorField error={profile.error.firstname[0]} />
+        <Field handleChange={handleChange} label="Email" name="email" type="text" value={profile.infos.email} placeholder="Email" controlId="email" />
+        <ErrorField error={profile.error.email[0]} />
+        <Field handleChange={handleChange} label="Ville" name="city" type="text" value={profile.infos.city} placeholder="Ville" controlId="city" />
+        <ErrorField error={profile.error.city[0]} />
+        <Field handleChange={handleChange} label="Code postal" name="zip_code" type="number" value={profile.infos.zip_code} placeholder="Code postal" controlId="zip_code" />
+        <ErrorField error={profile.error.zip_code[0]} />
+        <Field handleChange={handleChange} label="Adresse" name="adress" type="text" value={profile.infos.adress} placeholder="Adresse" controlId="adress" />
+        <ErrorField error={profile.error.adress[0]} />
+        <StateField error='' isLoading={profile.infos.loading} />
         <Button variant="primary" type="submit">
           Mettre à jour
         </Button>
