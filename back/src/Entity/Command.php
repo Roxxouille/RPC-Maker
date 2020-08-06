@@ -73,11 +73,13 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"user"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Groups({"user"})
      * @Assert\Length(
      *      max = 45,
      *      maxMessage = "Le nom de la commande est trop long",
