@@ -7,11 +7,12 @@ use App\Entity\Item;
 use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
+use App\Entity\Message;
 use App\Entity\Category;
+use App\Entity\Testimony;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
-use App\Entity\Testimony;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -253,7 +254,7 @@ class AppFixtures extends Fixture
             'Sebastien' => 'sebastien@gmail.com',
         ];
         // add one user with builder roles
-        foreach($builders as $key => $builder){
+        foreach ($builders as $key => $builder) {
             $user = new User;
             $user->setCreatedAt(new \DateTime);
             $user->setUpdatedAt(new \DateTime);
@@ -266,7 +267,7 @@ class AppFixtures extends Fixture
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
             $builderList[] = $user;
-            $manager->persist($user);   
+            $manager->persist($user);
         }
 
         $userList = [];
@@ -322,6 +323,36 @@ class AppFixtures extends Fixture
             $testimony->setUpdatedAt(new \DateTime);
             $manager->persist($testimony);
         }
+
+        // fixtures for builder Message
+
+        for ($i = 0; $i < 100; $i++) {
+            $clientList = [];
+            $message = new Message;
+            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
+            $message->setContent($faker->sentence());
+            $message->setFromUser($faker->randomElement($builderList));
+            foreach ($userList as $user) {
+                if ($user->getBuilder() === $message->getFromUser()) {
+                    $clientList[] = $user;
+                }
+            }
+            $message->setToUser($faker->randomElement($clientList));
+            $manager->persist($message);
+        }
+
+        // fixtures for user Message
+        for ($i = 0; $i < 100; $i++) {
+            $message = new Message;
+            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
+            $message->setContent($faker->sentence());
+            $message->setFromUser($faker->randomElement($userList));
+            $message->setToUser($message->getFromUser()->getBuilder());
+            $manager->persist($message);
+        }
+
+
+
         // DONNEES DE TEST
 
         // fixtures for Avatar

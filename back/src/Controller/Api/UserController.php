@@ -136,15 +136,14 @@ class UserController extends AbstractController
             $commandData[$key] = $contentData;
         }
         unset($commandData['password'],
-            $commandData['email'],
-            $commandData['level'],
-            $commandData['roles'],
-            $commandData['firstname'],
-            $commandData['lastname'],
-            $commandData['city'],
-            $commandData['zip_code'],
-            $commandData['adress']
-        );
+        $commandData['email'],
+        $commandData['level'],
+        $commandData['roles'],
+        $commandData['firstname'],
+        $commandData['lastname'],
+        $commandData['city'],
+        $commandData['zip_code'],
+        $commandData['adress']);
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $username);
         $command->setData($commandData);
@@ -244,4 +243,19 @@ class UserController extends AbstractController
 
         return $this->json($users, Response::HTTP_OK, [], ['groups' => 'user']);
     }
+
+    // /**
+    //  * @Route("/user/{slug}/messagesSend", methods="GET", name="user_messages_send")
+    //  */
+    // public function getMessagesSendOfOneUser(User $user = null, UserRepository $userRepository)
+    // {
+    //     //send a 404 error if the user does not exist
+    //     if ($user === null) {
+    //         return $this->json(['error' => 'monteur non trouve'], Response::HTTP_NOT_FOUND);
+    //     }
+
+    //     $messagesSend = $user->getMessagesSend();
+
+    //     dd($messagesSend);
+    // }
 }
