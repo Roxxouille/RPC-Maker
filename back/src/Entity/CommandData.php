@@ -20,7 +20,6 @@ class CommandData
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
      */
     private $utilisation;
 
