@@ -19,16 +19,26 @@ class MessageController extends AbstractController
     /**
      * @Route("/user/{slug}/messages", methods="GET", name="user_messages")
      */
-    public function getMessages(User $user = null, MessageRepository $messageRepository, UserRepository $userRepository)
+    public function getMessages(SerializerInterface $serializer, Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository)
     {
         //send a 404 error if the user does not exist
-        if ($user === null) {
-            return $this->json(['error' => 'monteur non trouve'], Response::HTTP_NOT_FOUND);
+        if ($from === null) {
+            return $this->json(['error' => 'utilisateur non trouve'], Response::HTTP_NOT_FOUND);
         }
 
-        $builder = $user->getBuilder();
+        if ($from->getBuilder() != null) {
+            $to = $from->getBuilder();
 
-        $messagesUser = $messageRepository->findMesByUsers($user, $builder);
+            $messagesUser = $messageRepository->findMesByUsers($from, $to);
+
+            //send it in json
+            return $this->json($messagesUser, Response::HTTP_OK, [], ['groups' => 'message']);
+        }
+
+        $content = $request->getContent();
+        $to = $userRepository->find(json_decode($content, true));
+
+        $messagesUser = $messageRepository->findMesByUsers($from, $to);
 
         //send it in json
         return $this->json($messagesUser, Response::HTTP_OK, [], ['groups' => 'message']);
