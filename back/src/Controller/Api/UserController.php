@@ -84,7 +84,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user", name="user_add", methods="POST")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository)
     {
 
         //get the request content (info about new user)
@@ -112,6 +112,9 @@ class UserController extends AbstractController
         $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
+        $builder = $userRepository->getRandomBuilder();
+        $user->setBuilder($builder);
+
 
         //Create a new avatar
         //add an random image from lorempicsum
@@ -130,7 +133,6 @@ class UserController extends AbstractController
         foreach ($contentDecode as $key => $contentData) {
             $commandData[$key] = $contentData;
         }
-        array_splice($commandData, 0, 11);
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $userFirstname);
         $command->setData($commandData);
