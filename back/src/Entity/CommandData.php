@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandDataRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommandDataRepository::class)
@@ -15,31 +16,37 @@ class CommandData
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"command_info"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $utilisation;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $utilisationDetails;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $budget;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @Groups({"command_info"})
      */
     private $amount;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @Groups({"command_info"})
      */
     private $gap;
 
@@ -52,18 +59,21 @@ class CommandData
     /**
      * @ORM\OneToOne(targetEntity=CommandConfigData::class, inversedBy="commandData", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"command_info"})
      */
     private $commandConfigData;
 
     /**
      * @ORM\OneToOne(targetEntity=CommandSpecData::class, inversedBy="commandData", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"command_info"})
      */
     private $commandSpecData;
 
     /**
      * @ORM\OneToOne(targetEntity=CommandDeviceData::class, inversedBy="commandData", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"command_info"})
      */
     private $commandDeviceData;
 

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandDeviceDataRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommandDeviceDataRepository::class)
@@ -15,6 +16,7 @@ class CommandDeviceData
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"command_info"})
      */
     private $id;
 
@@ -25,201 +27,241 @@ class CommandDeviceData
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $device;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceScreen;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceScreenModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceScreenLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceScreenSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceScreenRes;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboard;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboardModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboardLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboardType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboardSwitch;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceKeyboardLanguage;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMouse;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMouseModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMouseLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMouseType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMouseFilaire;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMousepad;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMousepadModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMousepadLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMousepadType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceMousepadSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceHeadphone;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceHeadphoneModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceHeadphoneLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceHeadphoneType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceHeadphoneSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceEnceinte;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceEnceinteModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceEnceinteLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceEnceinteType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceEnceinteBass;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceWebcam;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceWebcamModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceWebcamLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $deviceWebcamRes;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $devicePrinter;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $devicePrinterModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $devicePrinterLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $devicePrinterType;
 

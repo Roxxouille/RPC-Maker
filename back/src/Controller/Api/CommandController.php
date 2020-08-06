@@ -46,6 +46,20 @@ class CommandController extends AbstractController
     }
 
     /**
+     * @Route("/command/{slug}/info", name="command_info", methods="GET")
+     */
+    public function getInfos(CommandRepository $commandRepository, Command $command = null)
+    {
+        if($command === null) {
+            return $this->json(['error' => 'commande non trouvé'], Response::HTTP_NOT_FOUND);
+        }
+
+        $data = $commandRepository->findOneByUser($command);
+
+        return $this->json($data, Response::HTTP_OK, [], ['groups' => 'command_info']);
+    }
+
+    /**
      * @Route("/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
      */
     public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)

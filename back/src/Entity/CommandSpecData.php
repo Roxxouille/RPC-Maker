@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandSpecDataRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommandSpecDataRepository::class)
@@ -15,6 +16,7 @@ class CommandSpecData
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"command_info"})
      */
     private $id;
 
@@ -25,81 +27,97 @@ class CommandSpecData
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $specImportant;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specSli;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specOverclock;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $specStorage;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specStorageQuantity;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specWifi;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specWifiRoom;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specFiber;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $specSound;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $specSoundUtilisation;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $specSoundUtilisationOther;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $specLight;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $os;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $oschoice;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $osName;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $osActive;
 

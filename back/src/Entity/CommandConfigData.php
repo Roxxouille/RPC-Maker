@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\CommandConfigDataRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=CommandConfigDataRepository::class)
@@ -25,141 +26,169 @@ class CommandConfigData
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"command_info"})
      */
     private $preconfiguration;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configProc;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configProcModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configProcLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoard;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoardModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoardLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configGc;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configGcModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configGcLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRam;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRamModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRamLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRefresh;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRefreshModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configRefreshLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configStorage;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configStorageModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configStorageLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoardsound;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoardsoundModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configBoardsoundLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configCase;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configCaseModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configCaseLink;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configPower;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configPowerModel;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"command_info"})
      */
     private $configPowerLink;
 
