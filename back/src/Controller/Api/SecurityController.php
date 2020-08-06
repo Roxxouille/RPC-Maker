@@ -20,7 +20,7 @@ class SecurityController extends AbstractController
         if (!$user) {
             throw $this->createAccessDeniedException();
         }
-        
+
         //create a token for the user that just connected
         $user->setApiToken(md5(uniqid(rand(), true)));
         // @todo Renouveler le token à la connexion
@@ -34,6 +34,7 @@ class SecurityController extends AbstractController
             'slug' => $user->getSlug(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
+            'commands' => $user->getCommand(),
         ]);
     }
 
