@@ -11,6 +11,10 @@ use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
+use App\Entity\CommandConfigData;
+use App\Entity\CommandData;
+use App\Entity\CommandDeviceData;
+use App\Entity\CommandSpecData;
 use App\Entity\Testimony;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -296,7 +300,6 @@ class AppFixtures extends Fixture
             $command->setUpdatedAt(new \DateTime);
             $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
-            $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->unique()->randomElement($userList));
             // adding 20 item, each of one category, for one command
             foreach ($categoryList as $key => $category) {
@@ -310,8 +313,38 @@ class AppFixtures extends Fixture
             $manager->persist($command);
         }
 
+        $commandDataList = [];
+        foreach($commandList as $command) {
+            $commandConfigData = new CommandConfigData;
+            $commandConfigData->setConfigBoard('Data');
+            $commandConfigData->setConfigCase('Encore du data');
+
+            $manager->persist($commandConfigData);
+
+            $commandSpecData = new CommandSpecData;
+            $commandSpecData->setOsName('Windaube');
+            $commandSpecData->setSpecFiber(true);
+        
+            $manager->persist($commandSpecData);
+
+            $commandDeviceData = new CommandDeviceData;
+            $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
+            $commandDeviceData->setDeviceScreen('AOC 144HZ');
+
+            $manager->persist($commandDeviceData);
+
+            $commandData = new CommandData;
+            $commandData->setCommandConfigData($commandConfigData);
+            $commandData->setCommandDeviceData($commandDeviceData);
+            $commandData->setCommandSpecData($commandSpecData);
+            $commandData->setCommand($command);
+
+            $manager->persist($commandData);
+            $commandDataList[] = $commandData;
+        }
+
         // fixtures for Testimony
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 16; $i++) {
             $testimony = new Testimony;
             $testimony->setContent($faker->text($faker->numberBetween(30, 255)));
             $testimony->setScore($faker->numberBetween(1, 5));
