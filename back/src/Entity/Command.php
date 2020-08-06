@@ -18,7 +18,7 @@ class Command
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "login"})
      */
     private $id;
 
@@ -73,13 +73,13 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user", "command"})
+     * @Groups({"user", "command", "login"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Groups({"user"})
+     * @Groups({"user", "login"})
      * @Assert\Length(
      *      max = 45,
      *      maxMessage = "Le nom de la commande est trop long",
