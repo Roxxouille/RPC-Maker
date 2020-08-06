@@ -125,6 +125,7 @@ class UserController extends AbstractController
 
         //transform the content of the request in an object
         //get the info of the new command
+        //unset unneeded info
         //create the new command
         //set this info to the new command
         $userFirstname = $user->getFirstname();
@@ -133,6 +134,16 @@ class UserController extends AbstractController
         foreach ($contentDecode as $key => $contentData) {
             $commandData[$key] = $contentData;
         }
+        unset($commandData['password'],
+            $commandData['email'],
+            $commandData['level'],
+            $commandData['roles'],
+            $commandData['firstname'],
+            $commandData['lastname'],
+            $commandData['city'],
+            $commandData['zip_code'],
+            $commandData['adress']
+        );
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $userFirstname);
         $command->setData($commandData);
