@@ -16,7 +16,7 @@ export default (store) => (next) => (action) => {
       const { email, password } = state.user;
       axios.post('http://localhost:3000/login', { username: email, password, login: true }, { headers: { 'Content-Type': 'application/json' } })
         .then((response) => {
-          console.log(response);
+          console.log('login', response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.apiToken);
           store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands));
@@ -34,7 +34,9 @@ export default (store) => (next) => (action) => {
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(setUser(response.data.username, response.data.roles[0]), response.data.commands);
+          const commands = response.data.commands;
+          console.log('autologcommands:', commands);
+          store.dispatch(setUser(response.data.username, response.data.roles[0], commands));
         })
         .catch((error) => {
           localStorage.clear();

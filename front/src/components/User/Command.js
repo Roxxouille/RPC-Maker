@@ -8,7 +8,7 @@ import './styles.scss';
 import { FaDownload } from 'react-icons/fa';
 
 const Command = ({commands}) => {
-  console.log(commands);
+  console.log('composant:', commands);
   let key = 0;
   const dataCommands = commands.map((command) => {
     let total = 0;
