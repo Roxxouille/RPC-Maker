@@ -15,8 +15,10 @@ export class UserForm extends Component {
   state = {
     step: 1,
     budget: '',
+    amount: '',
     gap: '',
     utilisation: '',
+    preconfiguration: '',
     config_proc: '',
     config_proc_model: '',
     config_proc_link: '',
@@ -59,33 +61,42 @@ export class UserForm extends Component {
     option: '',
     option_screen: '',
     option_screen_model: '',
+    option_screen_link: '',
     option_screen_size: '',
     option_screen_res: '',
     option_keyboard: '',
+    option_keyboard_model: '',
+    option_keyboard_link: '',
     option_keyboard_type: '',
     option_keyboard_switch: '',
     option_keyboard_language: '',
     option_mouse: '',
     option_mouse_model: '',
+    option_mouse_link: '',
     option_mouse_type: '',
     option_mouse_filaire: '',
     option_mousepad: '',
     option_mousepad_model: '',
+    option_mousepad_link: '',
     option_mousepad_type: '',
     option_mousepad_size: '',
     option_headphone: '',
     option_headphone_model: '',
+    option_headphone_link: '',
     option_headphone_type: '',
     option_headphone_size: '',
     option_enceinte: '',
     option_enceinte_model: '',
+    option_enceinte_link: '',
     option_enceinte_type: '',
     option_enceinte_bass: '',
     option_webcam: '',
     option_webcam_model: '',
+    option_webcam_link: '',
     option_webcam_res: '',
     option_printer: '',
     option_printer_model: '',
+    option_printer_link: '',
     option_printer_type: '',
     username: '',
     firstname: '',
@@ -97,6 +108,7 @@ export class UserForm extends Component {
     city: '',
     zip_code: parseInt(''),
   };
+
   // Gerer les pages dynamiques
   nextStep = () => {
     const { step } = this.state;
@@ -119,16 +131,17 @@ export class UserForm extends Component {
 
    // Handle pour un nombre
    handleAsNumber = (input) => (e) => {
-    this.setState({ [input]: e.target.valueAsNumber });
-  };
-  // Envoi vers le back
+     this.setState({ [input]: e.target.valueAsNumber });
+   };
+
+   // Envoi vers le back
    handleSubmit = (event) => {
      alert(`formulaire envoyer ! : ${this.state}`);
 
      fetch('http://localhost:3000/user', {
        method: 'POST',
        // conversion du state vers un JSON
-       
+
        body: JSON.stringify(this.state),
      }).then((response) => {
        console.log(response);
@@ -137,6 +150,7 @@ export class UserForm extends Component {
 
      event.preventDefault();
    }
+
    // handle pour les checkbox
    CheckContent = (input) => (e) => {
      this.setState({ [input]: e.target.name });
@@ -147,8 +161,10 @@ export class UserForm extends Component {
      const {
        utilisation,
        other_utilisation,
+       amount,
        budget,
        gap,
+       preconfiguration,
        config_proc,
        config_proc_model,
        config_proc_link,
@@ -194,33 +210,42 @@ export class UserForm extends Component {
        option,
        option_screen,
        option_screen_model,
+       option_screen_link,
        option_screen_size,
        option_screen_res,
        option_keyboard,
+       option_keyboard_model,
+       option_keyboard_link,
        option_keyboard_type,
        option_keyboard_switch,
        option_keyboard_language,
        option_mouse,
        option_mouse_model,
+       option_mouse_link,
        option_mouse_type,
        option_mouse_filaire,
        option_mousepad,
        option_mousepad_model,
+       option_mousepad_link,
        option_mousepad_type,
        option_mousepad_size,
        option_headphone,
        option_headphone_model,
+       option_headphone_link,
        option_headphone_type,
        option_headphone_size,
        option_enceinte,
        option_enceinte_model,
+       option_enceinte_link,
        option_enceinte_type,
        option_enceinte_bass,
        option_webcam,
        option_webcam_model,
+       option_webcam_link,
        option_webcam_res,
        option_printer,
        option_printer_model,
+       option_printer_link,
        option_printer_type,
        username,
        firstname,
@@ -233,11 +258,12 @@ export class UserForm extends Component {
        zip_code,
      } = this.state;
      const values = {
-       username,
        utilisation,
        other_utilisation,
+       amount,
        budget,
        gap,
+       preconfiguration,
        config_proc,
        config_proc_model,
        config_proc_link,
@@ -283,29 +309,45 @@ export class UserForm extends Component {
        option,
        option_screen,
        option_screen_model,
+       option_screen_link,
+       option_screen_size,
        option_screen_res,
        option_keyboard,
+       option_keyboard_model,
+       option_keyboard_link,
        option_keyboard_type,
        option_keyboard_switch,
        option_keyboard_language,
        option_mouse,
        option_mouse_model,
+       option_mouse_link,
        option_mouse_type,
        option_mouse_filaire,
        option_mousepad,
        option_mousepad_model,
+       option_mousepad_link,
        option_mousepad_type,
        option_mousepad_size,
        option_headphone,
        option_headphone_model,
+       option_headphone_link,
        option_headphone_type,
        option_headphone_size,
        option_enceinte,
        option_enceinte_model,
+       option_enceinte_link,
        option_enceinte_type,
        option_enceinte_bass,
        option_webcam,
        option_webcam_model,
+       option_webcam_link,
+       option_webcam_res,
+       option_printer,
+       option_printer_model,
+       option_printer_link,
+       option_printer_type,
+       username,
+       firstname,
        lastname,
        email,
        password,
@@ -313,7 +355,6 @@ export class UserForm extends Component {
        inscr_adress2,
        city,
        zip_code,
-       firstname,
      };
 
      switch (step) {
@@ -331,6 +372,7 @@ export class UserForm extends Component {
              nextStep={this.nextStep}
              prevStep={this.prevStep}
              handleChange={this.handleChange}
+             CheckContent={this.CheckContent}
              values={values}
            />
          );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import { Form, Col, Button, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
 import './styles.scss';
 
 export class Step2 extends Component {
@@ -14,7 +14,7 @@ export class Step2 extends Component {
   };
 
   render() {
-    const { values, handleChange } = this.props;
+    const { values, handleChange, CheckContent } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -23,24 +23,22 @@ export class Step2 extends Component {
         <div>
           <h1>Pour mieux vous servir un budget pourrait nous servir, En avez vous defini un?</h1>
         </div>
-        <Form className="Form">
-          <Form.Row className="Form__button">
+          <Form.Row>
             <Col>
-              <Button className="Form__button" variant="primary" type="submit"> Oui </Button>
+              <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('budget')}> Oui  </Button>
             </Col>
             <Col>
-              <Button className="Form__button" variant="primary" type="submit"> Non </Button>
+              <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('budget')}> Non </Button>
             </Col>
           </Form.Row>
           <Form.Row>
             <Col>
-              <Form.Control type="name" placeholder="Budget" defaultValue={values.budget} onChange={handleChange('budget')} />
+              <Form.Control type="name" placeholder="Budget" defaultValue={values.budget} onChange={handleChange('amount')} />
             </Col>
             <Col>
               <Form.Control type="name" placeholder="Marge" defaultValue={values.gap} onChange={handleChange('gap')} />
             </Col>
           </Form.Row>
-        </Form>
         <Form.Row className="Form__button">
           <Col>
             <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
