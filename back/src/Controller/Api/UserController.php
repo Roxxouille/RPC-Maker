@@ -114,6 +114,7 @@ class UserController extends AbstractController
         $user->setPassword($passwordHashed);
         $builder = $userRepository->getRandomBuilder();
         $user->setBuilder($builder);
+        $user->setRoles(['ROLE_USER']);
 
 
         //Create a new avatar
@@ -128,7 +129,7 @@ class UserController extends AbstractController
         //unset unneeded info
         //create the new command
         //set this info to the new command
-        $userFirstname = $user->getFirstname();
+        $username = $user->getUsername();
         $contentDecode = json_decode($content, true);
         $commandData = [];
         foreach ($contentDecode as $key => $contentData) {
@@ -145,7 +146,7 @@ class UserController extends AbstractController
             $commandData['adress']
         );
         $command = new Command();
-        $command->setName('Pc numero 1 de ' . $userFirstname);
+        $command->setName('Pc numero 1 de ' . $username);
         $command->setData($commandData);
 
 
