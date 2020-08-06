@@ -34,7 +34,7 @@ class SecurityController extends AbstractController
             'slug' => $user->getSlug(),
             'roles' => $user->getRoles(),
             'token' => $user->getApiToken(),
-            'commands' => $user->getCommand(),
+            'commands' => $user->getCommands(),
         ]);
     }
 
