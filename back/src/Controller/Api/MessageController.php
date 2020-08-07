@@ -17,7 +17,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MessageController extends AbstractController
 {
     /**
-     * @Route("/user/{slug}/messages", methods="GET", name="user_messages")
+     * @Route("/user/{slug}/messages", methods="POST", name="user_messages")
      */
     public function getMessages(Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository)
     {
