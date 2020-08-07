@@ -123,7 +123,7 @@ export class Step7 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContent } = this.props;
     const optionScreen = this.state.screen.map((screen) => (
       <option key={`${screen.id}`}>{`${screen.name}`}</option>
     ));
@@ -188,29 +188,29 @@ export class Step7 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="select" onClick={CheckContent('option')}> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="select" onClick={CheckContent('device')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="select" onClick={CheckContent('option')}> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="select" onClick={CheckContent('device')}> Non </Button>
           </Col>
         </Form.Row>
 
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Ecran1</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_screen')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_screen')}>
               {optionScreen}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Preciser" onChange={handleChange('option_screen_model')} />
+            <Form.Control placeholder="Preciser" onChange={handleChange('device_screen_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_screen_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_screen_link')} />
             <Form.Label className="Form__inside">Taille d'ecran</Form.Label>
-            <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('option_screen_size')}>
+            <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('device_screen_size')}>
               {optionSize}
             </Form.Control>
             <Form.Label className="Form__inside">Resolution</Form.Label>
-            <Form.Control as="select" defaultValue="full HD" onChange={handleChange('option_screen_res')}>
+            <Form.Control as="select" defaultValue="full HD" onChange={handleChange('device_screen_res')}>
               {optionResolution}
             </Form.Control>
           </Form.Group>
@@ -218,18 +218,18 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Clavier</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_keyboard')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_keyboard')}>
               {optionKeyboard}
             </Form.Control>
             <Form.Label className="Form__inside">Un Modéle en téte ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_keyboard_model')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_keyboard_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_keyboard_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_keyboard_link')} />
             <Form.Row>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label className="Form__inside">Type</Form.Label>
-                  <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('option_keyboard_type')}>
+                  <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('device_keyboard_type')}>
                     {optionType}
                   </Form.Control>
                 </Form.Group>
@@ -237,7 +237,7 @@ export class Step7 extends Component {
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label className="Form__inside">Switch</Form.Label>
-                  <Form.Control as="select" defaultValue="Red" onChange={handleChange('option_keyboard_switch')}>
+                  <Form.Control as="select" defaultValue="Red" onChange={handleChange('device_keyboard_switch')}>
                     {optionSwitch}
                   </Form.Control>
                 </Form.Group>
@@ -245,26 +245,26 @@ export class Step7 extends Component {
             </Form.Row>
           </Form.Group>
           <Form.Label className="Form__inside">Langue</Form.Label>
-          <Form.Control as="select" defaultValue="azerty" onChange={handleChange('option_keyboard_language')}>
+          <Form.Control as="select" defaultValue="azerty" onChange={handleChange('device_keyboard_language')}>
             {optionLanguage}
           </Form.Control>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Sourie</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mouse')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_mouse')}>
               {optionMouse}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mouse_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mouse_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mouse_link')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mouse_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" defaultValue="laser" onChange={handleChange('option_mouse_type')}>
+            <Form.Control as="select" defaultValue="laser" onChange={handleChange('device_mouse_type')}>
               {optionMouseType}
             </Form.Control>
             <Form.Label className="Form__inside">Filaire</Form.Label>
-            <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_mouse_filaire')}>
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('device_mouse_filaire')}>
               <option>Non</option>
               <option>Oui</option>
             </Form.Control>
@@ -273,19 +273,19 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Tapis</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_mousepad')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_mousepad')}>
               {optionPad}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_mousepad_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mousepad_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_mousepad_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_mousepad_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('option_mousepad_type')}>
+            <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('device_mousepad_type')}>
               {optionPadType}
             </Form.Control>
             <Form.Label className="Form__inside">Taille</Form.Label>
-            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_mousepad_size')}>
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('device_mousepad_size')}>
               {optionPadSize}
             </Form.Control>
           </Form.Group>
@@ -293,21 +293,21 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Casque-micro</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_headphone')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_headphone')}>
               {optionHeadSet}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_headphone_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_headphone_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_headphone_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_headphone_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('option_headphone_type')}>
+            <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('device_headphone_type')}>
               <option>Supra auriculaire</option>
               <option>isolant</option>
               <option>Ouvert</option>
             </Form.Control>
             <Form.Label className="Form__inside">Taille</Form.Label>
-            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('option_headphone_size')}>
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('device_headphone_size')}>
               <option>Petit</option>
               <option>Moyen</option>
               <option>Grand</option>
@@ -317,21 +317,21 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Enceinte</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_enceinte')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_enceinte')}>
               {optionHiFi}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_enceinte_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_enceinte_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_enceinte_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_enceinte_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('option_enceinte_type')}>
+            <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('device_enceinte_type')}>
               <option>1 enceinte</option>
               <option>2 enceintes</option>
               <option>3 enceintes</option>
             </Form.Control>
             <Form.Label className="Form__inside">Caisson de basses</Form.Label>
-            <Form.Control as="select" defaultValue="oui" onChange={handleChange('option_enceinte_bass')}>
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('device_enceinte_bass')}>
               <option>Non</option>
               <option>Oui</option>
             </Form.Control>
@@ -340,15 +340,15 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Webcam</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_webcam')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_webcam')}>
               {optionWebCam}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_webcam_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_webcam_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_webcam_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_webcam_link')} />
             <Form.Label className="Form__inside">Resolution</Form.Label>
-            <Form.Control as="select" defaultValue="720p" onChange={handleChange('option_webcam_res')}>
+            <Form.Control as="select" defaultValue="720p" onChange={handleChange('device_webcam_res')}>
               {optionWebCamResolution}
             </Form.Control>
           </Form.Group>
@@ -356,15 +356,15 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Imprimante</Form.Label>
-            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('option_printer')}>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_printer')}>
               {optionPrinter}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('option_printer_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_printer_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('option_printer_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_printer_link')} />
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" defaultValue="Laser" onChange={handleChange('option_printer_type')}>
+            <Form.Control as="select" defaultValue="Laser" onChange={handleChange('device_printer_type')}>
               {optionPrinterType}
             </Form.Control>
           </Form.Group>

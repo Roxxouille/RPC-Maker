@@ -16,7 +16,7 @@ export class Step2 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContent } = this.props;
     return (
       <div className="fullform">
         <div>

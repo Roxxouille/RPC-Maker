@@ -10,6 +10,7 @@ import Step6 from './Step6';
 import Step7 from './Step7';
 import Inscription from './inscription';
 import './styles.scss';
+import axios from 'axios';
 
 export class UserForm extends Component {
   state = {
@@ -59,46 +60,46 @@ export class UserForm extends Component {
     os: '',
     os_name: '',
     os_active: '',
-    option: '',
-    option_screen: '',
-    option_screen_model: '',
-    option_screen_link: '',
-    option_screen_size: '',
-    option_screen_res: '',
-    option_keyboard: '',
-    option_keyboard_model: '',
-    option_keyboard_link: '',
-    option_keyboard_type: '',
-    option_keyboard_switch: '',
-    option_keyboard_language: '',
-    option_mouse: '',
-    option_mouse_model: '',
-    option_mouse_link: '',
-    option_mouse_type: '',
-    option_mouse_filaire: '',
-    option_mousepad: '',
-    option_mousepad_model: '',
-    option_mousepad_link: '',
-    option_mousepad_type: '',
-    option_mousepad_size: '',
-    option_headphone: '',
-    option_headphone_model: '',
-    option_headphone_link: '',
-    option_headphone_type: '',
-    option_headphone_size: '',
-    option_enceinte: '',
-    option_enceinte_model: '',
-    option_enceinte_link: '',
-    option_enceinte_type: '',
-    option_enceinte_bass: '',
-    option_webcam: '',
-    option_webcam_model: '',
-    option_webcam_link: '',
-    option_webcam_res: '',
-    option_printer: '',
-    option_printer_model: '',
-    option_printer_link: '',
-    option_printer_type: '',
+    device: '',
+    device_screen: '',
+    device_screen_model: '',
+    device_screen_link: '',
+    device_screen_size: '',
+    device_screen_res: '',
+    device_keyboard: '',
+    device_keyboard_model: '',
+    device_keyboard_link: '',
+    device_keyboard_type: '',
+    device_keyboard_switch: '',
+    device_keyboard_language: '',
+    device_mouse: '',
+    device_mouse_model: '',
+    device_mouse_link: '',
+    device_mouse_type: '',
+    device_mouse_filaire: '',
+    device_mousepad: '',
+    device_mousepad_model: '',
+    device_mousepad_link: '',
+    device_mousepad_type: '',
+    device_mousepad_size: '',
+    device_headphone: '',
+    device_headphone_model: '',
+    device_headphone_link: '',
+    device_headphone_type: '',
+    device_headphone_size: '',
+    device_enceinte: '',
+    device_enceinte_model: '',
+    device_enceinte_link: '',
+    device_enceinte_type: '',
+    device_enceinte_bass: '',
+    device_webcam: '',
+    device_webcam_model: '',
+    device_webcam_link: '',
+    device_webcam_res: '',
+    device_printer: '',
+    device_printer_model: '',
+    device_printer_link: '',
+    device_printer_type: '',
     username: '',
     firstname: '',
     lastname: '',
@@ -108,6 +109,7 @@ export class UserForm extends Component {
     inscr_adress2: '',
     city: '',
     zip_code: parseInt(''),
+    fail: [],
   };
 
   // Gerer les pages dynamiques
@@ -139,16 +141,21 @@ export class UserForm extends Component {
    handleSubmit = (event) => {
      alert(`formulaire envoyer ! : ${this.state}`);
 
-     fetch('http://localhost:3000/user', {
-       method: 'POST',
+     axios.post('http://localhost:3000/user', {
        // conversion du state vers un JSON
 
        body: JSON.stringify(this.state),
-     }).then((response) => {
-       console.log(response);
-       return response.json();
-     });
-
+     })
+       .then((response) => {
+         console.log(response);
+         return response.json();
+       })
+       .catch((error) => {
+         console.log(error.response);
+         const fail = error.response.data;
+         console.log(fail);
+         this.setState({ fail });
+       });
      event.preventDefault();
    }
 
@@ -159,206 +166,6 @@ export class UserForm extends Component {
 
    render() {
      const { step } = this.state;
-     const {
-       utilisation,
-       other_utilisation,
-       amount,
-       budget,
-       gap,
-       preconfiguration,
-       oschoice,
-       config_proc,
-       config_proc_model,
-       config_proc_link,
-       config_board,
-       config_board_model,
-       config_board_link,
-       config_gc,
-       config_gc_model,
-       config_gc_link,
-       config_ram,
-       config_ram_model,
-       config_ram_link,
-       config_refresh,
-       config_refresh_model,
-       config_refresh_link,
-       config_storage,
-       config_storage_model,
-       config_storage_link,
-       config_boardsound,
-       config_boardsound_model,
-       config_boardsound_link,
-       config_case,
-       config_case_model,
-       config_case_link,
-       config_power,
-       config_power_model,
-       config_power_link,
-       spec_important,
-       spec_sli,
-       spec_overclock,
-       spec_storage,
-       spec_storage_quantity,
-       spec_wifi,
-       spec_wifi_room,
-       spec_fiber,
-       spec_sound,
-       spec_sound_utilisation,
-       spec_sound_utilisation_other,
-       spec_light,
-       os,
-       os_name,
-       os_active,
-       option,
-       option_screen,
-       option_screen_model,
-       option_screen_link,
-       option_screen_size,
-       option_screen_res,
-       option_keyboard,
-       option_keyboard_model,
-       option_keyboard_link,
-       option_keyboard_type,
-       option_keyboard_switch,
-       option_keyboard_language,
-       option_mouse,
-       option_mouse_model,
-       option_mouse_link,
-       option_mouse_type,
-       option_mouse_filaire,
-       option_mousepad,
-       option_mousepad_model,
-       option_mousepad_link,
-       option_mousepad_type,
-       option_mousepad_size,
-       option_headphone,
-       option_headphone_model,
-       option_headphone_link,
-       option_headphone_type,
-       option_headphone_size,
-       option_enceinte,
-       option_enceinte_model,
-       option_enceinte_link,
-       option_enceinte_type,
-       option_enceinte_bass,
-       option_webcam,
-       option_webcam_model,
-       option_webcam_link,
-       option_webcam_res,
-       option_printer,
-       option_printer_model,
-       option_printer_link,
-       option_printer_type,
-       username,
-       firstname,
-       lastname,
-       email,
-       password,
-       adress,
-       inscr_adress2,
-       city,
-       zip_code,
-     } = this.state;
-     const values = {
-       utilisation,
-       other_utilisation,
-       amount,
-       budget,
-       gap,
-       preconfiguration,
-       oschoice,
-       config_proc,
-       config_proc_model,
-       config_proc_link,
-       config_board,
-       config_board_model,
-       config_board_link,
-       config_gc,
-       config_gc_model,
-       config_gc_link,
-       config_ram,
-       config_ram_model,
-       config_ram_link,
-       config_refresh,
-       config_refresh_model,
-       config_refresh_link,
-       config_storage,
-       config_storage_model,
-       config_storage_link,
-       config_boardsound,
-       config_boardsound_model,
-       config_boardsound_link,
-       config_case,
-       config_case_model,
-       config_case_link,
-       config_power,
-       config_power_model,
-       config_power_link,
-       spec_important,
-       spec_sli,
-       spec_overclock,
-       spec_storage,
-       spec_storage_quantity,
-       spec_wifi,
-       spec_wifi_room,
-       spec_fiber,
-       spec_sound,
-       spec_sound_utilisation,
-       spec_sound_utilisation_other,
-       spec_light,
-       os,
-       os_name,
-       os_active,
-       option,
-       option_screen,
-       option_screen_model,
-       option_screen_link,
-       option_screen_size,
-       option_screen_res,
-       option_keyboard,
-       option_keyboard_model,
-       option_keyboard_link,
-       option_keyboard_type,
-       option_keyboard_switch,
-       option_keyboard_language,
-       option_mouse,
-       option_mouse_model,
-       option_mouse_link,
-       option_mouse_type,
-       option_mouse_filaire,
-       option_mousepad,
-       option_mousepad_model,
-       option_mousepad_link,
-       option_mousepad_type,
-       option_mousepad_size,
-       option_headphone,
-       option_headphone_model,
-       option_headphone_link,
-       option_headphone_type,
-       option_headphone_size,
-       option_enceinte,
-       option_enceinte_model,
-       option_enceinte_link,
-       option_enceinte_type,
-       option_enceinte_bass,
-       option_webcam,
-       option_webcam_model,
-       option_webcam_link,
-       option_webcam_res,
-       option_printer,
-       option_printer_model,
-       option_printer_link,
-       option_printer_type,
-       username,
-       firstname,
-       lastname,
-       email,
-       password,
-       adress,
-       inscr_adress2,
-       city,
-       zip_code,
-     };
 
      switch (step) {
        case 1:
@@ -366,7 +173,6 @@ export class UserForm extends Component {
           <Step1
             nextStep={this.nextStep}
             handleChange={this.handleChange}
-            values={values}
           />
          );
        case 2:
@@ -376,7 +182,6 @@ export class UserForm extends Component {
              prevStep={this.prevStep}
              handleChange={this.handleChange}
              CheckContent={this.CheckContent}
-             values={values}
            />
          );
        case 3:
@@ -386,7 +191,6 @@ export class UserForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               CheckContent={this.CheckContent}
-              values={values}
             />
          );
        case 4:
@@ -395,7 +199,6 @@ export class UserForm extends Component {
                nextStep={this.nextStep}
                prevStep={this.prevStep}
                handleChange={this.handleChange}
-               values={values}
              />
          );
        case 5:
@@ -405,7 +208,6 @@ export class UserForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               CheckContent={this.CheckContent}
-              values={values}
             />
          );
        case 6:
@@ -415,7 +217,6 @@ export class UserForm extends Component {
                prevStep={this.prevStep}
                handleChange={this.handleChange}
                CheckContent={this.CheckContent}
-               values={values}
              />
          );
        case 7:
@@ -425,7 +226,6 @@ export class UserForm extends Component {
                 prevStep={this.prevStep}
                 handleChange={this.handleChange}
                 CheckContent={this.CheckContent}
-                values={values}
               />
          );
        case 8:
@@ -437,7 +237,6 @@ export class UserForm extends Component {
                  CheckContent={this.CheckContent}
                  handleSubmit={this.handleSubmit}
                  handleAsNumber={this.handleAsNumber}
-                 values={values}
                />
          );
      }

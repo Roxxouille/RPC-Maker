@@ -27,15 +27,13 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContent } = this.props;
     const optionOS = this.state.oschoice.map((oschoice) => (
       <option key={`${oschoice}`}>{`${oschoice}`}</option>
     ));
     return (
-      <div className="fullform">
-        <div>
-          <h2>Question Systeme</h2>
-        </div>
+      <div>
+        <h2>Question Systeme</h2>
         <div>
           <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur vos envis.</h1>
         </div>
