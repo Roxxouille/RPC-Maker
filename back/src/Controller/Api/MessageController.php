@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\User;
 use App\Entity\Message;
@@ -19,7 +19,7 @@ class MessageController extends AbstractController
     /**
      * @Route("/user/{slug}/messages", methods="GET", name="user_messages")
      */
-    public function getMessages(SerializerInterface $serializer, Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository)
+    public function getMessages(Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository)
     {
         //send a 404 error if the user does not exist
         if ($from === null) {
@@ -47,13 +47,12 @@ class MessageController extends AbstractController
     /**
      * @Route("/user/{slug}/message", methods="POST", name="user_message_add")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em, User $user)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserRepository $userRepository, EntityManagerInterface $em, User $from)
     {
         //get the request content (info about new message)
         //transform it into an object message
         //get the validations errors if there is any
         $content = $request->getContent();
-        dump($content);
         $message = $serializer->deserialize($content, Message::class, 'json');
         $errors = $validator->validate($message);
 
@@ -69,9 +68,33 @@ class MessageController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        // get the user that wrote the message
-        $message->setFromUser($user);
-        $message->setToUser($user->getBuilder());
+        // verify if the current user is a builder or a user
+        if ($from->getBuilder() != null) {
+
+            // set the user that wrote the message
+            $message->setFromUser($from);
+            // set the builder the message is send to
+            $message->setToUser($from->getBuilder());
+
+
+            // send the new message in database
+            $em->persist($message);
+            $em->flush();
+
+            // send a json response
+            return $this->json(['status' => 'message created'], Response::HTTP_OK);
+        }
+
+        // get the user to send the message to via the request
+        $toContent = json_decode($content, true);
+        $toId = $toContent['id'];
+        $to = $userRepository->find($toId);
+
+        // set the builder that wrote the message
+        $message->setFromUser($from);
+        // set the user the message is send to
+        $message->setToUser($to);
+
 
         // send the new message in database
         $em->persist($message);
