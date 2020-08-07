@@ -23,6 +23,14 @@ class CommandData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\NotNull(
+     *  message="Veuillez indiquer l'utilisation",
+     *  groups = {"validation_three"}
+     * )
+     * @Assert\NotBlank(
+     *  message="Veuillez indiquer l'utilisation",
+     *  groups = {"validation_three"}
+     * )
      */
     private $utilisation;
 
@@ -35,11 +43,19 @@ class CommandData
     /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"command_info"})
+     * @Assert\NotNull(
+     *  message="Veuillez indiquez si vous avez un buget ou non",
+     *  groups = {"validation_two"}
+     * )
      */
     private $budget;
 
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @Assert\Positive(
+     *  message="Veuillez rentrer un nombre valide",
+     *  groups = {"validation_two"}
+     * )
      * @Groups({"command_info"})
      */
     private $amount;
@@ -47,6 +63,10 @@ class CommandData
     /**
      * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\PositiveOrZero(
+     *  message="Veuillez rentrer un nombre valide",
+     *  groups = {"validation_two"}
+     * )
      */
     private $gap;
 

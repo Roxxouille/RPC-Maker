@@ -28,6 +28,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"command_info"})
+     * @Assert\NotNull(
+     *  message="Veuillez indiquez si vous avez besoin de périphérique",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $device;
 
@@ -46,6 +50,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceScreenLink;
 
@@ -76,6 +84,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceKeyboardLink;
 
@@ -112,6 +124,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceMouseLink;
 
@@ -142,6 +158,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceMousepadLink;
 
@@ -172,6 +192,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceHeadphoneLink;
 
@@ -202,6 +226,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceEnceinteLink;
 
@@ -232,6 +260,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $deviceWebcamLink;
 
@@ -256,6 +288,10 @@ class CommandDeviceData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_seven"}
+     * )
      */
     private $devicePrinterLink;
 

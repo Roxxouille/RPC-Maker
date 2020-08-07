@@ -317,6 +317,7 @@ class AppFixtures extends Fixture
         $commandDataList = [];
         foreach ($commandList as $command) {
             $commandConfigData = new CommandConfigData;
+            $commandConfigData->setPreconfiguration(false);
             $commandConfigData->setConfigBoard('Data');
             $commandConfigData->setConfigCase('Encore du data');
 
