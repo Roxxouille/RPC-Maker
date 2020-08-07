@@ -92,46 +92,23 @@ class UserController extends AbstractController
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository)
     {
 
-        //get the request content (info about new user)
-        //transform it into an object user
-        //get the validations errors if there is any
+        // Get the content of the request
         $content = $request->getContent();
+
+        // Match the content with their entity
         $user = $serializer->deserialize($content, User::class, 'json');
         $commandData = $serializer->deserialize($content, CommandData::class, 'json');
         $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
         $commndSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
         $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
+
+        // Check the user content to see if it's valid
         $errorsArray = [];
         $errorsUser = $validator->validate($user, null, ['registration']);
-        $errorsCommandData = $validator->validate($commandData);
-        $errorsCommandConfigData = $validator->validate($commandConfigData);
-        $errorsCommandSpecData = $validator->validate($commndSpecData);
-        $errorsCommandDeviceData = $validator->validate($commandDeviceData);
-
 
         // if there is an error, return them in a json format
         if (count($errorsUser) > 0) {
             foreach ($errorsUser as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-        }
-        if (count($errorsCommandData) > 0) {
-            foreach ($errorsCommandData as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-        }
-        if (count($errorsCommandConfigData) > 0) {
-            foreach ($errorsCommandConfigData as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-        }
-        if (count($errorsCommandSpecData) > 0) {
-            foreach ($errorsCommandSpecData as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
-            }
-        }
-        if (count($errorsCommandDeviceData) > 0) {
-            foreach ($errorsCommandDeviceData as $error) {
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
         }
@@ -145,8 +122,12 @@ class UserController extends AbstractController
         $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
+
+        //  Find a random builder and set it to the user
         $builder = $userRepository->getRandomBuilder();
         $user->setBuilder($builder);
+
+        // Set default role
         $user->setRoles(['ROLE_USER']);
 
 
@@ -177,6 +158,8 @@ class UserController extends AbstractController
 
         //link this user to the new command
         $command->setUser($user);
+
+        // persist the command
         $entityManager->persist($command);
         $entityManager->persist($commandData);
         $entityManager->persist($commandConfigData);
@@ -184,6 +167,7 @@ class UserController extends AbstractController
         $entityManager->persist($commandDeviceData);
         $entityManager->flush();
 
+        // send a email to the user
         $email = (new Email())
             ->from('alienmail@example.com')
             ->to($user->getEmail())
@@ -275,21 +259,24 @@ class UserController extends AbstractController
      */
     public function userValidation(Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
     {
+        // get the content of the request and transform it into a array
         $content = $request->getContent();
         $contentDecode = (array) json_decode($content);
 
+        // do the validation for the first step of the quote form
         if($contentDecode['step'] == "1"){
             $user = $serializer->deserialize($content, User::class, 'json');
             $errors = $validator->validate($user, null, ['validation_one']);
         }
 
+        // do the validation for the second step of the quote form
         if($contentDecode['step'] == "2"){
             $commandData = $serializer->deserialize($content, CommandData::class, 'json');
             $errors = $validator->validate($commandData, null, ['validation_two']);
         }
 
+        // do the validation for the third step of the quote form
         if($contentDecode['step'] == "3"){
-            
             $commandData = $serializer->deserialize($content, CommandData::class, 'json');
             $errorsCommandData = $validator->validate($commandData, null, ['validation_three']);
             $errors = [];
@@ -303,11 +290,13 @@ class UserController extends AbstractController
             }
         }
 
+        // do the validation for the fourth step of the quote form
         if($contentDecode['step'] == "4"){
             $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
             $errors = $validator->validate($commandConfigData, null, ['validation_four']);
         }
 
+        // do the validation for the fifth step of the quote form
         if($contentDecode['step'] == "5"){
             $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
             $errorsValidationFive = $validator->validate($commandSpecData, null, ['validation_five']);
@@ -335,6 +324,7 @@ class UserController extends AbstractController
             }
         }
 
+        // do the validation for the sixth step of the quote form
         if($contentDecode['step'] == "6"){
             $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
             $errors = [];
@@ -350,11 +340,13 @@ class UserController extends AbstractController
             }
         }
 
+        // do the validation for the Seventh step of the quote form
         if($contentDecode['step'] == "7"){
             $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
             $errors = $validator->validate($commandDeviceData, null, ['validation_seven']);
         }
 
+        // send the error if needed
         if (count($errors) > 0) {
 
             $errorsArray = [];
@@ -366,6 +358,7 @@ class UserController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+        // if there is no error response HTTP_OK
         return $this->json(['data' => 'ok'], Response::HTTP_OK);
     }
 }
