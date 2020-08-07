@@ -50,6 +50,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configProcLink;
 
@@ -68,6 +72,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configBoardLink;
 
@@ -86,6 +94,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configGcLink;
 
@@ -104,6 +116,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configRamLink;
 
@@ -122,6 +138,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configRefreshLink;
 
@@ -140,6 +160,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configStorageLink;
 
@@ -158,6 +182,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configBoardsoundLink;
 
@@ -176,6 +204,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configCaseLink;
 
@@ -194,6 +226,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Groups({"command_info"})
+     * @Assert\Url(
+     *  message="Veuillez insérer une url valide",
+     *  groups = {"validation_four"}
+     * )
      */
     private $configPowerLink;
 
@@ -207,7 +243,7 @@ class CommandConfigData
         return $this->preconfiguration;
     }
 
-    public function setPreconfiguration(bool $preconfiguration): self
+    public function setPreconfiguration(?bool $preconfiguration): self
     {
         $this->preconfiguration = $preconfiguration;
 

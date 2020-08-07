@@ -304,15 +304,50 @@ class UserController extends AbstractController
         }
 
         if($contentDecode['step'] == "4"){
-
+            $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+            $errors = $validator->validate($commandConfigData, null, ['validation_four']);
         }
 
         if($contentDecode['step'] == "5"){
-
+            $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+            $errorsValidationFive = $validator->validate($commandSpecData, null, ['validation_five']);
+            $errors = [];
+            foreach($errorsValidationFive as $error){
+                $errors[] = $error;
+            }
+            if($commandSpecData->getSpecWifi()){
+                $errorsValidationFiveWifiTrue = $validator->validate($commandSpecData, null, ['validation_five_wifi_true']);
+                foreach($errorsValidationFiveWifiTrue as $error){
+                    $errors[] = $error;
+                }
+            }
+            if($commandSpecData->getSpecSound()){
+                $errorsValidationFiveSoundTrue = $validator->validate($commandSpecData, null, ['validation_five_sound_true']);
+                foreach($errorsValidationFiveSoundTrue as $error){
+                    $errors[] = $error;
+                }
+            }
+            if($commandSpecData->getSpecSoundUtilisation() == "Autres"){
+                $errorsValidationFiveSoundOther = $validator->validate($commandSpecData, null, ['validation_five_sound_other']);
+                foreach($errorsValidationFiveSoundOther as $error){
+                    $errors[] = $error;
+                }
+            }
         }
 
         if($contentDecode['step'] == "6"){
-
+            $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+            $errors = [];
+            $errorsValidationSix = $validator->validate($commandSpecData, null, ['validation_six']);
+            foreach($errorsValidationSix as $error){
+                $errors[] = $error;
+            }
+            if($commandSpecData->getOs()){
+                $errorValidationSixOsTrue = $validator->validate($commandSpecData, null, ['validation_six_os_true']);
+                foreach($errorValidationSixOsTrue as $error){
+                    $errors[] = $error;
+                }
+            }
         }
 
         if($contentDecode['step'] == "7"){
@@ -331,7 +366,6 @@ class UserController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        dd('end');
         return $this->json(['data' => 'ok'], Response::HTTP_OK);
     }
 }

@@ -37,7 +37,7 @@ class User implements UserInterface
      *      max = 25,
      *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
      *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
-     *      groups = {"registration","edit-profile", "validation_one"},
+     *      groups = {"edit-profile", "validation_one"},
      * )
      * @Groups({"avatar", "command", "user", "testimony", "login", "message"})
      */
