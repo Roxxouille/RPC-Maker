@@ -1,4 +1,4 @@
-import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING } from '../actions/user';
+import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING, SET_MESSAGES, CHANGE_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
   email: '',
@@ -9,6 +9,9 @@ export const initialState = {
   isLoading: false,
   role: '',
   commands: [],
+  builderId: 0,
+  messages: [],
+  newMessage: '',
 };
 
 const user = (state = initialState, action = {}) => {
@@ -25,7 +28,6 @@ const user = (state = initialState, action = {}) => {
         isLoading: false,
       };
     case SET_USER:
-      console.log('setuser', action);
       return {
         ...state,
         username: action.username,
@@ -33,6 +35,7 @@ const user = (state = initialState, action = {}) => {
         isLoading: false,
         role: action.role,
         commands: action.commands,
+        builderId: action.builderId,
       };
     case LOGIN:
       return {
@@ -60,6 +63,16 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         isLoading: true,
+      };
+    case SET_MESSAGES:
+      return {
+        ...state,
+        messages: action.messages,
+      };
+    case CHANGE_NEW_MESSAGE:
+      return {
+        ...state,
+        newMessage: action.value,
       };
     default:
       return state;

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import {
-  SEND_MESSAGE,
+  SEND_MAIL,
   changeContact,
 } from '../actions/contact';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
-    case SEND_MESSAGE: {
+    case SEND_MAIL: {
       const state = store.getState();
       axios.post('http://localhost:3000/email', { ...state.contact })
         .then((response) => {

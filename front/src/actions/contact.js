@@ -1,5 +1,5 @@
 export const CHANGE_CONTACT = 'CHANGE_CONTACT';
-export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const SEND_MAIL = 'SEND_MAIL';
 
 export const changeContact = (name, value) => ({
   type: CHANGE_CONTACT,
@@ -7,7 +7,6 @@ export const changeContact = (name, value) => ({
   value,
 });
 
-export const sendMessage = () => ({
-  type: SEND_MESSAGE,
+export const sendMail = () => ({
+  type: SEND_MAIL,
 });
-

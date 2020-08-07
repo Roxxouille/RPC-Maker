@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Contact from '../../components/Contact';
-import { changeContact, sendMessage } from '../../actions/contact';
+import { changeContact, sendMail } from '../../actions/contact';
 
 const mapStateToProps = (state) => ({
   email: state.contact.email,
@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeContact(name, value));
   },
   contactSubmit: () => {
-    dispatch(sendMessage());
+    dispatch(sendMail());
   },
 });
 

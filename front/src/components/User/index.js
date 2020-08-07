@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Commands from '../../containers/User/Commands';
-import Message from './Message.js';
+import Message from '../../containers/User/Message';
 import Pc from './Pc.js';
 import './styles.scss';
 import { activateLoad } from '../../actions/user';
