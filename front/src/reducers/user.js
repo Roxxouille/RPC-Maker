@@ -22,6 +22,7 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         error: action.error.data.message,
+        isLoading: false,
       };
     case SET_USER:
       console.log('setuser', action);
@@ -56,7 +57,6 @@ const user = (state = initialState, action = {}) => {
         isLoading: true,
       };
     case ACTIVATE_LOAD:
-      console.log('reducer activate');
       return {
         ...state,
         isLoading: true,

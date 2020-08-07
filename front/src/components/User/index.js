@@ -19,6 +19,7 @@ import {
   Image,
   Button,
 } from 'react-bootstrap';
+import Loader from '../Loader';
 
 const User = ({ isLogged, isLoading, username, level, firstname, email, role, commands, getCommands }) => {
   if (localStorage.getItem('token')) {
@@ -30,63 +31,57 @@ const User = ({ isLogged, isLoading, username, level, firstname, email, role, co
 
   return (
     <Container fluid>
-      <Jumbotron fluid className="jumbotron">
-        <Container>
-          <h1>Bienvenu {username}</h1>
-          <p>
-            Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
-          </p>
-          <Button variant="light"><Link to="/user/commands">mes commandes</Link></Button>{' '}
-          <Button variant="light"> <Link to="/user/message">Messagerie</Link></Button>{' '}
-          <Button variant="light"><Link to="/user/pc">Mon PC</Link></Button>{' '}
-        </Container>
-      </Jumbotron>
-
-
       {isLoading && localStorage.getItem('token') && (
-        <p>ça charge gros</p>
+        <Loader />
       )}
-
 
       {isLoading === false && isLogged === false && !localStorage.getItem('token') && (
         <Redirect to={{ pathname: '/login' }} />
       )}
 
-      {role === 'ROLE_BUILDER' && isLogged === true && (
-        <Redirect to={{ pathname: '/backoffice' }} />
-      )}
-
       {isLogged === true && isLoading === false && (
-        <div className="user">
-          <div className="user__nav">
-            <Image src="https://picsum.photos/240" rounded fluid />
-            <Link to="/user/pc">{username}</Link>
-            <a>level {level}</a>
-            <a>{email}</a>
-            <a>{firstname} "lastname"</a>
-            <a>"adress"</a>
-            <Link to="/user/edit-info">Editer mes infos</Link>
-            <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
-          </div>
-          <div className="user__body">
-
-            <Switch>
-              <Route exact path="/user">
-                Bienvenue dans votre espace membre
-              </Route>
-              <Route path="/user/pc">
-                <Pc />
-              </Route>
-              <Route path="/user/edit-info">
-                <EditProfile />
-              </Route>
-              <Route path="/user/commands">
-                <Commands />
-              </Route>
-              <Route path="/user/message">
-                <Message />
-              </Route>
-            </Switch>
+        <div>
+          <Jumbotron fluid className="jumbotron">
+            <Container>
+              <h1>Bienvenu {username}</h1>
+              <p>
+                Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
+              </p>
+              <Button variant="light"><Link to="/user/commands">mes commandes</Link></Button>
+              <Button variant="light"> <Link to="/user/message">Messagerie</Link></Button>
+              <Button variant="light"><Link to="/user/pc">Mon PC</Link></Button>
+            </Container>
+          </Jumbotron>
+          <div className="user">
+            <div className="user__nav">
+              <Image src="https://picsum.photos/240" rounded fluid />
+              <Link to="/user/pc">{username}</Link>
+              <a>level {level}</a>
+              <a>{email}</a>
+              <a>{firstname} "lastname"</a>
+              <a>"adress"</a>
+              <Link to="/user/edit-info">Editer mes infos</Link>
+              <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
+            </div>
+            <div className="user__body">
+              <Switch>
+                <Route exact path="/user">
+                  Bienvenue dans votre espace membre
+                </Route>
+                <Route path="/user/pc">
+                  <Pc />
+                </Route>
+                <Route path="/user/edit-info">
+                  <EditProfile />
+                </Route>
+                <Route path="/user/commands">
+                  <Commands />
+                </Route>
+                <Route path="/user/message">
+                  <Message />
+                </Route>
+              </Switch>
+            </div>
           </div>
         </div>
       )}

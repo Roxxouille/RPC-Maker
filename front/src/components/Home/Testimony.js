@@ -27,14 +27,14 @@ const Testimony = ({ testimonies }) => {
     const html = [];
     for (let i = 0; i < 5; i++) {
       if (i < stars) {
-        html.push(<span className="fa fa-star checked" />);
+        html.push(<span key={i} className="fa fa-star checked" />);
       }
       else {
-        html.push(<span className="fa fa-star" />);
+        html.push(<span key={i} className="fa fa-star" />);
       }
     }
     return (
-      <div className="testimony">
+      <div key={testimony.id} className="testimony">
         <div className="testimony__img"><Image src={testimony.user.avatar.image} roundedCircle /></div>
         <div>
           <h3 className="testimony__name">{testimony.user.username}</h3>

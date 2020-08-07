@@ -5,6 +5,7 @@ import { logout } from '../../actions/user';
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,
   username: state.user.username,
+  role: state.user.role,
 });
 
 const mapDispatchToProps = (dispatch) => ({

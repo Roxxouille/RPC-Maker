@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import BackOffice from '../../components/BackOffice';
 import { getCommands, getClients } from '../../actions/backoffice';
+import { activateLoad } from '../../actions/user';
 
 const mapStateToProps = (state) => ({
   commands: state.backoffice.commands,
@@ -14,6 +15,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getClients: () => {
     dispatch(getClients());
+  },
+  activateLoad: () => {
+    dispatch(activateLoad());
   },
 });
 
