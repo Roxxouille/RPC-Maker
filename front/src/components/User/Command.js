@@ -7,7 +7,7 @@ import {
 import './styles.scss';
 import { FaDownload } from 'react-icons/fa';
 
-const Command = ({commands}) => {
+const Command = ({ commands }) => {
   console.log('composant:', commands);
   let key = 0;
   const dataCommands = commands.map((command) => {
@@ -45,8 +45,15 @@ const Command = ({commands}) => {
               <tbody>
                 {items}
               </tbody>
+              <tfoot id="light-green">
+                <tr>
+                  <th id="center">TOTAL</th>
+                  <th></th>
+                  <th></th>
+                  <th>{total}€</th>
+                </tr>
+              </tfoot>
             </Table>
-            total: {total}€
           </Card.Body>
         </Accordion.Collapse>
       </Card>
