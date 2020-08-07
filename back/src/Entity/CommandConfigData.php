@@ -16,6 +16,7 @@ class CommandConfigData
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"command_info"})
      */
     private $id;
 
@@ -27,6 +28,10 @@ class CommandConfigData
     /**
      * @ORM\Column(type="boolean", nullable=true)
      * @Groups({"command_info"})
+     * @Assert\NotNull(
+     *  message="Veuillez indiquez si vous avez déjà une configuration",
+     *  groups = {"validation_three_bis"}
+     * )
      */
     private $preconfiguration;
 

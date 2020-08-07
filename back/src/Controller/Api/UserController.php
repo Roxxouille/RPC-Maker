@@ -269,4 +269,69 @@ class UserController extends AbstractController
 
         return $this->json($users, Response::HTTP_OK, [], ['groups' => 'user']);
     }
+
+    /**
+     * @Route("/user/validation", name="user_validation", methods="POST")
+     */
+    public function userValidation(Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
+    {
+        $content = $request->getContent();
+        $contentDecode = (array) json_decode($content);
+
+        if($contentDecode['step'] == "1"){
+            $user = $serializer->deserialize($content, User::class, 'json');
+            $errors = $validator->validate($user, null, ['validation_one']);
+        }
+
+        if($contentDecode['step'] == "2"){
+            $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+            $errors = $validator->validate($commandData, null, ['validation_two']);
+        }
+
+        if($contentDecode['step'] == "3"){
+            
+            $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+            $errorsCommandData = $validator->validate($commandData, null, ['validation_three']);
+            $errors = [];
+            foreach($errorsCommandData as $error){
+                $errors[] = $error;
+            }
+            $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+            $errorsCommandConfigData = $validator->validate($commandConfigData, null, ['validation_three_bis']);
+            foreach($errorsCommandConfigData as $error){
+                $errors[] = $error;
+            }
+        }
+
+        if($contentDecode['step'] == "4"){
+
+        }
+
+        if($contentDecode['step'] == "5"){
+
+        }
+
+        if($contentDecode['step'] == "6"){
+
+        }
+
+        if($contentDecode['step'] == "7"){
+            $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
+            $errors = $validator->validate($commandDeviceData, null, ['validation_seven']);
+        }
+
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        dd('end');
+        return $this->json(['data' => 'ok'], Response::HTTP_OK);
+    }
 }
