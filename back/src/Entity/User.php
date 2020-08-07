@@ -192,6 +192,7 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="builder")
+     * @Groups({"user", "login"})
      */
     private $builder;
 
