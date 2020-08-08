@@ -77,3 +77,11 @@
   align-items: center;
   margin: auto;
 }
+
+
+//messages
+
+.sent {
+  display: flex;
+  flex-direction: row-reverse;
+}

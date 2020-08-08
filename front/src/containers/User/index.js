@@ -8,11 +8,11 @@ const mapStateToProps = (state) => ({
   isLoading: state.user.isLoading,
   role: state.user.role,
   commands: state.user.commands,
+  builderId: state.user.builderId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   activateLoad: () => {
-    console.log('container activate');
     dispatch(activateLoad());
   },
   getCommands: () => {
