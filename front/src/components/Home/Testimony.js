@@ -3,6 +3,7 @@ import './styles.scss';
 import { Row, Col, Image } from 'react-bootstrap';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 
 const Testimony = ({ testimonies }) => {
   const responsive = {
@@ -35,11 +36,21 @@ const Testimony = ({ testimonies }) => {
     }
     return (
       <div key={testimony.id} className="testimony">
-        <div className="testimony__img"><Image src={testimony.user.avatar.image} roundedCircle /></div>
+        <div className="testimony__img"><Image src={testimony.user.avatar.image} rounded /></div>
         <div>
-          <h3 className="testimony__name">{testimony.user.username}</h3>
           {html}
-          <p className="testimony__content"> {testimony.content}</p>
+          <div>
+            <div className="testimony__quote">
+              <FaQuoteLeft className="testimony__quote__left" />
+              <FaQuoteRight className="testimony__quote__right" />
+            </div>
+            <div>
+              <p className="testimony__content"> {testimony.content}</p>
+            </div>
+
+          </div>
+
+          <h6 className="testimony__name">{testimony.user.username}</h6>
         </div>
       </div>
     );
@@ -54,6 +65,7 @@ const Testimony = ({ testimonies }) => {
       </Row>
       <Carousel
         showDots
+        controls={false}
         responsive={responsive}
         infinite
       >

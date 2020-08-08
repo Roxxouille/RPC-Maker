@@ -73,15 +73,29 @@
   // témoignages 
   .testimony {
     display: flex;
-    margin: 0em 0em 2em 0em;
     text-align: left;
+    margin: 0em 2em 2em 0em;
     &__content {
       font-size:14px;
+      text-align: center;
+      vertical-align: middle;
     
     }
     
     &__img {
-      margin: 0em 1em 0em 1em;
+      margin: 0em 1.5em 0em 1em;
+    }
+
+    &__name{
+      vertical-align: bottom;
+      text-align: right;
+      font-style: italic;
+    }
+
+    &__quote{
+      color: rgba(114, 114, 114, 0.253);
+      justify-content: space-between;
+      display: flex;
     }
 
   }
@@ -116,6 +130,11 @@
   .col{
     margin-left: auto;
     margin-right: 15px;
+  }
+
+  .img-car{
+    background-image: url(https://picsum.photos/1920/1080/?blur);
+    height: 20em;
   }
 }
 
