@@ -1,11 +1,19 @@
-import { CHANGE_CONTACT } from '../actions/contact';
+import { CHANGE_CONTACT, ERROR_CONTACT, CLEAN_ERROR } from '../actions/contact';
 
 export const initialState = {
-  email: '',
-  lastname: '',
-  firstname: '',
-  content: '',
-  status: '',
+  infos: {
+    email: '',
+    lastname: '',
+    firstname: '',
+    content: '',
+    status: '',
+  },
+  error: {
+    email: [''],
+    lastname: [''],
+    firstname: [''],
+    content: [''],
+  },
 };
 
 const contact = (state = initialState, action = {}) => {
@@ -13,7 +21,17 @@ const contact = (state = initialState, action = {}) => {
     case CHANGE_CONTACT:
       return {
         ...state,
-        [action.name]: action.value,
+        infos: { ...state.infos, [action.name]: action.value },
+      };
+    case ERROR_CONTACT:
+      return {
+        ...state,
+        error: { ...state.error, ...action.value },
+      };
+    case CLEAN_ERROR:
+      return {
+        ...state,
+        error: { ...initialState.error },
       };
     default:
       return state;
