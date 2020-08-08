@@ -7,27 +7,29 @@ import {
   Redirect,
 } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Commands from '../../containers/User/Commands';
-import Message from '../../containers/User/Message';
-import Pc from './Pc.js';
-import './styles.scss';
-import { activateLoad } from '../../actions/user';
-import EditProfile from '../../containers/User/EditProfile';
 import {
   Container,
   Jumbotron,
   Image,
   Button,
 } from 'react-bootstrap';
+import Commands from '../../containers/User/Commands';
+import Message from '../../containers/User/Message';
+import Pc from './Pc.js';
+import './styles.scss';
+import { activateLoad } from '../../actions/user';
+import EditProfile from '../../containers/User/EditProfile';
 import Loader from '../Loader';
 
-const User = ({ isLogged, isLoading, username, level, firstname, email, role, commands, getCommands }) => {
+const User = ({
+  isLogged, isLoading, username, level, firstname, email, role, commands, getCommands,
+}) => {
   if (localStorage.getItem('token')) {
     activateLoad();
   }
-  /*if (isLogged === true && commands.length === 0 && role === 'ROLE_USER') {
+  /* if (isLogged === true && commands.length === 0 && role === 'ROLE_USER') {
     getCommands();
-  }*/
+  } */
 
   return (
     <Container fluid>

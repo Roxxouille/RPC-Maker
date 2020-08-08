@@ -4,7 +4,9 @@ import StateField from './Field/StateField';
 import Field from './Field';
 import ErrorField from './Field/ErrorField';
 
-const Edit = ({ changeProfile, submitProfile, profile, getData }) => {
+const Edit = ({
+  changeProfile, submitProfile, profile, getData,
+}) => {
   if (profile.infos.set === false) {
     getData();
   }
@@ -32,7 +34,7 @@ const Edit = ({ changeProfile, submitProfile, profile, getData }) => {
         <ErrorField error={profile.error.zip_code[0]} />
         <Field handleChange={handleChange} label="Adresse" name="adress" type="text" value={profile.infos.adress} placeholder="Adresse" controlId="adress" />
         <ErrorField error={profile.error.adress[0]} />
-        <StateField error='' isLoading={profile.infos.loading} />
+        <StateField error="" isLoading={profile.infos.loading} />
         <Button variant="primary" type="submit">
           Mettre à jour
         </Button>

@@ -28,7 +28,7 @@ const Header = ({ isLogged, logout, username, role }) => {
 
           <div className="logo"><Navbar.Brand href="/" >RPC Maker</Navbar.Brand></div>
 
-          <span className="vr" ></span>
+          <span className="vr-header" ></span>
 
           <Navbar.Toggle aria-controls="responsive-navbar-nav" className="burger" />
           <Navbar.Collapse id="responsive-navbar-nav">

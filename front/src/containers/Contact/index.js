@@ -1,13 +1,9 @@
 import { connect } from 'react-redux';
 import Contact from '../../components/Contact';
-import { changeContact, sendMail } from '../../actions/contact';
+import { changeContact, sendMail, cleanError, } from '../../actions/contact';
 
 const mapStateToProps = (state) => ({
-  email: state.contact.email,
-  content: state.contact.content,
-  firstname: state.contact.firstname,
-  lastname: state.contact.lastname,
-  status: state.contact.status,
+  contact: state.contact,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -15,6 +11,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeContact(name, value));
   },
   contactSubmit: () => {
+    dispatch(cleanError());
     dispatch(sendMail());
   },
 });
