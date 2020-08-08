@@ -11,8 +11,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getMessagesBack: (slug) => {
-    dispatch(changeActiveConv(slug));
+  getMessagesBack: (slug, id) => {
+    dispatch(changeActiveConv(slug, id));
     dispatch(getMessagesBack(slug));
   },
   changeMessageBack: (value) => {

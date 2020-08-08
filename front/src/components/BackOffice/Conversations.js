@@ -7,7 +7,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
   console.log('Clients component conv', clients);
   console.log('messages conv: ', messages);
   const handleClick = (e) => {
-    getMessagesBack(e.target.id);
+    getMessagesBack(e.target.id, e.target.title);
   };
 
   const handleChange = (e) => {
@@ -20,9 +20,9 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
   };
 
   const dataClients = clients.map((client) => {
-    const activate = client.slug === activeConv ? true : false;
+    const activate = client.slug === activeConv;
     return (
-      <ListGroup.Item active={activate} onClick={handleClick} id={client.slug} key={client.slug}>
+      <ListGroup.Item active={activate} onClick={handleClick} title={client.id} id={client.slug} key={client.slug}>
         {client.username}
       </ListGroup.Item>
     );

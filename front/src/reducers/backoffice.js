@@ -1,4 +1,5 @@
 import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV } from '../actions/backoffice';
+import { CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
   commands: [],
@@ -15,6 +16,7 @@ export const initialState = {
   messages: [],
   newMessage: '',
   activeConv: '',
+  activeConvId: '',
 };
 
 const contact = (state = initialState, action = {}) => {
@@ -51,11 +53,17 @@ const contact = (state = initialState, action = {}) => {
         ...state,
         newMessage: action.value,
       };
-    case CHANGE_ACTIVE_CONV: 
+    case CHANGE_ACTIVE_CONV:
       return {
         ...state,
         activeConv: action.slug,
+        activeConvId: action.id,
       };
+    case CLEAN_NEW_MESSAGE:
+      return {
+        ...state,
+        newMessage: '',
+      }
     default:
       return state;
   }
