@@ -5,13 +5,9 @@ import Computer from '../../assets/images/computer-4008491_1920.jpg';
 import Montage from '../../assets/images/pc-4136383_1920.jpg';
 
 const CarouselHome = () => (
-  <Carousel>
+  <Carousel className="mb-50">
     <Carousel.Item>
-      <img
-        className="d-block w-100 test"
-        src={Batman}
-        alt="First slide"
-      />
+      <div style={{ backgroundImage: '', height: '200px' }}></div>
       <Carousel.Caption>
         <h3>First slide label</h3>
         <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>

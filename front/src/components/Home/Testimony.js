@@ -38,7 +38,7 @@ const Testimony = ({ testimonies }) => {
         <div className="testimony__img"><Image src={testimony.user.avatar.image} roundedCircle /></div>
         <div>
           <h3 className="testimony__name">{testimony.user.username}</h3>
-          { html }
+          {html}
           <p className="testimony__content"> {testimony.content}</p>
         </div>
       </div>
@@ -47,13 +47,17 @@ const Testimony = ({ testimonies }) => {
 
   return (
     <div className="testimonies">
-      <h2>Les avis de nos clients</h2>
+      <Row className="mb-50">
+        <Col className="m-auto"><hr /></Col>
+        <Col> <h2>Les avis de nos clients</h2> </Col>
+        <Col className="m-auto"><hr /></Col>
+      </Row>
       <Carousel
         showDots
         responsive={responsive}
         infinite
       >
-        { aled }
+        {aled}
       </Carousel>
     </div>
   );

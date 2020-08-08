@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import CarouselHome from './CarouselHome';
+
 import Cards from './Cards';
 import Testimony from './Testimony';
 import PresHome from './PresHome';
@@ -31,10 +32,7 @@ const Home = () => {
     <div className="container">
       <CarouselHome />
       <PresHome build={dataPres.build ? dataPres.build : 0} quote={dataPres.quote ? dataPres.quote : 0} />
-      <div className="home-team">
-        <h2>la team</h2>
-        <Cards />
-      </div>
+      <Cards />
       <Testimony testimonies={dataTestimony} />
     </div>
   );
