@@ -8,7 +8,9 @@ import {
   LOGOUT,
   GET_MESSAGES,
   setMessages,
-  SEND_MESSAGE
+  SEND_MESSAGE,
+  getMessages,
+  cleanNewMessage,
 } from '../actions/user';
 import { GET_COMMANDS } from '../actions/backoffice';
 
@@ -23,7 +25,7 @@ export default (store) => (next) => (action) => {
           console.log('login', response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.apiToken);
-          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder));
+          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id));
         })
         .catch((error) => {
           console.log(error.response);
@@ -37,15 +39,15 @@ export default (store) => (next) => (action) => {
       const slug = localStorage.getItem('slug');
       axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
-          console.log(response);
-          const idBuilder = response.data.builder.id === null ? '' : response.data.builder.id;
+          console.log('autog positiv response:', response);
+          const idBuilder = response.data.builder === null ? 0 : response.data.builder.id;
+          console.log(idBuilder);
           const commands = response.data.commands;
-          console.log('autologcommands:', commands);
-          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder));
+          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id));
         })
         .catch((error) => {
+          console.log('autolog error:', error.response);
           localStorage.clear();
-          console.log(error.response);
         });
 
       break;
@@ -86,6 +88,8 @@ export default (store) => (next) => (action) => {
       axios.post(`http://localhost:3000/user/${slug}/message`, { content: state.user.newMessage }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
+          store.dispatch(getMessages());
+          store.dispatch(cleanNewMessage());
         })
         .catch((error) => {
           console.log(error.response);

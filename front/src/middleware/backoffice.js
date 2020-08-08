@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND } from '../actions/backoffice';
+import { commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -38,6 +38,36 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error);
+        });
+      break;
+    }
+    case GET_MESSAGES_BACK: {
+      const { slug } = action;
+      const state = store.getState();
+      const { id } = state.user;
+      const token = localStorage.getItem('token');
+      axios.post(`http:///localhost:3000/user/${slug}/messages`, { id }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          store.dispatch(setMessagesBack(response.data));
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      break;
+    }
+    case SEND_MESSAGE_BACK: {
+      const state = store.getState();
+      const token = localStorage.getItem('token');
+      const slug = state.backoffice.activeConv;
+      const { id } = state.user;
+      axios.post(`http://localhost:3000/user/${slug}/message`, { id, content: state.backoffice.newMessage }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(getMessagesBack(slug));
+          //store.dispatch(cleanNewMessage());
+        })
+        .catch((error) => {
+          console.log(error.response);
         });
       break;
     }

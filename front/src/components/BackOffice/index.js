@@ -5,6 +5,7 @@ import { Image } from 'react-bootstrap';
 import Order from '../../containers/BackOffice/Order';
 import Clients from './Clients';
 import Loader from '../../components/Loader';
+import Conversations from '../../containers/BackOffice/Conversations';
 
 const BackOffice = ({ getClients, clients, user, activateLoad }) => {
     useEffect(() => {
@@ -40,7 +41,7 @@ const BackOffice = ({ getClients, clients, user, activateLoad }) => {
                 <Clients clients={clients} />
               </Route>
               <Route path="/backoffice/message">
-                Vos conversations
+                <Conversations />
               </Route>
               <Route path="/backoffice/client/order/:id">
                 <Order />

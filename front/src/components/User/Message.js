@@ -34,30 +34,29 @@ const Message = ({ getMessages, messages, username, changeNewMessage, sendMessag
             <Image src="https://picsum.photos/240" rounded fluid id="chat-avatar" />
         </Col>
         <Col sm={5}>
-            <p>
-              {senderName}
-                {message.content}
-              <br />
-              {message.created_at}
-            </p>
+          <p>
+            {senderName}
+              {message.content}
+            <br />
+            {message.created_at}
+          </p>
         </Col>
       </Row>
     );
   });
-
-    return (
-        <Container className="user__body__messages">
-            <div id="center">
-                <h1>Vous etes en conversation avec votre monteur</h1>
-            </div>
-            {dataMessages}
-            <Form onSubmit={handleSubmitMessage}>
-              <Row>
-                <Form.Control onChange={handleChange} name='newMessage' type='text' value={newMessage} placeholder='Tapez votre message' />
-              </Row>
-            </Form>
-        </Container>
-    )
+  return (
+    <Container className="user__body__messages">
+      <div id="center">
+        <h1>Vous etes en conversation avec votre monteur</h1>
+      </div>
+      {dataMessages}
+      <Form onSubmit={handleSubmitMessage}>
+        <Row>
+          <Form.Control onChange={handleChange} name='newMessage' type='text' value={newMessage} placeholder='Tapez votre message' />
+        </Row>
+      </Form>
+    </Container>
+  );
 };
 
 export default Message;

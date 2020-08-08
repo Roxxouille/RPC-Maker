@@ -1,6 +1,7 @@
-import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING, SET_MESSAGES, CHANGE_NEW_MESSAGE } from '../actions/user';
+import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING, SET_MESSAGES, CHANGE_NEW_MESSAGE, CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
+  id: '',
   email: '',
   password: '',
   error: '',
@@ -36,6 +37,7 @@ const user = (state = initialState, action = {}) => {
         role: action.role,
         commands: action.commands,
         builderId: action.builderId,
+        id: action.id,
       };
     case LOGIN:
       return {
@@ -73,6 +75,11 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         newMessage: action.value,
+      };
+    case CLEAN_NEW_MESSAGE:
+      return {
+        ...state,
+        newMessage: '',
       };
     default:
       return state;

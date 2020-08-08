@@ -15,6 +15,12 @@ export const GET_MESSAGES = 'GET_MESSAGES';
 export const SET_MESSAGES = 'SET_MESSAGES';
 export const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const CLEAN_NEW_MESSAGE = 'CLEAN_NEW_MESSAGE';
+
+
+export const cleanNewMessage = () => ({
+  type: CLEAN_NEW_MESSAGE,
+});
 
 export const sendMessage = () => ({
   type: SEND_MESSAGE,
@@ -57,12 +63,13 @@ export const failLogin = (error) => ({
   error,
 });
 
-export const setUser = (username, role, commands, builderId ) => ({
+export const setUser = (username, role, commands, builderId, id) => ({
   type: SET_USER,
   username,
   role,
   commands,
   builderId,
+  id,
 });
 
 export const logout = () => ({
