@@ -78,6 +78,73 @@
   margin: auto;
 }
 
+// MON PC //
+
+.pc{
+  &__accordion{
+    border: none;
+    &__card{
+      &__header{
+        &__content{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &__avatar{
+            max-height: 50px;
+            justify-self: flex-start;
+            margin-right: 20px;
+          }
+          &__name{
+            justify-self: start;
+          }
+          &__chevron{
+            align-self: flex-end;
+            justify-self: end;
+          }
+        }
+      }
+      &__body{
+        &__category{
+          &__title{ 
+                     
+          }
+          &__list{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: start;
+            text-align: center;
+
+            &__item{
+              display: flex;
+              flex-flow: wrap column;
+              margin: 5px;
+              border: solid thin;
+              padding: 10px;
+              border-radius:21px;
+              border-color: rgba(131, 131, 131, 0.096);
+              
+              &__icon{
+                align-self: flex-start;
+                height: 20px;
+                width: auto;
+                margin-bottom: 10px;
+                color: #b1b1b1;
+              }
+              &__model{
+                align-self: flex-start;
+              }
+              &__category{
+                align-self: flex-end;
+                font-style: italic;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 //messages
 
