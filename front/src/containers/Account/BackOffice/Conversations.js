@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Conversations from '../../components/BackOffice/Conversations';
-import { getMessagesBack, changeMessageBack, sendMessageBack, changeActiveConv } from '../../actions/backoffice';
+import Conversations from 'src/components/Account/BackOffice/Conversations';
+import { getMessagesBack, changeMessageBack, sendMessageBack, changeActiveConv } from '../../../actions/backoffice';
 
 const mapStateToProps = (state) => ({
   clients: state.backoffice.clients,

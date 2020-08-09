@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Message from '../../components/User/Message';
-import { activateLoad, getMessages, sendMessage, changeNewMessage, addMessage } from '../../actions/user';
+import Message from 'src/components/Account/User/Message';
+import { activateLoad, getMessages, sendMessage, changeNewMessage, addMessage } from '../../../actions/user';
 
 const mapStateToProps = (state) => ({
   builderId: state.user.builderId,

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import BackOffice from '../../components/BackOffice';
-import { getCommands, getClients } from '../../actions/backoffice';
-import { activateLoad } from '../../actions/user';
+import BackOffice from 'src/components/Account/BackOffice';
+import { getCommands, getClients } from 'src/actions/backoffice';
+import { activateLoad } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   commands: state.backoffice.commands,

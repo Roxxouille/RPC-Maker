@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './styles.scss';
-import ErrorField from '../User/Field/ErrorField';
+import ErrorField from 'src/components/Utils/Field/ErrorField';
 
 const Contact = ({
   changeContact, contactSubmit, contact,

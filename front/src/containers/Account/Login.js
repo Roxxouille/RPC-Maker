@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import Login from '../../components/User/Login';
-import { changeField, login, isLoading } from '../../actions/user';
+import Login from 'src/components/Account/Login';
+import { changeField, login, isLoading } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   email: state.user.email,

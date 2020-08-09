@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
-import StateField from './Field/StateField';
-import Field from './Field';
-import ErrorField from './Field/ErrorField';
+import StateField from 'src/components/Utils/Field/StateField';
+import Field from 'src/components/Utils/Field';
+import ErrorField from 'src/components/Utils/Field/ErrorField';
 
 const Edit = ({
   changeProfile, submitProfile, profile, getData,

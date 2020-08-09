@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { Switch, Route, Link, Redirect } from 'react-router-dom'; 
 import './styles.scss';
 import { Image } from 'react-bootstrap';
-import Order from '../../containers/BackOffice/Order';
+import Order from 'src/containers/Account/BackOffice/Order';
 import Clients from './Clients';
-import Loader from '../../components/Loader';
-import Conversations from '../../containers/BackOffice/Conversations';
+import Loader from 'src/components/Utils/Loader';
+import Conversations from 'src/containers/Account/BackOffice/Conversations';
 
 const BackOffice = ({ getClients, clients, user, activateLoad }) => {
     useEffect(() => {
