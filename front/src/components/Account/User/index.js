@@ -62,7 +62,7 @@ const User = ({
               <Link to="/user/edit-info">Editer mes infos</Link>
               <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
             </div>
-            <div className="user__body">
+            <div className="user__body container">
               <Switch>
                 <Route exact path="/user">
                   Bienvenue dans votre espace membre
