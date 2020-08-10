@@ -7,7 +7,7 @@ import Clients from './Clients';
 import Loader from 'src/components/Utils/Loader';
 import Conversations from 'src/containers/Account/BackOffice/Conversations';
 
-const BackOffice = ({ getClients, clients, user, activateLoad }) => {
+const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) => {
     useEffect(() => {
     if (clients.length === 0 && user.isLogged === true) {
       getClients();
@@ -38,7 +38,7 @@ const BackOffice = ({ getClients, clients, user, activateLoad }) => {
                 backoffice
               </Route>
               <Route path="/backoffice/clients">
-                <Clients clients={clients} />
+                <Clients clients={clients} isLoading={backLoading} />
               </Route>
               <Route path="/backoffice/message">
                 <Conversations />

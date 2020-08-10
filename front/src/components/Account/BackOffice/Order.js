@@ -23,12 +23,13 @@ const Order = ({ command, getCommand }) => {
 
   return (
     <div className="order">
-      <h3>PC {command.id} pour {command.user.firstname} {command.user.lastname} allias {command.user.username}</h3>
-      <div className="order__items">{dataCommand}</div>
-      total: {total} €
+      <div>
+        <h3>PC {command.id} pour {command.user.firstname} {command.user.lastname} allias {command.user.username}</h3>
+        <div className="order__items">{dataCommand}</div>
+        total: {total} €
+      </div>
     </div>
   );
-
 };
 
 export default Order;

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack, cleanNewMessage } from '../actions/backoffice';
+import { desactivateLoader, commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack, cleanNewMessage } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -22,6 +22,7 @@ export default (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(clientsToState(response.data));
+          store.dispatch(desactivateLoader());
         })
         .catch((error) => {
           console.log(error.response);

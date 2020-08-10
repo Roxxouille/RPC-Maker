@@ -10,6 +10,11 @@ export const CHANGE_MESSAGE_BACK = 'CHANGE_MESSAGE_BACK';
 export const SEND_MESSAGE_BACK = 'SEND_MESSAGE_BACK';
 export const CHANGE_ACTIVE_CONV = 'CHANGE_ACTIVE_CONV';
 export const CLEAN_NEW_MESSAGE = 'CLEAN_NEW_MESSAGE';
+export const DESACTIVATE_LOADER = 'DESACTIVATE_LOADER';
+
+export const desactivateLoader = () => ({
+  type: DESACTIVATE_LOADER,
+});
 
 export const cleanNewMessage = () => ({
   type: CLEAN_NEW_MESSAGE,

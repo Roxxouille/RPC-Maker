@@ -7,6 +7,7 @@ const mapStateToProps = (state) => ({
   commands: state.backoffice.commands,
   user: state.user,
   clients: state.backoffice.clients,
+  backLoading: state.backoffice.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({
