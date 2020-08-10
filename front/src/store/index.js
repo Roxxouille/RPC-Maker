@@ -1,5 +1,5 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import rootReducer from '../reducers';
+import rootReducer from '../reducers/rootReducer';
 import user from '../middleware/user';
 import contact from '../middleware/contact';
 import profile from '../middleware/profile';
