@@ -27,10 +27,10 @@ export class Step2 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('budget')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" value={true} onClick={CheckContent('budget')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('budget')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" value={false} onClick={CheckContent('budget')}> Non </Button>
           </Col>
         </Form.Row>
         <Form.Row>

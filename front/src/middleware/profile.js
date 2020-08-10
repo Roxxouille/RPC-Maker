@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { SUBMIT_PROFILE, changeProfile, errorProfile, GET_DATA, setData } from '../actions/profile';
+import {
+  SUBMIT_PROFILE, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
+} from '../actions/profile';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -30,6 +32,20 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
+        });
+      break;
+    }
+    case SUBMIT_FORM: {
+      const state = store.getState();
+      const { infos } = state.profile;
+      axios.post('http://localhost:3000/user', { ...infos })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+          const fail = error.response.data;
+          console.log(fail);
         });
       break;
     }

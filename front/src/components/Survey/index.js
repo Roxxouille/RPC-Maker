@@ -15,7 +15,7 @@ import axios from 'axios';
 export class UserForm extends Component {
   state = {
     step: 1,
-    budget: '',
+    budget: true,
     amount: '',
     gap: '',
     utilisation: '',
@@ -161,7 +161,8 @@ export class UserForm extends Component {
 
    // handle pour les checkbox
    CheckContent = (input) => (e) => {
-     this.setState({ [input]: e.target.name });
+     console.log(e.target.value);
+     this.setState({ [input]: e.target.value });
    };
 
    render() {
@@ -230,14 +231,14 @@ export class UserForm extends Component {
          );
        case 8:
          return (
-               <Inscription
-                 nextStep={this.nextStep}
-                 prevStep={this.prevStep}
-                 handleChange={this.handleChange}
-                 CheckContent={this.CheckContent}
-                 handleSubmit={this.handleSubmit}
-                 handleAsNumber={this.handleAsNumber}
-               />
+          <Inscription
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleChange={this.handleChange}
+            CheckContent={this.CheckContent}
+            handleSubmit={this.handleSubmit}
+            handleAsNumber={this.handleAsNumber}
+          />
          );
      }
    }

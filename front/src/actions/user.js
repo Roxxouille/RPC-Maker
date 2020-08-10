@@ -91,3 +91,4 @@ export const isLoading = () => ({
 export const activateLoad = () => ({
   type: ACTIVATE_LOAD,
 });
+

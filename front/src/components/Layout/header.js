@@ -12,6 +12,7 @@ import Survey from '../Survey';
 import Login from 'src/containers/Account/Login';
 import BackOffice from 'src/containers/Account/BackOffice';
 import NoMatch from './NoMatch';
+import Subscription from 'src/containers/Account/Subscription';
 
 const Header = ({ isLogged, logout, username, role }) => {
   const handleClick = () => {
@@ -44,6 +45,9 @@ const Header = ({ isLogged, logout, username, role }) => {
               </Link>
               <Link to="/contact" className="nav-link menu__link">
                 Contact
+              </Link>
+              <Link to="/subscribe" className="nav-link menu__link">
+                Subscribe
               </Link>
             </Nav>
           </Navbar.Collapse>
@@ -106,6 +110,9 @@ const Header = ({ isLogged, logout, username, role }) => {
         </Route>
         <Route path="/backoffice">
           <BackOffice />
+        </Route>
+        <Route path="/subscribe">
+          <Subscription />
         </Route>
         <Route path="*">
           <NoMatch />
