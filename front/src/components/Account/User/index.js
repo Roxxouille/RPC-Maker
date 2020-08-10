@@ -20,6 +20,7 @@ import './styles.scss';
 import { activateLoad } from 'src/actions/user';
 import EditProfile from 'src/containers/Account/User/EditProfile';
 import Loader from 'src/components/Utils/Loader';
+import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
 
 const User = ({
   isLogged, isLoading, username, level, firstname, email,
