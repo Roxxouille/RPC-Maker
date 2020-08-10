@@ -15,7 +15,7 @@ import {
 } from 'react-bootstrap';
 import Commands from 'src/containers/Account/User/Commands';
 import Message from 'src/containers/Account/User/Message';
-import Pc from './Pc.js';
+import Pc from 'src/containers/Account/User/Pc.js';
 import './styles.scss';
 import { activateLoad } from 'src/actions/user';
 import EditProfile from 'src/containers/Account/User/EditProfile';

@@ -72,7 +72,7 @@ const Header = ({ isLogged, logout, username, role }) => {
                 <>
                   <NavDropdown.Divider />
                   <h6>Back office</h6>
-                  <Link to="/backoffice/messages" className="dropdown-item">
+                  <Link to="/backoffice/message" className="dropdown-item">
                     Messagerie
                   </Link>
                   <Link to="/backoffice/clients" className="dropdown-item">

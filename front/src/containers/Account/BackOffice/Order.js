@@ -5,6 +5,7 @@ import { getCommand } from 'src/actions/backoffice';
 
 const mapStateToProps = (state) => ({
   command: state.backoffice.command,
+  isLoading: state.backoffice.isLoading,
 });
 
 const mapDispatchToProps = (dispatch) => ({

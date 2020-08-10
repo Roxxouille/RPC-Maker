@@ -1,4 +1,4 @@
-import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV } from '../actions/backoffice';
+import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV, DESACTIVATE_LOADER } from '../actions/backoffice';
 import { CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
@@ -17,6 +17,7 @@ export const initialState = {
   newMessage: '',
   activeConv: '',
   activeConvId: '',
+  isLoading: true,
 };
 
 const contact = (state = initialState, action = {}) => {
@@ -63,6 +64,11 @@ const contact = (state = initialState, action = {}) => {
       return {
         ...state,
         newMessage: '',
+      };
+    case DESACTIVATE_LOADER:
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;

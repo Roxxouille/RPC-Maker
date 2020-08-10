@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 import {
   Row, Col
 } from 'react-bootstrap';
+import Loader from 'src/components/Utils/Loader';
 
-const Clients = ({ clients }) => {
+const Clients = ({ clients, isLoading }) => {
+  console.log(clients);
+  console.log('loading:', isLoading);
+
   const dataClients = clients.map((client) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
@@ -40,7 +44,13 @@ const Clients = ({ clients }) => {
         <div className='clients__row__cell'>Contact</div>
         <div className='clients__row__cell'>informations</div>
       </div>
-      {dataClients}
+      {isLoading ? (
+        <Loader />
+      ) : (
+          <div>
+            {dataClients}
+          </div>
+        )}
     </div>
   );
 };
