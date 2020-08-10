@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import User from '../../components/User';
-import { activateLoad, getCommands } from '../../actions/user';
+import User from 'src/components/Account/User';
+import { activateLoad, getCommands } from 'src/actions/user';
 
 const mapStateToProps = (state) => ({
   isLogged: state.user.isLogged,

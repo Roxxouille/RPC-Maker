@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.scss';
-import { Link, Switch, Route} from 'react-router-dom';
-import Order from '../../containers/BackOffice/Order';
+import { Link } from 'react-router-dom';
 
 const Clients = ({ clients }) => {
   const dataClients = clients.map((client) => {

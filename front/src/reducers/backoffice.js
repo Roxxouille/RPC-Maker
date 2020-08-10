@@ -63,7 +63,7 @@ const contact = (state = initialState, action = {}) => {
       return {
         ...state,
         newMessage: '',
-      }
+      };
     default:
       return state;
   }

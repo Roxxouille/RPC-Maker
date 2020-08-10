@@ -3,8 +3,8 @@ import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 
-import Field from './Field';
-import StateField from './Field/StateField';
+import Field from 'src/components/Utils/Field';
+import StateField from 'src/components/Utils/Field/StateField';
 
 const Login = ({
   email, password, changeField, login, error, isLogged, isLoading,

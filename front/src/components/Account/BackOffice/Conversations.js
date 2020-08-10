@@ -1,7 +1,6 @@
 import React from 'react';
 import { ListGroup, Form, Row } from 'react-bootstrap';
-import Messages from './Messages';
-import { sendMessage } from '../../actions/user';
+import Messages from 'src/components/Account/Messages';
 
 const Conversations = ({ clients, getMessagesBack, messages, username, newMessage, changeMessageBack, sendMessageBack, activeConv }) => {
   console.log('Clients component conv', clients);

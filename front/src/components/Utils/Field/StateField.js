@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
-import Loader from '../../Loader';
+import Loader from 'src/components/Utils/Loader';
 
 const StateField = ({error, isLoading}) => {
   return (

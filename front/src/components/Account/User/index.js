@@ -13,24 +13,20 @@ import {
   Image,
   Button,
 } from 'react-bootstrap';
-import Commands from '../../containers/User/Commands';
-import Message from '../../containers/User/Message';
+import Commands from 'src/containers/Account/User/Commands';
+import Message from 'src/containers/Account/User/Message';
 import Pc from './Pc.js';
 import './styles.scss';
-import { activateLoad } from '../../actions/user';
-import EditProfile from '../../containers/User/EditProfile';
-import Loader from '../Loader';
-import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
+import { activateLoad } from 'src/actions/user';
+import EditProfile from 'src/containers/Account/User/EditProfile';
+import Loader from 'src/components/Utils/Loader';
 
 const User = ({
-  isLogged, isLoading, username, level, firstname, email, role, commands, getCommands,
+  isLogged, isLoading, username, level, firstname, email,
 }) => {
   if (localStorage.getItem('token')) {
     activateLoad();
   }
-  /* if (isLogged === true && commands.length === 0 && role === 'ROLE_USER') {
-    getCommands();
-  } */
 
   return (
     <Container fluid>
