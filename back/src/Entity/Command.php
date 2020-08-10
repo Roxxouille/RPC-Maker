@@ -179,11 +179,14 @@ class Command
     /**
      * @ORM\OneToOne(
      * targetEntity=CommandData::class,
-     *  mappedBy="command",
+     *  inversedBy="command",
      *  cascade={
      *      "persist",
      *      "remove"
-     *      }
+     *      },
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=true
      * )
      * @Groups({
      *  "command_info"

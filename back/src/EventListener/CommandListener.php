@@ -155,7 +155,6 @@ class CommandListener
 
         $this->em->persist($command);
         $this->em->flush();
-        
     }
 
     public function sendFirstMessage(Command $command, LifecycleEventArgs $event)

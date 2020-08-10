@@ -118,14 +118,14 @@ class CommandData
     /**
      * @ORM\OneToOne(
      * targetEntity=Command::class,
-     *  inversedBy="commandData",
+     *  mappedBy="commandData",
      *  cascade={
      *      "persist",
      *      "remove"
      *     }
      * )
      * @ORM\JoinColumn(
-     *  nullable=false
+     *  nullable=true
      * )
      */
     private $command;

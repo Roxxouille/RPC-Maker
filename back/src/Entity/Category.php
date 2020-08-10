@@ -54,7 +54,7 @@ class Category
     /**
      * @ORM\Column(
      *  type="json", 
-     *  nullable=tru
+     *  nullable=true
      * )
      * @Assert\Json(
      *  message = "this is not a valid Json."
