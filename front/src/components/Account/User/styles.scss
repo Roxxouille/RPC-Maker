@@ -2,17 +2,37 @@
 
 .user {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-arouund;
   &__nav{
     display:flex;
     flex-direction: column;
-    width:20%;
-    background-color:#fff;
+ 
+    &__avatar{
+      max-width: fit-content;
+      align-self: center;
+    }
+    &__content{
+      display: flex;
+      flex-flow: wrap column;
+      &__infos{
+        display: flex;
+        flex-flow: wrap column;
+        border-bottom: solid 1px ;
+        border-color: rgba(131, 131, 131, 0.233);
+        padding-bottom: 25px;
+      }
+      &__links{
+        display: flex;
+        flex-flow: wrap column;
+        border-bottom: solid 1px ;
+        border-color: rgba(131, 131, 131, 0.233);
+        padding-bottom: 25px;
+      }
+    }
   }
 
   &__body{
     width: 70%;
-    background-color: #fff;
     text-align: left;
 
     h1{
@@ -69,7 +89,29 @@
 }
 
 .jumbotron{
-  background-image: url(https://picsum.photos/1366/720);
+  background-image: url(https://picsum.photos/1920/1080/?blur);
+  &__containr{
+
+    &__title{
+  
+    }
+    &__content{
+  
+    }
+    &__links{
+      display: flex;
+      justify-content: center;
+      &__icon{
+        background-color: rgba(0, 0, 0, 0.473);
+        color: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 20px;
+        border: solid;
+        border-color: #ffffff8e;
+        margin-right: 20px;
+      }
+    }
+  }
 }
 
 .fullform {
@@ -81,6 +123,7 @@
 // MON PC //
 
 .pc{
+  margin-top: 40px;
   &__accordion{
     border: none;
     &__card{
