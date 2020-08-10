@@ -1,0 +1,18 @@
+//messages
+
+.sent {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+
+
+.tchat {
+  display: flex;
+  &__client {
+    width: 25%;
+  }
+  &__messages {
+    width: 75%;
+  }
+}

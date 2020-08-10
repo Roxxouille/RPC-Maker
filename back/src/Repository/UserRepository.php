@@ -60,8 +60,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->andWhere('u.username = :username')
             ->setParameter('username', $username)
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getOneOrNullResult();
     }
 
     public function getRandomBuilder()
@@ -72,7 +71,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->where("u.roles = :role")
             ->setParameter('role', '["ROLE_BUILDER"]')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }    
+            ->getOneOrNullResult();
+    }
 }

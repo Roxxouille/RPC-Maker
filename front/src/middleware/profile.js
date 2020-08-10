@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SUBMIT_PROFILE, changeProfile, errorProfile } from '../actions/profile';
+import { SUBMIT_PROFILE, changeProfile, errorProfile, GET_DATA, setData } from '../actions/profile';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -17,6 +17,19 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error.response);
           store.dispatch(errorProfile(error.response.data));
+        });
+      break;
+    }
+    case GET_DATA: {
+      const token = localStorage.getItem('token');
+      const slug = localStorage.getItem('slug');
+      axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setData(response.data));
+        })
+        .catch((error) => {
+          console.log(error.response);
         });
       break;
     }

@@ -1,4 +1,5 @@
-import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT } from '../actions/backoffice';
+import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV, DESACTIVATE_LOADER } from '../actions/backoffice';
+import { CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
   commands: [],
@@ -12,6 +13,11 @@ export const initialState = {
       username: '',
     },
   },
+  messages: [],
+  newMessage: '',
+  activeConv: '',
+  activeConvId: '',
+  isLoading: true,
 };
 
 const contact = (state = initialState, action = {}) => {
@@ -37,6 +43,32 @@ const contact = (state = initialState, action = {}) => {
       return {
         ...state,
         command: action.command,
+      };
+    case SET_MESSAGES_BACK:
+      return {
+        ...state,
+        messages: action.data,
+      };
+    case CHANGE_MESSAGE_BACK:
+      return {
+        ...state,
+        newMessage: action.value,
+      };
+    case CHANGE_ACTIVE_CONV:
+      return {
+        ...state,
+        activeConv: action.slug,
+        activeConvId: action.id,
+      };
+    case CLEAN_NEW_MESSAGE:
+      return {
+        ...state,
+        newMessage: '',
+      };
+    case DESACTIVATE_LOADER:
+      return {
+        ...state,
+        isLoading: false,
       };
     default:
       return state;

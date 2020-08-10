@@ -5,6 +5,10 @@ namespace App\Controller\Api;
 use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
+use App\Entity\CommandConfigData;
+use App\Entity\CommandData;
+use App\Entity\CommandDeviceData;
+use App\Entity\CommandSpecData;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -81,28 +85,34 @@ class UserController extends AbstractController
 
         return $this->json(['status' => 'user edited'], Response::HTTP_OK);
     }
+
     /**
      * @Route("/user", name="user_add", methods="POST")
      */
     public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository)
     {
 
-        //get the request content (info about new user)
-        //transform it into an object user
-        //get the validations errors if there is any
+        // Get the content of the request
         $content = $request->getContent();
+
+        // Match the content with their entity
         $user = $serializer->deserialize($content, User::class, 'json');
-        $errors = $validator->validate($user, null, ['registration']);
+        $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+        $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+        $commndSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+        $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
+
+        // Check the user content to see if it's valid
+        $errorsArray = [];
+        $errorsUser = $validator->validate($user, null, ['registration']);
 
         // if there is an error, return them in a json format
-        if (count($errors) > 0) {
-
-            $errorsArray = [];
-
-            foreach ($errors as $error) {
+        if (count($errorsUser) > 0) {
+            foreach ($errorsUser as $error) {
                 $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
             }
-
+        }
+        if (count($errorsArray) > 0) {
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
@@ -112,8 +122,12 @@ class UserController extends AbstractController
         $passwordClear = $user->getPassword();
         $passwordHashed = $passwordEncoder->encodePassword($user, $passwordClear);
         $user->setPassword($passwordHashed);
+
+        //  Find a random builder and set it to the user
         $builder = $userRepository->getRandomBuilder();
         $user->setBuilder($builder);
+
+        // Set default role
         $user->setRoles(['ROLE_USER']);
 
 
@@ -130,24 +144,12 @@ class UserController extends AbstractController
         //create the new command
         //set this info to the new command
         $username = $user->getUsername();
-        $contentDecode = json_decode($content, true);
-        $commandData = [];
-        foreach ($contentDecode as $key => $contentData) {
-            $commandData[$key] = $contentData;
-        }
-        unset($commandData['password'],
-            $commandData['email'],
-            $commandData['level'],
-            $commandData['roles'],
-            $commandData['firstname'],
-            $commandData['lastname'],
-            $commandData['city'],
-            $commandData['zip_code'],
-            $commandData['adress']
-        );
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $username);
-        $command->setData($commandData);
+        $command->setCommandData($commandData);
+        $commandData->setCommandConfigData($commandConfigData);
+        $commandData->setCommandSpecData($commndSpecData);
+        $commandData->setCommandDeviceData($commandDeviceData);
 
 
         //persist the new user in the database
@@ -156,9 +158,16 @@ class UserController extends AbstractController
 
         //link this user to the new command
         $command->setUser($user);
+
+        // persist the command
         $entityManager->persist($command);
+        $entityManager->persist($commandData);
+        $entityManager->persist($commandConfigData);
+        $entityManager->persist($commndSpecData);
+        $entityManager->persist($commandDeviceData);
         $entityManager->flush();
 
+        // send a email to the user
         $email = (new Email())
             ->from('alienmail@example.com')
             ->to($user->getEmail())
@@ -243,5 +252,113 @@ class UserController extends AbstractController
         $users = $userRepository->findBy(['builder' => $user]);
 
         return $this->json($users, Response::HTTP_OK, [], ['groups' => 'user']);
+    }
+
+    /**
+     * @Route("/user/validation", name="user_validation", methods="POST")
+     */
+    public function userValidation(Request $request, SerializerInterface $serializer, ValidatorInterface $validator)
+    {
+        // get the content of the request and transform it into a array
+        $content = $request->getContent();
+        $contentDecode = (array) json_decode($content);
+
+        // do the validation for the first step of the quote form
+        if($contentDecode['step'] == "1"){
+            $user = $serializer->deserialize($content, User::class, 'json');
+            $errors = $validator->validate($user, null, ['validation_one']);
+        }
+
+        // do the validation for the second step of the quote form
+        if($contentDecode['step'] == "2"){
+            $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+            $errors = $validator->validate($commandData, null, ['validation_two']);
+        }
+
+        // do the validation for the third step of the quote form
+        if($contentDecode['step'] == "3"){
+            $commandData = $serializer->deserialize($content, CommandData::class, 'json');
+            $errorsCommandData = $validator->validate($commandData, null, ['validation_three']);
+            $errors = [];
+            foreach($errorsCommandData as $error){
+                $errors[] = $error;
+            }
+            $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+            $errorsCommandConfigData = $validator->validate($commandConfigData, null, ['validation_three_bis']);
+            foreach($errorsCommandConfigData as $error){
+                $errors[] = $error;
+            }
+        }
+
+        // do the validation for the fourth step of the quote form
+        if($contentDecode['step'] == "4"){
+            $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
+            $errors = $validator->validate($commandConfigData, null, ['validation_four']);
+        }
+
+        // do the validation for the fifth step of the quote form
+        if($contentDecode['step'] == "5"){
+            $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+            $errorsValidationFive = $validator->validate($commandSpecData, null, ['validation_five']);
+            $errors = [];
+            foreach($errorsValidationFive as $error){
+                $errors[] = $error;
+            }
+            if($commandSpecData->getSpecWifi()){
+                $errorsValidationFiveWifiTrue = $validator->validate($commandSpecData, null, ['validation_five_wifi_true']);
+                foreach($errorsValidationFiveWifiTrue as $error){
+                    $errors[] = $error;
+                }
+            }
+            if($commandSpecData->getSpecSound()){
+                $errorsValidationFiveSoundTrue = $validator->validate($commandSpecData, null, ['validation_five_sound_true']);
+                foreach($errorsValidationFiveSoundTrue as $error){
+                    $errors[] = $error;
+                }
+            }
+            if($commandSpecData->getSpecSoundUtilisation() == "Autres"){
+                $errorsValidationFiveSoundOther = $validator->validate($commandSpecData, null, ['validation_five_sound_other']);
+                foreach($errorsValidationFiveSoundOther as $error){
+                    $errors[] = $error;
+                }
+            }
+        }
+
+        // do the validation for the sixth step of the quote form
+        if($contentDecode['step'] == "6"){
+            $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
+            $errors = [];
+            $errorsValidationSix = $validator->validate($commandSpecData, null, ['validation_six']);
+            foreach($errorsValidationSix as $error){
+                $errors[] = $error;
+            }
+            if($commandSpecData->getOs()){
+                $errorValidationSixOsTrue = $validator->validate($commandSpecData, null, ['validation_six_os_true']);
+                foreach($errorValidationSixOsTrue as $error){
+                    $errors[] = $error;
+                }
+            }
+        }
+
+        // do the validation for the Seventh step of the quote form
+        if($contentDecode['step'] == "7"){
+            $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
+            $errors = $validator->validate($commandDeviceData, null, ['validation_seven']);
+        }
+
+        // send the error if needed
+        if (count($errors) > 0) {
+
+            $errorsArray = [];
+
+            foreach ($errors as $error) {
+                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+            }
+
+            return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+        // if there is no error response HTTP_OK
+        return $this->json(['data' => 'ok'], Response::HTTP_OK);
     }
 }

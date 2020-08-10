@@ -7,10 +7,15 @@ use App\Entity\Item;
 use App\Entity\User;
 use App\Entity\Avatar;
 use App\Entity\Command;
+use App\Entity\Message;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\DataFixtures\Provider\RpcMakerProvider;
+use App\Entity\CommandConfigData;
+use App\Entity\CommandData;
+use App\Entity\CommandDeviceData;
+use App\Entity\CommandSpecData;
 use App\Entity\Testimony;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -253,7 +258,7 @@ class AppFixtures extends Fixture
             'Sebastien' => 'sebastien@gmail.com',
         ];
         // add one user with builder roles
-        foreach($builders as $key => $builder){
+        foreach ($builders as $key => $builder) {
             $user = new User;
             $user->setCreatedAt(new \DateTime);
             $user->setUpdatedAt(new \DateTime);
@@ -266,7 +271,7 @@ class AppFixtures extends Fixture
             $user->setLastname($faker->lastName);
             $user->setAvatar($faker->unique->randomElement($avatarList));
             $builderList[] = $user;
-            $manager->persist($user);   
+            $manager->persist($user);
         }
 
         $userList = [];
@@ -296,7 +301,6 @@ class AppFixtures extends Fixture
             $command->setUpdatedAt(new \DateTime);
             $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
-            $command->setData(['Data' => 'Oui', 'Non']);
             $command->setUser($faker->unique()->randomElement($userList));
             // adding 20 item, each of one category, for one command
             foreach ($categoryList as $key => $category) {
@@ -310,8 +314,39 @@ class AppFixtures extends Fixture
             $manager->persist($command);
         }
 
+        $commandDataList = [];
+        foreach ($commandList as $command) {
+            $commandConfigData = new CommandConfigData;
+            $commandConfigData->setPreconfiguration(false);
+            $commandConfigData->setConfigBoard('Data');
+            $commandConfigData->setConfigCase('Encore du data');
+
+            $manager->persist($commandConfigData);
+
+            $commandSpecData = new CommandSpecData;
+            $commandSpecData->setOsName('Windaube');
+            $commandSpecData->setSpecFiber(true);
+
+            $manager->persist($commandSpecData);
+
+            $commandDeviceData = new CommandDeviceData;
+            $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
+            $commandDeviceData->setDeviceScreen('AOC 144HZ');
+
+            $manager->persist($commandDeviceData);
+
+            $commandData = new CommandData;
+            $commandData->setCommandConfigData($commandConfigData);
+            $commandData->setCommandDeviceData($commandDeviceData);
+            $commandData->setCommandSpecData($commandSpecData);
+            $commandData->setCommand($command);
+
+            $manager->persist($commandData);
+            $commandDataList[] = $commandData;
+        }
+
         // fixtures for Testimony
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 16; $i++) {
             $testimony = new Testimony;
             $testimony->setContent($faker->text($faker->numberBetween(30, 255)));
             $testimony->setScore($faker->numberBetween(1, 5));
@@ -322,6 +357,36 @@ class AppFixtures extends Fixture
             $testimony->setUpdatedAt(new \DateTime);
             $manager->persist($testimony);
         }
+
+        // fixtures for builder Message
+
+        for ($i = 0; $i < 100; $i++) {
+            $clientList = [];
+            $message = new Message;
+            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
+            $message->setContent($faker->sentence());
+            $message->setFromUser($faker->randomElement($builderList));
+            foreach ($userList as $user) {
+                if ($user->getBuilder() === $message->getFromUser()) {
+                    $clientList[] = $user;
+                }
+            }
+            $message->setToUser($faker->randomElement($clientList));
+            $manager->persist($message);
+        }
+
+        // fixtures for user Message
+        for ($i = 0; $i < 100; $i++) {
+            $message = new Message;
+            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
+            $message->setContent($faker->sentence());
+            $message->setFromUser($faker->randomElement($userList));
+            $message->setToUser($message->getFromUser()->getBuilder());
+            $manager->persist($message);
+        }
+
+
+
         // DONNEES DE TEST
 
         // fixtures for Avatar

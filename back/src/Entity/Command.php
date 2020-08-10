@@ -18,51 +18,51 @@ class Command
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"category", "command", "user", "login"})
+     * @Groups({"category", "command", "user", "login", "command_info"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"category", "command", "user", "login"})
+     * @Groups({"category", "command", "user", "login", "command_info"})
      */
     private $file;
 
     /**
      * @ORM\Column(type="integer")
      * @Assert\Regex("/^\d+/", message = "Veuillez entrer un nombre valide")
-     * @Groups({"category", "command", "user", "login"})
+     * @Groups({"category", "command", "user", "login", "command_info"})
      */
     private $status;
 
     /**
      * @ORM\Column(type="json")
      * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "command_info"})
      */
     private $data = [];
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="commands")
-     * @Groups({"category", "command"})
+     * @Groups({"category", "command", "command_info"})
      */
     private $user;
 
     /**
      * @ORM\ManyToMany(targetEntity=Item::class, inversedBy="commands")
-     * @Groups({"command", "user", "login"})
+     * @Groups({"command", "user", "login", "command_info"})
      */
     private $item;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "command_info"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"category", "command", "user"})
+     * @Groups({"category", "command", "user", "command_info"})
      */
     private $updatedAt;
 
@@ -73,19 +73,25 @@ class Command
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"user", "command", "login"})
+     * @Groups({"user", "command", "login", "command_info"})
      */
     private $slug;
 
     /**
      * @ORM\Column(type="string", length=45)
-     * @Groups({"user", "login"})
+     * @Groups({"user", "login", "command_info"})
      * @Assert\Length(
      *      max = 45,
      *      maxMessage = "Le nom de la commande est trop long",
      * )
      */
     private $name;
+
+    /**
+     * @ORM\OneToOne(targetEntity=CommandData::class, mappedBy="command", cascade={"persist", "remove"})
+     * @Groups({"command_info"})
+     */
+    private $commandData;
 
     public function __construct()
     {
@@ -236,6 +242,23 @@ class Command
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getCommandData(): ?CommandData
+    {
+        return $this->commandData;
+    }
+
+    public function setCommandData(CommandData $commandData): self
+    {
+        $this->commandData = $commandData;
+
+        // set the owning side of the relation if necessary
+        if ($commandData->getCommand() !== $this) {
+            $commandData->setCommand($this);
+        }
 
         return $this;
     }

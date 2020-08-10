@@ -1,0 +1,197 @@
+@use 'src/styles/vars';
+
+.user {
+  display: flex;
+  justify-content: space-arouund;
+  &__nav{
+    display:flex;
+    flex-direction: column;
+ 
+    &__avatar{
+      max-width: fit-content;
+      align-self: center;
+    }
+    &__content{
+      display: flex;
+      flex-flow: wrap column;
+      &__infos{
+        display: flex;
+        flex-flow: wrap column;
+        border-bottom: solid 1px ;
+        border-color: rgba(131, 131, 131, 0.233);
+        padding-bottom: 25px;
+      }
+      &__links{
+        display: flex;
+        flex-flow: wrap column;
+        border-bottom: solid 1px ;
+        border-color: rgba(131, 131, 131, 0.233);
+        padding-bottom: 25px;
+      }
+    }
+  }
+
+  &__body{
+    width: 70%;
+    text-align: left;
+
+    h1{
+     margin: 25px;
+    }
+
+    #center{
+      text-align: center;
+    }
+
+    #light-green{
+      background-color : #e5fbe5;
+    }
+
+    #just-center{
+      justify-content: center;
+    }
+
+    #chat-avatar{
+      height: 40px;
+    }
+    &__messages{
+      justify-content: center;
+      
+      #right{
+        text-align: right;
+    }
+    }
+  }
+}
+
+.order {
+  &__items {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    &__one {
+      width: 25%;
+      padding: 1em 2em 1em 2em;
+    }
+  }
+}
+
+.clients {
+  &__row{
+    display: flex;
+
+    &__cell{
+      padding: 1em;
+      width: 12.5%;
+      font-size: 12px;
+    }
+  }
+}
+
+.jumbotron{
+  background-image: url(https://picsum.photos/1920/1080/?blur);
+  &__containr{
+
+    &__title{
+  
+    }
+    &__content{
+  
+    }
+    &__links{
+      display: flex;
+      justify-content: center;
+      &__icon{
+        background-color: rgba(0, 0, 0, 0.473);
+        color: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 20px;
+        border: solid;
+        border-color: #ffffff8e;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.fullform {
+  max-width: vars.$max-width;
+  align-items: center;
+  margin: auto;
+}
+
+// MON PC //
+
+.pc{
+  margin-top: 40px;
+  &__accordion{
+    border: none;
+    &__card{
+      &__header{
+        &__content{
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          &__avatar{
+            max-height: 50px;
+            justify-self: flex-start;
+            margin-right: 20px;
+          }
+          &__name{
+            justify-self: start;
+          }
+          &__chevron{
+            align-self: flex-end;
+            justify-self: end;
+          }
+        }
+      }
+      &__body{
+        &__category{
+          &__title{ 
+                     
+          }
+          &__list{
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: start;
+            text-align: center;
+
+            &__item{
+              display: flex;
+              flex-flow: wrap column;
+              margin: 5px;
+              border: solid thin;
+              padding: 10px;
+              border-radius:21px;
+              border-color: rgba(131, 131, 131, 0.096);
+              
+              &__icon{
+                align-self: flex-start;
+                height: 20px;
+                width: auto;
+                margin-bottom: 10px;
+                color: #b1b1b1;
+              }
+              &__model{
+                align-self: flex-start;
+              }
+              &__category{
+                align-self: flex-end;
+                font-style: italic;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+//messages
+
+.sent {
+  display: flex;
+  flex-direction: row-reverse;
+}

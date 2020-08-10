@@ -49,9 +49,19 @@ class ContactController extends AbstractController
             $errorsArray = [];
 
             foreach ($errors as $error) {
-                $errorsArray[$error->getPropertyPath()][] = $error->getMessage();
+                if($error->getPropertyPath() == "[email]"){
+                    $errorsArray['email'][] = $error->getMessage();
+                }
+                if($error->getPropertyPath() == "[content]"){
+                    $errorsArray['content'][] = $error->getMessage();
+                }
+                if($error->getPropertyPath() == "[firstname]"){
+                    $errorsArray['firstname'][] = $error->getMessage();
+                }
+                if($error->getPropertyPath() == "[lastname]"){
+                    $errorsArray['lastname'][] = $error->getMessage();
+                }
             }
-
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 

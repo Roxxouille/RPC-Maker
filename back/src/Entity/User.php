@@ -25,21 +25,21 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"avatar", "user", "testimony"})
+     * @Groups({"avatar", "user", "testimony", "message", "login"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=45, unique=true)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration"})
+     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.", groups = {"registration", "validation_one"})
      * @Assert\Length(
      *      min = 3,
      *      max = 25,
      *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
      *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
-     *      groups = {"registration","edit-profile"},
+     *      groups = {"edit-profile", "validation_one"},
      * )
-     * @Groups({"avatar", "command", "user", "testimony", "login"})
+     * @Groups({"avatar", "command", "user", "testimony", "login", "message"})
      */
     private $username;
 
@@ -95,7 +95,7 @@ class User implements UserInterface
      *      maxMessage = "Le prénom est trop long",
      *       groups = {"registration","edit-profile"},
      * )
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "message"})
      */
 
     private $firstname;
@@ -108,7 +108,7 @@ class User implements UserInterface
      *      maxMessage = "Le nom est trop long",
      *       groups = {"registration","edit-profile"},
      * )
-     * @Groups({"avatar", "command", "user"})
+     * @Groups({"avatar", "command", "user", "message"})
      */
 
     private $lastname;
@@ -192,8 +192,19 @@ class User implements UserInterface
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="builder")
+     * @Groups({"user", "login"})
      */
     private $builder;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="user", orphanRemoval=true)
+     */
+    private $messagesSend;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Message::class, mappedBy="toUser", orphanRemoval=true)
+     */
+    private $messagesReceived;
 
     public function __construct()
     {
@@ -203,6 +214,8 @@ class User implements UserInterface
         $this->testimonies = new ArrayCollection();
         $this->level = 1;
         //$this->builder = new ArrayCollection();
+        $this->messagesSend = new ArrayCollection();
+        $this->messagesReceived = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -518,6 +531,68 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($builder->getBuilder() === $this) {
                 $builder->setBuilder(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesSend(): Collection
+    {
+        return $this->messagesSend;
+    }
+
+    public function addMessagesSend(Message $messagesSend): self
+    {
+        if (!$this->messagesSend->contains($messagesSend)) {
+            $this->messagesSend[] = $messagesSend;
+            $messagesSend->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesSend(Message $messagesSend): self
+    {
+        if ($this->messagesSend->contains($messagesSend)) {
+            $this->messagesSend->removeElement($messagesSend);
+            // set the owning side to null (unless already changed)
+            if ($messagesSend->getUser() === $this) {
+                $messagesSend->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Message[]
+     */
+    public function getMessagesReceived(): Collection
+    {
+        return $this->messagesReceived;
+    }
+
+    public function addMessagesReceived(Message $messagesReceived): self
+    {
+        if (!$this->messagesReceived->contains($messagesReceived)) {
+            $this->messagesReceived[] = $messagesReceived;
+            $messagesReceived->setToUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesReceived(Message $messagesReceived): self
+    {
+        if ($this->messagesReceived->contains($messagesReceived)) {
+            $this->messagesReceived->removeElement($messagesReceived);
+            // set the owning side to null (unless already changed)
+            if ($messagesReceived->getToUser() === $this) {
+                $messagesReceived->setToUser(null);
             }
         }
 

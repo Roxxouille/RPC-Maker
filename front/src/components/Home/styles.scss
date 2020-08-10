@@ -1,6 +1,9 @@
 .checked {
   color: orange;
 }
+
+
+
 @media screen and (max-width: 800px) { 
   .pres {
     &__firstrow {
@@ -17,16 +20,16 @@
     }
   }  
 
-  .show-team {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    &__one {
-      width: 100% !important;
-      justify-content: space-around;
-      margin: 5px
-    }
-  }
+  // .show-team {
+  //   display: flex;
+  //   flex-direction: column;
+  //   margin: 0;
+  //   &__one {
+  //     width: 100% !important;
+  //     justify-content: space-around;
+  //     margin: 5px
+  //   }
+  // }
 
   .testimonies {
     &__row{
@@ -40,22 +43,21 @@
 
 @media screen and (min-width: 801px) { 
 
-  .show-team {
-    display: flex;
-    justify-content: space-around;
-
-    &__one {
-      width: 20%;
-    }
-  }
-
-
-  .test {
-    height:400px;
-  }
-
+  
+  // .show-team {
+  //   display: flex;
+  //   justify-content: space-around;
+    
+  //   &__one {
+  //     width: 20%;
+  //   }
+  // }
+  
+  
   .pres {
     padding: 2em;
+
+    
 
     &__short {
       font-size: 24px;
@@ -71,16 +73,68 @@
   // témoignages 
   .testimony {
     display: flex;
-    margin: 2em 0em 2em 0em;
     text-align: left;
+    margin: 0em 2em 2em 0em;
     &__content {
       font-size:14px;
+      text-align: center;
+      vertical-align: middle;
     
     }
     
     &__img {
-      margin: 0em 1em 0em 1em;
+      margin: 0em 1.5em 0em 1em;
+    }
+
+    &__name{
+      vertical-align: bottom;
+      text-align: right;
+      font-style: italic;
+    }
+
+    &__quote{
+      color: rgba(114, 114, 114, 0.253);
+      justify-content: space-between;
+      display: flex;
     }
 
   }
+
+  .vr{
+    width: 1px;
+    height: auto;
+    background-color: rgba(114, 114, 114, 0.253);
+    margin-right: 10px;
+  }
+
+  .m-auto{
+    margin: auto;
+  }
+
+  .mb-50{
+    margin-bottom: 50px;
+  }
+
+  .mb-25{
+    margin-bottom: 25px;
+  }
+
+  .mb-75{
+    margin-bottom: 75px;
+  }
+
+  .br{
+    border-right: 1px solid grey;
+  }
+
+  .col{
+    margin-left: auto;
+    margin-right: 15px;
+  }
+
+  .img-car{
+    background-image: url(https://picsum.photos/1920/1080/?blur);
+    height: 20em;
+  }
 }
+
