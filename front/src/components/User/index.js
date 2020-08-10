@@ -20,6 +20,7 @@ import './styles.scss';
 import { activateLoad } from '../../actions/user';
 import EditProfile from '../../containers/User/EditProfile';
 import Loader from '../Loader';
+import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
 
 const User = ({
   isLogged, isLoading, username, level, firstname, email, role, commands, getCommands,
@@ -44,26 +45,36 @@ const User = ({
       {isLogged === true && isLoading === false && (
         <div>
           <Jumbotron fluid className="jumbotron">
-            <Container>
+            <Container className="jumbotron__containr">
               <h1>Bienvenu {username}</h1>
               <p>
                 Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
               </p>
-              <Button variant="light"><Link to="/user/commands">mes commandes</Link></Button>
-              <Button variant="light"> <Link to="/user/message">Messagerie</Link></Button>
-              <Button variant="light"><Link to="/user/pc">Mon PC</Link></Button>
+              <div className="jumbotron__containr__links">
+                <Link to="/user/commands" className="jumbotron__containr__links__icon"><FaScroll fontSize="40" /></Link>
+                <Link to="/user/message" className="jumbotron__containr__links__icon"><FaEnvelope fontSize="40" /></Link>
+                <Link to="/user/pc" className="jumbotron__containr__links__icon"><FaRobot fontSize="40" /></Link>
+              </div>
             </Container>
           </Jumbotron>
           <div className="user">
             <div className="user__nav">
-              <Image src="https://picsum.photos/240" rounded fluid />
-              <Link to="/user/pc">{username}</Link>
-              <a>level {level}</a>
-              <a>{email}</a>
-              <a>{firstname} "lastname"</a>
-              <a>"adress"</a>
-              <Link to="/user/edit-info">Editer mes infos</Link>
-              <a href="#">Changer de mot de passe</a><a href="#">Se deconnecter</a>
+              <Image className="user__nav__avatar" src="https://picsum.photos/240" rounded />
+              <div className="user__nav__content">
+                <div className="user__nav__content__infos">
+                  <Link to="/user">{username}</Link>
+                  <a>level {level}</a>
+                  <a>{email}</a>
+                  <a>"firstname" "lastname"</a>
+                  <a>"adress"</a>
+                </div>
+
+                <div className="user__nav__content__links">
+                  <Link to="/user/edit-info">Editer mes infos</Link>
+                  <a href="#">Changer de mot de passe</a>
+                  <a href="#">Se deconnecter</a>
+                </div>
+              </div>
             </div>
             <div className="user__body container">
               <Switch>
