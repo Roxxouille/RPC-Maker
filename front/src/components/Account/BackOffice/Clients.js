@@ -1,6 +1,9 @@
 import React from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
+import {
+  Row, Col
+} from 'react-bootstrap';
 
 const Clients = ({ clients }) => {
   const dataClients = clients.map((client) => {
@@ -22,7 +25,11 @@ const Clients = ({ clients }) => {
 
   return (
     <div className='clients'>
-      <h3>Mes clients</h3>
+      <Row className="mb-50">
+        <Col sm={1} className="m-auto"><hr /></Col>
+        <Col sm={4} > <h2>Mes Clients</h2> </Col>
+        <Col className="m-auto"><hr /></Col>
+      </Row>
       <div className='clients__row'>
         <div className='clients__row__cell'>Nom</div>
         <div className='clients__row__cell'>Prénom</div>
