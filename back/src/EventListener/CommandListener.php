@@ -61,6 +61,102 @@ class CommandListener
         $this->em->flush();
     }
 
+    public function setItemsOnUserCreation(Command $command, LifecycleEventArgs $event)
+    {
+        $data = $command->getCommandData();
+        $configData = $data->getCommandConfigData();
+        $specData = $data->getCommandSpecData();
+        $deviceData = $data->getCommandDeviceData();
+
+        if($configData->getConfigProc()){
+            $proc = $this->itemRepo->findBy(['name' => $configData->getConfigProc()]);
+            $command->addItem($proc[0]);
+        }
+
+        if($configData->getConfigBoard()){
+            $board = $this->itemRepo->findBy(['name' => $configData->getConfigBoard()]);
+            $command->addItem($board[0]);
+        }
+
+        if($configData->getConfigGc()){
+            $gc = $this->itemRepo->findBy(['name' => $configData->getConfigGc()]);
+            $command->addItem($gc[0]);
+        }
+
+        if($configData->getConfigRam()){
+            $ram = $this->itemRepo->findBy(['name' => $configData->getConfigRam()]);
+            $command->addItem($ram[0]);
+        }
+
+        if($configData->getConfigRefresh()){
+            $refresh = $this->itemRepo->findBy(['name' => $configData->getConfigRefresh()]);
+            $command->addItem($refresh[0]);
+        }
+
+        if($configData->getConfigStorage()){
+            $storage = $this->itemRepo->findBy(['name' => $configData->getConfigStorage()]);
+            $command->addItem($storage[0]);
+        }
+
+        if($configData->getConfigBoardsound()){
+            $boardsound = $this->itemRepo->findBy(['name' => $configData->getConfigBoardsound()]);
+            $command->addItem($boardsound[0]);
+        }
+
+        if($configData->getConfigCase()){
+            $case = $this->itemRepo->findBy(['name' => $configData->getConfigCase()]);
+            $command->addItem($case[0]);
+        }
+
+        if($configData->getConfigPower()){
+            $power = $this->itemRepo->findBy(['name' => $configData->getConfigPower()]);
+            $command->addItem($power[0]);
+        }
+
+        if($deviceData->getDeviceScreen()){
+            $screen = $this->itemRepo->findBy(['name' => $deviceData->getDeviceScreen()]);
+            $command->addItem($screen[0]);
+        }
+
+        if($deviceData->getDeviceKeyboard()){
+            $keyboard = $this->itemRepo->findBy(['name' => $deviceData->getDeviceKeyboard()]);
+            $command->addItem($keyboard[0]);
+        }
+
+        if($deviceData->getDeviceMouse()){
+            $mouse = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMouse()]);
+            $command->addItem($mouse[0]);
+        }
+
+        if($deviceData->getDeviceMousepad()){
+            $mousepad = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMousepad()]);
+            $command->addItem($mousepad[0]);
+        }
+
+        if($deviceData->getDeviceHeadphone()){
+            $headphone = $this->itemRepo->findBy(['name' => $deviceData->getDeviceHeadphone()]);
+            $command->addItem($headphone[0]);
+        }
+
+        if($deviceData->getDeviceEnceinte()){
+            $enceinte = $this->itemRepo->findBy(['name' => $deviceData->getDeviceEnceinte()]);
+            $command->addItem($enceinte[0]);
+        }
+
+        if($deviceData->getDeviceWebcam()){
+            $webcam = $this->itemRepo->findBy(['name' => $deviceData->getDeviceWebcam()]);
+            $command->addItem($webcam[0]);
+        }
+
+        if($deviceData->getDevicePrinter()){
+            $printer = $this->itemRepo->findBy(['name' => $deviceData->getDevicePrinter()]);
+            $command->addItem($printer[0]);
+        }
+
+        $this->em->persist($command);
+        $this->em->flush();
+    }
+
     public function sendFirstMessage(Command $command, LifecycleEventArgs $event)
     {
         $user = $command->getUser();
