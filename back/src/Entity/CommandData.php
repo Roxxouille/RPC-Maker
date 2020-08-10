@@ -15,85 +15,172 @@ class CommandData
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquer l'utilisation",
-     *  groups = {"validation_three"}
+     *  groups = {
+     *      "validation_three"
+     *      }
      * )
      * @Assert\NotBlank(
      *  message="Veuillez indiquer l'utilisation",
-     *  groups = {"validation_three"}
+     *  groups = {
+     *      "validation_three"
+     *      }
      * )
      */
     private $utilisation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $utilisationDetails;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous avez un buget ou non",
-     *  groups = {"validation_two"}
+     *  groups = {
+     *      "validation_two"
+     *      }
      * )
      */
     private $budget;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
+     * @ORM\Column(
+     *  type="decimal",
+     *  precision=10,
+     *  scale=0,
+     *  nullable=true
+     * )
      * @Assert\Positive(
      *  message="Veuillez rentrer un nombre valide",
-     *  groups = {"validation_two"}
+     *  groups = {
+     *      "validation_two"
+     *      }
      * )
-     * @Groups({"command_info"})
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $amount;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="decimal",
+     *  precision=10,
+     *  scale=0,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\PositiveOrZero(
      *  message="Veuillez rentrer un nombre valide",
-     *  groups = {"validation_two"}
+     *  groups = {
+     *      "validation_two"
+     *      }
      * )
      */
     private $gap;
 
     /**
-     * @ORM\OneToOne(targetEntity=Command::class, inversedBy="commandData", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(
+     * targetEntity=Command::class,
+     *  inversedBy="commandData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *     }
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
      */
     private $command;
 
     /**
-     * @ORM\OneToOne(targetEntity=CommandConfigData::class, inversedBy="commandData", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"command_info"})
+     * @ORM\OneToOne(
+     * targetEntity=CommandConfigData::class,
+     *  inversedBy="commandData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *     }
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $commandConfigData;
 
     /**
-     * @ORM\OneToOne(targetEntity=CommandSpecData::class, inversedBy="commandData", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"command_info"})
+     * @ORM\OneToOne(
+     * targetEntity=CommandSpecData::class,
+     *  inversedBy="commandData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *     }
+     * )
+     * @ORM\JoinColumn(
+     * nullable=false
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $commandSpecData;
 
     /**
-     * @ORM\OneToOne(targetEntity=CommandDeviceData::class, inversedBy="commandData", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"command_info"})
+     * @ORM\OneToOne(
+     *  targetEntity=CommandDeviceData::class,
+     *  inversedBy="commandData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *      }
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $commandDeviceData;
 

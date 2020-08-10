@@ -17,39 +17,75 @@ class Avatar
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"avatar", "user", "testimony"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "avatar",
+     *  "user",
+     *  "testimony"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"avatar", "user", "testimony"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
+     * )
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Groups({
+     *  "avatar",
+     *  "user",
+     *  "testimony"
+     * })
      */
     private $image;
 
     /**
-     * @ORM\OneToOne(targetEntity=User::class, mappedBy="avatar", cascade={"persist", "remove"})
-     * @Groups({"avatar"})
+     * @ORM\OneToOne(
+     * targetEntity=User::class,
+     *  mappedBy="avatar",
+     *  cascade={
+     *      "persist", 
+     *      "remove"
+     *      }
+     * )
+     * @Groups({
+     *  "avatar"
+     * })
      * @MaxDepth(2)
      */
     private $user;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"avatar", "user"})
+     * @ORM\Column(
+     *  type="datetime"
+     * )
+     * @Groups({
+     *  "avatar", "user"
+     * })
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"avatar", "user"})
+     * @ORM\Column(
+     *  type="datetime"
+     * )
+     * @Groups({
+     *  "avatar",
+     *  "user"
+     * })
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
+     * )
      */
     private $slug;
 

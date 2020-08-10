@@ -17,50 +17,91 @@ class Testimony
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"testimony"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "testimony"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Assert\Length(
-     *      max = 255,
-     *      maxMessage = "Votre témoignage doit faire moins de {{ limit }} caractères",
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
      * )
-     * @Groups({"testimony"})
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Assert\Length(
+     *  max = 255,
+     *  maxMessage = "Votre témoignage doit faire moins de {{ limit }} caractères",
+     * )
+     * @Groups({
+     *  "testimony"
+     * })
      */
     private $content;
 
     /**
-     * @ORM\Column(type="integer")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Assert\Regex("/^[1-5]$/", message = "Veuillez mettre une note entre 1 et 5")
-     * @Groups({"testimony"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Assert\Regex(
+     *  "/^[1-5]$/",
+     *  message = "Veuillez mettre une note entre 1 et 5"
+     * )
+     * @Groups({
+     *  "testimony"
+     * })
      */
     private $score;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="testimonies")
-     * @ORM\JoinColumn(nullable=false)
-     * @Groups({"testimony"})
+     * @ORM\ManyToOne(
+     *  targetEntity=User::class,
+     *  inversedBy="testimonies"
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     * @Groups({
+     *  "testimony"
+     * })
      */
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=Command::class, inversedBy="testimony", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToOne(
+     * targetEntity=Command::class,
+     *  inversedBy="testimony",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *      }
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
      */
     private $command;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(
+     *  type="datetime"
+     * )
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime", nullable=true)
+     * @ORM\Column(
+     *  type="datetime",
+     *  nullable=true
+     * )
      */
     private $updatedAt;
 

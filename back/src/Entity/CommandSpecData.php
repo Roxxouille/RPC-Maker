@@ -15,8 +15,12 @@ class CommandSpecData
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $id;
 
@@ -26,163 +30,287 @@ class CommandSpecData
     }
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez ce qui est le plus important pour vous",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specImportant;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous êtes intrésser par le SLI",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specSli;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous êtes intrésser par l'overclocking'",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specOverclock;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez par quel type de stockage vous êtes intéressé",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specStorage;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="integer",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez la quantité de stockage que vous voulez",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specStorageQuantity;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous voulez une carte wifi" ,
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      * @Assert\Positive(
      *  message="Veuillez rentrer un nombre valide",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specWifi;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous êtes dans la même pièces que le routeur",
-     *  groups = {"validation_five_wifi_true"}
+     *  groups = {
+     *      "validation_five_wifi_true"
+     *      }
      * )
      */
     private $specWifiRoom;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous avez la fibre",
-     *  groups = {"validation_five_wifi_true"}
+     *  groups = {
+     *      "validation_five_wifi_true"
+     *      }
      * )
      */
     private $specFiber;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous êtes intrésser par une carte son",
-     *  groups = {"validation_five"}
+     *  groups = {
+     *      "validation_five"
+     *      }
      * )
      */
     private $specSound;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez pour quelle utilisation",
-     *  groups = {"validation_five_sound_true"}
+     *  groups = {
+     *      "validation_five_sound_true"
+     *      }
      * )
      */
     private $specSoundUtilisation;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotBlank(
      *  message="Veuillez indiquez pour quelle utilisation",
-     *  groups = {"validation_five_sound_other"}
+     *  groups = {
+     *      "validation_five_sound_other"
+     *      }
      * )
      */
     private $specSoundUtilisationOther;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $specLight;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous voulez un systeme d'exploitation",
-     *  groups = {"validation_six"}
+     *  groups = {
+     *      "validation_six"
+     *      }
      * )
      */
     private $os;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotBlank(
      *  message="Veuillez indiquez quel systeme d'exploitation vous voulez",
-     *  groups = {"validation_six_os_true"}
+     *  groups = {
+     *      "validation_six_os_true"
+     *      }
      * )
      */
     private $oschoice;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $osName;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotBlank(
      *  message="Veuillez indiquezsi vous voulez que l'on vous l'active",
-     *  groups = {"validation_six_os_true"}
+     *  groups = {
+     *      "validation_six_os_true"
+     *      }
      * )
      */
     private $osActive;
 
     /**
-     * @ORM\OneToOne(targetEntity=CommandData::class, mappedBy="commandSpecData", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     * targetEntity=CommandData::class,
+     *  mappedBy="commandSpecData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *      }
+     * )
      */
     private $commandData;
 

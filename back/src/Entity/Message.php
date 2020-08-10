@@ -14,34 +14,61 @@ class Message
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @groups({"message"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @groups({
+     *  "message"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @groups({"message"})
+     * @ORM\Column(
+     *  type="datetime"
+     * )
+     * @groups({
+     *  "message"
+     * })
      */
     private $created_at;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     * @groups({"message"})
+     * @ORM\Column(
+     * type="text",
+     *  nullable=true
+     * )
+     * @groups({
+     *  "message"
+     * })
      */
     private $content;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesSend")
-     * @ORM\JoinColumn(nullable=false)
-     * @groups({"message"})
+     * @ORM\ManyToOne(
+     * targetEntity=User::class,
+     *  inversedBy="messagesSend
+     * ")
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     * @groups({
+     *  "message"
+     * })
      */
     private $fromUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="messagesReceived")
-     * @ORM\JoinColumn(nullable=false)
-     * @groups({"message"})
+     * @ORM\ManyToOne(
+     *  targetEntity=User::class,
+     *  inversedBy="messagesReceived"
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     * @groups({
+     *  "message"
+     * })
      */
     private $toUser;
 
