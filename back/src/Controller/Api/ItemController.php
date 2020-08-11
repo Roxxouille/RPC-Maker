@@ -22,7 +22,7 @@ class ItemController extends AbstractController
         return $this->json($data, Response::HTTP_OK, [], ['groups' =>'item']);
     }
 
-     /**
+    /**
      * @Route("/item/{slug}", name="item_read", methods="GET")
      */
     public function read(ItemRepository $itemRepository, Item $item = null)
