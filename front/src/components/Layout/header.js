@@ -3,7 +3,14 @@ import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-
+import Home from '../Home';
+import User from 'src/containers/Account/User';
+import Contact from 'src/containers/Contact';
+import Survey from '../Survey';
+import Login from 'src/containers/Account/Login';
+import BackOffice from 'src/containers/Account/BackOffice';
+import NoMatch from './NoMatch';
+import Subscription from 'src/containers/Account/Subscription';
 
 const Header = ({ isLogged, logout, username, role }) => {
   const handleClick = () => {
@@ -36,6 +43,9 @@ const Header = ({ isLogged, logout, username, role }) => {
               </Link>
               <Link to="/contact" className="nav-link menu__link">
                 Contact
+              </Link>
+              <Link to="/subscribe" className="nav-link menu__link">
+                Subscribe
               </Link>
             </Nav>
           </Navbar.Collapse>

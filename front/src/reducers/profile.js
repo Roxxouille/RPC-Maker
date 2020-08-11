@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, ERROR_PROFILE, SET_DATA } from '../actions/profile';
+import { CHANGE_PROFILE, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION } from '../actions/profile';
 
 export const initialState = {
   infos: {
@@ -11,6 +11,7 @@ export const initialState = {
     status: '',
     loading: false,
     set: false,
+    username: '',
   },
   error: {
     lastname: [''],
@@ -42,6 +43,12 @@ const profile = (state = initialState, action = {}) => {
       return {
         ...state,
         infos: { ...state.infos, ...action.data, set: true },
+      };
+    case INPUT_SUBSCRIPTION:
+      console.log('reduceur ');
+      return {
+        ...state,
+        infos: { ...state.infos, [action.name]: action.value },
       };
     default:
       return state;

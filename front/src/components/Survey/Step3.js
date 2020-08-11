@@ -14,7 +14,7 @@ export class Step3 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContentFalse, CheckContentTrue, CheckContent } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -26,10 +26,10 @@ export class Step3 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContent('preconfiguration')}> Oui </Button>
+            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContentTrue('preconfiguration')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContent('preconfiguration')}> Non </Button>
+            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContentFalse('preconfiguration')}> Non </Button>
           </Col>
         </Form.Row>
         <h2>Ce serait pour quel utilisation ?</h2>

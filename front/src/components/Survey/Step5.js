@@ -14,7 +14,7 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -40,10 +40,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_sli')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sli')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_sli')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -51,10 +51,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_overclock')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_overclock')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_overclock')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -84,10 +84,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_wifi')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_wifi')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -96,10 +96,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_wifi_room')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_wifi_room')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_wifi_room')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -108,10 +108,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_fiber')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_fiber')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_fiber')}> Non </Button>
           </Col>
         </Form.Row>
 
@@ -120,10 +120,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Oui </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('spec_sound')}> Oui </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('spec_sound')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('spec_sound')}> Non </Button>
           </Col>
         </Form.Row>
 

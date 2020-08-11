@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Col, Button } from 'react-bootstrap';
+import {
+  Form, Col, Button, Alert,
+} from 'react-bootstrap';
 import './styles.scss';
 
 export class Inscription extends Component {
@@ -14,7 +16,9 @@ export class Inscription extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent, handleSubmit, handleAsNumber } = this.props;
+    const {
+      values, handleChange, CheckContent, handleSubmit, handleAsNumber,
+    } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -27,6 +31,9 @@ export class Inscription extends Component {
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Nom</Form.Label>
               <Form.Control type="Nom" placeholder="Ton nom ?" onChange={handleChange('lastname')} />
+              <Alert variant="danger">
+                
+              </Alert>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">

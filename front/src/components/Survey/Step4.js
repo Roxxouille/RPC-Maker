@@ -66,7 +66,7 @@ export class Step4 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContent } = this.props;
     const optionProc = this.state.proc.map((proc) => {
       return (
         <option key={`${proc.id}`}>{`${proc.name}`}</option>

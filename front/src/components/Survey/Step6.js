@@ -27,15 +27,13 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { values, handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse } = this.props;
     const optionOS = this.state.oschoice.map((oschoice) => (
       <option key={`${oschoice}`}>{`${oschoice}`}</option>
     ));
     return (
-      <div className="fullform">
-        <div>
-          <h2>Question Systeme</h2>
-        </div>
+      <div>
+        <h2>Question Systeme</h2>
         <div>
           <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur vos envis.</h1>
         </div>
@@ -44,10 +42,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContent('os')}> Oui  </Button>
+            <Button name="yes" className="Form__button" variant="primary" type="submit" onClick={CheckContentTrue('os')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContent('os')}> Non </Button>
+            <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('os')}> Non </Button>
           </Col>
         </Form.Row>
         <div>
@@ -65,10 +63,10 @@ export class Step5 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContent('os_active')}> Oui </Button>
+            <Button className="Form__button" name="yes" variant="primary" type="submit" onClick={CheckContentTrue('os_active')}> Oui </Button>
           </Col>
           <Col>
-            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContent('os_active')}> Non </Button>
+            <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContentFalse('os_active')}> Non </Button>
           </Col>
         </Form.Row>
         <Form.Row>

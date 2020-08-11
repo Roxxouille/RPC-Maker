@@ -14,7 +14,7 @@ export class Step1 extends Component {
   };
 
   render() {
-    const { values, handleChange } = this.props;
+    const { handleChange, } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -26,7 +26,7 @@ export class Step1 extends Component {
         </div>
         <Form className="Form">
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control type="name" placeholder="Ton petit nom :)" defaultValue={values.username} onChange={handleChange('username')} />
+            <Form.Control type="name" placeholder="Ton petit nom :)" onChange={handleChange('username')} />
           </Form.Group>
         </Form>
         <Button className="Form_button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
