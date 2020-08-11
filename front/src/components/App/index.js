@@ -30,34 +30,32 @@ const App = ({ autoLog, isLogged }) => {
   return (
     <div className="app">
       <Header />
-      <body>
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/survey">
-            <Survey />
-          </Route>
-          <Route path="/team">
-            Team
-          </Route>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/user">
-            <User />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/backoffice">
-            <BackOffice />
-          </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
-        </Switch>
-      </body>
+      <Switch>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        <Route path="/survey">
+          <Survey />
+        </Route>
+        <Route path="/team">
+          Team
+        </Route>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/user">
+          <User />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/backoffice">
+          <BackOffice />
+        </Route>
+        <Route path="*">
+          <NoMatch />
+        </Route>
+      </Switch>
       <Footer />
     </div>
   );

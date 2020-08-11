@@ -13,6 +13,7 @@ import './styles.scss';
 import { FaDownload, FaChevronDown, FaPencilRuler, FaSuitcase } from 'react-icons/fa';
 
 const Pc = ({commands}) => {
+  console.log(commands);
   return (
     <div className="pc">
         <Row className="mb-50">
