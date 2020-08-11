@@ -17,67 +17,141 @@ class Item
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"category", "command", "item", "user"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "category",
+     *  "command",
+     *  "item",
+     *  "user"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Assert\Length(
-     *      max = 255,
-     *      maxMessage = "Le nom est trop long",
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
      * )
-     * @Groups({"category", "command", "item", "user", "login"})
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Assert\Length(
+     *  max = 255,
+     *  maxMessage = "Le nom est trop long",
+     * )
+     * @Groups({
+     *  "category",
+     *  "command",
+     *  "item",
+     *  "user",
+     *  "login"
+     * })
      */
     private $name;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2, nullable=true)
-     * @Assert\Regex("\d+", message = "Veuillez entrez un nombre valide")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"category", "command", "item", "user", "login"})
+     * @ORM\Column(
+     *  type="decimal",
+     *  precision=10,
+     *  scale=2,
+     *  nullable=true
+     * )
+     * @Assert\Regex(
+     *  "\d+",
+     *  message = "Veuillez entrez un nombre valide"
+     * )
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Groups({
+     *  "category",
+     *  "command",
+     *  "item",
+     *  "user",
+     *  "login"
+     * })
      */
     private $price;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\Url( message = "Ceci n'est pas une url valide")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Assert\Length(
-     *      max = 255,
-     *      maxMessage = "L'url est trop longue",
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
      * )
-     * @Groups({"category", "command", "item", "user", "login"})
+     * @Assert\Url(
+     *  message = "Ceci n'est pas une url valide"
+     * )
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Assert\Length(
+     *  max = 255,
+     *  maxMessage = "L'url est trop longue",
+     * )
+     * @Groups({
+     *  "category",
+     *  "command",
+     *  "item",
+     *  "user",
+     *  "login"
+     * })
      */
     private $url;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Command::class, mappedBy="item")
+     * @ORM\ManyToMany(
+     *  targetEntity=Command::class,
+     *  mappedBy="item"
+     * )
      */
     private $commands;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="items")
-     * @Groups({"command", "item", "user", "login"})
+     * @ORM\ManyToOne(
+     *  targetEntity=Category::class,
+     *  inversedBy="items"
+     * )
+     * @Groups({
+     *  "command",
+     *  "item",
+     *  "user",
+     *  "login"
+     * })
      */
     private $category;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"category", "command", "item"})
+     * @ORM\Column(
+     * type="datetime"
+     * )
+     * @Groups({
+     * "category", 
+     * "command",
+     *  "item"
+     * })
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"category", "command", "item"})
+     * @ORM\Column(
+     *  type="datetime"
+     * )
+     * @Groups({
+     *  "category",
+     *  "command",
+     *  "item"
+     * })
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
+     * )
      */
     private $slug;
 

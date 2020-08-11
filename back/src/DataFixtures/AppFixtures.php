@@ -293,6 +293,36 @@ class AppFixtures extends Fixture
             $userList[] = $user;
         }
 
+        $commandDataList = [];
+        for ($i = 0; $i < 25; $i++) {
+            $commandConfigData = new CommandConfigData;
+            $commandConfigData->setPreconfiguration(false);
+            $commandConfigData->setConfigBoardModel('Data');
+            $commandConfigData->setConfigCaseModel('Encore du data');
+
+            $manager->persist($commandConfigData);
+
+            $commandSpecData = new CommandSpecData;
+            $commandSpecData->setOsName('Windaube');
+            $commandSpecData->setSpecFiber(true);
+
+            $manager->persist($commandSpecData);
+
+            $commandDeviceData = new CommandDeviceData;
+            $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
+            $commandDeviceData->setDeviceScreenModel('AOC 144HZ');
+
+            $manager->persist($commandDeviceData);
+
+            $commandData = new CommandData;
+            $commandData->setCommandConfigData($commandConfigData);
+            $commandData->setCommandDeviceData($commandDeviceData);
+            $commandData->setCommandSpecData($commandSpecData);
+
+            $manager->persist($commandData);
+            $commandDataList[] = $commandData;
+        }
+
         // fixtures for Command
         $commandList = [];
         for ($i = 0; $i < 25; $i++) {
@@ -302,6 +332,7 @@ class AppFixtures extends Fixture
             $command->setName($faker->word());
             $command->setStatus($faker->numberBetween(1, 5));
             $command->setUser($faker->unique()->randomElement($userList));
+            $command->setCommandData($commandDataList[$i]);
             // adding 20 item, each of one category, for one command
             foreach ($categoryList as $key => $category) {
                 $item = $faker->randomElement($itemList);
@@ -314,36 +345,7 @@ class AppFixtures extends Fixture
             $manager->persist($command);
         }
 
-        $commandDataList = [];
-        foreach ($commandList as $command) {
-            $commandConfigData = new CommandConfigData;
-            $commandConfigData->setPreconfiguration(false);
-            $commandConfigData->setConfigBoard('Data');
-            $commandConfigData->setConfigCase('Encore du data');
-
-            $manager->persist($commandConfigData);
-
-            $commandSpecData = new CommandSpecData;
-            $commandSpecData->setOsName('Windaube');
-            $commandSpecData->setSpecFiber(true);
-
-            $manager->persist($commandSpecData);
-
-            $commandDeviceData = new CommandDeviceData;
-            $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
-            $commandDeviceData->setDeviceScreen('AOC 144HZ');
-
-            $manager->persist($commandDeviceData);
-
-            $commandData = new CommandData;
-            $commandData->setCommandConfigData($commandConfigData);
-            $commandData->setCommandDeviceData($commandDeviceData);
-            $commandData->setCommandSpecData($commandSpecData);
-            $commandData->setCommand($command);
-
-            $manager->persist($commandData);
-            $commandDataList[] = $commandData;
-        }
+        
 
         // fixtures for Testimony
         for ($i = 0; $i < 16; $i++) {
@@ -386,7 +388,6 @@ class AppFixtures extends Fixture
         }
 
 
-
         // DONNEES DE TEST
 
         // fixtures for Avatar
@@ -411,12 +412,39 @@ class AppFixtures extends Fixture
         $user->setBuilder($faker->randomElement($builderList));
         $manager->persist($user);
 
+        $commandConfigData = new CommandConfigData;
+        $commandConfigData->setPreconfiguration(false);
+        $commandConfigData->setConfigBoardModel('Data');
+        $commandConfigData->setConfigCaseModel('Encore du data');
+
+        $manager->persist($commandConfigData);
+
+        $commandSpecData = new CommandSpecData;
+        $commandSpecData->setOsName('Windaube');
+        $commandSpecData->setSpecFiber(true);
+
+        $manager->persist($commandSpecData);
+
+        $commandDeviceData = new CommandDeviceData;
+        $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
+        $commandDeviceData->setDeviceScreenModel('AOC 144HZ');
+
+        $manager->persist($commandDeviceData);
+
+        $commandData = new CommandData;
+        $commandData->setCommandConfigData($commandConfigData);
+        $commandData->setCommandDeviceData($commandDeviceData);
+        $commandData->setCommandSpecData($commandSpecData);
+
+        $manager->persist($commandData);
+
         // fixtures for Command
         $command = new Command;
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
         $command->setName('test');
         $command->setStatus(1);
+        $command->setCommandData($commandData);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);
 

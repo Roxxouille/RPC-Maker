@@ -8,40 +8,40 @@ class RpcMakerProvider extends Base
 {
     private static $categories = [
         'Processeur' => [
- 
+            'class' => 'component',
         ],
         'Carte mère' => [
-
+            'class' => 'component',
         ],
         'Carte graphique'  => [
-            
+            'class' => 'component',
         ],
         'RAM'  => [
-            
+            'class' => 'component',
         ],
         'Ventirad / Watercooling'  => [
-            
+            'class' => 'component',
         ],
         'Lecteur / Graveur'  => [
-            
+            'class' => 'component',
         ],
         'Carte son'  => [
-            
+            'class' => 'component',
         ],
         'Carte wifi'  => [
-            
+            'class' => 'component',
         ],
         'Boitier'  => [
-            
+            'class' => 'component',
         ],
         'Alimentation'  => [
-            
+            'class' => 'component',
         ],
         'HDDs'  => [
-            
+            'class' => 'component',
         ],
         'SSDs'  => [
-            
+            'class' => 'component',
         ],
         'Systeme d\'exploitation'  => [
             'Windows 10',
@@ -52,6 +52,7 @@ class RpcMakerProvider extends Base
             'Debian',
         ],
         'Ecran'  => [
+            'class' => 'device',
             'size' => [
                 '22"',
                 '23"',
@@ -75,6 +76,7 @@ class RpcMakerProvider extends Base
             ]
         ],
         'Clavier'  => [
+            'class' => 'device',
             'type'=> [
                'Mécanique',
                'Membrane'
@@ -97,12 +99,14 @@ class RpcMakerProvider extends Base
             ]
         ],
         'Souris'  => [
+            'class' => 'device',
             'type'=> [
                 'Laser',
                 'Optique'
             ],
         ],
         'Tapis'  => [
+            'class' => 'device',
             'type'=> [
                 'Rugueux',
                 'Souple'
@@ -115,15 +119,17 @@ class RpcMakerProvider extends Base
             ]
         ],
         'Micro-Casque'  => [
+            'class' => 'device',
             'type'=> [
                 'Supra auriculaire',
                 'Circum aural'
             ],
         ],
         'Enceintes'  => [
-            
+            'class' => 'device',
         ],
         'Webcam'  => [
+            'class' => 'device',
             'resolution' => [
                 '720p',
                 '1080p',
@@ -131,6 +137,7 @@ class RpcMakerProvider extends Base
             ]
         ],
         'Imprimante'  => [
+            'class' => 'device',
             'type' => [
                 'Laser',
                 'Jet d\'encre',

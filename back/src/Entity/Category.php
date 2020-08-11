@@ -17,50 +17,98 @@ class Category
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"category", "item", "command", "user"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "category",
+     *  "item",
+     *  "command",
+     *  "user"
+     * })
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=45)
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Assert\Length(
-     *      max = 45,
-     *      maxMessage = "Le nom de la catégorie est trop long",
+     * @ORM\Column(
+     *  type="string",
+     *  length=45
      * )
-     * @Groups({"category", "item", "command", "user", "login"})
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Assert\Length(
+     *  max = 45,
+     *  maxMessage = "Le nom de la catégorie est trop long",
+     * )
+     * @Groups({
+     *  "category",
+     *  "item",
+     *  "command", 
+     *  "user", 
+     *  "login"
+     * })
      */
     private $name;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
-     * @Assert\Json( message = "this is not a valid Json.")
-     * @Assert\NotBlank(message = "Ce champ ne peut pas être vide.")
-     * @Groups({"category", "item", "user", "login"})
+     * @ORM\Column(
+     *  type="json", 
+     *  nullable=true
+     * )
+     * @Assert\Json(
+     *  message = "this is not a valid Json."
+     * )
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide."
+     * )
+     * @Groups({
+     *  "category",
+     *  "item",
+     *  "user",
+     *  "login"
+     * })
      */
     private $specs = [];
 
     /**
-     * @ORM\OneToMany(targetEntity=Item::class, mappedBy="category")
-     * @Groups("category")
+     * @ORM\OneToMany(
+     * targetEntity=Item::class,
+     *  mappedBy="category"
+     * )
+     * @Groups({
+     *  "category"
+     * })
      */
     private $items;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"category", "item"})
+     * @ORM\Column(
+     * type="datetime"
+     * )
+     * @Groups({
+     *  "category",
+     *  "item"
+     * })
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime")
-     * @Groups({"category", "item"})
+     * @ORM\Column(
+     *  type="datetime"
+     * )
+     * @Groups({
+     *  "category",
+     *  "item"
+     * })
      */
     private $updatedAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(
+     *  type="string",
+     *  length=255
+     * )
      */
     private $slug;
 

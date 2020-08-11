@@ -15,8 +15,12 @@ class CommandConfigData
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="integer"
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $id;
 
@@ -26,215 +30,408 @@ class CommandConfigData
     }
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="boolean",
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous avez déjà une configuration",
-     *  groups = {"validation_three_bis"}
+     *  groups = {
+     *      "validation_three_bis"
+     *      }
      * )
      */
     private $preconfiguration;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configProc;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configProcModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configProcLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configBoard;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configBoardModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configBoardLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string", 
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configGc;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string", 
+     *  length=255, 
+     *  nullable=true)
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configGcModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configGcLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configRam;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255, 
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configRamModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255, 
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configRamLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configRefresh;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configRefreshModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configRefreshLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configStorage;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255, 
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configStorageModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string", 
+     *  length=255, 
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configStorageLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configBoardsound;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255, 
+     *  nullable=true
+     * )
+     * @Groups({"
+     *  command_info
+     * "})
      */
     private $configBoardsoundModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({"
+     *  command_info
+     * "})
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configBoardsoundLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configCase;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configCaseModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configCaseLink;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configPower;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      */
     private $configPowerModel;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     * @Groups({"command_info"})
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
+     * @Groups({
+     *  "command_info"
+     * })
      * @Assert\Url(
      *  message="Veuillez insérer une url valide",
-     *  groups = {"validation_four"}
+     *  groups = {
+     *      "validation_four"
+     *      }
      * )
      */
     private $configPowerLink;
 
     /**
-     * @ORM\OneToOne(targetEntity=CommandData::class, mappedBy="commandConfigData", cascade={"persist", "remove"})
+     * @ORM\OneToOne(
+     * targetEntity=CommandData::class,
+     *  mappedBy="commandConfigData",
+     *  cascade={
+     *      "persist",
+     *      "remove"
+     *      }
+     * )
      */
     private $commandData;
 

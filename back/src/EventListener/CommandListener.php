@@ -194,8 +194,6 @@ class CommandListener
             }
         }
 
-
-
         $message = new Message;
 
         $message->setContent(nl2br($messageContent));
