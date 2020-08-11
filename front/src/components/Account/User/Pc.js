@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Container,
     Image,
@@ -10,10 +10,30 @@ import {
 
 } from 'react-bootstrap';
 import './styles.scss';
+import Item from './Item';
 import { FaDownload, FaChevronDown, FaPencilRuler, FaSuitcase } from 'react-icons/fa';
 
 const Pc = ({commands}) => {
   console.log(commands);
+  const items = commands[0].item;
+  const dataEquipments = items.map((item) => {
+    if (item.category.specs.class === 'component') {
+      return (
+        <Item key={item.id} item={item} />
+      );
+    }
+  });
+
+  const dataInventory = items.map((item) => {
+    if (item.category.specs.class === 'device') {
+      return (
+        <Item key={item.id} item={item} />
+      );
+    }
+  });
+
+
+
   return (
     <div className="pc">
         <Row className="mb-50">
@@ -44,56 +64,7 @@ const Pc = ({commands}) => {
                                     <h4>Equipement</h4>
                                 </Col>
                                 <Col sm={9} className="pc__accordion__card__body__category__list">
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">Carte Graphique</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">Processeur</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">carte mere</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">Ram</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">boitier</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">alimentation</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">HDD</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">SSD</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">ventirad</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaPencilRuler className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">carte wifi</p>
-                                    </div>
+                                  {dataEquipments}
                                 </Col>
                             </Row>
                             <hr style={{ width: '70%' }} />
@@ -103,26 +74,7 @@ const Pc = ({commands}) => {
                                     <h4>Inventaire</h4>
                                 </Col>
                                 <Col sm={9} className="pc__accordion__card__body__category__list">
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaSuitcase className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">Ecran</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaSuitcase className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">souris</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaSuitcase className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">tapis</p>
-                                    </div>
-                                    <div className="pc__accordion__card__body__category__list__item">
-                                        <FaSuitcase className="pc__accordion__card__body__category__list__item__icon" />
-                                        <h5 className="pc__accordion__card__body__category__list__item__model">"model de l'item"</h5>
-                                        <p className="pc__accordion__card__body__category__list__item__category">clavier</p>
-                                    </div>
+                                  {dataInventory}
                                 </Col>
                             </Row>
                         </Container>

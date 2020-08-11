@@ -62,7 +62,7 @@ const User = ({
                   <Link to="/user">{username}</Link>
                   <a>level {level}</a>
                   <a>{email}</a>
-                  <a>"firstname" "lastname"</a>
+                  <a> firstname "lastname"</a>
                   <a>"adress"</a>
                 </div>
 
