@@ -27,30 +27,12 @@
         border-bottom: solid 1px ;
         border-color: rgba(131, 131, 131, 0.233);
         padding-bottom: 25px;
+        margin-top: 25px;
       }
     }
   }
 
   &__body{
-    width: 70%;
-    text-align: left;
-
-    h1{
-     margin: 25px;
-    }
-
-    #center{
-      text-align: center;
-    }
-
-    #light-green{
-      background-color : #e5fbe5;
-    }
-
-    #just-center{
-      justify-content: center;
-    }
-
     #chat-avatar{
       height: 40px;
     }
@@ -60,6 +42,61 @@
       #right{
         text-align: right;
     }
+    }
+  }
+}
+
+ // COMMANDS //
+
+.commands{
+  &__title{
+    text-align: left;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 25px;
+    &__hr{
+      margin: auto;
+    }
+    &__text{
+      width: 30px
+    }
+  }
+  &__accordion{
+   
+  }
+}
+
+.command{
+  border: none;
+  border-bottom: 1px solid;
+  border-color: rgba(131, 131, 131, 0.233);
+  &__header{
+    background-color: white;
+    border: none;
+    text-align: left;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  &__content{
+    
+    &__table{
+      .download{
+        text-align: center;
+      }
+      &__header{
+        text-align: left;
+        font-weight: bold;
+      }
+      &__body{
+        text-align: left;
+      }
+      &__footer{
+        font-weight: bold;
+        background-color : #e5fbe5;
+        text-align: left;
+      }
     }
   }
 }

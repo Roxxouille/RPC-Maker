@@ -41,7 +41,7 @@ const User = ({
       )}
 
       {isLogged === true && isLoading === false && (
-        <div>
+        <div className="profile">
           <Jumbotron fluid className="jumbotron">
             <Container className="jumbotron__containr">
               <h1>Bienvenu {username}</h1>
