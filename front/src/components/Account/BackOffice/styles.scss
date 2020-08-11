@@ -2,14 +2,21 @@
     display: flex;
     flex-flow: row wrap;
     &__nav{
-
+        position: absolute;
+        left: 0px;
+        bottom: 0px;
+        top: 50px;
         display: flex;
         flex-flow: wrap column;
         background-color: #343a40;
-        width: fit-content;
+        width: 70px;
         padding: 10px;
         text-align: left;
         height: initial;
+
+        &__link{
+            margin-left: 25px;
+        }
         
         &__title{
             color: #ffffff;
@@ -21,6 +28,8 @@
     }
     &__body{
         display: flex;
+        margin-left: 75px;
+        margin-top: 25px;
         
         &__clients{
             margin-top: 25px;

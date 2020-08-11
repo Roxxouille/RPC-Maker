@@ -6,6 +6,7 @@ import Order from 'src/containers/Account/BackOffice/Order';
 import Clients from './Clients';
 import Loader from 'src/components/Utils/Loader';
 import Conversations from 'src/containers/Account/BackOffice/Conversations';
+import { FaComments, FaUser, FaUsers } from 'react-icons/fa';
 
 const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) => {
   useEffect(() => {
@@ -26,11 +27,9 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
       {user.isLoading === false && user.isLogged === true && user.role === 'ROLE_BUILDER' && (
         <div className="backoffice">
           <div className="backoffice__nav">
-            <NavbarBrand className="backoffice__nav__title">Back Office</NavbarBrand>
-            <hr />
             <div className="backoffice__nav__link">
-              <Link to="/backoffice/clients" style={{ color: '#ffffff' }}>Mes clients</Link>
-              <Link to="/backoffice/message" style={{ color: '#ffffff' }}>Mes conversations</Link>
+              <Link to="/backoffice/clients" style={{ color: '#ffffff' }}><FaUsers /></Link>
+              <Link to="/backoffice/message" style={{ color: '#ffffff' }}><FaComments /></Link>
             </div>
 
           </div>
