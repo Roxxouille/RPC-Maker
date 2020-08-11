@@ -246,7 +246,7 @@ class CommandDeviceData
 
     /**
      * @ORM\Column(
-     *  type="string",
+     *  type="boolean",
      *  length=255,
      *  nullable=true
      * )
