@@ -2,15 +2,8 @@ import React from 'react';
 import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.scss';
-import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import Home from '../Home';
-import User from 'src/containers/Account/User';
-import Contact from 'src/containers/Contact';
-import Survey from '../Survey';
-import Login from 'src/containers/Account/Login';
-import BackOffice from 'src/containers/Account/BackOffice';
-import NoMatch from './NoMatch';
-import Subscription from 'src/containers/Account/Subscription';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+
 
 const Header = ({ isLogged, logout, username, role }) => {
   const handleClick = () => {

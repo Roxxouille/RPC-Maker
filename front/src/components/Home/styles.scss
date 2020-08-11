@@ -4,7 +4,23 @@
 
 
 
-@media screen and (max-width: 800px) { 
+@media screen and (max-width: 992px) { 
+
+  // CAROUSSEL //
+
+  .carou{
+    margin-bottom: 50px;
+    &__item{
+      &__img{
+        background-image: url(https://picsum.photos/1920/1080/?blur);
+        height: 20em;
+      }
+      &__content{
+
+      }
+    }
+  }
+
   .pres {
     &__firstrow {
       display: flex;
@@ -20,17 +36,6 @@
     }
   }  
 
-  // .show-team {
-  //   display: flex;
-  //   flex-direction: column;
-  //   margin: 0;
-  //   &__one {
-  //     width: 100% !important;
-  //     justify-content: space-around;
-  //     margin: 5px
-  //   }
-  // }
-
   .testimonies {
     &__row{
       width: 100%;
@@ -41,19 +46,23 @@
 }
 
 
-@media screen and (min-width: 801px) { 
+@media screen and (min-width: 992px) { 
+  
+  // CAROUSSEL //
 
-  
-  // .show-team {
-  //   display: flex;
-  //   justify-content: space-around;
-    
-  //   &__one {
-  //     width: 20%;
-  //   }
-  // }
-  
-  
+  .carou{
+    margin-bottom: 50px;
+    &__item{
+      &__img{
+        background-image: url(https://picsum.photos/1920/1080/?blur);
+        height: 20em;
+      }
+      &__content{
+        
+      }
+    }
+  }
+
   .pres {
     padding: 2em;
 
@@ -111,10 +120,6 @@
     margin: auto;
   }
 
-  .mb-50{
-    margin-bottom: 50px;
-  }
-
   .mb-25{
     margin-bottom: 25px;
   }
@@ -133,8 +138,7 @@
   }
 
   .img-car{
-    background-image: url(https://picsum.photos/1920/1080/?blur);
-    height: 20em;
+    
   }
 }
 
