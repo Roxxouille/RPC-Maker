@@ -41,7 +41,7 @@ export class Step3 extends Component {
               <Form.Check inline label="Multimedia" type={type} id={`inline-${type}-3`} name="Multimedia" onChange={CheckContent('utilisation')} />
               <Form.Check inline label="3D" name="3D" type={type} id={`inline-${type}-4`} onChange={CheckContent('utilisation')} />
               <Form.Check inline label="Autres" name="Autres" type={type} id={`inline-${type}-5`} onChange={CheckContent('utilisation')} />
-              <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('other_utilisation')} />
+              <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('utilisation_details')} />
             </div>
           ))}
         </Form>

@@ -15,12 +15,13 @@ import axios from 'axios';
 export class UserForm extends Component {
   state = {
     step: 1,
-    budget: '',
-    amount: '',
-    gap: '',
+    budget: null,
+    amount: null,
+    gap: null,
     utilisation: '',
-    preconfiguration: '',
-    oschoice: '',
+    utilisation_details: '',
+    preconfiguration: null,
+    oschoice: null,
     config_proc: '',
     config_proc_model: '',
     config_proc_link: '',
@@ -48,20 +49,24 @@ export class UserForm extends Component {
     config_power: '',
     config_power_model: '',
     config_power_link: '',
-    spec_sli: '',
-    spec_overclock: '',
+    spec_sli: null,
+    spec_overclock: null,
     spec_storage: '',
-    spec_storage_quantity: '',
-    spec_wifi: '',
-    spec_wifi_room: '',
-    spec_fiber: '',
-    spec_sound: '',
+    spec_storage_quantity: parseInt(''),
+    spec_wifi: null,
+    spec_wifi_room: null,
+    spec_fiber: null,
+    spec_sound: null,
     spec_light: '',
-    os: '',
+    spec_important: '',
+    spec_sound_utilisation: '',
+    spec_sound_utilisation_other: '',
+    os: null,
     os_name: '',
-    os_active: '',
-    device: '',
-    device_screen: '',
+    os_active: null,
+    os_choice: '',
+    device: null,
+    device_screen: null,
     device_screen_model: '',
     device_screen_link: '',
     device_screen_size: '',
@@ -76,7 +81,7 @@ export class UserForm extends Component {
     device_mouse_model: '',
     device_mouse_link: '',
     device_mouse_type: '',
-    device_mouse_filaire: '',
+    device_mouse_filaire: null,
     device_mousepad: '',
     device_mousepad_model: '',
     device_mousepad_link: '',
@@ -91,7 +96,7 @@ export class UserForm extends Component {
     device_enceinte_model: '',
     device_enceinte_link: '',
     device_enceinte_type: '',
-    device_enceinte_bass: '',
+    device_enceinte_bass: null,
     device_webcam: '',
     device_webcam_model: '',
     device_webcam_link: '',
@@ -141,11 +146,7 @@ export class UserForm extends Component {
    handleSubmit = (event) => {
      alert(`formulaire envoyer ! : ${this.state}`);
 
-     axios.post('http://localhost:3000/user', {
-       // conversion du state vers un JSON
-
-       body: JSON.stringify(this.state),
-     })
+     axios.post('http://localhost:3000/user', { ...this.state })
        .then((response) => {
          console.log(response);
          return response.json();
@@ -224,6 +225,7 @@ export class UserForm extends Component {
               CheckContent={this.CheckContent}
               CheckContentFalse={this.CheckContentFalse}
               CheckContentTrue={this.CheckContentTrue}
+              handleAsNumber={this.handleAsNumber}
             />
          );
        case 6:

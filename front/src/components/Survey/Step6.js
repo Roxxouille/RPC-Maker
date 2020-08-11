@@ -51,7 +51,7 @@ export class Step5 extends Component {
         <div>
           <h1 className="Form__config">De quel(s) systeme(s) auriez vous besoin ?</h1>
         </div>
-        <Form.Control as="select" defaultValue="OS ?" onChange={handleChange('oschoice')}>
+        <Form.Control as="select" defaultValue="OS ?" onChange={handleChange('os_choice')}>
           {optionOS}
         </Form.Control>
         <div>
