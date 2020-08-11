@@ -23,9 +23,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
     const activate = client.slug === activeConv;
     return (
       <ListGroup.Item className="backoffice__body__tchat__clients__list__client" active={activate} onClick={handleClick} title={client.id} id={client.slug} key={client.slug}>
-
-        <p>{client.username}</p>
-
+        {client.username}
       </ListGroup.Item>
     );
   });

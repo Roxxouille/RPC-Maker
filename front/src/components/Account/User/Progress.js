@@ -18,11 +18,8 @@ const Progress = () => {
           <h3>J'ai plus d'inspiration</h3>
           <p>rien à dire</p>    
         </li>
-        
         <li className="event" data-date="level 4">
-          
           <h3>Squareflair Today</h3>
-          
           <p>voilavoila</p>
         </li>
       </ul>
