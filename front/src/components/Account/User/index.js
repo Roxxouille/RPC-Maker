@@ -78,7 +78,7 @@ const User = ({
             <div className="user__body container">
               <Switch>
                 <Route exact path="/user">
-                  Bienvenue dans votre espace membre
+                  <Progress />
                 </Route>
                 <Route path="/user/pc">
                   <Pc />
@@ -91,9 +91,6 @@ const User = ({
                 </Route>
                 <Route path="/user/message">
                   <Message />
-                </Route>
-                <Route path="/user/progress">
-                  <Progress />
                 </Route>
               </Switch>
             </div>
