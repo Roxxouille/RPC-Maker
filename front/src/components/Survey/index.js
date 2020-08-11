@@ -15,7 +15,7 @@ import axios from 'axios';
 export class UserForm extends Component {
   state = {
     step: 1,
-    budget: true,
+    budget: '',
     amount: '',
     gap: '',
     utilisation: '',
@@ -160,9 +160,19 @@ export class UserForm extends Component {
    }
 
    // handle pour les checkbox
+
    CheckContent = (input) => (e) => {
-     console.log(e.target.value);
      this.setState({ [input]: e.target.value });
+   };
+
+   //Check true False
+
+   CheckContentFalse = (input) => (e) => {
+     this.setState({ [input]: false });
+   };
+
+   CheckContentTrue = (input) => (e) => {
+     this.setState({ [input]: true });
    };
 
    render() {
@@ -182,7 +192,8 @@ export class UserForm extends Component {
              nextStep={this.nextStep}
              prevStep={this.prevStep}
              handleChange={this.handleChange}
-             CheckContent={this.CheckContent}
+             CheckContentFalse={this.CheckContentFalse}
+             CheckContentTrue={this.CheckContentTrue}
            />
          );
        case 3:
@@ -192,6 +203,8 @@ export class UserForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               CheckContent={this.CheckContent}
+              CheckContentFalse={this.CheckContentFalse}
+              CheckContentTrue={this.CheckContentTrue}
             />
          );
        case 4:
@@ -209,6 +222,8 @@ export class UserForm extends Component {
               prevStep={this.prevStep}
               handleChange={this.handleChange}
               CheckContent={this.CheckContent}
+              CheckContentFalse={this.CheckContentFalse}
+              CheckContentTrue={this.CheckContentTrue}
             />
          );
        case 6:
@@ -218,6 +233,8 @@ export class UserForm extends Component {
                prevStep={this.prevStep}
                handleChange={this.handleChange}
                CheckContent={this.CheckContent}
+               CheckContentFalse={this.CheckContentFalse}
+               CheckContentTrue={this.CheckContentTrue}
              />
          );
        case 7:
@@ -227,6 +244,8 @@ export class UserForm extends Component {
                 prevStep={this.prevStep}
                 handleChange={this.handleChange}
                 CheckContent={this.CheckContent}
+                CheckContentFalse={this.CheckContentFalse}
+                CheckContentTrue={this.CheckContentTrue}
               />
          );
        case 8:
@@ -236,6 +255,8 @@ export class UserForm extends Component {
             prevStep={this.prevStep}
             handleChange={this.handleChange}
             CheckContent={this.CheckContent}
+            CheckContentFalse={this.CheckContentFalse}
+            CheckContentTrue={this.CheckContentTrue}
             handleSubmit={this.handleSubmit}
             handleAsNumber={this.handleAsNumber}
           />

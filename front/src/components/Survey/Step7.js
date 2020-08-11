@@ -123,7 +123,7 @@ export class Step7 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContent } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent } = this.props;
     const optionScreen = this.state.screen.map((screen) => (
       <option key={`${screen.id}`}>{`${screen.name}`}</option>
     ));
@@ -188,10 +188,10 @@ export class Step7 extends Component {
         </div>
         <Form.Row>
           <Col>
-            <Button name="yes" className="bouton" variant="primary" type="select" onClick={CheckContent('device')}> Oui  </Button>
+            <Button name="yes" className="bouton" variant="primary" type="select" onClick={CheckContentTrue('device')}> Oui  </Button>
           </Col>
           <Col>
-            <Button name="no" className="bouton" variant="primary" type="select" onClick={CheckContent('device')}> Non </Button>
+            <Button name="no" className="bouton" variant="primary" type="select" onClick={CheckContentFalse('device')}> Non </Button>
           </Col>
         </Form.Row>
 

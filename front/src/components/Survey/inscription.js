@@ -3,7 +3,6 @@ import {
   Form, Col, Button, Alert,
 } from 'react-bootstrap';
 import './styles.scss';
-import { UserForm, fail } from './index.js';
 
 export class Inscription extends Component {
   continue = (e) => {
@@ -15,10 +14,6 @@ export class Inscription extends Component {
     e.preventDefault();
     this.props.prevStep();
   };
-
-  componentDidMount() {
-    console.log(fail);
-  }
 
   render() {
     const {
