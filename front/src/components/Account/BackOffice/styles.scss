@@ -9,6 +9,8 @@
         width: fit-content;
         padding: 10px;
         text-align: left;
+        height: initial;
+        
         &__title{
             color: #ffffff;
         }
@@ -18,23 +20,87 @@
         }
     }
     &__body{
+        display: flex;
+        
         &__clients{
             margin-top: 25px;
+        }
+        &__tchat{
+            min-width: 1000px;
+            display: flex;
+            flex-flow: row;
+            height: 100%;
+            
+            &__clients{
+                text-align: left;
+                min-width: 300px;
+                &__header{
+                    display: flex;
+                    justify-content: space-between; 
+                    min-height: 86px;
+                    align-items: center;
+
+                    padding-left: 15px;
+                    padding-right: 15px;
+                }
+                &__list{
+                    min-height: 70px;
+                    align-items: center;
+                   margin-bottom: 0px;
+                    
+                    &__client{
+                        padding: 15px;
+                        border: none;
+                    }
+                }
+            }
+            &__messages{
+                display: flex;
+                flex-flow: column;
+                &__header{
+                    display: flex;
+                    justify-content: space-between; 
+                    text-align: left;
+                    border: solid 1px;
+                    border-color: #343a4025;
+                    align-items: center;
+                    padding-left: 15px;
+                    padding-right: 15px;                    
+                    &__info{
+    
+                    }
+                    &__icons{
+                        display: inline-flex;
+                        &__icon{
+                            margin: 10px;
+                        }
+                    }
+                    
+                }
+                &__body{
+                    display: flex;
+                    flex-flow: row;
+
+                    &__content{
+                        background-color: #f4f5f76c;
+                        text-align: left;
+                        min-width: 700px;
+                        height: 100%;
+                    }
+                    &__profile{
+                        border: solid 1px;
+                        border-color: #343a4025;
+                    }
+                }
+            }         
         }
 
     .clients__row__cell{
         width: 125px;
     }
 
-    .mb-50{
-        margin-top: 25px;
-    }
 
-    .tchat__messages{
-        border: solid 1px;
-        border-color: rgba(199, 199, 199, 0.479);
-        margin-left: 10px;
-        padding:10px;
-    }
+
     }
 }
+
