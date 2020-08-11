@@ -7,7 +7,8 @@
   // HEADER //
 
   .header{
-    
+    position: sticky;
+    top: 0px;
     
     &__navbar{
       box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
@@ -85,6 +86,9 @@
   // HEADER //
   
   .header{
+    position: sticky;
+    top: 0px;
+    z-index: 1001;
     &__navbar{
       box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
       &__navbrand{  
