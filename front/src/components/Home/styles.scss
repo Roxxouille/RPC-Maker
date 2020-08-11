@@ -9,7 +9,7 @@
   // CAROUSSEL //
 
   .carou{
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     &__item{
       &__img{
         background-image: url(https://picsum.photos/1920/1080/?blur);
@@ -18,10 +18,10 @@
     }
   }
 
-  // presHome //
+  // PRESHOME //
 
   .presHome{
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     &__title{
       margin-bottom: 25px;
       &__hr{
@@ -46,6 +46,18 @@
     }
   }
 
+  // TEAM //
+
+  .team{
+    margin-bottom: 75px;
+    &__title{
+      margin-bottom: 25px;
+    }
+      &__hr{
+        margin: auto;
+      }
+  }
+
  // TESTIMONIES //
 
   .testimonies {
@@ -63,7 +75,7 @@
   // CAROUSSEL //
 
   .carou{
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     &__item{
       &__img{
         background-image: url(https://picsum.photos/1920/1080/?blur);
@@ -72,23 +84,49 @@
     }
   }
 
-  .pres {
-    padding: 2em;
 
-    
+    // PRESHOME //
 
-    &__short {
-      font-size: 24px;
-      margin-top: auto;
-      margin-bottom: auto;
+  .presHome{
+      margin-bottom: 75px;
+      &__title{
+        margin-bottom: 50px;
+        &__hr{
+          margin: auto;
+        }
+      }
+      &__body{
+        &__header{
+          margin-bottom: 25px;
+          &__title{
+            margin: auto;
+          }
+        }
+        &__content{
+        }
+        &__vr{
+          width: 1px;
+          height: auto;
+          background-color: rgba(114, 114, 114, 0.253);
+          margin-right: 10px;
+        }
+      }
+  }
+
+ // TEAM //
+
+ .team{
+  margin-bottom: 75px;
+  &__title{
+    margin-bottom: 50px;
+  }
+    &__hr{
+      margin: auto;
     }
-  }
-  .home-team {
-    margin: 2em 0em 2em 0em;
-  }
+}
 
+  // TESTIMONIES //
 
-  // témoignages 
   .testimony {
     display: flex;
     text-align: left;
@@ -118,36 +156,7 @@
 
   }
 
-  .vr{
-    width: 1px;
-    height: auto;
-    background-color: rgba(114, 114, 114, 0.253);
-    margin-right: 10px;
-  }
 
-  .m-auto{
-    margin: auto;
-  }
 
-  .mb-25{
-    margin-bottom: 25px;
-  }
-
-  .mb-75{
-    margin-bottom: 75px;
-  }
-
-  .br{
-    border-right: 1px solid grey;
-  }
-
-  .col{
-    margin-left: auto;
-    margin-right: 15px;
-  }
-
-  .img-car{
-    
-  }
 }
 
