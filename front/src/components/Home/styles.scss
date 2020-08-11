@@ -15,26 +15,38 @@
         background-image: url(https://picsum.photos/1920/1080/?blur);
         height: 20em;
       }
-      &__content{
+    }
+  }
 
+  // presHome //
+
+  .presHome{
+    margin-bottom: 50px;
+    &__title{
+      margin-bottom: 25px;
+      &__hr{
+        margin: auto;
+      }
+    }
+    &__body{
+      &__header{
+        margin-bottom: 25px;
+        &__title{
+          margin: auto;
+        }
+      }
+      &__content{
+      }
+      &__vr{
+        width: 1px;
+        height: auto;
+        background-color: rgba(114, 114, 114, 0.253);
+        margin-right: 10px;
       }
     }
   }
 
-  .pres {
-    &__firstrow {
-      display: flex;
-      flex-direction: column;
-    }
-    &__secondrow {
-      display: flex;
-      flex-direction: column-reverse;
-    }
-    &__short {
-      margin: 5px 0px 5px 0px;
-      padding: 5px;
-    }
-  }  
+ // TESTIMONIES //
 
   .testimonies {
     &__row{
@@ -56,9 +68,6 @@
       &__img{
         background-image: url(https://picsum.photos/1920/1080/?blur);
         height: 20em;
-      }
-      &__content{
-        
       }
     }
   }
