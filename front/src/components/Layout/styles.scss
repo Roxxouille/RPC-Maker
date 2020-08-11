@@ -1,7 +1,44 @@
 @use 'src/styles/vars';
 
+// MOBILE //
 
-@media screen and (max-width: 800px) { 
+@media screen and (max-width: 992px) { 
+
+  // HEADER //
+
+  .header{
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
+    
+    &__navbar{
+      height: 60px;
+      &__navbrand{
+        position : absolute;
+        left: 85px;
+      }
+      &__vr{
+        width: 1px;
+        height: 25px;
+        background-color: grey;
+        margin-left: 60px;
+      }
+      &__menu{
+      }
+      &__burger{
+        position: absolute;
+        left: 10px;
+      }
+      .navbar-collapse{
+        background-color: #343a40;
+        position: fixed;;
+        left:0px;
+        top: 60px;
+        width: 200px;
+      }
+    }
+  }
+
+  // FOOTER //
+
   .footer {
     background-color: #343a40;
     color: hsla(0,0%,100%,.5);
@@ -11,15 +48,11 @@
       display: flex;
       flex-direction: column;
     }
-
     &__pages{
-     
-      max-width: 100% !important;
-    
+      max-width: 100% !important; 
       h3 {
         margin-top: 1em;;
       }
-
       &__plan-site {
         display: flex;
         flex-direction: column;
@@ -29,33 +62,41 @@
         flex-direction: column;
       }
     }
-
-    
     a {
       color: hsla(0,0%,100%,.5);
       font-size: 16px;
     }
-
     a:hover {
       color: hsla(0,0%,100%,.75);
       text-decoration: none;
     }
   }
+}
 
-  .logo{
-    position : absolute;
-    left: 80px;
-  }
+// DESKTOP //
 
-  .burger{
-    position: absolute;
-    left: 10px;
-  }
+@media screen and (min-width: 992px) { 
 
   
-}
-//FOOTER
-@media screen and (min-width: 800px) { 
+  // HEADER //
+  
+  .header{
+    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
+    &__navbar{
+      &__navbrand{  
+      }
+      &__vr{
+        width: 1px;
+        height: 25px;
+        background-color: grey;
+        margin-right: 10px;
+      }
+      &__menu{
+      }
+    }
+  }
+  
+  // FOOTER //
 
   .footer {
     background-color: vars.$color-blue;
@@ -66,38 +107,23 @@
     box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
     background-color: #343a40;
     color: hsla(0,0%,100%,.5);
-
     &__pages {
       display:flex;
       justify-content: space-between;
     }
-
     a {
       color: hsla(0,0%,100%,.5);
       font-size: 16px;
     }
-
     a:hover {
       color: hsla(0,0%,100%,.75);
       text-decoration: none;
     }
   }
-
   .link {
     display: block;
     font-size: 0.5em;
   }
-
-  .vr-header{
-    width: 1px;
-    height: 25px;
-    background-color: grey;
-    margin-right: 10px;
-  }
-}
-//HEADER
-.header{
-  box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.43);
 }
 
 

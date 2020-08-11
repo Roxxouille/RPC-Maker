@@ -15,66 +15,62 @@ const Header = ({ isLogged, logout, username, role }) => {
 
   return (
     <div className="header">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="topbar">
-        <Container fluid >
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="header__navbar">
 
-          <div className="logo"><Navbar.Brand href="/" >RPC Maker</Navbar.Brand></div>
+        <div className="header__navbar__navbrand"><Navbar.Brand href="/" >RPC Maker</Navbar.Brand></div>
 
-          <span className="vr-header" ></span>
+        <span className="header__navbar__vr" ></span>
 
-          <Navbar.Toggle aria-controls="responsive-navbar-nav" className="burger" />
-          <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="menu">
-              <Link className="nav-link menu__link" to="/">
-                Accueil
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="header__navbar__burger" />
+        <Navbar.Collapse id="responsive-navbar-nav" bg="dark">
+          <Nav className="header__navbar__menu">
+            <Link className="nav-link header__navbar__menu__link" to="/">
+              Accueil
               </Link>
-              <Link to="/survey" className="nav-link menu__link">
-                Devis
+            <Link to="/survey" className="nav-link header__navbar__menu__link">
+              Devis
               </Link>
-              <Link to="/team" className="nav-link menu__link">
-                Team
+            <Link to="/team" className="nav-link header__navbar__menu__link">
+              Team
               </Link>
-              <Link to="/contact" className="nav-link menu__link">
-                Contact
+            <Link to="/contact" className="nav-link header__navbar__menu__link">
+              Contact
               </Link>
-            </Nav>
-          </Navbar.Collapse>
-
-          <Nav >
-            <NavDropdown title={username} id="collasible-nav-dropdown">
-              <Link onClick={handleClick} to="/user" className="dropdown-item">
-                {textlogging}
-              </Link>
-              {isLogged === true && (
-                <>
-                  <NavDropdown.Divider />
-                  <h6>Espace utilisateur</h6>
-                  <Link to="/user/pc" className="dropdown-item">
-                    Mon PC
-                  </Link>
-                  <Link to="/user/message" className="dropdown-item">
-                    Messagerie
-                  </Link>
-                  <Link to="/user/infos" className="dropdown-item">
-                    Mes informations
-                  </Link>
-                </>
-              )}
-              {isLogged === true && role === 'ROLE_BUILDER' && (
-                <>
-                  <NavDropdown.Divider />
-                  <h6>Back office</h6>
-                  <Link to="/backoffice/message" className="dropdown-item">
-                    Messagerie
-                  </Link>
-                  <Link to="/backoffice/clients" className="dropdown-item">
-                    Mes Clients
-                  </Link>
-                </>
-              )}
-            </NavDropdown>
           </Nav>
-        </Container>
+        </Navbar.Collapse>
+
+        <NavDropdown title={username} alignRight id="collasible-nav-dropdown">
+          <Link onClick={handleClick} to="/user" className="dropdown-item">
+            {textlogging}
+          </Link>
+          {isLogged === true && (
+            <>
+              <NavDropdown.Divider />
+              <h6>Espace utilisateur</h6>
+              <Link to="/user/pc" className="dropdown-item">
+                Mon PC
+                  </Link>
+              <Link to="/user/message" className="dropdown-item">
+                Messagerie
+                  </Link>
+              <Link to="/user/infos" className="dropdown-item">
+                Mes informations
+                  </Link>
+            </>
+          )}
+          {isLogged === true && role === 'ROLE_BUILDER' && (
+            <>
+              <NavDropdown.Divider />
+              <h6>Back office</h6>
+              <Link to="/backoffice/message" className="dropdown-item">
+                Messagerie
+                  </Link>
+              <Link to="/backoffice/clients" className="dropdown-item">
+                Mes Clients
+                  </Link>
+            </>
+          )}
+        </NavDropdown>
       </Navbar>
     </div>
   );
