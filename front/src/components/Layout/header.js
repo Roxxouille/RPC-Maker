@@ -1,17 +1,9 @@
 import React from 'react';
 import Proptypes from 'prop-types';
-import {
-  BrowserRouter as Router, Switch, Route, Link,
-} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.scss';
 import { Navbar, Nav, NavDropdown, Container } from 'react-bootstrap';
-import Home from '../Home';
-import User from 'src/containers/Account/User';
-import Contact from 'src/containers/Contact';
-import Survey from '../Survey';
-import Login from 'src/containers/Account/Login';
-import BackOffice from 'src/containers/Account/BackOffice';
-import NoMatch from './NoMatch';
+
 
 const Header = ({ isLogged, logout, username, role }) => {
   const handleClick = () => {
@@ -82,35 +74,8 @@ const Header = ({ isLogged, logout, username, role }) => {
               )}
             </NavDropdown>
           </Nav>
-
         </Container>
       </Navbar>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/survey">
-          <Survey />
-        </Route>
-        <Route path="/team">
-          Team
-        </Route>
-        <Route path="/contact">
-          <Contact />
-        </Route>
-        <Route path="/user">
-          <User />
-        </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
-        <Route path="/backoffice">
-          <BackOffice />
-        </Route>
-        <Route path="*">
-          <NoMatch />
-        </Route>
-      </Switch>
     </div>
   );
 };
