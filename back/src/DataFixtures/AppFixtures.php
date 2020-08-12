@@ -16,6 +16,7 @@ use App\Entity\CommandConfigData;
 use App\Entity\CommandData;
 use App\Entity\CommandDeviceData;
 use App\Entity\CommandSpecData;
+use App\Entity\Status;
 use App\Entity\Testimony;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
@@ -323,6 +324,21 @@ class AppFixtures extends Fixture
             $commandDataList[] = $commandData;
         }
 
+        $statusName = [
+            'Formulaire envoyé',
+            'Formulaire accepté par le monteur',
+            'Formulaire confirmé par le client',
+            'Commande confirmée (paiement)',
+        ];
+        $statusList = [];
+        for ($i = 0; $i < 4; $i++){
+            $status = new Status;
+            $status->setName($statusName[$i]);
+            $status->setStatusNumber($i + 1);
+            $statusList[] = $status;
+            $manager->persist($status);
+        }
+
         // fixtures for Command
         $commandList = [];
         for ($i = 0; $i < 25; $i++) {
@@ -330,8 +346,8 @@ class AppFixtures extends Fixture
             $command->setCreatedAt(new \DateTime);
             $command->setUpdatedAt(new \DateTime);
             $command->setName($faker->word());
-            $command->setStatus($faker->numberBetween(1, 5));
             $command->setUser($faker->unique()->randomElement($userList));
+            $command->setStatus($faker->randomElement($statusList));
             $command->setCommandData($commandDataList[$i]);
             // adding 20 item, each of one category, for one command
             foreach ($categoryList as $key => $category) {
@@ -344,8 +360,6 @@ class AppFixtures extends Fixture
             $commandList[] = $command;
             $manager->persist($command);
         }
-
-        
 
         // fixtures for Testimony
         for ($i = 0; $i < 16; $i++) {
@@ -443,7 +457,7 @@ class AppFixtures extends Fixture
         $command->setCreatedAt(new \DateTime);
         $command->setUpdatedAt(new \DateTime);
         $command->setName('test');
-        $command->setStatus(1);
+        $command->setStatus($statusList[1]);
         $command->setCommandData($commandData);
         $command->setData(['Data' => 'Oui', 'Non']);
         $command->setUser($user);

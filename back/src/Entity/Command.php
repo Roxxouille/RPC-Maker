@@ -48,24 +48,6 @@ class Command
 
     /**
      * @ORM\Column(
-     *  type="integer"
-     * )
-     * @Assert\Regex(
-     *  "/^\d+/",
-     *  message = "Veuillez entrer un nombre valide"
-     * )
-     * @Groups({
-     *  "category",
-     *  "command",
-     *  "user",
-     *  "login",
-     *  "command_info"
-     * })
-     */
-    private $status;
-
-    /**
-     * @ORM\Column(
      *  type="json"
      * )
      * @Assert\NotBlank(
@@ -194,12 +176,22 @@ class Command
      */
     private $commandData;
 
+    /**
+     * @ORM\ManyToOne(
+     *  targetEntity=Status::class,
+     *  inversedBy="commands"
+     * )
+     * @ORM\JoinColumn(
+     *  nullable=false
+     * )
+     */
+    private $status;
+
     public function __construct()
     {
         $this->item = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
-        $this->status = 0;
     }
 
     public function getId(): ?int
@@ -215,19 +207,6 @@ class Command
     public function setFile(?string $file): self
     {
         $this->file = $file;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }
@@ -360,6 +339,18 @@ class Command
         if ($commandData->getCommand() !== $this) {
             $commandData->setCommand($this);
         }
+
+        return $this;
+    }
+
+    public function getStatus(): ?Status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?Status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }
