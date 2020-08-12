@@ -2,7 +2,7 @@ import React from 'react';
 import './styles.scss';
 import { Link } from 'react-router-dom';
 import {
-  Row, Col
+  Row, Col, Card, Button, ListGroup, ListGroupItem
 } from 'react-bootstrap';
 import Loader from 'src/components/Utils/Loader';
 
@@ -14,43 +14,44 @@ const Clients = ({ clients, isLoading }) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
-      <div className='clients__row' key={client.id}>
-        <div className='clients__row__cell'>{client.lastname}</div>
-        <div className='clients__row__cell'>{client.firstname}</div>
-        <div className='clients__row__cell'>{client.username}</div>
-        <div className='clients__row__cell'>{client.commands[0].id}</div>
-        <div className='clients__row__cell'>{clients.createdAt}</div>
-        <div className='clients__row__cell'><Link to={link}>Voir</Link></div>
-        <div className='clients__row__cell'>lien messagerie</div>
-        <div className='clients__row__cell'>liens infos sur client</div>
+      <div className='clients' key={client.id}>
+        <Card >
+          <Card.Body>
+            <Card.Title>{client.firstname} {client.lastname}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
+            <Button href={link} variant="primary">voir</Button>
+            <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
+
+
+          </Card.Body>
+
+        </Card>
       </div>
     );
   });
 
   return (
-    <div className='clients'>
-      <Row className="mb-50">
-        <Col sm={1} className="m-auto"><hr /></Col>
-        <Col sm={4} > <h2>Mes Clients</h2> </Col>
-        <Col className="m-auto"><hr /></Col>
+    <div className='backoffice__body__clients'>
+      <Row className="backoffice__body__clients__title">
+        <Col sm={1} className="backoffice__body__clients__title__hr"><hr /></Col>
+        <Col sm={2} > <h2>Mes Clients</h2> </Col>
+        <Col className="backoffice__body__clients__title__hr"><hr /></Col>
       </Row>
-      <div className='clients__row'>
-        <div className='clients__row__cell'>Nom</div>
-        <div className='clients__row__cell'>Prénom</div>
-        <div className='clients__row__cell'>Pseudo</div>
-        <div className='clients__row__cell'>n° PC</div>
-        <div className='clients__row__cell'>Date de commencement</div>
-        <div className='clients__row__cell'>PC</div>
-        <div className='clients__row__cell'>Contact</div>
-        <div className='clients__row__cell'>informations</div>
+      <div className="backoffice__body__clients__verify">
+        <div className="backoffice__body__clients__verify__title">
+          <Col sm={2} > <h4>A verfier</h4> </Col>
+          <Col className="backoffice__body__clients__title__hr"><hr /></Col>
+        </div>
+        <div >
+          {isLoading ? (
+            <Loader />
+          ) : (
+              <div className="backoffice__body__clients__verify__body">
+                {dataClients}
+              </div>
+            )}
+        </div>
       </div>
-      {isLoading ? (
-        <Loader />
-      ) : (
-          <div>
-            {dataClients}
-          </div>
-        )}
     </div>
   );
 };

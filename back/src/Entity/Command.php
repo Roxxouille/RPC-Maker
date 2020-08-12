@@ -184,6 +184,9 @@ class Command
      * @ORM\JoinColumn(
      *  nullable=false
      * )
+     * @Groups({
+     *  "command"
+     * })
      */
     private $status;
 
