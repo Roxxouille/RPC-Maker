@@ -78,14 +78,16 @@ class Command
     /**
      * @ORM\ManyToMany(
      * targetEntity=Item::class,
-     *  inversedBy="commands"
+     *  inversedBy="commands",
+     * cascade={"persist"}
      * )
      * @Groups({
      *  "command",
      *  "user",
      *  "login",
      *  "command_info"
-     * })
+     * }),
+     * 
      */
     private $item;
 

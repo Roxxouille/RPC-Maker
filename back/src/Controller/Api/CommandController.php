@@ -3,6 +3,7 @@
 namespace App\Controller\Api;
 
 use App\Entity\Command;
+use App\Entity\Item;
 use App\Repository\CommandRepository;
 use App\Repository\ItemRepository;
 use App\Repository\UserRepository;
@@ -62,7 +63,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(ItemRepository $itemRepo, Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
 
         //send a 404 error if the command does not exist
@@ -91,10 +92,6 @@ class CommandController extends AbstractController
 
         //Edit the updatedat vlue to the current time
         $command->setUpdatedAt(new \DateTime());
-
-        $contentDecode = json_decode($content, true);
-        $itemId = $contentDecode['item_id'];
-        $command->addItem($itemRepo->find($itemId));
 
 
         //save the new data to the database

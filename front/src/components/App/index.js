@@ -67,8 +67,8 @@ const App = ({ autoLog, isLogged }) => {
             <NoMatch />
           </Route>
         </Switch>
-        <Footer />
       </div>
+      <Footer />
     </div>
   );
 };
