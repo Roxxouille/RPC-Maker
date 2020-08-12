@@ -11,6 +11,29 @@ export const SEND_MESSAGE_BACK = 'SEND_MESSAGE_BACK';
 export const CHANGE_ACTIVE_CONV = 'CHANGE_ACTIVE_CONV';
 export const CLEAN_NEW_MESSAGE = 'CLEAN_NEW_MESSAGE';
 export const DESACTIVATE_LOADER = 'DESACTIVATE_LOADER';
+export const GET_ITEMS = 'GET_ITEMS';
+export const SET_ITEMS = 'SET_ITEMS';
+export const CHANGE_ONE_ITEM = 'CHANGE_ONE_ITEM';
+export const SUBMIT_ITEMS = 'SUBMIT_ITEMS';
+
+export const submitItems = () => ({
+  type: SUBMIT_ITEMS,
+});
+
+export const changeOneItem = (id, nameCat) => ({
+  type: CHANGE_ONE_ITEM,
+  id,
+  nameCat,
+});
+
+export const setItems = (data) => ({
+  type: SET_ITEMS,
+  data,
+});
+
+export const getItems = () => ({
+  type: GET_ITEMS,
+});
 
 export const desactivateLoader = () => ({
   type: DESACTIVATE_LOADER,

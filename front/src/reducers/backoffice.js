@@ -1,9 +1,10 @@
-import { COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV, DESACTIVATE_LOADER } from '../actions/backoffice';
+import { CHANGE_ONE_ITEM, SET_ITEMS, COMMANDS_TO_STATE, CLIENTS_TO_STATE, GET_COMMAND, COMMAND_TO_FRONT, SET_MESSAGES_BACK, CHANGE_MESSAGE_BACK, CHANGE_ACTIVE_CONV, DESACTIVATE_LOADER } from '../actions/backoffice';
 import { CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
   commands: [],
   clients: [],
+  items: [],
   command: {
     item: [],
     id: 0,
@@ -20,7 +21,7 @@ export const initialState = {
   isLoading: true,
 };
 
-const contact = (state = initialState, action = {}) => {
+const backoffice = (state = initialState, action = {}) => {
   switch (action.type) {
     case COMMANDS_TO_STATE:
       return {
@@ -70,9 +71,25 @@ const contact = (state = initialState, action = {}) => {
         ...state,
         isLoading: false,
       };
+    case SET_ITEMS:
+      return {
+        ...state,
+        items: action.data,
+      };
+    case CHANGE_ONE_ITEM:
+      let oldItems = state.command.item;
+      const index = oldItems.findIndex(oldItem => oldItem.category.name === action.nameCat );
+      oldItems.splice(index, 1, { id: action.id, category: { name: action.nameCat } });
+      return {
+        ...state,
+        command: {
+          ...state.command,
+          item: oldItems,
+        },
+      };
     default:
       return state;
   }
 };
 
-export default contact;
+export default backoffice;

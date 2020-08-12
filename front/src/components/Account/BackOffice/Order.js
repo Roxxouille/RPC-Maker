@@ -1,11 +1,11 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const Order = ({ command, getCommand }) => {
   const { id } = useParams();
+  const link = `/backoffice/client/order/edit/${id}`;
   console.log(command);
   if (command.slug !== id ) {
-    console.log('ça rentre');
     getCommand(id);
   }
 
@@ -27,6 +27,7 @@ const Order = ({ command, getCommand }) => {
         <h3>PC {command.id} pour {command.user.firstname} {command.user.lastname} allias {command.user.username}</h3>
         <div className="order__items">{dataCommand}</div>
         total: {total} €
+        <Link to={link}>Modifier</Link>
       </div>
     </div>
   );
