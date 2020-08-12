@@ -9,6 +9,7 @@ use App\Entity\CommandConfigData;
 use App\Entity\CommandData;
 use App\Entity\CommandDeviceData;
 use App\Entity\CommandSpecData;
+use App\Repository\StatusRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -89,7 +90,7 @@ class UserController extends AbstractController
     /**
      * @Route("/user", name="user_add", methods="POST")
      */
-    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository)
+    public function add(Request $request, SerializerInterface $serializer, ValidatorInterface $validator, UserPasswordEncoderInterface $passwordEncoder, MailerInterface $mailer, UserRepository $userRepository, StatusRepository $statusRepository)
     {
 
         // Get the content of the request
@@ -147,6 +148,7 @@ class UserController extends AbstractController
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $username);
         $command->setCommandData($commandData);
+        $command->setStatus($statusRepository->findBy(['statusNumber' => 1])[0]);
         $commandData->setCommandConfigData($commandConfigData);
         $commandData->setCommandSpecData($commndSpecData);
         $commandData->setCommandDeviceData($commandDeviceData);
