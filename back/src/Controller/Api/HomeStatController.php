@@ -14,7 +14,14 @@ class HomeStatController extends AbstractController
      */
     public function pcCount(CommandRepository $commandRepo)
     {
-        return $this->json(['build' => $commandRepo->findNumerOfPcBuilded()], Response::HTTP_OK);
+        $commands = $commandRepo->findAll();
+        $pcBuilded = [];
+        foreach($commands as $command){
+            if($command->getStatus()->getStatusNumber() >= 4){
+                $pcBuilded[] = $command;
+            }
+        }
+        return $this->json(['build' => count($pcBuilded)], Response::HTTP_OK);
     }
 
     /**
@@ -22,6 +29,13 @@ class HomeStatController extends AbstractController
      */
     public function quoteFinished(CommandRepository $commandRepo)
     {
-        return $this->json(['quote' => $commandRepo->findNumerOfQuoteCreated()], Response::HTTP_OK);
+        $commands = $commandRepo->findAll();
+        $quoteFinished = [];
+        foreach($commands as $command){
+            if($command->getStatus()->getStatusNumber() >= 1){
+                $quoteFinished[] = $command;
+            }
+        }
+        return $this->json(['quote' => count($quoteFinished)], Response::HTTP_OK);
     }
 }

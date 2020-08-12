@@ -52,13 +52,13 @@ class CommandListener
         $commandsStatus = [];
         $commands = $this->userRepo->find($user)->getCommands();
         foreach($commands as $command){
-            $commandsStatus[] = $command->getStatus();
+            $commandsStatus[] = $command->getStatus()->getStatusNumber();
         }
         // getting the sum of all the status to create the level of the user
         $user->setLevel(array_sum($commandsStatus));
         // persist it in the database
         $this->em->persist($user);
-        $this->em->flush();
+        $this->em->flush();  
     }
 
     public function setItemsOnUserCreation(Command $command, LifecycleEventArgs $event)
