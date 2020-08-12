@@ -20,9 +20,10 @@ export const submitItems = () => ({
   type: SUBMIT_ITEMS,
 });
 
-export const changeOneItem = (id, nameCat) => ({
+export const changeOneItem = (id, index, nameCat) => ({
   type: CHANGE_ONE_ITEM,
   id,
+  index,
   nameCat,
 });
 

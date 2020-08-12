@@ -13,6 +13,7 @@ export const initialState = {
       lastname: '',
       username: '',
     },
+    slug: '',
   },
   messages: [],
   newMessage: '',
@@ -78,8 +79,7 @@ const backoffice = (state = initialState, action = {}) => {
       };
     case CHANGE_ONE_ITEM:
       let oldItems = state.command.item;
-      const index = oldItems.findIndex(oldItem => oldItem.category.name === action.nameCat );
-      oldItems.splice(index, 1, { id: action.id, category: { name: action.nameCat } });
+      oldItems.splice(action.index, 1, { id: parseInt(action.id), category: { name: action.nameCat } });
       return {
         ...state,
         command: {

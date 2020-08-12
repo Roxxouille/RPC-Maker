@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   getItems: () => {
     dispatch(getItems());
   },
-  changeItem: (id, nameCat) => {
-    dispatch(changeOneItem(id, nameCat));
+  changeItem: (id, index, nameCat) => {
+    dispatch(changeOneItem(id, index, nameCat));
   },
   submitItems: () => {
     dispatch(submitItems());
