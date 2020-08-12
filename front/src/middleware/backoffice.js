@@ -88,7 +88,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('token');
       const state = store.getState();
       const slug = state.backoffice.command.slug;
-      axios.put(`http://localhost:3000/command/${slug}`, { id: state.backoffice.command.id, item: state.backoffice.command.item }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.put(`http://localhost:3000/command/${slug}`, { id: state.backoffice.command.id, itemToAdd: state.backoffice.command.item }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
         })
