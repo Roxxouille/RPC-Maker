@@ -97,11 +97,13 @@ class CommandController extends AbstractController
             $updatedCommand->removeItem($itemToRemove);
         }
 
-        // dd($itemToRemove);
 
         if (isset($contentDecode['itemToAdd'])) {
-            $itemToAdd =  $itemRepo->find($contentDecode['itemToAdd']);
-            $updatedCommand->AddItem($itemToAdd);
+            foreach ($contentDecode['itemToAdd'] as $key => $itemToAdd) {
+                $itemToAdd =  $itemRepo->find($itemToAdd['id']);
+                $updatedCommand->AddItem($itemToAdd);
+                dump($updatedCommand);
+            }
         }
 
         //Edit the updatedat vlue to the current time
