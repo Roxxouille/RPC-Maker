@@ -21,6 +21,7 @@ import { activateLoad } from 'src/actions/user';
 import EditProfile from 'src/containers/Account/User/EditProfile';
 import Loader from 'src/components/Utils/Loader';
 import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
+import Progress from 'src/components/Account/User/Progress';
 
 const User = ({
   isLogged, isLoading, username, level, firstname, email,
@@ -76,7 +77,7 @@ const User = ({
             <div className="user__body container">
               <Switch>
                 <Route exact path="/user">
-                  Bienvenue dans votre espace membre
+                  <Progress />
                 </Route>
                 <Route path="/user/pc">
                   <Pc />

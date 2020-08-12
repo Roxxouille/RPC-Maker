@@ -56,21 +56,27 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
         </div>
         <div className="backoffice__body__tchat__messages__body">
           <div className="backoffice__body__tchat__messages__body__content">
-            <Messages messages={messages} username={username} />
-            <Form onSubmit={handleSubmit}>
-              <Form.Control onChange={handleChange} name='newMessageBack' type='text' value={newMessage} placeholder='Tapez votre message' />
-            </Form>
+            <div className="backoffice__body__tchat__messages__body__content__messages">
+              <Messages messages={messages} username={username} />
+            </div>
+
+            <div className="backoffice__body__tchat__messages__body__content__new">
+              <Form onSubmit={handleSubmit}>
+                <Form.Control onChange={handleChange} name='newMessageBack' type='text' value={newMessage} placeholder='Tapez votre message' />
+              </Form>
+            </div>
+
           </div>
           <div className="backoffice__body__tchat__messages__body__profile">
-            <Image src="https://picsum.photos/240" rounded />
-            <p>Nom Prenom</p>
-            <p>username</p>
+            <Image className="backoffice__body__tchat__messages__body__profile__image" src="https://picsum.photos/240" rounded />
+            <p className="backoffice__body__tchat__messages__body__profile__name">Nom Prenom</p>
+            <p className="backoffice__body__tchat__messages__body__profile__username">username</p>
             <hr />
-            <p>email</p>
+            <p className="backoffice__body__tchat__messages__body__profile__email">email</p>
             <hr />
-            <p>adress</p>
+            <p className="backoffice__body__tchat__messages__body__profile__adress">adress</p>
             <hr />
-            <p>dataform</p>
+            <p className="backoffice__body__tchat__messages__body__profile__dataform">dataform</p>
 
           </div>
         </div>
