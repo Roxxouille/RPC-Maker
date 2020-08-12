@@ -4,6 +4,7 @@ import { inputSubscription, sendFormSubscription } from 'src/actions/profile';
 
 const mapStateToProps = (state) => ({
   infos: state.profile.infos,
+  subscription: state.profile.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

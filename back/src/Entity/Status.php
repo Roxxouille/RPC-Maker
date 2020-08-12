@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\StatusRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StatusRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=StatusRepository::class)
@@ -42,6 +43,9 @@ class Status
      * @ORM\Column(
      *  type="integer"
      * )
+     * @Groups({
+     *  "command"
+     * })
      */
     private $statusNumber;
 
@@ -109,5 +113,4 @@ class Status
 
         return $this;
     }
-
 }

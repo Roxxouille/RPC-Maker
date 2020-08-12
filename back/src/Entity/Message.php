@@ -72,6 +72,14 @@ class Message
      */
     private $toUser;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     * @groups({
+     *  "message"
+     * })
+     */
+    private $dateToShow;
+
     public function __construct()
     {
         $this->created_at = new \DateTime();
@@ -126,6 +134,18 @@ class Message
     public function setToUser(?User $toUser): self
     {
         $this->toUser = $toUser;
+
+        return $this;
+    }
+
+    public function getDateToShow(): ?string
+    {
+        return $this->dateToShow;
+    }
+
+    public function setDateToShow(?string $dateToShow): self
+    {
+        $this->dateToShow = $dateToShow;
 
         return $this;
     }

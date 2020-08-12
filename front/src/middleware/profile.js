@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  SUBMIT_PROFILE, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
+  SUBMIT_PROFILE, errorSubscription, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
 } from '../actions/profile';
 
 export default (store) => (next) => (action) => {
@@ -43,9 +43,8 @@ export default (store) => (next) => (action) => {
           console.log(response);
         })
         .catch((error) => {
-          console.log(error.response);
-          const fail = error.response.data;
-          console.log(fail);
+          console.log(error.response.data);
+          store.dispatch(errorSubscription(error.response.data));
         });
       break;
     }

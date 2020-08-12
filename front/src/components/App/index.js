@@ -4,6 +4,11 @@ import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 
 //
+import Login from 'src/containers/Account/Login';
+import Contact from 'src/containers/Contact';
+import User from 'src/containers/Account/User';
+import BackOffice from 'src/containers/Account/BackOffice';
+import NoMatch from 'src/components/Layout/NoMatch';
 import Header from '../../containers/Layout/header';
 import Footer from '../Layout/footer';
 // == Import
@@ -11,12 +16,8 @@ import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Home from '../Home';
-import User from 'src/containers/Account/User';
-import Contact from 'src/containers/Contact';
 import Survey from '../Survey';
-import Login from 'src/containers/Account/Login';
-import BackOffice from 'src/containers/Account/BackOffice';
-import NoMatch from 'src/components/Layout/NoMatch';
+import Subscription from '../Survey';
 
 // == Composant
 const App = ({ autoLog, isLogged }) => {
@@ -40,9 +41,18 @@ const App = ({ autoLog, isLogged }) => {
           </Route>
           <Route path="/team">
             Team
-        </Route>
+          </Route>
+          <Route path="/survey">
+            <Survey />
+          </Route>
+          <Route path="/team">
+            Team
+          </Route>
           <Route path="/contact">
             <Contact />
+          </Route>
+          <Route path="/subscribe">
+            <Subscription />
           </Route>
           <Route path="/user">
             <User />

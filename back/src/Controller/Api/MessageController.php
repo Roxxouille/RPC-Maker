@@ -6,6 +6,7 @@ use App\Entity\User;
 use App\Entity\Message;
 use App\Repository\UserRepository;
 use App\Repository\MessageRepository;
+use App\Service\DateToShow;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class MessageController extends AbstractController
     /**
      * @Route("/user/{slug}/messages", methods="POST", name="user_messages")
      */
-    public function getMessages(Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository)
+    public function getMessages(Request $request, User $from = null, MessageRepository $messageRepository, UserRepository $userRepository, DateToShow $dateToShow)
     {
         //send a 404 error if the user does not exist
         if ($from === null) {
@@ -30,7 +31,13 @@ class MessageController extends AbstractController
             $to = $from->getBuilder();
 
             $messagesUser = $messageRepository->findMesByUsers($from, $to);
-
+            //$date = $messagesUser[0]->getCreatedAt();
+            //$dateToTrad = $date->format('l j F Y à H\hi');
+            //dd($dateTrad->tradDateToFr($dateToTrad));
+            foreach($messagesUser as $message){
+                $date = $dateToShow->whatDateToShow($message);
+                $message->setDateToShow($date);
+            }
             //send it in json
             return $this->json($messagesUser, Response::HTTP_OK, [], ['groups' => 'message']);
         }
@@ -39,7 +46,10 @@ class MessageController extends AbstractController
         $to = $userRepository->find(json_decode($content, true));
 
         $messagesUser = $messageRepository->findMesByUsers($from, $to);
-
+        foreach($messagesUser as $message){
+            $date = $dateToShow->whatDateToShow($message);
+            $message->setDateToShow($date);
+        }
         //send it in json
         return $this->json($messagesUser, Response::HTTP_OK, [], ['groups' => 'message']);
     }

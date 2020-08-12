@@ -104,7 +104,8 @@ class Item
     /**
      * @ORM\ManyToMany(
      *  targetEntity=Command::class,
-     *  mappedBy="item"
+     *  mappedBy="item",
+     * cascade={"persist"}
      * )
      */
     private $commands;

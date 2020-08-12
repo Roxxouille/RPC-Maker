@@ -114,7 +114,107 @@ export class UserForm extends Component {
     inscr_adress2: '',
     city: '',
     zip_code: parseInt(''),
-    fail: [],
+    fail: {
+      budget: [''],
+      amount: [''],
+      gap: [''],
+      utilisation: [''],
+      utilisation_details: [''],
+      preconfiguration: [''],
+      oschoice: [''],
+      config_proc: [''],
+      config_proc_model: [''],
+      config_proc_link: [''],
+      config_board: [''],
+      config_board_model: [''],
+      config_board_link: [''],
+      config_gc: [''],
+      config_gc_model: [''],
+      config_gc_link: [''],
+      config_ram: [''],
+      config_ram_model: [''],
+      config_ram_link: [''],
+      config_refresh: [''],
+      config_refresh_model: [''],
+      config_refresh_link: [''],
+      config_storage: [''],
+      config_storage_model: [''],
+      config_storage_link: [''],
+      config_boardsound: [''],
+      config_boardsound_model: [''],
+      config_boardsound_link: [''],
+      config_case: [''],
+      config_case_model: [''],
+      config_case_link: [''],
+      config_power: [''],
+      config_power_model: [''],
+      config_power_link: [''],
+      spec_sli: [''],
+      spec_overclock: [''],
+      spec_storage: [''],
+      spec_storage_quantity: [''],
+      spec_wifi: [''],
+      spec_wifi_room: [''],
+      spec_fiber: [''],
+      spec_sound: [''],
+      spec_light: [''],
+      spec_important: [''],
+      spec_sound_utilisation: [''],
+      spec_sound_utilisation_other: [''],
+      os: [''],
+      os_name: [''],
+      os_active: [''],
+      os_choice: [''],
+      device: [''],
+      device_screen: [''],
+      device_screen_model: [''],
+      device_screen_link: [''],
+      device_screen_size: [''],
+      device_screen_res: [''],
+      device_keyboard: [''],
+      device_keyboard_model: [''],
+      device_keyboard_link: [''],
+      device_keyboard_type: [''],
+      device_keyboard_switch: [''],
+      device_keyboard_language: [''],
+      device_mouse: [''],
+      device_mouse_model: [''],
+      device_mouse_link: [''],
+      device_mouse_type: [''],
+      device_mouse_filaire: [''],
+      device_mousepad: [''],
+      device_mousepad_model: [''],
+      device_mousepad_link: [''],
+      device_mousepad_type: [''],
+      device_mousepad_size: [''],
+      device_headphone: [''],
+      device_headphone_model: [''],
+      device_headphone_link: [''],
+      device_headphone_type: [''],
+      device_headphone_size: [''],
+      device_enceinte: [''],
+      device_enceinte_model: [''],
+      device_enceinte_link: [''],
+      device_enceinte_type: [''],
+      device_enceinte_bass: [''],
+      device_webcam: [''],
+      device_webcam_model: [''],
+      device_webcam_link: [''],
+      device_webcam_res: [''],
+      device_printer: [''],
+      device_printer_model: [''],
+      device_printer_link: [''],
+      device_printer_type: [''],
+      username: [''],
+      firstname: [''],
+      lastname: [''],
+      email: [''],
+      password: [''],
+      adress: [''],
+      inscr_adress2: [''],
+      city: [''],
+      zip_code: [''],
+    },
   };
 
   // Gerer les pages dynamiques
@@ -123,6 +223,12 @@ export class UserForm extends Component {
     this.setState({
       step: step + 1,
     });
+  };
+
+  sendData = () => {
+    const { fail } = this.state;
+    console.log('send data inscription', fail);
+    return fail;
   };
 
   prevStep = () => {
@@ -143,8 +249,8 @@ export class UserForm extends Component {
    };
 
    // Envoi vers le back
-   handleSubmit = (event) => {
-     alert(`formulaire envoyer ! : ${this.state}`);
+   handleSubmit = (event, state) => {
+     alert('formulaire envoyer !');
 
      axios.post('http://localhost:3000/user', { ...this.state })
        .then((response) => {
@@ -153,9 +259,12 @@ export class UserForm extends Component {
        })
        .catch((error) => {
          console.log(error.response);
-         const fail = error.response.data;
-         console.log(fail);
-         this.setState({ fail });
+         const errors = error.response.data;
+         console.log('fail', errors);
+         this.setState({
+           fail: { ...errors },
+         });
+         console.log(this.state.fail);
        });
      event.preventDefault();
    }
@@ -166,7 +275,7 @@ export class UserForm extends Component {
      this.setState({ [input]: e.target.name });
    };
 
-   //Check true False
+   // Check true False
 
    CheckContentFalse = (input) => (e) => {
      this.setState({ [input]: false });
@@ -261,6 +370,7 @@ export class UserForm extends Component {
             CheckContentTrue={this.CheckContentTrue}
             handleSubmit={this.handleSubmit}
             handleAsNumber={this.handleAsNumber}
+            sendData={this.sendData}
           />
          );
      }
