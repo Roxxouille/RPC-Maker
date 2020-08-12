@@ -1,4 +1,4 @@
-import { CHANGE_PROFILE, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION } from '../actions/profile';
+import { CHANGE_PROFILE, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION, ERROR_SUBSCRIPTION } from '../actions/profile';
 
 export const initialState = {
   infos: {
@@ -39,6 +39,12 @@ const profile = (state = initialState, action = {}) => {
         ...state,
         error: { ...state.error, ...action.value },
       };
+    case ERROR_SUBSCRIPTION:
+      return {
+        ...state,
+        error: { ...state.error, ...action.value },
+      };
+    
     case SET_DATA:
       return {
         ...state,

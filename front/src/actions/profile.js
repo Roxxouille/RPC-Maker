@@ -1,6 +1,7 @@
 export const SUBMIT_PROFILE = 'SUBMIT_PROFILE';
 export const CHANGE_PROFILE = 'CHANGE_PROFILE';
 export const ERROR_PROFILE = 'ERROR_PROFILE';
+export const ERROR_SUBSCRIPTION = 'ERROR_SUBSCRIPTION';
 export const GET_DATA = 'GET_DATA';
 export const SET_DATA = 'SET_DATA';
 export const INPUT_SUBSCRIPTION = 'INPUT_SUBSCRIPTION';
@@ -17,6 +18,11 @@ export const getData = () => ({
 
 export const errorProfile = (value) => ({
   type: ERROR_PROFILE,
+  value,
+});
+
+export const errorSubscription = (value) => ({
+  type: ERROR_SUBSCRIPTION,
   value,
 });
 

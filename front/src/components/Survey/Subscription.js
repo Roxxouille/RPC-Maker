@@ -4,7 +4,7 @@ import {
 } from 'react-bootstrap';
 import './styles.scss';
 
-const Subscription = ({ changeSubscription, infos, submitSubscription }) => {
+const Subscription = ({ changeSubscription, infos, submitSubscription, subscription}) => {
   console.log(infos);
   const handleChange = (e) => {
     changeSubscription(e.target.name, e.target.value);
@@ -27,7 +27,7 @@ const Subscription = ({ changeSubscription, infos, submitSubscription }) => {
           <Form.Group as={Col} controlId="formGridEmail">
             <Form.Label>Nom</Form.Label>
             <Form.Control type="Nom" name="lastname" placeholder="Ton nom ?" value={infos.lastname} onChange={handleChange} />
-            <Alert variant="danger" />
+            <Alert variant="danger" error={subscription.error.lastname[0]} />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridPassword">
