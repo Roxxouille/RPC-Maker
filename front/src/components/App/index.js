@@ -14,6 +14,7 @@ import Home from '../Home';
 import User from 'src/containers/Account/User';
 import Contact from 'src/containers/Contact';
 import Survey from '../Survey';
+import Subscription from '../Survey';
 import Login from 'src/containers/Account/Login';
 import BackOffice from 'src/containers/Account/BackOffice';
 import NoMatch from 'src/components/Layout/NoMatch';
@@ -42,6 +43,9 @@ const App = ({ autoLog, isLogged }) => {
         </Route>
         <Route path="/contact">
           <Contact />
+        </Route>
+        <Route path="/subscribe">
+          <Subscription />
         </Route>
         <Route path="/user">
           <User />
