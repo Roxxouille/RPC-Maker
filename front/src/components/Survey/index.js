@@ -219,10 +219,24 @@ export class UserForm extends Component {
 
   // Gerer les pages dynamiques
   nextStep = () => {
-    const { step } = this.state;
-    this.setState({
-      step: step + 1,
-    });
+    axios.post('http://localhost:3000/user/validation', { ...this.state })
+      .then((response) => {
+        const result = response.data;
+        console.log(result);
+        const { step } = this.state;
+        this.setState({
+          step: step + 1,
+        });
+        return res.json();
+      })
+      .catch((error) => {
+        const errorStep = error.response.data;
+        const { step } = this.state;
+        this.setState({
+          step: step + 0,
+          fail: { ...errorStep },
+        });
+      });
   };
 
   sendData = () => {
@@ -272,7 +286,7 @@ export class UserForm extends Component {
    // handle pour les checkbox
 
    CheckContent = (input) => (e) => {
-     this.setState({ [input]: e.target.name });
+     this.setState({ [input]: e.target.value });
    };
 
    // Check true False
@@ -294,6 +308,7 @@ export class UserForm extends Component {
           <Step1
             nextStep={this.nextStep}
             handleChange={this.handleChange}
+            sendData={this.sendData}
           />
          );
        case 2:
@@ -304,6 +319,7 @@ export class UserForm extends Component {
              handleChange={this.handleChange}
              CheckContentFalse={this.CheckContentFalse}
              CheckContentTrue={this.CheckContentTrue}
+             sendData={this.sendData}
            />
          );
        case 3:
@@ -315,6 +331,7 @@ export class UserForm extends Component {
               CheckContent={this.CheckContent}
               CheckContentFalse={this.CheckContentFalse}
               CheckContentTrue={this.CheckContentTrue}
+              sendData={this.sendData}
             />
          );
        case 4:
@@ -323,6 +340,7 @@ export class UserForm extends Component {
                nextStep={this.nextStep}
                prevStep={this.prevStep}
                handleChange={this.handleChange}
+               sendData={this.sendData}
              />
          );
        case 5:
@@ -335,6 +353,7 @@ export class UserForm extends Component {
               CheckContentFalse={this.CheckContentFalse}
               CheckContentTrue={this.CheckContentTrue}
               handleAsNumber={this.handleAsNumber}
+              sendData={this.sendData}
             />
          );
        case 6:
@@ -346,6 +365,7 @@ export class UserForm extends Component {
                CheckContent={this.CheckContent}
                CheckContentFalse={this.CheckContentFalse}
                CheckContentTrue={this.CheckContentTrue}
+               sendData={this.sendData}
              />
          );
        case 7:
@@ -357,6 +377,7 @@ export class UserForm extends Component {
                 CheckContent={this.CheckContent}
                 CheckContentFalse={this.CheckContentFalse}
                 CheckContentTrue={this.CheckContentTrue}
+                sendData={this.sendData}
               />
          );
        case 8:

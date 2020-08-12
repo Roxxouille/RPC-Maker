@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
+import ErrorField from '../Utils/Field/ErrorField';
 
 export class Step3 extends Component {
   continue = (e) => {
@@ -14,7 +15,7 @@ export class Step3 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentFalse, CheckContentTrue, CheckContent } = this.props;
+    const { handleChange, CheckContentFalse, CheckContentTrue, CheckContent, sendData } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -32,7 +33,9 @@ export class Step3 extends Component {
             <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContentFalse('preconfiguration')}> Non </Button>
           </Col>
         </Form.Row>
+        { sendData().preconfiguration !== undefined && <ErrorField error={sendData().preconfiguration[0]} /> }
         <h2>Ce serait pour quel utilisation ?</h2>
+        { sendData().utilisation !== undefined && <ErrorField error={sendData().utilisation[0]} /> }
         <Form>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
@@ -46,6 +49,7 @@ export class Step3 extends Component {
           ))}
         </Form>
         <Form.Row>
+          { sendData().utilisation_details !== undefined && <ErrorField error={sendData().utilisation_details[0]} /> }
           <Col>
             <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>
