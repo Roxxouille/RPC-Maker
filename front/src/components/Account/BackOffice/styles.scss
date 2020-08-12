@@ -56,6 +56,9 @@
 
             &__verify{
                 width: 100%;
+                &__title{
+                    text-align: left;
+                }
                 &__body{
                     display: flex;
                     flex-flow: wrap row;
@@ -185,7 +188,6 @@
                 }
             }         
         }
-
     }
 }
 
