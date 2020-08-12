@@ -63,7 +63,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(ItemRepository $itemRepo, Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
 
         //send a 404 error if the command does not exist
@@ -90,15 +90,39 @@ class CommandController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        //Edit the updatedat vlue to the current time
-        $command->setUpdatedAt(new \DateTime());
+        $contentDecode = json_decode($content, true);
 
+        if (isset($contentDecode['itemToRemove'])) {
+            $itemToRemove =  $itemRepo->find($contentDecode['itemToRemove']);
+            $updatedCommand->removeItem($itemToRemove);
+        }
+
+        // dd($itemToRemove);
+
+        if (isset($contentDecode['itemToAdd'])) {
+            $itemToAdd =  $itemRepo->find($contentDecode['itemToAdd']);
+            $updatedCommand->AddItem($itemToAdd);
+        }
+
+        //Edit the updatedat vlue to the current time
+        $updatedCommand->setUpdatedAt(new \DateTime());
+
+        // dd($command);
 
         //save the new data to the database
+        $em->persist($updatedCommand);
         $em->flush();
 
         // Send a Json response 
         return $this->json(['status' => 'command edited'], Response::HTTP_OK);
+    }
+
+    /**
+     * @Route("/command/{slug}/add-item", name="command_edit_add-item", methods={"POST", "PUT"})
+     */
+    public function addItem(Request $request, Command $command = null, EntityManagerInterface $em, SerializerInterface $serializer)
+    {
+        $content = $request->getContent();
     }
 
     /**

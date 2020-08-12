@@ -21,10 +21,7 @@ const Clients = ({ clients, isLoading }) => {
             <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
             <Link to={link}>voir</Link>
             <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
-
-
           </Card.Body>
-
         </Card>
       </div>
     );
