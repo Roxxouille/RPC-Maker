@@ -76,7 +76,7 @@ class CommandController extends AbstractController
         //get the validations errors if there is any
         $content = $request->getContent();
         $updatedCommand = $serializer->deserialize($content, Command::class, 'json', ['object_to_populate' => $command]);
-        $errors = $validator->validate($updatedCommand);
+        $errors = $validator->validate($updatedCommand, null, ['command-edit']);
 
         // if there is an error, return them in a json format
         if (count($errors) > 0) {
