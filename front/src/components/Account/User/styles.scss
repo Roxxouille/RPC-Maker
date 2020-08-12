@@ -2,10 +2,13 @@
 
 .user {
   display: flex;
-  justify-content: space-arouund;
   &__nav{
+    position: sticky;
     display:flex;
     flex-direction: column;
+    box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.075);              
+    height: fit-content;
+    top: 100px;
  
     &__avatar{
       max-width: fit-content;
@@ -27,30 +30,12 @@
         border-bottom: solid 1px ;
         border-color: rgba(131, 131, 131, 0.233);
         padding-bottom: 25px;
+        margin-top: 25px;
       }
     }
   }
 
   &__body{
-    width: 70%;
-    text-align: left;
-
-    h1{
-     margin: 25px;
-    }
-
-    #center{
-      text-align: center;
-    }
-
-    #light-green{
-      background-color : #e5fbe5;
-    }
-
-    #just-center{
-      justify-content: center;
-    }
-
     #chat-avatar{
       height: 40px;
     }
@@ -63,6 +48,63 @@
     }
   }
 }
+
+// COMMANDS //
+
+.commands{
+  &__title{
+    text-align: left;
+    align-items: center;
+    margin-bottom: 50px;
+    margin-top: 25px;
+    &__hr{
+      margin: auto;
+    }
+    &__text{
+      width: 30px
+    }
+  }
+  &__accordion{
+   
+  }
+}
+
+.command{
+  border: none;
+  border-bottom: 1px solid;
+  border-color: rgba(131, 131, 131, 0.233);
+  &__header{
+    background-color: white;
+    border: none;
+    text-align: left;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    
+  }
+  &__content{
+    
+    &__table{
+      .download{
+        text-align: center;
+      }
+      &__header{
+        text-align: left;
+        font-weight: bold;
+      }
+      &__body{
+        text-align: left;
+      }
+      &__footer{
+        font-weight: bold;
+        background-color : #e5fbe5;
+        text-align: left;
+      }
+    }
+  }
+}
+
+// JE SAIS PAS //
 
 .order {
   &__items {
@@ -87,6 +129,14 @@
     }
   }
 }
+
+.fullform {
+  max-width: vars.$max-width;
+  align-items: center;
+  margin: auto;
+}
+
+// JUMBOTRON //
 
 .jumbotron{
   background-image: url(https://picsum.photos/1920/1080/?blur);
@@ -114,58 +164,74 @@
   }
 }
 
-.fullform {
-  max-width: vars.$max-width;
-  align-items: center;
-  margin: auto;
-}
-
 // MON PC //
 
 .pc{
-  margin-top: 40px;
+  margin-top: 50px;
+  &__title{
+    margin-bottom: 50px;
+    &__hr{
+      margin: auto;
+    }
+  }
   &__accordion{
     border: none;
+    box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.075);              
+
     &__card{
       &__header{
+        background-color: white;
+        border: none;
         &__content{
           display: flex;
           align-items: center;
           justify-content: space-between;
-          &__avatar{
-            max-height: 50px;
-            justify-self: flex-start;
-            margin-right: 20px;
-          }
-          &__name{
-            justify-self: start;
+          margin-bottom: 15px;
+          &__info{
+            display: inline-flex;
+            align-items: center;
+              &__avatar{
+                max-height: 50px;
+                justify-self: flex-start;
+                margin-right: 20px;
+              }
+              &__name{
+                justify-self: start;
+              }
           }
           &__chevron{
             align-self: flex-end;
             justify-self: end;
+            color: rgb(223, 223, 223);
           }
         }
       }
       &__body{
+        box-shadow: inset 0px 1px 10px 1px rgba(0, 0, 0, 0.075);
+        background-color: #fcfcfc0e;              
         &__category{
+          margin-bottom: 25px;
+          margin-top: 25px;
           &__title{ 
-                     
+            min-width: fit-content;
           }
           &__list{
             display: flex;
             flex-flow: row wrap;
-            justify-content: start;
+            justify-content: space-between;
             text-align: center;
+            align-items: center;
 
             &__item{
               display: flex;
               flex-flow: wrap column;
               margin: 5px;
-              border: solid thin;
               padding: 10px;
-              border-radius:21px;
-              border-color: rgba(131, 131, 131, 0.096);
+              border-radius:5px;
+              width: 300px;
+              box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.075);              
               
+
               &__icon{
                 align-self: flex-start;
                 height: 20px;
@@ -179,6 +245,7 @@
               &__category{
                 align-self: flex-end;
                 font-style: italic;
+                font-weight: lighter;
               }
             }
           }
@@ -194,4 +261,102 @@
 .sent {
   display: flex;
   flex-direction: row-reverse;
+}
+
+
+//timeline
+
+
+@import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i|Saira+Extra+Condensed:100,200,300,400,500,600,700,800|Saira:100,200,300,400,500,600,700,800');
+
+/* Variables */
+
+$background: #252827;
+
+$color-primary: #004ffc;
+$color-light: white;
+$color-dim: #6c6d6d;
+$spacing: 50px;
+$radius: 4px;
+
+$date: 120px;
+$dotborder: 4px;
+$dot: 11px;
+$line: 4px;
+
+$font-title: 'Saira', sans-serif;
+$font-text: 'Chivo', sans-serif;
+
+/* Base */
+
+
+
+
+
+
+#timeline-content {
+  margin-top: $spacing;
+  text-align: center;  
+}
+
+/* Timeline */
+
+.timeline {
+  border-left: $line solid $color-primary;
+  border-bottom-right-radius: $radius;
+  border-top-right-radius: $radius;    
+  background: fade($color-light, 3%);
+  color: fade(white, 80%);
+  font-family: $font-text;  
+  margin: $spacing auto;  
+  letter-spacing: 0.5px;   
+  position: relative;
+  line-height: 1.4em;
+  font-size: 1.03em;   
+  padding: $spacing;   
+  list-style: none;
+  text-align: left;  
+  font-weight: 100;  
+  max-width: 100%; 
+  
+  .event {
+    border-bottom: 1px dashed fade($color-light, 10%);
+    padding-bottom: ($spacing * 0.5);
+    margin-bottom: $spacing;  
+    position: relative;
+
+    &:last-of-type { 
+      padding-bottom: 0;
+      margin-bottom: 0; 
+      border: none;      
+    }
+
+    &:before, &:after {
+      position: absolute;
+      display: block;
+      top: 0;
+    }
+
+    &:before {
+      left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;    
+      color: fade($color-light, 40%);    
+      content: attr(data-date);
+      text-align: right;
+      font-weight: 100;    
+      font-size: 0.9em;
+      min-width: $date;
+      font-family: $font-title;
+    }
+
+    &:after {
+      box-shadow: 0 0 0 $dotborder fade($color-primary,100%);    
+      left: ($spacing + $line + ($dot * 0.35)) * -1;        
+      background: lighten($color-primary,5%);    
+      border-radius: 50%;  
+      height: $dot;
+      width: $dot;
+      content: "";
+      top: 5px;
+    }
+  }
 }

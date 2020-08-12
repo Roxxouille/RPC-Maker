@@ -4,11 +4,11 @@ import "./styles.scss";
 
 const Cards = () => {
   return (
-    <div className="show-team mb-75">
-      <Row className="mb-50">
-        <Col className="m-auto"><hr /></Col>
+    <div className="team">
+      <Row className="team__title">
+        <Col className="team__title__hr"><hr /></Col>
         <Col> <h2>La Team</h2> </Col>
-        <Col className="m-auto"><hr /></Col>
+        <Col className="team__title__hr"><hr /></Col>
       </Row>
       <Row>
         <Col>

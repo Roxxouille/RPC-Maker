@@ -9,32 +9,56 @@
   // CAROUSSEL //
 
   .carou{
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     &__item{
       &__img{
         background-image: url(https://picsum.photos/1920/1080/?blur);
         height: 20em;
       }
-      &__content{
+    }
+  }
 
+  // PRESHOME //
+
+  .presHome{
+    margin-bottom: 75px;
+    &__title{
+      margin-bottom: 25px;
+      &__hr{
+        margin: auto;
+      }
+    }
+    &__body{
+      &__header{
+        margin-bottom: 25px;
+        &__title{
+          margin: auto;
+        }
+      }
+      &__content{
+      }
+      &__vr{
+        width: 1px;
+        height: auto;
+        background-color: rgba(114, 114, 114, 0.253);
+        margin-right: 10px;
       }
     }
   }
 
-  .pres {
-    &__firstrow {
-      display: flex;
-      flex-direction: column;
+  // TEAM //
+
+  .team{
+    margin-bottom: 75px;
+    &__title{
+      margin-bottom: 25px;
     }
-    &__secondrow {
-      display: flex;
-      flex-direction: column-reverse;
-    }
-    &__short {
-      margin: 5px 0px 5px 0px;
-      padding: 5px;
-    }
-  }  
+      &__hr{
+        margin: auto;
+      }
+  }
+
+ // TESTIMONIES //
 
   .testimonies {
     &__row{
@@ -51,35 +75,68 @@
   // CAROUSSEL //
 
   .carou{
-    margin-bottom: 50px;
+    margin-bottom: 75px;
     &__item{
       &__img{
         background-image: url(https://picsum.photos/1920/1080/?blur);
         height: 20em;
       }
-      &__content{
-        
+    }
+  }
+
+
+    // PRESHOME //
+
+  .presHome{
+      margin-bottom: 75px;
+      &__title{
+        margin-bottom: 50px;
+        &__hr{
+          margin: auto;
+        }
+      }
+      &__body{
+        &__header{
+          margin-bottom: 25px;
+          &__title{
+            margin: auto;
+          }
+        }
+        &__content{
+        }
+        &__vr{
+          width: 1px;
+          height: auto;
+          background-color: rgba(114, 114, 114, 0.253);
+          margin-right: 10px;
+        }
+      }
+  }
+
+ // TEAM //
+
+  .team{
+  margin-bottom: 75px;
+  &__title{
+    margin-bottom: 50px;
+  }
+    &__hr{
+      margin: auto;
+    }
+  }
+
+  // TESTIMONIES //
+
+  .testimonies{
+    &__title{
+      margin-bottom: 50px;
+      &__hr{
+        margin: auto;
       }
     }
-  }
-
-  .pres {
-    padding: 2em;
-
-    
-
-    &__short {
-      font-size: 24px;
-      margin-top: auto;
-      margin-bottom: auto;
+    &__carou{
     }
-  }
-  .home-team {
-    margin: 2em 0em 2em 0em;
-  }
-
-
-  // témoignages 
+  }   
   .testimony {
     display: flex;
     text-align: left;
@@ -87,58 +144,21 @@
     &__content {
       font-size:14px;
       text-align: center;
-      vertical-align: middle;
-    
-    }
-    
+      vertical-align: middle;   
+    } 
     &__img {
       margin: 0em 1.5em 0em 1em;
-    }
-
+    } 
     &__name{
       vertical-align: bottom;
       text-align: right;
       font-style: italic;
-    }
-
+    } 
     &__quote{
       color: rgba(114, 114, 114, 0.253);
       justify-content: space-between;
       display: flex;
     }
-
-  }
-
-  .vr{
-    width: 1px;
-    height: auto;
-    background-color: rgba(114, 114, 114, 0.253);
-    margin-right: 10px;
-  }
-
-  .m-auto{
-    margin: auto;
-  }
-
-  .mb-25{
-    margin-bottom: 25px;
-  }
-
-  .mb-75{
-    margin-bottom: 75px;
-  }
-
-  .br{
-    border-right: 1px solid grey;
-  }
-
-  .col{
-    margin-left: auto;
-    margin-right: 15px;
-  }
-
-  .img-car{
-    
   }
 }
 

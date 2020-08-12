@@ -58,10 +58,10 @@ const Testimony = ({ testimonies }) => {
 
   return (
     <div className="testimonies">
-      <Row className="mb-50">
-        <Col className="m-auto"><hr /></Col>
+      <Row className="testimonies__title">
+        <Col className="testimonies__title__hr"><hr /></Col>
         <Col> <h2>Les avis de nos clients</h2> </Col>
-        <Col className="m-auto"><hr /></Col>
+        <Col className="testimonies__title__hr"><hr /></Col>
       </Row>
       <Carousel
         showDots

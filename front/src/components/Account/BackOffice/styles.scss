@@ -30,19 +30,20 @@
         display: flex;
         margin-left: 75px;
         margin-top: 25px;
+        width: 100%;
         
         &__clients{
             margin-top: 25px;
         }
         &__tchat{
-            min-width: 1000px;
+            width: 100%;
             display: flex;
             flex-flow: row;
             height: 100%;
             
             &__clients{
                 text-align: left;
-                min-width: 300px;
+                width: 20%;
                 &__header{
                     display: flex;
                     justify-content: space-between; 
@@ -66,6 +67,7 @@
             &__messages{
                 display: flex;
                 flex-flow: column;
+                width: 80%;
                 &__header{
                     display: flex;
                     justify-content: space-between; 
@@ -91,23 +93,65 @@
                     flex-flow: row;
 
                     &__content{
+                        position: relative;
                         background-color: #f4f5f76c;
+                        -ms-overflow-style: none;  /* IE and Edge */
+                        scrollbar-width: none;
+                        overflow: scroll;
                         text-align: left;
-                        min-width: 700px;
-                        height: 100%;
+                        width: 80%;
+                        height: 80vh;
+                        box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.23);
+                        &__messages{
+                            padding-bottom: 60px;
+                            height: 90%;
+                            overflow: scroll;
+                            -ms-overflow-style: none;  /* IE and Edge */
+                            scrollbar-width: none;
+                        }
+                        &__messages::-webkit-scrollbar{
+                            display: none;
+                        }
+                        &__new{
+                            position: sticky;
+                            margin: auto;
+                            bottom: 20px;
+                            width: 95%;
+                            border-radius: 5px;
+                            .form-control{
+                                background-color: #fafbfc;
+                                box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.23);
+                                height: 50px;
+                            }
+                            
+                            
+                        }
+                    }
+                    &__content::-webkit-scrollbar{
+                        display: none;
                     }
                     &__profile{
-                        border: solid 1px;
-                        border-color: #343a4025;
+                        &__image{
+                            margin: 25px;
+                        }
+                        &__name{
+                        }
+                        &__username{
+                            
+                        }
+                        &__email{
+                            
+                        }
+                        &__adress{
+                            
+                        }
+                        &__dataform{
+                            
+                        }
                     }
                 }
             }         
         }
-
-    .clients__row__cell{
-        width: 125px;
-    }
-
 
 
     }
