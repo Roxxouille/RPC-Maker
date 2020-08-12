@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import './styles.scss';
+import ErrorField from '../Utils/Field/ErrorField';
 
 export class Step1 extends Component {
   continue = (e) => {
@@ -14,7 +15,7 @@ export class Step1 extends Component {
   };
 
   render() {
-    const { handleChange, } = this.props;
+    const { handleChange, sendData } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -27,6 +28,7 @@ export class Step1 extends Component {
         <Form className="Form">
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Control type="name" placeholder="Ton petit nom :)" onChange={handleChange('username')} />
+            { sendData().username !== undefined && <ErrorField error={sendData().username[0]} /> }
           </Form.Group>
         </Form>
         <Button className="Form_button" variant="primary" type="submit" onClick={this.continue}> Suivant </Button>
