@@ -54,6 +54,12 @@ class CommandData
      *  length=255,
      *  nullable=true
      * )
+     * @Assert\NotBlank(
+     *  message="Veuillez préciser",
+     *  groups = {
+     *      "validation_three_utilisation"     
+     *      }
+     * )
      * @Groups({
      *  "command_info"
      * })
@@ -87,7 +93,13 @@ class CommandData
      * @Assert\Positive(
      *  message="Veuillez rentrer un nombre valide",
      *  groups = {
-     *      "validation_two"
+     *      "validation_two_bis"
+     *      }
+     * )
+     * @Assert\NotBlank(
+     *  message="Veuillez indiquer le budget que vous avez",
+     *  groups = {
+     *      "validation_two_bis"
      *      }
      * )
      * @Groups({
@@ -109,7 +121,7 @@ class CommandData
      * @Assert\PositiveOrZero(
      *  message="Veuillez rentrer un nombre valide",
      *  groups = {
-     *      "validation_two"
+     *      "validation_two_bis"
      *      }
      * )
      */

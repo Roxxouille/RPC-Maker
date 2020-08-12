@@ -157,9 +157,25 @@
                                 background-color: #fafbfc;
                                 box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.23);
                                 height: 50px;
+                            }                            
+                        }
+                        .sent{
+                            width: 100%;
+                            
+                            .content{
+                                background-color: green;
+                                margin: 15px;
+                                border-radius: 5px;
                             }
-                            
-                            
+                        }
+                        .received{
+                            width: 100%;
+                            padding-left: 20px;
+                            .content{
+                                background-color: green;
+                                margin: 15px;
+                                border-radius: 5px;
+                            }
                         }
                     }
                     &__content::-webkit-scrollbar{

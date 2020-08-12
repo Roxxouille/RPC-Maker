@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import OrderEdit from 'src/components/Account/BackOffice/OrderEdit'
+import OrderEdit from 'src/components/Account/BackOffice/OrderEdit';
 import { submitItems, changeOneItem, getCommand, getItems } from 'src/actions/backoffice';
 
 const mapStateToProps = (state) => ({
