@@ -6,7 +6,7 @@ export const initialState = {
     budget: false,
     amount: null,
     gap: null,
-    utilisation: [''],
+    utilisation: '',
     utilisation_details: '',
     preconfiguration: null,
     oschoice: null,
