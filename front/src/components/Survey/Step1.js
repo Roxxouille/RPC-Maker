@@ -15,7 +15,7 @@ export class Step1 extends Component {
   };
 
   render() {
-    const { handleChange, sendData } = this.props;
+    const { handleChange, sendData, sendDataReturn } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -27,7 +27,7 @@ export class Step1 extends Component {
         </div>
         <Form className="Form">
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control type="name" placeholder=" Ton pseudo ?" defaultValue={sendData().username[0]} onChange={handleChange('username')} />
+            <Form.Control type="name" placeholder="Ton pseudo ?" defaultValue={sendDataReturn().username} onChange={handleChange('username')} />
             { sendData().username !== undefined && <ErrorField error={sendData().username[0]} /> }
           </Form.Group>
         </Form>
@@ -38,4 +38,3 @@ export class Step1 extends Component {
 }
 
 export default Step1;
- 

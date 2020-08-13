@@ -18,7 +18,7 @@ export class Inscription extends Component {
   
   render() {
     const {
-      values, handleChange, CheckContent, handleSubmit, handleAsNumber, sendData
+      values, handleChange, CheckContent, handleSubmit, handleAsNumber, sendData, sendDataReturn
     } = this.props;
     console.log(sendData());
     return (
@@ -32,45 +32,45 @@ export class Inscription extends Component {
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Nom</Form.Label>
-              <Form.Control type="Nom" placeholder="Ton nom ?" onChange={handleChange('lastname')} />
+              <Form.Control type="Nom" placeholder="Ton nom ?" defaultValue={sendDataReturn().lastname} onChange={handleChange('lastname')} />
               { sendData().lastname !== undefined && <ErrorField error={sendData().lastname[0]} /> }
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Prenom</Form.Label>
-              <Form.Control type="Prenom" placeholder="TOn prénom ?" onChange={handleChange('firstname')} />
+              <Form.Control type="Prenom" placeholder="Ton prénom ?" defaultValue={sendDataReturn().firstname} onChange={handleChange('firstname')} />
               { sendData().firstname !== undefined && <ErrorField error={sendData().firstname[0]} /> }
             </Form.Group>
           </Form.Row>
           <Form.Row>
             <Form.Group as={Col} controlId="formGridEmail2">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" placeholder="E-Mail" onChange={handleChange('email')} />
+              <Form.Control type="email" placeholder="E-Mail" defaultValue={sendDataReturn().email} onChange={handleChange('email')} />
               { sendData().email !== undefined && <ErrorField error={sendData().email[0]} /> }
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword2">
               <Form.Label>Mot de passe</Form.Label>
-              <Form.Control type="password" placeholder="Password" onChange={handleChange('password')} />
+              <Form.Control type="password" placeholder="Password" defaultValue={sendDataReturn().password} onChange={handleChange('password')} />
               { sendData().password !== undefined && <ErrorField error={sendData().password[0]} /> }
             </Form.Group>
           </Form.Row>
 
           <Form.Group controlId="formGridAddress1">
             <Form.Label>Address</Form.Label>
-            <Form.Control placeholder="Rue de la patate ?" onChange={handleChange('adress')} />
+            <Form.Control placeholder="Rue de la patate ?" defaultValue={sendDataReturn().adress} onChange={handleChange('adress')} />
             { sendData().adress !== undefined && <ErrorField error={sendData().adress[0]} /> }
           </Form.Group>
 
           <Form.Row>
             <Form.Group as={Col} controlId="formGridCity">
               <Form.Label>Ville</Form.Label>
-              <Form.Control placeholder="Apartment, studio, cage ?" onChange={handleChange('city')} />
+              <Form.Control placeholder="Apartment, studio, cage ?" defaultValue={sendDataReturn().city} onChange={handleChange('city')} />
               { sendData().city !== undefined && <ErrorField error={sendData().city[0]} /> }
             </Form.Group>
             <Form.Group as={Col} controlId="formGridZip">
               <Form.Label>Code Postale</Form.Label>
-              <Form.Control type="number" placeholder="Apartment, studio, cage ?" onChange={handleAsNumber('zip_code')} />
+              <Form.Control type="number" placeholder="Apartment, studio, cage ?" defaultValue={sendDataReturn().zip_code} onChange={handleAsNumber('zip_code')} />
               { sendData().zip_code !== undefined && <ErrorField error={sendData().zip_code[0]} /> }
             </Form.Group>
           </Form.Row>

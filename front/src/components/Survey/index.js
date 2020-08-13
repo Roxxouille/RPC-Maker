@@ -1,6 +1,6 @@
 /* eslint-disable default-case */
 /* eslint-disable react/jsx-indent */
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Step1 from './Step1';
 import Step2 from './Step2';
 import Step3 from './Step3';
@@ -214,35 +214,57 @@ export class UserForm extends Component {
       inscr_adress2: [''],
       city: [''],
       zip_code: [''],
+      open: false,
+      setOpen: false,
     },
   };
 
   // Gerer les pages dynamiques
-  nextStep = () => {
-    axios.post('http://localhost:3000/user/validation', { ...this.state })
-      .then((response) => {
-        const result = response.data;
-        console.log(result);
-        const { step } = this.state;
-        this.setState({
-          step: step + 1,
-        });
-        return res.json();
-      })
-      .catch((error) => {
-        const errorStep = error.response.data;
-        const { step } = this.state;
-        this.setState({
-          step: step + 0,
-          fail: { ...errorStep },
-        });
+  nextStep = (step) => {
+    if (this.state.preconfiguration === false) {
+      this.setState({
+        step: step + 2,
       });
-  };
+    }
+
+    else {
+      axios.post('http://localhost:3000/user/validation', { ...this.state })
+        .then((response) => {
+          const result = response.data;
+          const { step } = this.state;
+          this.setState({
+            step: step + 1,
+          });
+        })
+        .catch((error) => {
+          const errorStep = error.response.data;
+          const { step } = this.state;
+          this.setState({
+            step: step + 0,
+            fail: { ...errorStep },
+          });
+        });
+    }
+  }
+
+  setOpen = () => {
+    const { setOpen } = this.state;
+    return setOpen;
+  }
+
+  open = () => {
+    const { open } = this.state;
+    return open;
+  }
 
   sendData = () => {
     const { fail } = this.state;
-    console.log('send data inscription', fail);
     return fail;
+  };
+
+  sendDataReturn = () => {
+    const datareturn = this.state;
+    return datareturn;
   };
 
   prevStep = () => {
@@ -309,6 +331,7 @@ export class UserForm extends Component {
             nextStep={this.nextStep}
             handleChange={this.handleChange}
             sendData={this.sendData}
+            sendDataReturn={this.sendDataReturn}
           />
          );
        case 2:
@@ -320,6 +343,9 @@ export class UserForm extends Component {
              CheckContentFalse={this.CheckContentFalse}
              CheckContentTrue={this.CheckContentTrue}
              sendData={this.sendData}
+             sendDataReturn={this.sendDataReturn}
+             open={this.open}
+             setOpen={this.setOpen}
            />
          );
        case 3:
@@ -332,6 +358,7 @@ export class UserForm extends Component {
               CheckContentFalse={this.CheckContentFalse}
               CheckContentTrue={this.CheckContentTrue}
               sendData={this.sendData}
+              sendDataReturn={this.sendDataReturn}
             />
          );
        case 4:
@@ -341,6 +368,7 @@ export class UserForm extends Component {
                prevStep={this.prevStep}
                handleChange={this.handleChange}
                sendData={this.sendData}
+               sendDataReturn={this.sendDataReturn}
              />
          );
        case 5:
@@ -354,6 +382,7 @@ export class UserForm extends Component {
               CheckContentTrue={this.CheckContentTrue}
               handleAsNumber={this.handleAsNumber}
               sendData={this.sendData}
+              sendDataReturn={this.sendDataReturn}
             />
          );
        case 6:
@@ -366,6 +395,7 @@ export class UserForm extends Component {
                CheckContentFalse={this.CheckContentFalse}
                CheckContentTrue={this.CheckContentTrue}
                sendData={this.sendData}
+               sendDataReturn={this.sendDataReturn}
              />
          );
        case 7:
@@ -378,6 +408,7 @@ export class UserForm extends Component {
                 CheckContentFalse={this.CheckContentFalse}
                 CheckContentTrue={this.CheckContentTrue}
                 sendData={this.sendData}
+                sendDataReturn={this.sendDataReturn}
               />
          );
        case 8:
@@ -392,6 +423,7 @@ export class UserForm extends Component {
             handleSubmit={this.handleSubmit}
             handleAsNumber={this.handleAsNumber}
             sendData={this.sendData}
+            sendDataReturn={this.sendDataReturn}
           />
          );
      }
