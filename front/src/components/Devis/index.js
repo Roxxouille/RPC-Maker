@@ -4,8 +4,8 @@ import React, { Component } from 'react';
 import Step1 from './Step/Step1';
 import Step3 from './Step/Step3';
 import Step4 from './Step/Step4';
-import Step2 from './Step/Step2';/*
 import Step5 from './Step/Step5';
+import Step2 from './Step/Step2';/*
 import Step6 from './Step/Step6';
 import Step7 from './Step/Step7';
 import Inscription from './inscription';*/
@@ -51,6 +51,10 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       return (
         <Step4 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} error={devis.fail}/>
       );
+    case 5:
+      return (
+        <Step5 />
+      )
   }
 }
 
