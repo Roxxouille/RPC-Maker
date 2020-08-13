@@ -10,6 +10,7 @@ import User from 'src/containers/Account/User';
 import BackOffice from 'src/containers/Account/BackOffice';
 import NoMatch from 'src/components/Layout/NoMatch';
 import Header from '../../containers/Layout/header';
+import Devis from 'src/containers/Devis';
 import Footer from '../Layout/footer';
 // == Import
 import './styles.css';
@@ -62,6 +63,9 @@ const App = ({ autoLog, isLogged }) => {
           </Route>
           <Route path="/backoffice">
             <BackOffice />
+          </Route>
+          <Route>
+            <Devis />
           </Route>
           <Route path="*">
             <NoMatch />
