@@ -70,6 +70,7 @@
                 }
             }
         }
+
         &__tchat{
             width: 100%;
             display: flex;
@@ -230,6 +231,93 @@
                     }
                 }
             }         
+        }
+        
+        &__order{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            flex-flow: wrap column;
+            text-align: left;
+            &__title{
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+                margin: 25px;
+            }
+            &__items{
+                width: 100%;
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: flex-start;
+                padding-left: 25px;
+                padding-right: 25px;
+                &__title{
+                    align-items: center;
+                    padding: 10px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: solid 1px;
+                    border-color: lightgray;
+                    margin-bottom: 25px;
+
+                }
+                &__content{
+                    display: flex;
+                    flex-flow: wrap row;
+                    margin-bottom: 25px;
+                    &__one{
+                        display: flex;
+                        flex-flow: wrap row;
+                        margin: 15px;
+                    }
+                }
+                &__footer{
+                    width: 100%;
+                    justify-self: right;
+                    margin-left: 15px;
+                    background-color: rgba(144, 238, 144, 0.096);
+                    border: solid 1px;
+                    border-radius: 5px;
+                    border-color: lightgrey;
+                    padding: 10px;
+                }
+            }
+        }
+
+        &__orderedit{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            flex-flow: wrap column;
+            text-align: left;
+            &__title{
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+                margin: 25px;
+            }
+            &__forms{
+                width: 100%;
+                display: flex;
+                flex-flow: wrap row;
+                
+                
+                padding-left: 25px;
+                padding-right: 25px;
+                
+                &__one{
+                    display: flex;
+                        flex-flow: wrap row;
+                        margin: 15px;
+                        width: 400px;
+                }
+                }
+                &__button{
+                    margin-top: 25px;
+                    margin-left: 40px;
+                }
         }
     }
 }
