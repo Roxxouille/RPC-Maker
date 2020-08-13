@@ -15,7 +15,7 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent, handleAsNumber, sendData } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent, handleAsNumber, sendData, sendDataReturn } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -79,7 +79,7 @@ export class Step5 extends Component {
               <Form.Label>Combien ?</Form.Label>
             </Col>
             <Col>
-              <Form.Control type="number" placeholder="- GO" onChange={handleAsNumber('spec_storage_quantity')} />
+              <Form.Control type="number" placeholder="- GO" defaultValue={sendDataReturn().spec_storage_quantity} onChange={handleAsNumber('spec_storage_quantity')} />
             </Col>
           </Form.Row>
           { sendData().specStorageQuantity !== undefined && <ErrorField error={sendData().specStorageQuantity[0]} /> }
@@ -143,7 +143,7 @@ export class Step5 extends Component {
               <Form.Check name="Home cinema" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={CheckContent('spec_sound_utilisation')} />
               <Form.Check name="Musique" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={CheckContent('spec_sound_utilisation')} />
               <Form.Check name="Autres" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={CheckContent('spec_sound_utilisation')} />
-              <Form.Control placeholder="Précisez" onChange={handleChange('spec_sound_utilisation_other')} />
+              <Form.Control placeholder="Précisez" defaultValue={sendDataReturn().spec_sound_utilisation_other} onChange={handleChange('spec_sound_utilisation_other')} />
             </div>
           ))}
         </Form>
@@ -151,7 +151,7 @@ export class Step5 extends Component {
         <Form>
           <Form.Label>Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)</Form.Label>
           <Form.Row className="contact">
-            <Form.Control as="textarea" placeholder="Message" onChange={handleChange('spec_light')} />
+            <Form.Control as="textarea" defaultValue={sendDataReturn().spec_light} placeholder="Message" onChange={handleChange('spec_light')} />
           </Form.Row>
         </Form>
 

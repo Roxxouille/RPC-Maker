@@ -36,7 +36,7 @@ const Testimony = ({ testimonies }) => {
     }
     return (
       <div key={testimony.id} className="testimony">
-        <div className="testimony__img"><Image src={testimony.user.avatar.image} rounded /></div>
+        <div className="testimony__img"><Image src={`http://localhost:3000/assets/images/${testimony.user.avatar.image}`} rounded /></div>
         <div>
           {html}
           <div>

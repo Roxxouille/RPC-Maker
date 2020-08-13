@@ -124,7 +124,7 @@ export class Step7 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent, sendData, sendDataReturn } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse, CheckContent, sendData } = this.props;
     const optionScreen = this.state.screen.map((screen) => (
       <option key={`${screen.id}`}>{`${screen.name}`}</option>
     ));
@@ -200,23 +200,20 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Ecran1</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_screen')}>
-              <option selected>{sendDataReturn().device_screen}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_screen')}>
               {optionScreen}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Preciser" defaultValue={sendDataReturn().device_screen_model} onChange={handleChange('device_screen_model')} />
+            <Form.Control placeholder="Preciser" onChange={handleChange('device_screen_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_screen_link} onChange={handleChange('device_screen_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_screen_link')} />
             { sendData().deviceScreenLink !== undefined && <ErrorField error={sendData().deviceScreenLink[0]} /> }
             <Form.Label className="Form__inside">Taille d'ecran</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_screen_size')}>
-              <option selected>{sendDataReturn().device_screen_size}</option>
+            <Form.Control as="select" defaultValue="24 pouces !" onChange={handleChange('device_screen_size')}>
               {optionSize}
             </Form.Control>
             <Form.Label className="Form__inside">Resolution</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_screen_res')}>
-              <option selected>{sendDataReturn().device_screen_res}</option>
+            <Form.Control as="select" defaultValue="full HD" onChange={handleChange('device_screen_res')}>
               {optionResolution}
             </Form.Control>
           </Form.Group>
@@ -224,21 +221,19 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Clavier</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_keyboard')}>
-              <option selected>{sendDataReturn().device_keyboard}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_keyboard')}>
               {optionKeyboard}
             </Form.Control>
             <Form.Label className="Form__inside">Un Modéle en téte ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_keyboard_model} onChange={handleChange('device_keyboard_model')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_keyboard_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_keyboard_link} onChange={handleChange('device_keyboard_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_keyboard_link')} />
             { sendData().deviceKeyboardLink !== undefined && <ErrorField error={sendData().deviceKeyboardLink[0]} /> }
             <Form.Row>
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label className="Form__inside">Type</Form.Label>
-                  <Form.Control as="select" onChange={handleChange('device_keyboard_type')}>
-                    <option selected>{sendDataReturn().device_keyboard_type}</option>
+                  <Form.Control as="select" defaultValue="Mecanique" onChange={handleChange('device_keyboard_type')}>
                     {optionType}
                   </Form.Control>
                 </Form.Group>
@@ -246,8 +241,7 @@ export class Step7 extends Component {
               <Col>
                 <Form.Group as={Col} controlId="formGridState">
                   <Form.Label className="Form__inside">Switch</Form.Label>
-                  <Form.Control as="select" onChange={handleChange('device_keyboard_switch')}>
-                    <option selected>{sendDataReturn().device_keyboard_switch}</option>
+                  <Form.Control as="select" defaultValue="Red" onChange={handleChange('device_keyboard_switch')}>
                     {optionSwitch}
                   </Form.Control>
                 </Form.Group>
@@ -255,31 +249,27 @@ export class Step7 extends Component {
             </Form.Row>
           </Form.Group>
           <Form.Label className="Form__inside">Langue</Form.Label>
-          <Form.Control as="select" onChange={handleChange('device_keyboard_language')}>
-            <option selected>{sendDataReturn().device_keyboard_language}</option>
+          <Form.Control as="select" defaultValue="azerty" onChange={handleChange('device_keyboard_language')}>
             {optionLanguage}
           </Form.Control>
         </Form>
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Sourie</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mouse')}>
-              <option selected>{sendDataReturn().device_mouse}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_mouse')}>
               {optionMouse}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_mouse_model} onChange={handleChange('device_mouse_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mouse_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_mouse_link} onChange={handleChange('device_mouse_link')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mouse_link')} />
             { sendData().deviceMouseLink !== undefined && <ErrorField error={sendData().deviceMouseLink[0]} /> }
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mouse_type')}>
-              <option selected>{sendDataReturn().device_mouse_type}</option>
+            <Form.Control as="select" defaultValue="laser" onChange={handleChange('device_mouse_type')}>
               {optionMouseType}
             </Form.Control>
             <Form.Label className="Form__inside">Filaire</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mouse_filaire')}>
-              <option selected>{sendDataReturn().device_mouse_filaire}</option>
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('device_mouse_filaire')}>
               <option>Non</option>
               <option>Oui</option>
             </Form.Control>
@@ -288,23 +278,20 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Tapis</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mousepad')}>
-              <option selected>{sendDataReturn().device_mousepad}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_mousepad')}>
               {optionPad}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_mousepad_model} onChange={handleChange('device_mousepad_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_mousepad_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_mousepad_link} onChange={handleChange('device_mousepad_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_mousepad_link')} />
             { sendData().deviceMousepadLink !== undefined && <ErrorField error={sendData().deviceMousepadLink[0]} /> }
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mousepad_type')}>
-              <option selected>{sendDataReturn().device_mousepad_type}</option>
+            <Form.Control as="select" defaultValue="rugueux" onChange={handleChange('device_mousepad_type')}>
               {optionPadType}
             </Form.Control>
             <Form.Label className="Form__inside">Taille</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_mousepad_size')}>
-              <option selected>{sendDataReturn().device_mousepad_size}</option>
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('device_mousepad_size')}>
               {optionPadSize}
             </Form.Control>
           </Form.Group>
@@ -312,25 +299,22 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Casque-micro</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_headphone')}>
-              <option selected>{sendDataReturn().device_headphone}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_headphone')}>
               {optionHeadSet}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_headphone_model} onChange={handleChange('device_headphone_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_headphone_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_headphone_link} onChange={handleChange('device_headphone_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_headphone_link')} />
             { sendData().deviceHeadphoneLink !== undefined && <ErrorField error={sendData().deviceHeadphoneLink[0]} /> }
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_headphone_type')}>
-              <option selected>{sendDataReturn().device_headphone_type}</option>
+            <Form.Control as="select" defaultValue="Supra auriculaire" onChange={handleChange('device_headphone_type')}>
               <option>Supra auriculaire</option>
               <option>isolant</option>
               <option>Ouvert</option>
             </Form.Control>
             <Form.Label className="Form__inside">Taille</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_headphone_size')}>
-              <option selected>{sendDataReturn().device_headphone_size}</option>
+            <Form.Control as="select" defaultValue="Petit" onChange={handleChange('device_headphone_size')}>
               <option>Petit</option>
               <option>Moyen</option>
               <option>Grand</option>
@@ -340,25 +324,22 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Enceinte</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_enceinte')}>
-              <option selected>{sendDataReturn().device_enceinte}</option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_enceinte')}>
               {optionHiFi}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_enceinte_model} onChange={handleChange('device_enceinte_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_enceinte_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_enceinte_link} onChange={handleChange('device_enceinte_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_enceinte_link')} />
             { sendData().deviceEnceinteLink !== undefined && <ErrorField error={sendData().deviceEnceinteLink[0]} /> }
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_enceinte_type')}>
-              <option selected>{sendDataReturn().device_enceinte_type}</option>
+            <Form.Control as="select" defaultValue="1 enceinte" onChange={handleChange('device_enceinte_type')}>
               <option>1 enceinte</option>
               <option>2 enceintes</option>
               <option>3 enceintes</option>
             </Form.Control>
             <Form.Label className="Form__inside">Caisson de basses</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_enceinte_bass')}>
-              <option selected>{sendDataReturn().device_enceinte_bass}</option>
+            <Form.Control as="select" defaultValue="oui" onChange={handleChange('device_enceinte_bass')}>
               <option>Non</option>
               <option>Oui</option>
             </Form.Control>
@@ -367,18 +348,16 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Webcam</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_webcam')}>
-              <option selected>{sendDataReturn().device_webcam} </option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_webcam')}>
               {optionWebCam}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_webcam_model} onChange={handleChange('device_webcam_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_webcam_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_webcam_link} onChange={handleChange('device_webcam_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_webcam_link')} />
             { sendData().deviceWebcamLink !== undefined && <ErrorField error={sendData().deviceWebcamLink[0]} /> }
             <Form.Label className="Form__inside">Resolution</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_webcam_res')}>
-              <option selected>{sendDataReturn().device_webcam_res} </option>
+            <Form.Control as="select" defaultValue="720p" onChange={handleChange('device_webcam_res')}>
               {optionWebCamResolution}
             </Form.Control>
           </Form.Group>
@@ -386,18 +365,16 @@ export class Step7 extends Component {
         <Form className="Form__config">
           <Form.Group as={Col} controlId="formGridState">
             <Form.Label className="Form__inside">Imprimante</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_printer')}>
-              <option selected>{sendDataReturn().device_printer} </option>
+            <Form.Control as="select" defaultValue="Fait ton choix !" onChange={handleChange('device_printer')}>
               {optionPrinter}
             </Form.Control>
             <Form.Label className="Form__inside">Un modele en tete ?</Form.Label>
-            <Form.Control placeholder="Si non laisser vide" defaultValue={sendDataReturn().device_printer_model} onChange={handleChange('device_printer_model')} />
+            <Form.Control placeholder="Si non laisser vide" onChange={handleChange('device_printer_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" defaultValue={sendDataReturn().device_printer_link} onChange={handleChange('device_printer_link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('device_printer_link')} />
             { sendData().devicePrinterLink !== undefined && <ErrorField error={sendData().devicePrinterLink[0]} /> }
             <Form.Label className="Form__inside">Type</Form.Label>
-            <Form.Control as="select" onChange={handleChange('device_printer_type')}>
-              <option selected>{sendDataReturn().device_printer_type} </option>
+            <Form.Control as="select" defaultValue="Laser" onChange={handleChange('device_printer_type')}>
               {optionPrinterType}
             </Form.Control>
           </Form.Group>
