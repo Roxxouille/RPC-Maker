@@ -246,7 +246,7 @@ class AppFixtures extends Fixture
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
-            $avatar->setImage('https://picsum.photos/200');
+            $avatar->setImage($faker->numberBetween(1, 9) . '.png');
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
