@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 
-const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItems}) => {
+const OrderEdit = ({ command, getCommand, items, getItems, changeItem, submitItems }) => {
   const { id } = useParams();
   console.log('editordercommand:', command, 'items:', items);
 
@@ -26,7 +26,7 @@ const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItem
 
   const dataCommand = command.item.map((data, index) => {
     const price = parseInt(data.price);
-    total += price; 
+    total += price;
     const dataItems = items.map((item) => {
       if (item.name === data.category.name) {
         const dataOptions = item.items.map((option) => {
@@ -49,7 +49,7 @@ const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItem
   });
 
   return (
-    <div className="order">
+    <div className="backoffice__body__orderEdit">
       <Form onSubmit={handleSubmit}>
         {dataCommand}
         <Button type="submit">

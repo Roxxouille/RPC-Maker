@@ -151,7 +151,8 @@ class Command
      * @Groups({
      *  "user",
      *  "login",
-     *  "command_info"
+     *  "command_info",
+     * "command"
      * })
      * @Assert\Length(
      *  max = 45,
