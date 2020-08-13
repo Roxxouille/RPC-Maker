@@ -15,7 +15,9 @@ export class Step3 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentFalse, CheckContentTrue, CheckContent, sendData } = this.props;
+    const {
+      handleChange, CheckContentFalse, CheckContentTrue, CheckContent, sendData,
+    } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -36,6 +38,7 @@ export class Step3 extends Component {
         { sendData().preconfiguration !== undefined && <ErrorField error={sendData().preconfiguration[0]} /> }
         <h2>Ce serait pour quel utilisation ?</h2>
         { sendData().utilisation !== undefined && <ErrorField error={sendData().utilisation[0]} /> }
+        { sendData().utilisationDetails !== undefined && <ErrorField error={sendData().utilisationDetails[0]} /> }
         <Form>
           {['checkbox'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
@@ -49,7 +52,6 @@ export class Step3 extends Component {
           ))}
         </Form>
         <Form.Row>
-          { sendData().utilisation_details !== undefined && <ErrorField error={sendData().utilisation_details[0]} /> }
           <Col>
             <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
           </Col>

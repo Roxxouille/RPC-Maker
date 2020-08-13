@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 import axios from 'axios';
+import ErrorField from '../Utils/Field/ErrorField';
 
 export class Step4 extends Component {
   state = {
@@ -132,6 +133,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_proc_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_proc_link')} />
+            { sendData().configProcLink !== undefined && <ErrorField error={sendData().configProcLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -145,6 +147,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_board_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control className="Fo" placeholder="Si non laissez vide" onChange={handleChange('config_board_link')} />
+            { sendData().configBoardLink !== undefined && <ErrorField error={sendData().configBoardLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -158,6 +161,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_cg_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_cg_link')} />
+            { sendData().configCgLink !== undefined && <ErrorField error={sendData().configCgLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -171,6 +175,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_ram_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_ram_link')} />
+            { sendData().configRamLink !== undefined && <ErrorField error={sendData().configRamLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -184,6 +189,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_refresh_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_refresh_link')} />
+            { sendData().configRefreshLink !== undefined && <ErrorField error={sendData().configRefreshLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -196,7 +202,8 @@ export class Step4 extends Component {
             <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
             <Form.Control placeholder="Preciser" onChange={handleChange('config_storage_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
-            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_storage__link')} />
+            <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_storage_link')} />
+            { sendData().configStorageLink !== undefined && <ErrorField error={sendData().configStorageLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -210,6 +217,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_boardsound_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_boardsound_link')} />
+            { sendData().configBoardsoundLink !== undefined && <ErrorField error={sendData().configBoardsoundLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -223,6 +231,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_case_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_case_link')} />
+            { sendData().configCaseLink !== undefined && <ErrorField error={sendData().configCaseLink[0]} /> }
           </Form.Group>
         </Form>
 
@@ -236,6 +245,7 @@ export class Step4 extends Component {
             <Form.Control placeholder="Preciser" onChange={handleChange('config_power_model')} />
             <Form.Label className="Form__inside">Un lien ?</Form.Label>
             <Form.Control placeholder="Si non laissez vide" onChange={handleChange('config_power_link')} />
+            { sendData().configPowerLink !== undefined && <ErrorField error={sendData().configPowerLink[0]} /> }
           </Form.Group>
         </Form>
 

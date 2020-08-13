@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 import axios from 'axios';
+import ErrorField from '../Utils/Field/ErrorField';
 
 export class Step5 extends Component {
   state = {
@@ -27,7 +28,7 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentTrue, CheckContentFalse } = this.props;
+    const { handleChange, CheckContentTrue, CheckContentFalse, sendData } = this.props;
     const optionOS = this.state.oschoice.map((oschoice) => (
       <option key={`${oschoice}`}>{`${oschoice}`}</option>
     ));
@@ -48,16 +49,19 @@ export class Step5 extends Component {
             <Button name="no" className="Form__button" variant="primary" type="submit" onClick={CheckContentFalse('os')}> Non </Button>
           </Col>
         </Form.Row>
+        { sendData().os !== undefined && <ErrorField error={sendData().os[0]} /> }
         <div>
           <h1 className="Form__config">De quel(s) systeme(s) auriez vous besoin ?</h1>
         </div>
         <Form.Control as="select" defaultValue="OS ?" onChange={handleChange('os_choice')}>
           {optionOS}
         </Form.Control>
+        { sendData().osChoice !== undefined && <ErrorField error={sendData().osChoice[0]} /> }
         <div>
           <h1>Une autre idée en téte ?</h1>
         </div>
         <Form.Control className="Form__inside" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." onChange={handleChange('os_name')} />
+        { sendData().osName !== undefined && <ErrorField error={sendData().osName[0]} /> }
         <div>
           <h1 className="Form__inside">Voulez vous qu'on vous l'active ?</h1>
         </div>
@@ -69,6 +73,7 @@ export class Step5 extends Component {
             <Button className="Form__button" name="no" variant="primary" type="submit" onClick={CheckContentFalse('os_active')}> Non </Button>
           </Col>
         </Form.Row>
+        { sendData().osActive !== undefined && <ErrorField error={sendData().osActive[0]} /> }
         <Form.Row>
           <Col>
             <Button className="Form__button" variant="primary" type="submit" onClick={this.back}> Precedent </Button>
