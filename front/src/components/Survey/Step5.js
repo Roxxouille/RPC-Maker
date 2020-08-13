@@ -74,7 +74,7 @@ export class Step5 extends Component {
               <Form.Label>Combien ?</Form.Label>
             </Col>
             <Col>
-              <Form.Control placeholder="- GO" onChange={handleAsNumber('spec_storage_quantity')} />
+              <Form.Control type="number" placeholder="- GO" onChange={handleAsNumber('spec_storage_quantity')} />
             </Col>
           </Form.Row>
         </Form>

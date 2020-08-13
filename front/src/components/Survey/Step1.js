@@ -27,7 +27,7 @@ export class Step1 extends Component {
         </div>
         <Form className="Form">
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Control type="name" placeholder="Ton petit nom :)" onChange={handleChange('username')} />
+            <Form.Control type="name" placeholder=" Ton pseudo ?" defaultValue={sendData().username[0]} onChange={handleChange('username')} />
             { sendData().username !== undefined && <ErrorField error={sendData().username[0]} /> }
           </Form.Group>
         </Form>
