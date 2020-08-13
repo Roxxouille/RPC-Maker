@@ -264,7 +264,7 @@ class UserController extends AbstractController
         // get the content of the request and transform it into a array
         $content = $request->getContent();
         $contentDecode = (array) json_decode($content);
-
+        dump($contentDecode);
         // do the validation for the first step of the quote form
         if($contentDecode['step'] == "1"){
             $user = $serializer->deserialize($content, User::class, 'json');
@@ -274,7 +274,17 @@ class UserController extends AbstractController
         // do the validation for the second step of the quote form
         if($contentDecode['step'] == "2"){
             $commandData = $serializer->deserialize($content, CommandData::class, 'json');
-            $errors = $validator->validate($commandData, null, ['validation_two']);
+            $errorsCommandData = $validator->validate($commandData, null, ['validation_two']);
+            $errors = [];
+            foreach($errorsCommandData as $error){
+                $errors[] = $error;
+            }
+            if($commandData->getBudget()){
+                $errorsCommandData = $validator->validate($commandData, null, ['validation_two_bis']);
+                foreach($errorsCommandData as $error){
+                    $errors[] = $error;
+                }
+            }
         }
 
         // do the validation for the third step of the quote form
@@ -284,6 +294,13 @@ class UserController extends AbstractController
             $errors = [];
             foreach($errorsCommandData as $error){
                 $errors[] = $error;
+            }
+            if($commandData->getUtilisation() == 'Autres'){
+                $errorsCommandData = $validator->validate($commandData, null, ['validation_three_utilisation']);
+                $errors = [];
+                foreach($errorsCommandData as $error){
+                    $errors[] = $error;
+                }
             }
             $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
             $errorsCommandConfigData = $validator->validate($commandConfigData, null, ['validation_three_bis']);

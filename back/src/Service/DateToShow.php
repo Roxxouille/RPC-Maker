@@ -55,22 +55,18 @@ class DateToShow
     public function whatDateToShow($message)
     {
         $now = new \DateTime;
+        
+        $date = $this->tradDateToFr($message->getCreatedAt()->format('l j F Y'));
 
-        $interval = date_diff($message->getCreatedAt(), $now)->format('%R%a');
-
-        if($interval == '+1'){
-            $date = 'Hier à ';
-            $date .= $message->getCreatedAt()->format('H\hi');
-            return $date;
-        }
-        if($message->getCreatedAt()->format('j') == $now->format('j')){
-            $date = $message->getCreatedAt()->format('H\hi');
-        }
         if($message->getCreatedAt()->format('Y') == $now->format('Y')){
             $date = $this->tradDateToFr($message->getCreatedAt()->format('l j F'));
         }
-        else {
-            $date = $this->tradDateToFr($message->getCreatedAt()->format('l j F Y'));
+        if($message->getCreatedAt()->format('z Y') == $now->format('z Y')){
+            $date = $message->getCreatedAt()->format('H\hi');
+        }
+        if($message->getCreatedAt()->format('z') == $now->format('z') - 1 && $message->getCreatedAt()->format('Y') == $now->format('Y')){
+            $date = 'Hier à ';
+            $date .= $message->getCreatedAt()->format('H\hi');
         }
 
         return $date;

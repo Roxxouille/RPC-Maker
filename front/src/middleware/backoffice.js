@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { desactivateLoader, commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack, cleanNewMessage } from '../actions/backoffice';
+import { setItems, desactivateLoader, commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack, cleanNewMessage, GET_ITEMS, SUBMIT_ITEMS } from '../actions/backoffice';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -71,6 +71,31 @@ export default (store) => (next) => (action) => {
         .catch((error) => {
           console.log(error.response);
         });
+      break;
+    }
+    case GET_ITEMS: {
+      axios.get('http://localhost:3000/categories')
+        .then((response) => {
+          console.log(response);
+          store.dispatch(setItems(response.data));
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      break;
+    }
+    case SUBMIT_ITEMS: {
+      const token = localStorage.getItem('token');
+      const state = store.getState();
+      const slug = state.backoffice.command.slug;
+      axios.put(`http://localhost:3000/command/${slug}`, { id: state.backoffice.command.id, itemToAdd: state.backoffice.command.item }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+      console.log('middleware items', state.backoffice.command);
       break;
     }
     default:

@@ -19,12 +19,9 @@ const Clients = ({ clients, isLoading }) => {
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
-            <Button href={link} variant="primary">voir</Button>
+            <Link to={link}>voir</Link>
             <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
-
-
           </Card.Body>
-
         </Card>
       </div>
     );

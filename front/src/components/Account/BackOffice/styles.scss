@@ -56,6 +56,9 @@
 
             &__verify{
                 width: 100%;
+                &__title{
+                    text-align: left;
+                }
                 &__body{
                     display: flex;
                     flex-flow: wrap row;
@@ -67,6 +70,7 @@
                 }
             }
         }
+
         &__tchat{
             width: 100%;
             display: flex;
@@ -126,7 +130,7 @@
 
                     &__content{
                         position: relative;
-                        background-color: #f4f5f76c;
+                        background-color: #d6d7d846;
                         -ms-overflow-style: none;  /* IE and Edge */
                         scrollbar-width: none;
                         overflow: scroll;
@@ -154,10 +158,52 @@
                                 background-color: #fafbfc;
                                 box-shadow: inset 0px 0px 2px 1px rgba(0,0,0,0.23);
                                 height: 50px;
-                            }
-                            
-                            
+                            }                            
                         }
+                        
+                            .sent{
+                                width: fit-content;                               
+                                .content{
+                                    margin: 5px;
+                                    margin-right: 20px;
+                                    border-radius: 15px;
+                                    background-color: #0b81ff;
+                                    color: white;
+                                    border: solid 1px;
+                                    padding: 10px;
+                                    padding-left: 20px;
+                                
+                                    border-color: rgb(226, 226, 226);
+                                    &__header{
+                                        font-weight: lighter;
+                                    }
+                                    &__body{
+    
+                                    }
+                                }
+                            }
+                            .received{
+                                width: fit-content;
+                                padding-left: 20px;
+                                .content{
+                                    
+                                    background-color: white;
+                                    margin: 5px;
+                                    margin-left: 5px;
+                                    padding: 10px;
+                                    border-radius: 10px;
+                                    border: solid 1px;
+                                    padding-left: 20px;
+                                    border-color: rgb(226, 226, 226);
+                                    &__header{
+                                        font-weight: lighter;
+                                    }
+                                    &__body{
+                                        
+                                    }
+                                }
+                            }
+                        
                     }
                     &__content::-webkit-scrollbar{
                         display: none;
@@ -165,6 +211,7 @@
                     &__profile{
                         width: 20%;
                         &__image{
+                            width: 60%;
                             margin: 25px;
                         }
                         &__name{
@@ -185,7 +232,93 @@
                 }
             }         
         }
+        
+        &__order{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            flex-flow: wrap column;
+            text-align: left;
+            &__title{
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+                margin: 25px;
+            }
+            &__items{
+                width: 100%;
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: flex-start;
+                padding-left: 25px;
+                padding-right: 25px;
+                &__title{
+                    align-items: center;
+                    padding: 10px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    border-bottom: solid 1px;
+                    border-color: lightgray;
+                    margin-bottom: 25px;
 
+                }
+                &__content{
+                    display: flex;
+                    flex-flow: wrap row;
+                    margin-bottom: 25px;
+                    &__one{
+                        display: flex;
+                        flex-flow: wrap row;
+                        margin: 15px;
+                    }
+                }
+                &__footer{
+                    width: 100%;
+                    justify-self: right;
+                    margin-left: 15px;
+                    background-color: rgba(144, 238, 144, 0.096);
+                    border: solid 1px;
+                    border-radius: 5px;
+                    border-color: lightgrey;
+                    padding: 10px;
+                }
+            }
+        }
+
+        &__orderedit{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            flex-flow: wrap column;
+            text-align: left;
+            &__title{
+                display: flex;
+                flex-flow: wrap row;
+                justify-content: space-between;
+                margin: 25px;
+            }
+            &__forms{
+                width: 100%;
+                display: flex;
+                flex-flow: wrap row;
+                
+                
+                padding-left: 25px;
+                padding-right: 25px;
+                
+                &__one{
+                    display: flex;
+                        flex-flow: wrap row;
+                        margin: 15px;
+                        width: 400px;
+                }
+                }
+                &__button{
+                    margin-top: 25px;
+                    margin-left: 40px;
+                }
+        }
     }
 }
 
