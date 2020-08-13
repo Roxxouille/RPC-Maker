@@ -295,7 +295,7 @@ class UserController extends AbstractController
             foreach($errorsCommandData as $error){
                 $errors[] = $error;
             }
-            if($commandData->getUtilisation()){
+            if($commandData->getUtilisation() == "Autres"){
                 $errorsCommandData = $validator->validate($commandData, null, ['validation_three_utilisation']);
                 $errors = [];
                 foreach($errorsCommandData as $error){
