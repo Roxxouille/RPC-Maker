@@ -44,7 +44,7 @@ class Status
      *  type="integer"
      * )
      * @Groups({
-     *  "command"
+     *  "command", "user"
      * })
      */
     private $statusNumber;

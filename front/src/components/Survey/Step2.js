@@ -3,6 +3,7 @@ import {
   Form, Col, Button, ToggleButton, ToggleButtonGroup,
 } from 'react-bootstrap';
 import './styles.scss';
+import ErrorField from '../Utils/Field/ErrorField';
 
 export class Step2 extends Component {
   continue = (e) => {
@@ -16,7 +17,7 @@ export class Step2 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentFalse, CheckContentTrue, } = this.props;
+    const { handleChange, CheckContentFalse, CheckContentTrue, sendData } = this.props;
     return (
       <div className="fullform">
         <div>
@@ -33,12 +34,15 @@ export class Step2 extends Component {
             <Button name="no" className="Form__button" variant="primary" type="submit" value={false} onClick={CheckContentFalse('budget')}> Non </Button>
           </Col>
         </Form.Row>
+        { sendData().budget !== undefined && <ErrorField error={sendData().budget[0]} /> }
         <Form.Row>
           <Col>
             <Form.Control type="name" placeholder="Budget" onChange={handleChange('amount')} />
+            { sendData().amount !== undefined && <ErrorField error={sendData().amount[0]} /> }
           </Col>
           <Col>
             <Form.Control type="name" placeholder="Marge" onChange={handleChange('gap')} />
+            { sendData().gap !== undefined && <ErrorField error={sendData().gap[0]} /> }
           </Col>
         </Form.Row>
         <Form.Row className="Form__button">

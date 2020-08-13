@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import OrderEdit from 'src/components/Account/BackOffice/OrderEdit'
+import OrderEdit from 'src/components/Account/BackOffice/OrderEdit';
 import { submitItems, changeOneItem, getCommand, getItems } from 'src/actions/backoffice';
 
 const mapStateToProps = (state) => ({
@@ -14,8 +14,8 @@ const mapDispatchToProps = (dispatch) => ({
   getItems: () => {
     dispatch(getItems());
   },
-  changeItem: (id, nameCat) => {
-    dispatch(changeOneItem(id, nameCat));
+  changeItem: (id, index, nameCat) => {
+    dispatch(changeOneItem(id, index, nameCat));
   },
   submitItems: () => {
     dispatch(submitItems());

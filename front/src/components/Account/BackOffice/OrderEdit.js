@@ -7,7 +7,7 @@ const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItem
   console.log('editordercommand:', command, 'items:', items);
 
   const handleChange = (e) => {
-    changeItem(e.target.value, e.target.name);
+    changeItem(e.target.value, e.target.id, e.target.name);
   };
 
   const handleSubmit = (e) => {
@@ -24,7 +24,7 @@ const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItem
 
   let total = 0;
 
-  const dataCommand = command.item.map((data) => {
+  const dataCommand = command.item.map((data, index) => {
     const price = parseInt(data.price);
     total += price; 
     const dataItems = items.map((item) => {
@@ -41,7 +41,7 @@ const OrderEdit = ({command, getCommand, items, getItems, changeItem, submitItem
     return (
       <Form.Group key={data.name}>
         <Form.Label>{data.category.name}</Form.Label>
-        <Form.Control onChange={handleChange} value={data.id} name={data.category.name} as='select'>
+        <Form.Control onChange={handleChange} id={index} value={data.id} name={data.category.name} as='select'>
           {dataItems}
         </Form.Control>
       </Form.Group>

@@ -237,20 +237,6 @@ export class UserForm extends Component {
           fail: { ...errorStep },
         });
       });
-        /* if (result.data === 'ok') {
-          const { step } = this.state;
-          this.setState({
-            step: step + 1,
-          });
-        }
-        else {
-          const { step } = this.state;
-          this.setState({
-            step: step + 0,
-          });
-          return response.json();
-        }
-      }); */
   };
 
   sendData = () => {

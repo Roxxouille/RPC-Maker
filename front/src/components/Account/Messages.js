@@ -7,15 +7,13 @@ const Messages = ({ messages, username }) => {
   const dataMessages = messages.map((message) => {
     const senderName = message.fromUser.username !== username ? <>{message.fromUser.firstname} {message.fromUser.className} <br /></> : '';
     return (
-      <Row key={message.id} className={message.fromUser.username === username ? 'sent message' : 'received message'}>
-        <Col sm={6} style={{ margin: '20px' }}>
-          <p>
-            {message.content}
-            <br />
-            {message.created_at}
-          </p>
-        </Col>
-      </Row>
+      <div key={message.id} className={message.fromUser.username === username ? 'sent message d-flex w-100' : 'received d-flex w-100'}>
+        <div className="content">
+          <div className="content__header">{message.dateToShow}</div>
+          <div className="content__body">{message.content}</div>
+        </div>
+      </div>
+
     );
   });
   return (

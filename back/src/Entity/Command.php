@@ -187,7 +187,7 @@ class Command
      *  nullable=false
      * )
      * @Groups({
-     *  "command"
+     *  "command", "user"
      * })
      */
     private $status;

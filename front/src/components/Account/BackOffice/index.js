@@ -6,7 +6,7 @@ import Order from 'src/containers/Account/BackOffice/Order';
 import Clients from './Clients';
 import Loader from 'src/components/Utils/Loader';
 import Conversations from 'src/containers/Account/BackOffice/Conversations';
-import OrderEdit from 'src/containers/Account/Backoffice/OrderEdit';
+import OrderEdit from 'src/containers/Account/BackOffice/OrderEdit';
 import { FaComments, FaUser, FaUsers } from 'react-icons/fa';
 
 
