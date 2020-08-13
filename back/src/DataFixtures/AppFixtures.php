@@ -50,6 +50,7 @@ class AppFixtures extends Fixture
             $manager->persist($category);
             $categoryList[] = $category;
         }
+
         $itemList = [];
         // fixtures for Item
         for ($i = 0; $i < 600; $i++) {
@@ -59,7 +60,11 @@ class AppFixtures extends Fixture
             $randomCategoryObject = $faker->randomElement($categoryList);
             $randomCategory = $randomCategoryObject->getName();
 
-            // custom name for each category of items 
+            if($randomCategory == 'Systeme d\'exploitation'){
+                
+            }
+            else {
+                // custom name for each category of items 
             if ($randomCategory == 'Processeur') {
                 $item->setName(
                     $faker->processorBrand
@@ -218,10 +223,6 @@ class AppFixtures extends Fixture
                         . $faker->numberBetween(1000, 9999)
                         . $faker->randomLetter()
                 );
-            } else if ($randomCategory == 'Systeme d\'exploitation') {
-                $item->setName(
-                    $faker->operatingSystemBrand
-                );
             } else if ($randomCategory == 'Lecteur / Graveur') {
                 $item->setName(
                     $faker->cdPlayerBrand
@@ -235,6 +236,21 @@ class AppFixtures extends Fixture
 
             $item->setCategory($randomCategoryObject);
             $item->setPrice($faker->numberBetween(50, 500));
+            $item->setUrl($faker->url());
+            $manager->persist($item);
+            $itemList[] = $item;
+            }
+        }
+
+        foreach($faker->categoryName['Systeme d\'exploitation'] as $system){
+            $item = new Item;
+            $item->setName($system);
+            $item->setPrice($faker->numberBetween(50, 500));
+            foreach($categoryList as $category){
+                if($category->getName() == "Systeme d'exploitation"){
+                    $item->setCategory($category);
+                }
+            }
             $item->setUrl($faker->url());
             $manager->persist($item);
             $itemList[] = $item;
@@ -275,55 +291,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
         }
 
-        $userList = [];
-
-        for ($i = 0; $i < 25; $i++) {
-            $user = new User;
-            $user->setCreatedAt(new \DateTime);
-            $user->setUpdatedAt(new \DateTime);
-            $user->setUsername($faker->unique->randomUsername);
-            $user->setEmail($faker->unique->email);
-            $user->setPassword($this->encoder->encodePassword($user, 'user'));
-            $user->setLevel($faker->randomDigitNotNull);
-            $user->setRoles(['ROLE_USER']);
-            $user->setFirstname($faker->firstName);
-            $user->setLastname($faker->lastName);
-            $user->setAvatar($faker->unique->randomElement($avatarList));
-            $user->setBuilder($faker->randomElement($builderList));
-            $manager->persist($user);
-            $userList[] = $user;
-        }
-
-        $commandDataList = [];
-        for ($i = 0; $i < 25; $i++) {
-            $commandConfigData = new CommandConfigData;
-            $commandConfigData->setPreconfiguration(false);
-            $commandConfigData->setConfigBoardModel('Data');
-            $commandConfigData->setConfigCaseModel('Encore du data');
-
-            $manager->persist($commandConfigData);
-
-            $commandSpecData = new CommandSpecData;
-            $commandSpecData->setOsName('Windaube');
-            $commandSpecData->setSpecFiber(true);
-
-            $manager->persist($commandSpecData);
-
-            $commandDeviceData = new CommandDeviceData;
-            $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
-            $commandDeviceData->setDeviceScreenModel('AOC 144HZ');
-
-            $manager->persist($commandDeviceData);
-
-            $commandData = new CommandData;
-            $commandData->setCommandConfigData($commandConfigData);
-            $commandData->setCommandDeviceData($commandDeviceData);
-            $commandData->setCommandSpecData($commandSpecData);
-
-            $manager->persist($commandData);
-            $commandDataList[] = $commandData;
-        }
-
         $statusName = [
             'Formulaire envoyé',
             'Formulaire accepté par le monteur',
@@ -338,156 +305,6 @@ class AppFixtures extends Fixture
             $statusList[] = $status;
             $manager->persist($status);
         }
-
-        // fixtures for Command
-        $commandList = [];
-        for ($i = 0; $i < 25; $i++) {
-            $command = new Command;
-            $command->setCreatedAt(new \DateTime);
-            $command->setUpdatedAt(new \DateTime);
-            $command->setName($faker->word());
-            $command->setUser($faker->unique()->randomElement($userList));
-            $command->setStatus($faker->randomElement($statusList));
-            $command->setCommandData($commandDataList[$i]);
-            // adding 20 item, each of one category, for one command
-            foreach ($categoryList as $key => $category) {
-                $item = $faker->randomElement($itemList);
-                while ($category->getName() != $item->getCategory()->getName()) {
-                    $item = $faker->randomElement($itemList);
-                }
-                $command->addItem($item);
-            }
-            $commandList[] = $command;
-            $manager->persist($command);
-        }
-
-        // fixtures for Testimony
-        for ($i = 0; $i < 16; $i++) {
-            $testimony = new Testimony;
-            $testimony->setContent($faker->text($faker->numberBetween(30, 255)));
-            $testimony->setScore($faker->numberBetween(1, 5));
-            $command = $faker->unique->randomElement($commandList);
-            $testimony->setCommand($command);
-            $testimony->setUser($command->getUser());
-            $testimony->setCreatedAt(new \DateTime);
-            $testimony->setUpdatedAt(new \DateTime);
-            $manager->persist($testimony);
-        }
-
-        // fixtures for builder Message
-
-        for ($i = 0; $i < 100; $i++) {
-            $clientList = [];
-            $message = new Message;
-            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
-            $message->setContent($faker->sentence());
-            $message->setFromUser($faker->randomElement($builderList));
-            foreach ($userList as $user) {
-                if ($user->getBuilder() === $message->getFromUser()) {
-                    $clientList[] = $user;
-                }
-            }
-            $message->setToUser($faker->randomElement($clientList));
-            $manager->persist($message);
-        }
-
-        // fixtures for user Message
-        for ($i = 0; $i < 100; $i++) {
-            $message = new Message;
-            $message->setCreatedAt($faker->dateTimeThisMonth('now', 'Europe/Paris'));
-            $message->setContent($faker->sentence());
-            $message->setFromUser($faker->randomElement($userList));
-            $message->setToUser($message->getFromUser()->getBuilder());
-            $manager->persist($message);
-        }
-
-
-        // DONNEES DE TEST
-
-        // fixtures for Avatar
-        $avatar = new Avatar;
-        $avatar->setCreatedAt(new \DateTime);
-        $avatar->setUpdatedAt(new \DateTime);
-        $avatar->setImage('test');
-        $manager->persist($avatar);
-
-        // fixture for User
-        $user = new User;
-        $user->setCreatedAt(new \DateTime);
-        $user->setUpdatedAt(new \DateTime);
-        $user->setUsername('test');
-        $user->setEmail('test@test.com');
-        $user->setPassword($this->encoder->encodePassword($user, 'test'));
-        $user->setLevel($faker->randomDigitNotNull);
-        $user->setRoles(['ROLE_USER']);
-        $user->setFirstname('test');
-        $user->setLastname('test');
-        $user->setAvatar($avatar);
-        $user->setBuilder($faker->randomElement($builderList));
-        $manager->persist($user);
-
-        $commandConfigData = new CommandConfigData;
-        $commandConfigData->setPreconfiguration(false);
-        $commandConfigData->setConfigBoardModel('Data');
-        $commandConfigData->setConfigCaseModel('Encore du data');
-
-        $manager->persist($commandConfigData);
-
-        $commandSpecData = new CommandSpecData;
-        $commandSpecData->setOsName('Windaube');
-        $commandSpecData->setSpecFiber(true);
-
-        $manager->persist($commandSpecData);
-
-        $commandDeviceData = new CommandDeviceData;
-        $commandDeviceData->setDeviceKeyboardModel('Corsair k70');
-        $commandDeviceData->setDeviceScreenModel('AOC 144HZ');
-
-        $manager->persist($commandDeviceData);
-
-        $commandData = new CommandData;
-        $commandData->setCommandConfigData($commandConfigData);
-        $commandData->setCommandDeviceData($commandDeviceData);
-        $commandData->setCommandSpecData($commandSpecData);
-
-        $manager->persist($commandData);
-
-        // fixtures for Command
-        $command = new Command;
-        $command->setCreatedAt(new \DateTime);
-        $command->setUpdatedAt(new \DateTime);
-        $command->setName('test');
-        $command->setStatus($statusList[1]);
-        $command->setCommandData($commandData);
-        $command->setData(['Data' => 'Oui', 'Non']);
-        $command->setUser($user);
-
-        // adding 20 item, each of one category, for one command
-        foreach ($categoryList as $key => $category) {
-            $item = $faker->randomElement($itemList);
-            while ($category->getName() != $item->getCategory()->getName()) {
-                $item = $faker->randomElement($itemList);
-            }
-            $command->addItem($item);
-        }
-        $manager->persist($command);
-
-        $category = new Category();
-        $category->setName('test');
-        $category->setSpecs($categorySpec);
-        $category->setCreatedAt(new \DateTime);
-        $category->setUpdatedAt(new \DateTime);
-        $manager->persist($category);
-
-        $item = new Item();
-        $item->setName('test');
-        $item->setCreatedAt(new \DateTime);
-        $item->setUpdatedAt(new \DateTime);
-        $item->setCategory($category);
-        $item->setPrice($faker->numberBetween(50, 500));
-        $item->setUrl($faker->url());
-        $manager->persist($item);
-
         $manager->flush();
     }
 }
