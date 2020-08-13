@@ -30,6 +30,30 @@ class CommandData
      *  length=255,
      *  nullable=true
      * )
+     * @Groups({
+     *  "command_info"
+     * })
+     * @Assert\NotNull(
+     *  message="Veuillez indiquer l'utilisation",
+     *  groups = {
+     *      "validation_three"
+     *      }
+     * )
+     * @Assert\NotBlank(
+     *  message="Veuillez indiquer l'utilisation",
+     *  groups = {
+     *      "validation_three"
+     *      }
+     * )
+     */
+    private $utilisation;
+
+    /**
+     * @ORM\Column(
+     *  type="string",
+     *  length=255,
+     *  nullable=true
+     * )
      * @Assert\NotBlank(
      *  message="Veuillez préciser",
      *  groups = {
@@ -172,29 +196,21 @@ class CommandData
      */
     private $commandDeviceData;
 
-    /**
-     * @ORM\Column(
-     *  type="array",
-     *  nullable=true
-     * )
-     * @Assert\NotNull(
-     *  message="Veuillez indiquer l'utilisation",
-     *  groups = {
-     *      "validation_three"
-     *      }
-     * )
-     * @Assert\NotBlank(
-     *  message="Veuillez indiquer l'utilisation",
-     *  groups = {
-     *      "validation_three"
-     *      }
-     * )
-     */
-    private $utilisation = [];
-
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUtilisation(): ?string
+    {
+        return $this->utilisation;
+    }
+
+    public function setUtilisation(?string $utilisation): self
+    {
+        $this->utilisation = $utilisation;
+
+        return $this;
     }
 
     public function getUtilisationDetails(): ?string
@@ -289,18 +305,6 @@ class CommandData
     public function setCommandDeviceData(CommandDeviceData $commandDeviceData): self
     {
         $this->commandDeviceData = $commandDeviceData;
-
-        return $this;
-    }
-
-    public function getUtilisation(): ?array
-    {
-        return $this->utilisation;
-    }
-
-    public function setUtilisation(?array $utilisation): self
-    {
-        $this->utilisation = $utilisation;
 
         return $this;
     }
