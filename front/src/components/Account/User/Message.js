@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import {
-    Container,
-    Image,
-    Button,
-    Col,
-    Row,
-    InputGroup,
-    FormControl,
-    Form
+  Container,
+  Image,
+  Button,
+  Col,
+  Row,
+  InputGroup,
+  FormControl,
+  Form
 } from 'react-bootstrap';
 import './styles.scss';
 import Messages from 'src/components/Account/Messages';
 
 const Message = ({ getMessages, messages, username, changeNewMessage, sendMessage, newMessage }) => {
   console.log(messages);
-  if(messages.length === 0) {
+  if (messages.length === 0) {
     getMessages();
   }
 
@@ -28,17 +28,29 @@ const Message = ({ getMessages, messages, username, changeNewMessage, sendMessag
   };
 
   return (
-    <Container className="user__body__messages">
-      <div id="center">
-        <h1>Vous etes en conversation avec votre monteur</h1>
-      </div>
-      <Messages messages={messages} username={username}/>
-      <Form onSubmit={handleSubmitMessage}>
-        <Row>
-          <Form.Control onChange={handleChange} name='newMessage' type='text' value={newMessage} placeholder='Tapez votre message' />
-        </Row>
-      </Form>
-    </Container>
+    <div className="user__body__tchat">
+      <Row className="user__body__tchat__title">
+        <Col sm={1} className="tchat__title__hr"><hr /></Col>
+        <Col sm={4} > <h2>Mes messages</h2> </Col>
+        <Col className="user__body__tchat__title__hr"><hr /></Col>
+      </Row>
+
+      <Container className="user__body__tchat__body">
+        <div className="user__body__tchat__body__messages">
+          <Messages messages={messages} username={username} />
+          <div className="user__body__tchat__body__messages__new">
+            <Form onSubmit={handleSubmitMessage}>
+              <Row>
+                <Form.Control onChange={handleChange} name='newMessage' type='text' value={newMessage} placeholder='Tapez votre message' />
+              </Row>
+            </Form>
+          </div>
+        </div>
+
+
+
+      </Container>
+    </div>
   );
 };
 

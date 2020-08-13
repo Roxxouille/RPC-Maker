@@ -1,4 +1,10 @@
 @use 'src/styles/vars';
+.fullform {
+  max-width: vars.$max-width;
+  align-items: center;
+  margin: auto;
+}
+
 
 .Form {
   margin-left: 5%;
