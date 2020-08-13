@@ -4,6 +4,7 @@ import user from '../middleware/user';
 import contact from '../middleware/contact';
 import profile from '../middleware/profile';
 import backoffice from '../middleware/backoffice';
+import devis from '../middleware/devis';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -13,6 +14,7 @@ const enhancers = composeEnhancers(
     contact,
     profile,
     backoffice,
+    devis,
   ),
 );
 
