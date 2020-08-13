@@ -18,7 +18,6 @@ const Order = ({ command, getCommand }) => {
     const price = parseInt(data.price);
     total += price;
     return (
-
       <div className="backoffice__body__order__items__content__one" key={data.id}>
         <Card >
           <Card.Body>
@@ -28,8 +27,6 @@ const Order = ({ command, getCommand }) => {
           </Card.Body>
         </Card>
       </div>
-
-
     );
   });
 

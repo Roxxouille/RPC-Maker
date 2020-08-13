@@ -39,23 +39,34 @@ const OrderEdit = ({ command, getCommand, items, getItems, changeItem, submitIte
       }
     });
     return (
-      <Form.Group key={data.name}>
-        <Form.Label>{data.category.name}</Form.Label>
-        <Form.Control onChange={handleChange} id={index} value={data.id} name={data.category.name} as='select'>
-          {dataItems}
-        </Form.Control>
-      </Form.Group>
+      <div className="backoffice__body__orderedit__forms__one" key={data.name}>
+        <Form.Group>
+          <Form.Label> <h5>{data.category.name}</h5> </Form.Label>
+          <Form.Control onChange={handleChange} id={index} value={data.id} name={data.category.name} as='select'>
+            {dataItems}
+          </Form.Control>
+        </Form.Group>
+      </div>
     );
   });
 
   return (
-    <div className="backoffice__body__orderEdit">
-      <Form onSubmit={handleSubmit}>
-        {dataCommand}
-        <Button type="submit">
-          Modifier
-        </Button>
-      </Form>
+    <div className="backoffice__body__orderedit">
+      <div className="backoffice__body__orderedit__title">
+        <h3> Edition de la commande n°{command.id} :  {command.name}</h3>
+      </div>
+      <div >
+        <Form onSubmit={handleSubmit} >
+          <div className="backoffice__body__orderedit__forms">{dataCommand}</div>
+          <div className="backoffice__body__orderedit__button">
+            <Button type="submit">
+              Enregistrer les modifications
+          </Button>
+          </div>
+
+        </Form>
+      </div>
+
     </div>
   );
 };
