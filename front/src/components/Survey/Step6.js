@@ -28,7 +28,9 @@ export class Step5 extends Component {
   };
 
   render() {
-    const { handleChange, CheckContentTrue, CheckContentFalse, sendData } = this.props;
+    const {
+      handleChange, CheckContentTrue, CheckContentFalse, sendData,
+    } = this.props;
     const optionOS = this.state.oschoice.map((oschoice) => (
       <option key={`${oschoice}`}>{`${oschoice}`}</option>
     ));
@@ -56,8 +58,8 @@ export class Step5 extends Component {
         <Form.Control as="select" defaultValue="OS ?" onChange={handleChange('os_choice')}>
           {optionOS}
         </Form.Control>
-        { sendData().osChoice !== undefined && <ErrorField error={sendData().osChoice[0]} /> }
-        <div>
+        { sendData().oschoice !== undefined && <ErrorField error={sendData().oschoice[0]} /> }
+        <div>  
           <h1>Une autre idée en téte ?</h1>
         </div>
         <Form.Control className="Form__inside" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." onChange={handleChange('os_name')} />
