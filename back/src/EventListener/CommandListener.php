@@ -171,8 +171,11 @@ class CommandListener
         if($data->getBudget()){
             $messageContent .= "J'ai un budget de " . $data->getAmount() . " et une marge de " . $data->getGap() . ". ";
         }
-
-        $messageContent .= " J'utiliserais ce pc pour du " .$data->getUtilisation() . ". ";
+        $utilisationString = '';
+        foreach($data->getUtilisation() as $utilisation){
+            $utilisationString .= $utilisation . ', ';
+        }
+        $messageContent .= " J'utiliserais ce pc pour du " . $utilisationString . ". ";
 
         if(!empty($data->getUtilisationDetails())){
             $messageContent .= "explication : " .$data->getUtilisationDetails();
