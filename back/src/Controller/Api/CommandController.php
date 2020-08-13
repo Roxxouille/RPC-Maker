@@ -2,17 +2,20 @@
 
 namespace App\Controller\Api;
 
-use App\Entity\Command;
 use App\Entity\Item;
-use App\Repository\CommandRepository;
+use App\Entity\Command;
 use App\Repository\ItemRepository;
 use App\Repository\UserRepository;
+use App\Repository\CommandRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class CommandController extends AbstractController
@@ -63,7 +66,7 @@ class CommandController extends AbstractController
     /**
      * @Route("/command/{slug}", name="command_edit", methods={"PUT", "PATCH"})
      */
-    public function edit(ItemRepository $itemRepo, Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
+    public function edit(ObjectNormalizer $normalizer, ItemRepository $itemRepo, Command $command = null, Request $request, SerializerInterface $serializer, ValidatorInterface $validator, EntityManagerInterface $em)
     {
 
         //send a 404 error if the command does not exist
@@ -90,21 +93,23 @@ class CommandController extends AbstractController
             return $this->json($errorsArray, Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
+
         $contentDecode = json_decode($content, true);
+        $commandItemJson = $serializer->serialize($command, 'json', ['groups' => 'command']);
+        $commandItemDecode = json_decode($commandItemJson, true);
+        foreach ($commandItemDecode['item'] as $key => $itemToRemove) {
 
-        if (isset($contentDecode['itemToRemove'])) {
-            $itemToRemove =  $itemRepo->find($contentDecode['itemToRemove']);
-            $updatedCommand->removeItem($itemToRemove);
+            $itemToRemove =  $itemRepo->find($itemToRemove['id']);
+            $command->removeItem($itemToRemove);
         }
-
 
         if (isset($contentDecode['itemToAdd'])) {
             foreach ($contentDecode['itemToAdd'] as $key => $itemToAdd) {
                 $itemToAdd =  $itemRepo->find($itemToAdd['id']);
                 $updatedCommand->AddItem($itemToAdd);
-                dump($updatedCommand);
             }
         }
+
 
         //Edit the updatedat vlue to the current time
         $updatedCommand->setUpdatedAt(new \DateTime());
