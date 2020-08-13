@@ -9,7 +9,7 @@ const Messages = ({ messages, username }) => {
     return (
       <div key={message.id} className={message.fromUser.username === username ? 'sent message d-flex w-100' : 'received d-flex w-100'}>
         <div className="content">
-          <div className="content__header">{message.created_at}</div>
+          <div className="content__header">{message.dateToShow}</div>
           <div className="content__body">{message.content}</div>
         </div>
       </div>
