@@ -50,9 +50,10 @@ class CommandListener
         $user = $command->getUser();
         //getting all the status of all the command this user have
         $commandsStatus = [];
-        $commands = $this->userRepo->find($user)->getCommands();
+        $commands = $user->getCommands();
         foreach($commands as $command){
             $commandsStatus[] = $command->getStatus()->getStatusNumber();
+            dump($command->getStatus()->getName());
         }
         // getting the sum of all the status to create the level of the user
         $user->setLevel(array_sum($commandsStatus));

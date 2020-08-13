@@ -38,7 +38,7 @@ class CommandSpecData
      * @Groups({
      *  "command_info"
      * })
-     * @Assert\NotNull(
+     * @Assert\NotBlank(
      *  message="Veuillez indiquez ce qui est le plus important pour vous",
      *  groups = {
      *      "validation_five"
@@ -90,7 +90,7 @@ class CommandSpecData
      * @Groups({
      *  "command_info"
      * })
-     * @Assert\NotNull(
+     * @Assert\NotBlank(
      *  message="Veuillez indiquez par quel type de stockage vous êtes intéressé",
      *  groups = {
      *      "validation_five"
@@ -107,6 +107,12 @@ class CommandSpecData
      * @Groups({
      *  "command_info"
      * })
+     * @Assert\Positive(
+     *  message="Veuillez rentrer un nombre valide",
+     *  groups = {
+     *      "validation_five"
+     *      }
+     * )
      * @Assert\NotNull(
      *  message="Veuillez la quantité de stockage que vous voulez",
      *  groups = {
@@ -126,12 +132,6 @@ class CommandSpecData
      * })
      * @Assert\NotNull(
      *  message="Veuillez indiquez si vous voulez une carte wifi" ,
-     *  groups = {
-     *      "validation_five"
-     *      }
-     * )
-     * @Assert\Positive(
-     *  message="Veuillez rentrer un nombre valide",
      *  groups = {
      *      "validation_five"
      *      }
@@ -199,7 +199,7 @@ class CommandSpecData
      * @Groups({
      *  "command_info"
      * })
-     * @Assert\NotNull(
+     * @Assert\Notblank(
      *  message="Veuillez indiquez pour quelle utilisation",
      *  groups = {
      *      "validation_five_sound_true"
@@ -218,7 +218,7 @@ class CommandSpecData
      *  "command_info"
      * })
      * @Assert\NotBlank(
-     *  message="Veuillez indiquez pour quelle utilisation",
+     *  message="Veuillez préciser",
      *  groups = {
      *      "validation_five_sound_other"
      *      }
