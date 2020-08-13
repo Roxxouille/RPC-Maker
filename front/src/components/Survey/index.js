@@ -286,7 +286,7 @@ export class UserForm extends Component {
    // handle pour les checkbox
 
    CheckContent = (input) => (e) => {
-     this.setState({ [input]: e.target.value });
+     this.setState({ [input]: e.target.name });
    };
 
    // Check true False
