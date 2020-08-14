@@ -7,11 +7,10 @@ import SelectField from './SelectField';
 import ChangeStepButton from './ChangeStepButton';
 
 const Step4 = ({dataSurvey, error, changeStep, forceStepUp, getItems, items, handleChange}) => {
-  if (dataSurvey.preconfiguration === false) {
-    forceStepUp();
-  }
-
   useEffect(() => {
+    if (dataSurvey.preconfiguration === false) {
+      forceStepUp();
+    }
     getItems();
   }, []);
   let proc = [];

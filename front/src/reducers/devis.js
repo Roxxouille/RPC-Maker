@@ -2,7 +2,7 @@ import { CHANGE_ARRAY_DEVIS, CHANGE_DEVIS, CHANGE_STEP_STATE, SET_ERROR_STEP } f
 
 export const initialState = {
   dataSurvey: {
-    step: 4,
+    step: 1,
     budget: false,
     amount: null,
     gap: null,
