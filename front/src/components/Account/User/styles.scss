@@ -339,19 +339,16 @@ $font-text: 'Chivo', sans-serif;
   font-weight: 100;  
   max-width: 100%; 
 
-  .event-hidden {
+  .event-notdone {
     border-bottom: 1px dashed fade($color-light, 10%);
     margin-bottom: 15px;  
     position: relative;
 
-    h3{
-      color: lightgrey;
+    .notdone{
+      h3{
+        color: lightgrey;
+      }
     }
-    
-    p{
-      visibility: hidden;
-    }
-
 
     &:last-of-type { 
       padding-bottom: 0;

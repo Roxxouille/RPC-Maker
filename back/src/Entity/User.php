@@ -145,7 +145,6 @@ class User implements UserInterface
      *  groups = {
      *      "password-edit",
      *      "registration",
-     *      "edit-profile"
      *      },
      * )
      * @Groups({
