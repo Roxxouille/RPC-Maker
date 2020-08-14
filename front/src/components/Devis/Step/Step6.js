@@ -37,6 +37,6 @@ const Step6 = ({handleChange, dataSurvey, changeDevis, error, changeStep, items}
       </div>
     </div>
   );
-}
+};
 
 export default Step6;
