@@ -68,7 +68,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
     case 6:
       return (
         <Step6 />
-      )
+      );
   }
 };
 
