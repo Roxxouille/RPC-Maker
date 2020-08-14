@@ -25,7 +25,7 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items}) => {
         <BinaryButtonField label="Voulez vous qu’on vous install un systeme d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
         <ErrorField error={error.os[0]} />
 
-        { os && (
+        { dataSurvey.os && (
           <>
             <SelectField label='OS' name='os_choice' options={listos} value={dataSurvey.os_choice} handleChange={changeDevis} />
             <ErrorField error={error.oschoice[0]} />
