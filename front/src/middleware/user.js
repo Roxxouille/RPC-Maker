@@ -28,7 +28,7 @@ export default (store) => (next) => (action) => {
           store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id));
         })
         .catch((error) => {
-          console.log(error.response);
+          console.log(error.repsonse);
           const actionToDispatch = failLogin(error.response);
           store.dispatch(actionToDispatch);
         });
