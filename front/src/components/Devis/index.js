@@ -12,10 +12,16 @@ import Inscription from './inscription';*/
 import './styles.scss';
 import axios from 'axios';
 
-const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis }) => {
+const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis, getCategoriesItems, items, setDefaultItemsState }) => {
   const handleChange = (e) => {
-    console.log(e.target.name, e.target.value);
+    console.log('handlechange:', e.target.name, e.target.value);
     changeDevis(e.target.name, e.target.value);
+  };
+
+  console.log(items);
+
+  const getItems = () => {
+    getCategoriesItems();
   };
 
   const changeStep = (actionStep) => {
@@ -32,12 +38,16 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
     forceChangeStep(newStep);
   };
 
+  const setDefaultItems = () => {
+    setDefaultItemsState();
+  };
+
   console.log(devis);
 
   switch (devis.dataSurvey.step) {
     case 1:
       return (
-      <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} step={devis.dataSurvey.step} error={devis.fail} />
+        <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} step={devis.dataSurvey.step} error={devis.fail} />
       );
     case 2:
       return (
@@ -49,12 +59,12 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       );
     case 4:
       return (
-        <Step4 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} error={devis.fail}/>
+        <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} setDefaultItems={setDefaultItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
       );
     case 5:
       return (
         <Step5 />
-      )
+      );
   }
 }
 
