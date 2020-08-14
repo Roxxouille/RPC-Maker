@@ -2,7 +2,7 @@ import { CHANGE_ARRAY_DEVIS, CHANGE_DEVIS, CHANGE_STEP_STATE, SET_ERROR_STEP } f
 
 export const initialState = {
   dataSurvey: {
-    step: 1,
+    step: 4,
     budget: false,
     amount: null,
     gap: null,
@@ -244,16 +244,22 @@ const devis = (state = initialState, action = {}) => {
         },
       };
     case CHANGE_ARRAY_DEVIS:
-      const utilisation = state.utilisation;
+      /* const utilisation = state.utilisation;
       const index = utilisation.find(action.value);
       if(index === undefined){
         utilisation.push(action.value);
       } else {
         utilisation.splice(index, 1, action.value);
-      }
+      } */ /*
+      const configComponents = state.dataSurvey.config_components;
+      const index = configComponents.find(action.name);
+      if(index === undefined){
+        configComponents.push(action.value);
+      } else {
+        configComponents.splice(index, 1, action.value);
+      } */ 
       return {
         ...state,
-        [action.name]: utilisation,
       };
     default:
       return state;
