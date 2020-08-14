@@ -11,15 +11,19 @@
   }
     &__space{
     margin-top: 50px;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
   
 }
 
 .bouton {
-  margin-bottom: 30px;
+  margin: 25px;
 }
 
-.btn-primary {
-  background-color: red;
+.form-row{
+  justify-content: space-between;
+}
+
+.col{
+  margin: 25px;
 }

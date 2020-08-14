@@ -17,9 +17,9 @@ const Messages = ({ messages, username }) => {
     );
   });
   return (
-    <div>
+    <div style={{ height: '90%' }}>
       {dataMessages}
-    </div>
+    </div >
   );
 };
 

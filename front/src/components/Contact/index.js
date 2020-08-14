@@ -23,33 +23,34 @@ const Contact = ({
   return (
     <div className="container">
       <div className="contact__space">
-        <h1>Une Question ? c'est par ici n'hésitez pas ! :D</h1>
+        <h1>Une Question, Une Envie, Une Idee ? <br /> contactez-nous!</h1>
+        <p>Grace a notre systeme super sophistique et l'entrainement intensif de nos oiseaux voyageurs vos lettres sont envoye en rien de temps! <br /> Profitez-en!</p>
       </div>
       <Form onSubmit={handleSubmit} className="contact">
         <Form.Row>
           <Col>
             <Form.Control onChange={handleChange} value={contact.infos.lastname} name="lastname" placeholder="Nom" />
-            <ErrorField error={contact.error.lastname[0]}/>
+            <ErrorField error={contact.error.lastname[0]} />
           </Col>
           <Col>
             <Form.Control onChange={handleChange} value={contact.infos.firstname} name="firstname" placeholder="Prenom" />
-            <ErrorField error={contact.error.firstname[0]}/>
+            <ErrorField error={contact.error.firstname[0]} />
           </Col>
           <Col>
             <Form.Control onChange={handleChange} value={contact.infos.email} name="email" placeholder="Email" />
-            <ErrorField error={contact.error.email[0]}/>
+            <ErrorField error={contact.error.email[0]} />
           </Col>
         </Form.Row>
         <Form.Row>
           <Form.Control onChange={handleChange} value={contact.infos.content} name="content" as="textarea" placeholder="Message" />
-          <ErrorField error={contact.error.content[0]}/>
+          <ErrorField error={contact.error.content[0]} />
         </Form.Row>
         {contact.status && (
           <Alert variant="dark">
-            { contact.infos.status }
+            {contact.infos.status}
           </Alert>
         )}
-        <Button className="bouton" variant="primary" type="submit"> GO ! </Button>
+        <Button className="bouton" variant="primary" type="submit"> Envoyer </Button>
       </Form>
     </div>
   );
