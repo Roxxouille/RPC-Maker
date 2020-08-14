@@ -176,7 +176,8 @@ class User implements UserInterface
      * @Groups({
      *  "avatar",
      *  "command",
-     *  "user"
+     *  "user",
+     *  "level"
      * })
      */
 
