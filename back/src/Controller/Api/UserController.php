@@ -66,8 +66,9 @@ class UserController extends AbstractController
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
         $errors = $validator->validate($updatedUser, null, ['edit-profile']);
-
+        
         // if there is errors, return them in a json format
+    
         if (count($errors) > 0) {
 
             $errorsArray = [];
@@ -136,7 +137,7 @@ class UserController extends AbstractController
         //add an random image from lorempicsum
         //set it into the user object
         $avatar = new Avatar();
-        $avatar->setImage('https://picsum.photos/200');
+        $avatar->setImage(mt_rand(1, 16) . '.gif');
         $user->setAvatar($avatar);
 
         //transform the content of the request in an object

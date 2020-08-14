@@ -64,96 +64,51 @@ class CommandListener
 
     public function setItemsOnUserCreation(Command $command, LifecycleEventArgs $event)
     {
+        // get all object needed
         $data = $command->getCommandData();
         $configData = $data->getCommandConfigData();
-        $specData = $data->getCommandSpecData();
         $deviceData = $data->getCommandDeviceData();
+        $specData = $data->getCommandSpecData();
+        
+        // get all methods from object
+        $configClassMethods = get_class_methods($configData);
+        $deviceClassMethods = get_class_methods($deviceData);
 
-        if($configData->getConfigProc()){
-            $proc = $this->itemRepo->findBy(['name' => $configData->getConfigProc()]);
-            $command->addItem($proc[0]);
+        // stock them in a array if they match the requirement
+        $methodToCall = [];
+        foreach($configClassMethods as $method){
+            if(preg_match_all("/[A-Z]/", $method) === 2 && preg_match("/^get/", $method)){
+                $methodToCall[] = $method;
+            }
+        }
+        foreach($deviceClassMethods as $method){
+            if(preg_match_all("/[A-Z]/", $method) === 2 && preg_match("/^get/", $method)){
+                $methodToCall[] = $method;
+            }
         }
 
-        if($configData->getConfigBoard()){
-            $board = $this->itemRepo->findBy(['name' => $configData->getConfigBoard()]);
-            $command->addItem($board[0]);
+        // Call them and see if they are not null, then add the current item to the command
+        foreach($methodToCall as $method){
+            if(preg_match("/Config/", $method)){
+                if($configData->{$method}()){
+                    $item = $this->itemRepo->findBy(['name' => $configData->{$method}()]);
+                    $command->addItem($item[0]);
+                }
+            } else {
+                if($deviceData->{$method}()){
+                    $item = $this->itemRepo->findBy(['name' => $deviceData->{$method}()]);
+                    $command->addItem($item[0]);
+                }
+            }
         }
 
-        if($configData->getConfigGc()){
-            $gc = $this->itemRepo->findBy(['name' => $configData->getConfigGc()]);
-            $command->addItem($gc[0]);
+        // Check if there is a os and add it to command if needed
+        if($specData->getOschoice()){
+            $item = $this->itemRepo->findBy(['name' => $specData->getOschoice()]);
+            $command->addItem($item[0]);
         }
 
-        if($configData->getConfigRam()){
-            $ram = $this->itemRepo->findBy(['name' => $configData->getConfigRam()]);
-            $command->addItem($ram[0]);
-        }
-
-        if($configData->getConfigRefresh()){
-            $refresh = $this->itemRepo->findBy(['name' => $configData->getConfigRefresh()]);
-            $command->addItem($refresh[0]);
-        }
-
-        if($configData->getConfigStorage()){
-            $storage = $this->itemRepo->findBy(['name' => $configData->getConfigStorage()]);
-            $command->addItem($storage[0]);
-        }
-
-        if($configData->getConfigBoardsound()){
-            $boardsound = $this->itemRepo->findBy(['name' => $configData->getConfigBoardsound()]);
-            $command->addItem($boardsound[0]);
-        }
-
-        if($configData->getConfigCase()){
-            $case = $this->itemRepo->findBy(['name' => $configData->getConfigCase()]);
-            $command->addItem($case[0]);
-        }
-
-        if($configData->getConfigPower()){
-            $power = $this->itemRepo->findBy(['name' => $configData->getConfigPower()]);
-            $command->addItem($power[0]);
-        }
-
-        if($deviceData->getDeviceScreen()){
-            $screen = $this->itemRepo->findBy(['name' => $deviceData->getDeviceScreen()]);
-            $command->addItem($screen[0]);
-        }
-
-        if($deviceData->getDeviceKeyboard()){
-            $keyboard = $this->itemRepo->findBy(['name' => $deviceData->getDeviceKeyboard()]);
-            $command->addItem($keyboard[0]);
-        }
-
-        if($deviceData->getDeviceMouse()){
-            $mouse = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMouse()]);
-            $command->addItem($mouse[0]);
-        }
-
-        if($deviceData->getDeviceMousepad()){
-            $mousepad = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMousepad()]);
-            $command->addItem($mousepad[0]);
-        }
-
-        if($deviceData->getDeviceHeadphone()){
-            $headphone = $this->itemRepo->findBy(['name' => $deviceData->getDeviceHeadphone()]);
-            $command->addItem($headphone[0]);
-        }
-
-        if($deviceData->getDeviceEnceinte()){
-            $enceinte = $this->itemRepo->findBy(['name' => $deviceData->getDeviceEnceinte()]);
-            $command->addItem($enceinte[0]);
-        }
-
-        if($deviceData->getDeviceWebcam()){
-            $webcam = $this->itemRepo->findBy(['name' => $deviceData->getDeviceWebcam()]);
-            $command->addItem($webcam[0]);
-        }
-
-        if($deviceData->getDevicePrinter()){
-            $printer = $this->itemRepo->findBy(['name' => $deviceData->getDevicePrinter()]);
-            $command->addItem($printer[0]);
-        }
-
+        // persist and flush
         $this->em->persist($command);
         $this->em->flush();
     }
