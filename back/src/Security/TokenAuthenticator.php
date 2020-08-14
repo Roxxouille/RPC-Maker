@@ -39,7 +39,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
      */
     public function getCredentials(Request $request)
     {
-        dump($request->getContent());
         return $request->headers->get('X-AUTH-TOKEN');
     }
 
@@ -68,7 +67,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
     {
-        dump('success');
         // on success, let the request continue
         return null;
     }
@@ -82,7 +80,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
-        dump($data);
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
 
