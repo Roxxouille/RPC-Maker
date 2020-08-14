@@ -53,7 +53,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       );
     case 5:
       return (
-        <Step5 />
+        <Step5 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} error={devis.fail} />
       )
   }
 }
