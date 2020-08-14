@@ -31,7 +31,7 @@ const PresHome = ({ build, quote }) => (
         </Row>
         <Row className="presHome__body__content">
           Et nos chercheurs sont aussi des monteurs! Passione et qui ont l'envi de faire un travail propre, professionel et avec l'amour des choses bien faite. <br />
-          Que vous n'y connaissiez rien, que vous ne soyez pas sur ou que vous n'ayez juste pas l'envie de mettre les mains dans le camboui, faites comme toutes ces personnes avant vous,  n'hesitez plus et laissez passionne faire ce qui les passionnes !
+          Que vous n'y connaissiez rien, que vous ne soyez pas sur ou que vous n'ayez juste pas l'envie de mettre les mains dans le camboui, faites comme toutes ces personnes avant vous,  n'hesitez plus et laissez les passionne faire ce qui les passionnes !
         </Row>
       </Col>
     </Row>
