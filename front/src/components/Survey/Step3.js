@@ -16,7 +16,7 @@ export class Step3 extends Component {
 
   render() {
     const {
-      handleChange, CheckContentFalse, CheckContentTrue, CheckContent, sendData,
+      handleChange, CheckContentFalse, CheckContentTrue, CheckContent, sendData, sendDataReturn
     } = this.props;
     return (
       <div className="fullform">
@@ -47,7 +47,7 @@ export class Step3 extends Component {
               <Form.Check inline label="Multimedia" type={type} id={`inline-${type}-3`} name="Multimedia" onChange={CheckContent('utilisation')} />
               <Form.Check inline label="3D" name="3D" type={type} id={`inline-${type}-4`} onChange={CheckContent('utilisation')} />
               <Form.Check inline label="Autres" name="Autres" type={type} id={`inline-${type}-5`} onChange={CheckContent('utilisation')} />
-              <Form.Control className="Form" placeholder="Preciser" onChange={handleChange('utilisation_details')} />
+              <Form.Control className="Form" placeholder="Preciser" defaultValue={sendDataReturn().utilisation_details} onChange={handleChange('utilisation_details')} />
             </div>
           ))}
         </Form>

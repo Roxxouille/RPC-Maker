@@ -5,14 +5,47 @@
   flex-direction: row-reverse;
 }
 
+.sent{
+    width: fit-content;
+    .content{
+        margin-left: 250px;
+        max-width: 80%;
+        margin: 5px;
+        margin-right: 20px;
+        border-radius: 15px;
+        background-color: #0b81ff;
+        color: white;
+        border: solid 1px;
+        padding: 10px;
+        padding-left: 20px;
+    
+        border-color: rgb(226, 226, 226);
+        &__header{
+            font-weight: lighter;
+        }
+        &__body{
 
-
-.tchat {
-  display: flex;
-  &__client {
-    width: 25%;
-  }
-  &__messages {
-    width: 75%;
-  }
+        }
+    }
 }
+.received{
+    width: fit-content;
+    padding-left: 20px;
+    .content{
+        max-width: 80%;
+        background-color: white;
+        margin: 5px;
+        margin-left: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        border: solid 1px;
+        padding-left: 20px;
+        border-color: rgb(226, 226, 226);
+        &__header{
+            font-weight: lighter;
+        }
+        &__body{
+            
+        }
+    }
+}          

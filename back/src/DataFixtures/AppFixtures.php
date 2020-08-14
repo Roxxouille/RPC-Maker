@@ -246,7 +246,7 @@ class AppFixtures extends Fixture
             $avatar = new Avatar;
             $avatar->setCreatedAt(new \DateTime);
             $avatar->setUpdatedAt(new \DateTime);
-            $avatar->setImage('https://picsum.photos/200');
+            $avatar->setImage($faker->numberBetween(1, 16) . '.gif');
             $manager->persist($avatar);
             $avatarList[] = $avatar;
         }
@@ -266,7 +266,6 @@ class AppFixtures extends Fixture
             $user->setUsername($key);
             $user->setEmail($builder);
             $user->setPassword($this->encoder->encodePassword($user, 'builder'));
-            $user->setLevel($faker->randomDigitNotNull);
             $user->setRoles(['ROLE_BUILDER']);
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);
@@ -284,7 +283,6 @@ class AppFixtures extends Fixture
             $user->setUsername($faker->unique->randomUsername);
             $user->setEmail($faker->unique->email);
             $user->setPassword($this->encoder->encodePassword($user, 'user'));
-            $user->setLevel($faker->randomDigitNotNull);
             $user->setRoles(['ROLE_USER']);
             $user->setFirstname($faker->firstName);
             $user->setLastname($faker->lastName);

@@ -131,7 +131,7 @@ class UserController extends AbstractController
         // Set default role
         $user->setRoles(['ROLE_USER']);
 
-
+        $user->setLevel(1);
         //Create a new avatar
         //add an random image from lorempicsum
         //set it into the user object
