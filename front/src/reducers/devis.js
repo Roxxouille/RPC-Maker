@@ -138,18 +138,18 @@ export const initialState = {
     config_power: [''],
     config_power_model: [''],
     config_power_link: [''],
-    spec_sli: [''],
-    spec_overclock: [''],
-    spec_storage: [''],
-    spec_storage_quantity: [''],
-    spec_wifi: [''],
-    spec_wifi_room: [''],
-    spec_fiber: [''],
-    spec_sound: [''],
-    spec_light: [''],
-    spec_important: [''],
-    spec_sound_utilisation: [''],
-    spec_sound_utilisation_other: [''],
+    specSli: [''],
+    specOverclock: [''],
+    specStorage: [''],
+    specStorageQuantity: [''],
+    specWifi: [''],
+    specWifiRoom: [''],
+    specFiber: [''],
+    specSound: [''],
+    specLight: [''],
+    specImportant: [''],
+    specSoundUtilisation: [''],
+    specSoundUtilisationOther: [''],
     os: [''],
     os_name: [''],
     os_active: [''],
@@ -244,16 +244,22 @@ const devis = (state = initialState, action = {}) => {
         },
       };
     case CHANGE_ARRAY_DEVIS:
-      const utilisation = state.utilisation;
+      /* const utilisation = state.utilisation;
       const index = utilisation.find(action.value);
       if(index === undefined){
         utilisation.push(action.value);
       } else {
         utilisation.splice(index, 1, action.value);
-      }
+      } */ /*
+      const configComponents = state.dataSurvey.config_components;
+      const index = configComponents.find(action.name);
+      if(index === undefined){
+        configComponents.push(action.value);
+      } else {
+        configComponents.splice(index, 1, action.value);
+      } */ 
       return {
         ...state,
-        [action.name]: utilisation,
       };
     default:
       return state;
