@@ -177,7 +177,7 @@ class User implements UserInterface
      *  "avatar",
      *  "command",
      *  "user",
-     *  "level"
+     *  "login"
      * })
      */
 
