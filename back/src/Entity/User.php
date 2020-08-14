@@ -104,7 +104,8 @@ class User implements UserInterface
      * @Assert\NotBlank(
      *  message = "Ce champ ne peut pas être vide.",
      *  groups = {
-     *      "registration"
+     *      "registration",
+     *      "edit-profile"
      *      }
      * )
      * @Groups({
