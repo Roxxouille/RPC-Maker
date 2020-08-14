@@ -28,13 +28,13 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
           </div>
         ))}
       </Form>
-      <ErrorField error={error.spec_important[0]} />
-      <BinaryButtonField label="Voulez vous faire un SLI?" name="preconfiguration" value={dataSurvey.specSli} handleChange={changeDevis} />
-      <ErrorField error={error.spec_sli[0]} />
+      <ErrorField error={error.specImportant[0]} />
+      <BinaryButtonField label="Voulez vous faire un SLI?" name="preconfiguration" value={dataSurvey.spec_sli} handleChange={changeDevis} />
+      <ErrorField error={error.specSli[0]} />
       <BinaryButtonField label="Voulez vous pouvoir effectuer de l'overclocking ?" name="preconfiguration" value={dataSurvey.spec_overclock} handleChange={changeDevis} />
-      <ErrorField error={error.spec_overclock[0]} />
+      <ErrorField error={error.specOverclock[0]} />
       <Form>
-        <ErrorField error={error.spec_storage[0]} />
+        <ErrorField error={error.specStorage[0]} />
         <Form.Label>Parlons stockage voulez vous ?</Form.Label>
         {['checkbox'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
@@ -52,19 +52,19 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
             <Field name="spec_storage_quantity" value={dataSurvey.spec_storage_quantity} type="number" placeholder="- GO" handleChange={changeDevis} controlId="spec_storage_quantity" />
           </Col>
         </Form.Row>
-        <ErrorField error={error.spec_storage_quantity[0]} />
+        <ErrorField error={error.specStorageQuantity[0]} />
       </Form>
       <BinaryButtonField label="En ce qui concerne le wi-fi, voulez vous une carte ?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
-      <ErrorField error={error.spec_wifi[0]} />
+      <ErrorField error={error.specWifi[0]} />
       <BinaryButtonField label="Si oui, etes vous dans la meme piece que le router ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
-      <ErrorField error={error.spec_wifi_room[0]} />
+      <ErrorField error={error.specWifiRoom[0]} />
       <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
-      <ErrorField error={error.spec_fiber[0]} />
+      <ErrorField error={error.specFiber[0]} />
       <BinaryButtonField label="En ce qui concerne le son, voulez vous une carte ?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
-      <ErrorField error={error.spec_sound[0]} />
+      <ErrorField error={error.specSound[0]} />
       <Form>
         <Form.Label>Pour quel utilisation ?</Form.Label>
-        <ErrorField error={error.spec_sound_utilisation[0]} />
+        <ErrorField error={error.specSoundUtilisation[0]} />
         {['checkbox'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
             <Form.Check name="spec_sound_utilisation" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
