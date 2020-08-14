@@ -71,9 +71,9 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
             <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
             <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
             <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
-            <Field name="spec_sound_utilisation" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
           </div>
         ))}
+        <Field name="spec_sound_utilisation_other" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
       </Form>
 
       <Form>

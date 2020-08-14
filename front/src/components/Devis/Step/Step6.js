@@ -3,7 +3,7 @@ import { Form, Col, Button } from 'react-bootstrap';
 import './styles.scss';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
 import Field from 'src/components/Utils/Field';
-import BinaryButtonField from 'src/components/Utils/Field/BinaryButtonFiels';
+import BinaryButtonField from 'src/components/Utils/Field/BinaryButtonField';
 import ChangeStepButton from './ChangeStepButton';
 
 const Step6 = ({dataSurvey, changeDevis, error, changeStep}) => {
