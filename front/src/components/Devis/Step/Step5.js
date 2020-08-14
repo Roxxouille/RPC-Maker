@@ -22,26 +22,26 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       <Form>
         {['checkbox'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
-            <Form.Check inline name="spec_important" label="Le silence" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
-            <Form.Check inline name="spec_important" label="Un juste milieux" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
-            <Form.Check inline name="spec_important" label="Les performances" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Le silence" value={"spec_important"} type={type} id={`inline-${type}-1`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Un juste milieux" value={"spec_important"} type={type} id={`inline-${type}-2`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Les performances" value={"spec_important"} type={type} id={`inline-${type}-3`} onChange={changeDevis} />
           </div>
         ))}
       </Form>
       <ErrorField error={error.specImportant[0]} />
-      <BinaryButtonField label="Voulez vous faire un SLI?" name="preconfiguration" value={dataSurvey.spec_sli} handleChange={changeDevis} />
+      <BinaryButtonField label="Voulez vous faire un SLI?" name="spec_sli" value={dataSurvey.spec_sli} handleChange={changeDevis} />
       <ErrorField error={error.specSli[0]} />
-      <BinaryButtonField label="Voulez vous pouvoir effectuer de l'overclocking ?" name="preconfiguration" value={dataSurvey.spec_overclock} handleChange={changeDevis} />
+      <BinaryButtonField label="Voulez vous pouvoir effectuer de l'overclocking ?" name="specOverclock" value={dataSurvey.spec_overclock} handleChange={changeDevis} />
       <ErrorField error={error.specOverclock[0]} />
       <Form>
         <ErrorField error={error.specStorage[0]} />
         <Form.Label>Parlons stockage voulez vous ?</Form.Label>
         {['checkbox'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
-            <Form.Check name="spec_storage" inline label="HDD" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="SSD" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="SSHD" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="NVME" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="HDD" type={type} id={`inline-${type}-1`} value={"spec_storage"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="SSD" type={type} id={`inline-${type}-2`} value={"spec_storage"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="SSHD" type={type} id={`inline-${type}-3`} value={"spec_storage"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="NVME" type={type} id={`inline-${type}-4`} value={"spec_storage"} onChange={changeDevis} />
           </div>
         ))}
         <Form.Row>
@@ -71,7 +71,7 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
             <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
             <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
             <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
-            <Field name="spec_sound_utilisation" value={dataSurvey.spec_sound_utilisation} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation" />
+            <Field name="spec_sound_utilisation" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
           </div>
         ))}
       </Form>
