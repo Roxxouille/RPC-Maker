@@ -26,7 +26,7 @@ const Home = () => {
         setDataTestimony({ testimonies: dataTes });
       });
     }
-  });
+  }, []);
 
   return (
     <div className="container">
