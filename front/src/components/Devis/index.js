@@ -5,8 +5,8 @@ import Step1 from './Step/Step1';
 import Step3 from './Step/Step3';
 import Step4 from './Step/Step4';
 import Step2 from './Step/Step2';
-import Step5 from './Step/Step5';/*
-import Step6 from './Step/Step6';
+import Step5 from './Step/Step5';
+import Step6 from './Step/Step6';/*
 import Step7 from './Step/Step7';
 import Inscription from './inscription'; */
 import './styles.scss';
@@ -64,6 +64,10 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
     case 5:
       return (
         <Step5 changeDevis={handleChange} changeStep={changeStep} handleChangeArray={handleChangeArray} dataSurvey={devis.dataSurvey} error={devis.fail} />
+      );
+    case 6:
+      return (
+        <Step6 />
       );
   }
 };

@@ -68,15 +68,15 @@ const Step4 = ({dataSurvey, error, changeStep, forceStepUp, getItems, items, han
       <div>
         <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur votre idee.</h1>
       </div>
-      <SelectField label='Processeur' name='config_proc' options={proc} value={dataSurvey.config_proc} handleChange={handleChange} />
-      <SelectField label='Carte Mère' name='config_board' options={cm} value={dataSurvey.config_board} handleChange={handleChange} />
-      <SelectField label='Carte Graphique' name='config_gc' options={cg} value={dataSurvey.config_gc} handleChange={handleChange} />
-      <SelectField label='Ram' name='config_ram' options={ram} value={dataSurvey.config_ram} handleChange={handleChange} />
-      <SelectField label='Ventirad / Watercooling' name='config_refresh' options={watercool} value={dataSurvey.config_refresh} handleChange={handleChange} />
-      <SelectField label='Carte Son' name='config_boardsound' options={cs} value={dataSurvey.config_boardsound} handleChange={handleChange} />
-      <SelectField label='Boitier' name='config_case' options={boitier} value={dataSurvey.config_case} handleChange={handleChange} />
-      <SelectField label='Alimentation' name='config_power' options={alim} value={dataSurvey.config_power} handleChange={handleChange} />
-      <SelectField label='Stockage' name='config_storage' options={storage} value={dataSurvey.config_storage} handleChange={handleChange} />
+      <SelectField label='Processeur' name='config_proc' options={proc} value={dataSurvey.config_proc} valueModel={dataSurvey.config_proc_model} valueLink={dataSurvey.config_proc_link} errorLink={error.configProcLink[0]} handleChange={handleChange} />
+      <SelectField label='Carte Mère' name='config_board' options={cm} value={dataSurvey.config_board} valueModel={dataSurvey.config_board_model} valueLink={dataSurvey.config_board_link} errorLink={error.configBoardLink[0]} handleChange={handleChange} />
+      <SelectField label='Carte Graphique' name='config_gc' options={cg} value={dataSurvey.config_gc} valueModel={dataSurvey.config_gc_model} valueLink={dataSurvey.config_gc_link} errorLink={error.configGcLink[0]} handleChange={handleChange} />
+      <SelectField label='Ram' name='config_ram' options={ram} value={dataSurvey.config_ram} valueModel={dataSurvey.config_ram_model} valueLink={dataSurvey.config_ram_link} errorLink={error.configRamLink[0]} handleChange={handleChange} />
+      <SelectField label='Ventirad / Watercooling' name='config_refresh' options={watercool} value={dataSurvey.config_refresh} valueModel={dataSurvey.config_refresh_model} errorLink={error.configRefreshLink[0]} valueLink={dataSurvey.config_refresh_link} handleChange={handleChange} />
+      <SelectField label='Carte Son' name='config_boardsound' options={cs} value={dataSurvey.config_boardsound} valueModel={dataSurvey.config_boardsound_model} errorLink={error.configBoardsoundLink[0]} valueLink={dataSurvey.config_boardsound_link} handleChange={handleChange} />
+      <SelectField label='Boitier' name='config_case' options={boitier} value={dataSurvey.config_case} valueModel={dataSurvey.config_case_model} errorLink={error.configCaseLink[0]} valueLink={dataSurvey.config_case_link} handleChange={handleChange} />
+      <SelectField label='Alimentation' name='config_power' options={alim} value={dataSurvey.config_power} valueModel={dataSurvey.config_power_model} errorLink={error.configPowerLink[0]} valueLink={dataSurvey.config_power_link} handleChange={handleChange} />
+      <SelectField label='Stockage' name='config_storage' options={storage} value={dataSurvey.config_storage} valueModel={dataSurvey.config_storage_model} errorLink={error.configStorageLink[0]} valueLink={dataSurvey.config_storage_link}  handleChange={handleChange} />
       <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
     </div>
   );
