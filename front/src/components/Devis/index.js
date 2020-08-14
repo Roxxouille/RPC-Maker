@@ -6,13 +6,13 @@ import Step3 from './Step/Step3';
 import Step4 from './Step/Step4';
 import Step2 from './Step/Step2';
 import Step5 from './Step/Step5';
-import Step6 from './Step/Step6';/*
 import Step7 from './Step/Step7';
+import Step6 from './Step/Step6';/*
 import Inscription from './inscription'; */
 import './styles.scss';
 import axios from 'axios';
 
-const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis, getCategoriesItems, items, setDefaultItemsState }) => {
+const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis, getCategoriesItems, items }) => {
   const handleChange = (e) => {
     console.log('handlechange:', e.target.name, e.target.value);
     changeDevis(e.target.name, e.target.value);
@@ -59,7 +59,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       );
     case 4:
       return (
-        <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} setDefaultItems={setDefaultItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
+        <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
       );
     case 5:
       return (
@@ -69,6 +69,10 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       return (
         <Step6 />
       );
+    case 7: 
+    return (
+      <Step7 changeDevis={handleChange} changeStep={changeStep} getItems={getItems} getItems={getItems} dataSurvey={devis.dataSurvey} items={items} error={devis.fail} />
+    );
   }
 };
 
