@@ -20,12 +20,18 @@ const Progress = () => {
       </Row>
       <ul className="timeline">
         <li className="event" data-date="Level 1">
-          <h3>Inscription</h3>
-          <p>Bienvenue dans l'aventure et merci d'avoir rejoins notre monde!
+          <div>
+            <h3>Inscription</h3>
+            <p>Bienvenue dans l'aventure et merci d'avoir rejoins notre monde!
           <br />
           Vous et vore personnageallez vivre des aventures merveilleuses ensembles.</p>
           Quete accomplis le : date d'Inscription
           recompense +1 niveau!
+        </div>
+
+          <div>
+            Quete : inscription
+          </div>
         </li>
         <li className="event" data-date="level 2">
           <h3>Envoi du formulaire</h3>
@@ -58,7 +64,6 @@ const Progress = () => {
               Quete confirmer les composants accomplis le :
               recompense +1 niveau!
           </p>
-
           </p>
           <div>
             Quete : Satisfaction

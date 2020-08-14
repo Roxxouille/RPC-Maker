@@ -143,7 +143,8 @@ class User implements UserInterface
      * message = "Ce champ ne peut pas être vide.",
      *  groups = {
      *      "password-edit",
-     *      "registration"
+     *      "registration",
+     *      "edit-profile"
      *      },
      * )
      * @Groups({
