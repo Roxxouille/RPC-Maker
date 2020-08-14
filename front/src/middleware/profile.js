@@ -11,7 +11,7 @@ export default (store) => (next) => (action) => {
       const slug = localStorage.getItem('slug');
       const state = store.getState();
       const zipCode = parseInt(state.profile.zipCode);
-      axios.put(`http://localhost:3000/user/${slug}`, { ...state.profile, zipCode }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.put(`http://localhost:3000/user/${slug}`, { ...state.profile.infos, zipCode }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response.data);
           store.dispatch(changeProfile(response.data.status));
