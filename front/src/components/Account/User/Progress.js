@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import { FaTrophy, FaExclamation } from 'react-icons/fa';
 
-const Progress = () => {
+const Progress = ({ level }) => {
   return (
     <div id="timeline-content">
       <Row className="pc__title">
@@ -22,10 +22,10 @@ const Progress = () => {
       <ul className="timeline">
 
         {/* si le level est strictement superieur au status de l'utilisateur, remplacer event par event-notdone */}
-        <li className="event" data-date="Level 1">
+        <li className={level < 1 ? 'event-notdone' : 'event'} data-date="Level 1">
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="done">
+          <div className={level < 1 ? 'done d-none' : 'done'}>
             <h3>Inscription</h3>
             <p>
               Bienvenue dans l'aventure et merci d'avoir rejoins notre monde!
@@ -43,7 +43,7 @@ const Progress = () => {
           </div>
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="notdone d-none">
+          <div className={level >= 1 ? 'done d-none' : 'done'}>
             <h3>Inscription</h3>
             <FaExclamation /> Quete : inscription
           </div>
@@ -51,10 +51,10 @@ const Progress = () => {
         </li>
 
         {/* si le level est strictement superieur au status de l'utilisateur, remplacer event par event-notdone */}
-        <li className="event" data-date="Level 2">
+        <li className={level < 2 ? 'event-notdone' : 'event'} data-date="Level 2">
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="done">
+          <div className={level < 2 ? 'done d-none' : 'done'}>
             <h3>Envoi du formulaire</h3>
             <p>La premiere etape de la creation de votre personnage fut un succes!
           <br />
@@ -69,7 +69,7 @@ const Progress = () => {
           </div>
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="notdone d-none">
+          <div className={level >= 2 ? 'done d-none' : 'done'}>
             <h3>Envoi du formulaire</h3>
             <FaExclamation /> Quete : inscription
           </div>
@@ -77,10 +77,10 @@ const Progress = () => {
         </li>
 
         {/* si le level est strictement superieur au status de l'utilisateur, remplacer event par event-notdone */}
-        <li className="event-notdone" data-date="Level 3">
+        <li className={level < 3 ? 'event-notdone' : 'event'} data-date="Level 3">
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="done d-none">
+          <div className={level < 3 ? 'done d-none' : 'done'}>
             <h3>Presentation faite</h3>
             <p>Apres moulte ou non moulte discussion avec votre guide vous etes finalement arriver a un accord!</p>
             <FaExclamation /> Quete accomplis: <br />
@@ -93,7 +93,7 @@ const Progress = () => {
           </div>
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="notdone">
+          <div className={level >= 3 ? 'done d-none' : 'done'}>
             <h3>Presentation faite</h3>
             <FaExclamation /> Quete : Envoi du formulaire
           </div>
@@ -102,10 +102,10 @@ const Progress = () => {
 
 
         {/* si le level est strictement superieur au status de l'utilisateur, remplacer event par event-notdone */}
-        <li className="event-notdone" data-date="Level 4">
+        <li className={level < 4 ? 'event-notdone' : 'event'} data-date="Level 4">
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="done d-none">
+          <div className={level < 4 ? 'done d-none' : 'done'}>
             <h3>Paiement effectue</h3>
             <p>Bientot votre personnge et vous pourront parcourir le monde ensemble, ayez foi en votre guide qui a trover pour vous les meilleurs artisans!</p>
             <FaExclamation /> Quete accomplis: <br />
@@ -118,7 +118,7 @@ const Progress = () => {
           </div>
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
-          <div className="notdone">
+          <div className={level >= 4 ? 'done d-none' : 'done'}>
             <h3>Paiement effectue</h3>
             <FaExclamation /> Quete : presentation faite
           </div>

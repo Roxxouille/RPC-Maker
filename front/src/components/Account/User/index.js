@@ -77,7 +77,7 @@ const User = ({
             <div className="user__body container">
               <Switch>
                 <Route exact path="/user">
-                  <Progress />
+                  <Progress level={level} />
                 </Route>
                 <Route path="/user/pc">
                   <Pc />

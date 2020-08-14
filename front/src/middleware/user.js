@@ -25,7 +25,7 @@ export default (store) => (next) => (action) => {
           console.log('login', response);
           localStorage.setItem('slug', response.data.slug);
           localStorage.setItem('token', response.data.apiToken);
-          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id));
+          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id, response.data.level));
         })
         .catch((error) => {
           console.log(error.repsonse);
@@ -43,7 +43,7 @@ export default (store) => (next) => (action) => {
           const idBuilder = response.data.builder === null ? 0 : response.data.builder.id;
           console.log(idBuilder);
           const commands = response.data.commands;
-          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id));
+          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id, response.data.level));
         })
         .catch((error) => {
           console.log('autolog error:', error.response);

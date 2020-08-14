@@ -13,6 +13,7 @@ export const initialState = {
   builderId: 0,
   messages: [],
   newMessage: '',
+  level: 0,
 };
 
 const user = (state = initialState, action = {}) => {
@@ -38,6 +39,7 @@ const user = (state = initialState, action = {}) => {
         commands: action.commands,
         builderId: action.builderId,
         id: action.id,
+        level: action.level,
       };
     case LOGIN:
       return {

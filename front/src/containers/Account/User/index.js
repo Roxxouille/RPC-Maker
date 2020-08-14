@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   role: state.user.role,
   commands: state.user.commands,
   builderId: state.user.builderId,
+  level: state.user.level,
 });
 
 const mapDispatchToProps = (dispatch) => ({
