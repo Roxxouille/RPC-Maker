@@ -7,18 +7,15 @@ import Step4 from './Step/Step4';
 import Step2 from './Step/Step2';
 import Step5 from './Step/Step5';
 import Step7 from './Step/Step7';
-import Step6 from './Step/Step6';/*
-import Inscription from './inscription'; */
-import './styles.scss';
-import axios from 'axios';
+import Step6 from './Step/Step6';
+import Subscription from './Step/Subscription';
 
-const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis, getCategoriesItems, items }) => {
+import './styles.scss';
+
+const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArrayDevis, getCategoriesItems, items, submitSurvey }) => {
   const handleChange = (e) => {
-    console.log('handlechange:', e.target.name, e.target.value);
     changeDevis(e.target.name, e.target.value);
   };
-
-  console.log(items);
 
   const getItems = () => {
     getCategoriesItems();
@@ -26,7 +23,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
 
   const changeStep = (actionStep) => {
     const newStep = actionStep === 'next' ? devis.dataSurvey.step + 1 : devis.dataSurvey.step - 1;
-    changeStepState(newStep);
+    newStep === 9 ? submitSurvey() : changeStepState(newStep);
   };
 
   const handleChangeArray = (e) => {
@@ -37,12 +34,6 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
     const newStep = devis.dataSurvey.step + 1;
     forceChangeStep(newStep);
   };
-
-  const setDefaultItems = () => {
-    setDefaultItemsState();
-  };
-
-  console.log(devis);
 
   switch (devis.dataSurvey.step) {
     case 1:
@@ -70,9 +61,13 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
         <Step6 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} items={items} />
       );
     case 7: 
-    return (
-      <Step7 changeDevis={handleChange} changeStep={changeStep} getItems={getItems} getItems={getItems} dataSurvey={devis.dataSurvey} items={items} error={devis.fail} />
-    );
+      return (
+        <Step7 changeDevis={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} items={items} error={devis.fail} />
+      );
+    case 8:
+      return (
+        <Subscription changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} />
+      );
   }
 };
 

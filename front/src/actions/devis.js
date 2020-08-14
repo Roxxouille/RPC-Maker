@@ -3,6 +3,11 @@ export const CHANGE_STEP_STATE = 'CHANGE_STEP_STATE';
 export const SUBMIT_STEP = 'SUBMIT_STEP';
 export const SET_ERROR_STEP = 'SET_ERROR_STEP';
 export const CHANGE_ARRAY_DEVIS = 'CHANGE_ARRAY_DEVIS';
+export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
+
+export const submitSurvey = () => ({
+  type: SUBMIT_SURVEY,
+});
 
 export const changeArrayDevis = (name, value) => ({
   type: CHANGE_ARRAY_DEVIS,

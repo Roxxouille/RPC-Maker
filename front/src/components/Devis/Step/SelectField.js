@@ -16,7 +16,7 @@ const SelectField = ({label, name, handleChange, options, value, valueModel, val
       <Form.Label>{label}</Form.Label>
 
       <Form.Control value={value} as="select" name={nameConfig} onChange={handleChange}>
-        <option value=''>Non merci</option>
+        <option value=''>Non</option>
         <option value="noidea">Je ne sais pas</option>
         <option value="autre">Autre</option>
         {dataOptions}

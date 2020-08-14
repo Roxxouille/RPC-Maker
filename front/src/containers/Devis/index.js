@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Devis from 'src/components/Devis';
-import { changeDevis, changeStepState, submitStep, changeArrayDevis } from 'src/actions/devis';
+import { changeDevis, changeStepState, submitStep, changeArrayDevis, submitSurvey } from 'src/actions/devis';
 import { getItems } from 'src/actions/backoffice';
 
 
@@ -25,6 +25,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   getCategoriesItems: () => {
     dispatch(getItems());
+  },
+  submitSurvey: () => {
+    dispatch(submitSurvey());
   },
 });
 

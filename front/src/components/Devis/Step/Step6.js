@@ -7,7 +7,7 @@ import BinaryButtonField from 'src/components/Utils/Field/BinaryButtonField';
 import ChangeStepButton from './ChangeStepButton';
 import SelectField from './SelectField';
 
-const Step6 = ({handleChange, dataSurvey, changeDevis, error, changeStep, items}) => {
+const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items}) => {
   let listos = [];
 
   items.map((item) => {
@@ -24,14 +24,19 @@ const Step6 = ({handleChange, dataSurvey, changeDevis, error, changeStep, items}
         </div>
         <BinaryButtonField label="Voulez vous qu’on vous install un systeme d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
         <ErrorField error={error.os[0]} />
-        <SelectField label='OS' name='os_choice' options={listos} value={dataSurvey.os_choice} handleChange={handleChange} />
-        <ErrorField error={error.oschoice[0]} />
 
-        <Field name="os_name" type="text" value={dataSurvey.os_name} label="Une autre idée ?" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." handleChange={changeDevis} controlId="os_name" />
-        <ErrorField error={error.osName[0]} />
+        { os && (
+          <>
+            <SelectField label='OS' name='os_choice' options={listos} value={dataSurvey.os_choice} handleChange={changeDevis} />
+            <ErrorField error={error.oschoice[0]} />
 
-        <BinaryButtonField label="Voulez vous qu’on vous l'active ?" name="os_active" value={dataSurvey.os_active} handleChange={changeDevis} />
-        <ErrorField error={error.osActive[0]} />
+            <Field name="os_name" type="text" value={dataSurvey.os_name} label="Une autre idée ?" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." handleChange={changeDevis} controlId="os_name" />
+            <ErrorField error={error.osName[0]} />
+
+            <BinaryButtonField label="Voulez vous qu’on vous l'active ?" name="os_active" value={dataSurvey.os_active} handleChange={changeDevis} />
+            <ErrorField error={error.osActive[0]} />
+          </>
+        ) }
 
         <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
       </div>

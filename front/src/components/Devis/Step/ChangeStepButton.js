@@ -17,6 +17,11 @@ const ChangeStepButton = ({ step, changeStep }) => {
           <Button className="Form__button" value="next" variant="primary" onClick={handleClick}> Suivant </Button>
         </Col>
       )}
+      {step === 8 && (
+        <Col>
+          <Button className="Form__button" value="next" variant="primary" onClick={handleClick}> Envoyer le devis </Button>
+        </Col>
+      )}
     </Form.Row>
   );
 };
