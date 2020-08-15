@@ -344,8 +344,11 @@ $font-text: 'Chivo', sans-serif;
     margin-bottom: 15px;  
     position: relative;
 
-    .notdone{
+    .done{
       h3{
+        color: lightgrey;
+      }
+      p{
         color: lightgrey;
       }
     }

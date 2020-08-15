@@ -45,7 +45,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 1 ? 'done d-none' : 'done'}>
             <h3>Inscription</h3>
-            <FaExclamation /> Quete : inscription
+            <FaExclamation /> <p>Quete : inscription</p>
           </div>
 
         </li>
@@ -59,7 +59,7 @@ const Progress = ({ level }) => {
             <p>La premiere etape de la creation de votre personnage fut un succes!
           <br />
           Vous n'avez plus qu'a attendrela reponse de votre guide qui vous aidera tout au long de votre aventure!</p>
-            <FaExclamation /> Quete accomplis: <br />
+             Qu<FaExclamation /> ete accomplis: <br />
             <h6>Inscritpion</h6>
             <br />
             <FaTrophy />  +1 niveau!
@@ -71,7 +71,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 2 ? 'done d-none' : 'done'}>
             <h3>Envoi du formulaire</h3>
-            <FaExclamation /> Quete : inscription
+            <p><FaExclamation /> Quete : inscription</p>
           </div>
 
         </li>
@@ -95,7 +95,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 3 ? 'done d-none' : 'done'}>
             <h3>Presentation faite</h3>
-            <FaExclamation /> Quete : Envoi du formulaire
+            <p><FaExclamation /> Quete : Envoi du formulaire</p>
           </div>
 
         </li>
@@ -120,7 +120,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 4 ? 'done d-none' : 'done'}>
             <h3>Paiement effectue</h3>
-            <FaExclamation /> Quete : presentation faite
+            <p><FaExclamation /> Quete : presentation faite</p>
           </div>
 
         </li>
