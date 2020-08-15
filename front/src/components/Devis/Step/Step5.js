@@ -82,10 +82,14 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       </h1>
         <BinaryButtonField label="Voulez vous avoir le wifi?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
         <ErrorField error={error.specWifi[0]} />
-        <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
-        <ErrorField error={error.specWifiRoom[0]} />
-        <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
-        <ErrorField error={error.specFiber[0]} />
+        { dataSurvey.spec_wifi && (
+          <>
+            <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
+            <ErrorField error={error.specWifiRoom[0]} />
+            <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
+            <ErrorField error={error.specFiber[0]} />
+          </>
+        ) }
       </div>
 
       <div>
