@@ -23,6 +23,7 @@ export default (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           const idBuilder = response.data.builder.id;
+          localStorage.setItem('slug', response.data.slug);
           store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname));
           store.dispatch(changeStepState(9));
         })
