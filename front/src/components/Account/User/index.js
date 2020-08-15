@@ -61,13 +61,15 @@ const User = ({
               <Image className="user__nav__avatar" src="https://picsum.photos/240" rounded />
               <div className="user__nav__content">
                 <div className="user__nav__content__infos">
+                  <a> {firstname} {lastname}</a>
                   <Link to="/user">{username}</Link>
-                  <ul>
-                    <li>level {level}</li>
-                    <li>{email}</li>
-                    <li>{firstname}</li>
-                    <li>{lastname}</li>
-                  </ul>
+                  <a>level {level}</a>
+                  <a>{email}</a>
+                </div>
+                <div className="user__nav__content__profilelinks">
+                  <Link to="/user/commands" className="user__nav__content__profilelinks__icon"><FaScroll fontSize="40" /></Link>
+                  <Link to="/user/message" className="user__nav__content__profilelinks__icon"><FaEnvelope fontSize="40" /></Link>
+                  <Link to="/user/pc" className="user__nav__content__profilelinks__icon"><FaRobot fontSize="40" /></Link>
                 </div>
                 <div className="user__nav__content__links">
                   <Link to="/user/edit-info">Editer mes infos</Link>
