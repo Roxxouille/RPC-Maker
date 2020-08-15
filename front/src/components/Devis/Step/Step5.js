@@ -20,11 +20,11 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         <h2>Quel est le plus important pour vous ?</h2>
       </div>
       <Form>
-        {['checkbox'].map((type) => (
+        {['radio'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
-            <Form.Check inline name="spec_important" label="Le silence" value={"spec_important"} type={type} id={`inline-${type}-1`} onChange={changeDevis} />
-            <Form.Check inline name="spec_important" label="Un juste milieux" value={"spec_important"} type={type} id={`inline-${type}-2`} onChange={changeDevis} />
-            <Form.Check inline name="spec_important" label="Les performances" value={"spec_important"} type={type} id={`inline-${type}-3`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Le silence" value={"Le silence"} type={type} id={`inline-${type}-1`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Un juste milieux" value={"Un juste milieux"} type={type} id={`inline-${type}-2`} onChange={changeDevis} />
+            <Form.Check inline name="spec_important" label="Les performances" value={"Les performances"} type={type} id={`inline-${type}-3`} onChange={changeDevis} />
           </div>
         ))}
       </Form>
@@ -35,13 +35,13 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       <ErrorField error={error.specOverclock[0]} />
       <Form>
         <ErrorField error={error.specStorage[0]} />
-        <Form.Label>Parlons stockage voulez vous ?</Form.Label>
-        {['checkbox'].map((type) => (
+        <Form.Label>Parlons stockage que voulez vous ?</Form.Label>
+        {['radio'].map((type) => (
           <div key={`inline-${type}`} className="mb-3">
-            <Form.Check name="spec_storage" inline label="HDD" type={type} id={`inline-${type}-1`} value={"spec_storage"} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="SSD" type={type} id={`inline-${type}-2`} value={"spec_storage"} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="SSHD" type={type} id={`inline-${type}-3`} value={"spec_storage"} onChange={changeDevis} />
-            <Form.Check name="spec_storage" inline label="NVME" type={type} id={`inline-${type}-4`} value={"spec_storage"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="HDD" type={type} id={`inline-${type}-1`} value={"HDD"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="SSD" type={type} id={`inline-${type}-2`} value={"SSD"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="SSHD" type={type} id={`inline-${type}-3`} value={"SSHD"} onChange={changeDevis} />
+            <Form.Check name="spec_storage" inline label="NVME" type={type} id={`inline-${type}-4`} value={"NVME"} onChange={changeDevis} />
           </div>
         ))}
 
@@ -73,9 +73,7 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
 
       ) }
       <Field label="Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)" name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
-
       <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
-
     </div>
   );
 };
