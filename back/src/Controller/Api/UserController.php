@@ -66,9 +66,9 @@ class UserController extends AbstractController
         $content = $request->getContent();
         $updatedUser = $serializer->deserialize($content, User::class, 'json', ['object_to_populate' => $user]);
         $errors = $validator->validate($updatedUser, null, ['edit-profile']);
-        
+
         // if there is errors, return them in a json format
-    
+
         if (count($errors) > 0) {
 
             $errorsArray = [];
@@ -265,103 +265,102 @@ class UserController extends AbstractController
         // get the content of the request and transform it into a array
         $content = $request->getContent();
         $contentDecode = (array) json_decode($content);
-        dump($contentDecode);
         // do the validation for the first step of the quote form
-        if($contentDecode['step'] == "1"){
+        if ($contentDecode['step'] == "1") {
             $user = $serializer->deserialize($content, User::class, 'json');
             $errors = $validator->validate($user, null, ['validation_one']);
         }
 
         // do the validation for the second step of the quote form
-        if($contentDecode['step'] == "2"){
+        if ($contentDecode['step'] == "2") {
             $commandData = $serializer->deserialize($content, CommandData::class, 'json');
             $errorsCommandData = $validator->validate($commandData, null, ['validation_two']);
             $errors = [];
-            foreach($errorsCommandData as $error){
+            foreach ($errorsCommandData as $error) {
                 $errors[] = $error;
             }
-            if($commandData->getBudget()){
+            if ($commandData->getBudget()) {
                 $errorsCommandData = $validator->validate($commandData, null, ['validation_two_bis']);
-                foreach($errorsCommandData as $error){
+                foreach ($errorsCommandData as $error) {
                     $errors[] = $error;
                 }
             }
         }
 
         // do the validation for the third step of the quote form
-        if($contentDecode['step'] == "3"){
+        if ($contentDecode['step'] == "3") {
             $commandData = $serializer->deserialize($content, CommandData::class, 'json');
             $errorsCommandData = $validator->validate($commandData, null, ['validation_three']);
             $errors = [];
-            foreach($errorsCommandData as $error){
+            foreach ($errorsCommandData as $error) {
                 $errors[] = $error;
             }
-            if($commandData->getUtilisation() == "Autres"){
+            if ($commandData->getUtilisation() == "Autres") {
                 $errorsCommandData = $validator->validate($commandData, null, ['validation_three_utilisation']);
                 $errors = [];
-                foreach($errorsCommandData as $error){
+                foreach ($errorsCommandData as $error) {
                     $errors[] = $error;
                 }
             }
             $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
             $errorsCommandConfigData = $validator->validate($commandConfigData, null, ['validation_three_bis']);
-            foreach($errorsCommandConfigData as $error){
+            foreach ($errorsCommandConfigData as $error) {
                 $errors[] = $error;
             }
         }
 
         // do the validation for the fourth step of the quote form
-        if($contentDecode['step'] == "4"){
+        if ($contentDecode['step'] == "4") {
             $commandConfigData = $serializer->deserialize($content, CommandConfigData::class, 'json');
             $errors = $validator->validate($commandConfigData, null, ['validation_four']);
         }
 
         // do the validation for the fifth step of the quote form
-        if($contentDecode['step'] == "5"){
+        if ($contentDecode['step'] == "5") {
             $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
             $errorsValidationFive = $validator->validate($commandSpecData, null, ['validation_five']);
             $errors = [];
-            foreach($errorsValidationFive as $error){
+            foreach ($errorsValidationFive as $error) {
                 $errors[] = $error;
             }
-            if($commandSpecData->getSpecWifi()){
+            if ($commandSpecData->getSpecWifi()) {
                 $errorsValidationFiveWifiTrue = $validator->validate($commandSpecData, null, ['validation_five_wifi_true']);
-                foreach($errorsValidationFiveWifiTrue as $error){
+                foreach ($errorsValidationFiveWifiTrue as $error) {
                     $errors[] = $error;
                 }
             }
-            if($commandSpecData->getSpecSound()){
+            if ($commandSpecData->getSpecSound()) {
                 $errorsValidationFiveSoundTrue = $validator->validate($commandSpecData, null, ['validation_five_sound_true']);
-                foreach($errorsValidationFiveSoundTrue as $error){
+                foreach ($errorsValidationFiveSoundTrue as $error) {
                     $errors[] = $error;
                 }
             }
-            if($commandSpecData->getSpecSoundUtilisation() == "Autres"){
+            if ($commandSpecData->getSpecSoundUtilisation() == "Autres") {
                 $errorsValidationFiveSoundOther = $validator->validate($commandSpecData, null, ['validation_five_sound_other']);
-                foreach($errorsValidationFiveSoundOther as $error){
+                foreach ($errorsValidationFiveSoundOther as $error) {
                     $errors[] = $error;
                 }
             }
         }
 
         // do the validation for the sixth step of the quote form
-        if($contentDecode['step'] == "6"){
+        if ($contentDecode['step'] == "6") {
             $commandSpecData = $serializer->deserialize($content, CommandSpecData::class, 'json');
             $errors = [];
             $errorsValidationSix = $validator->validate($commandSpecData, null, ['validation_six']);
-            foreach($errorsValidationSix as $error){
+            foreach ($errorsValidationSix as $error) {
                 $errors[] = $error;
             }
-            if($commandSpecData->getOs()){
+            if ($commandSpecData->getOs()) {
                 $errorValidationSixOsTrue = $validator->validate($commandSpecData, null, ['validation_six_os_true']);
-                foreach($errorValidationSixOsTrue as $error){
+                foreach ($errorValidationSixOsTrue as $error) {
                     $errors[] = $error;
                 }
             }
         }
 
         // do the validation for the Seventh step of the quote form
-        if($contentDecode['step'] == "7"){
+        if ($contentDecode['step'] == "7") {
             $commandDeviceData = $serializer->deserialize($content, CommandDeviceData::class, 'json');
             $errors = $validator->validate($commandDeviceData, null, ['validation_seven']);
         }
