@@ -1,4 +1,4 @@
-import { CHANGE_ARRAY_DEVIS, CHANGE_DEVIS, CHANGE_STEP_STATE, SET_ERROR_STEP } from '../actions/devis';
+import { CHANGE_ARRAY_DEVIS, CHANGE_DEVIS, CHANGE_STEP_STATE, SET_ERROR_STEP, RESET_ERRORS } from '../actions/devis';
 
 export const initialState = {
   dataSurvey: {
@@ -262,6 +262,13 @@ const devis = (state = initialState, action = {}) => {
       } */ 
       return {
         ...state,
+      };
+    case RESET_ERRORS:
+      return {
+        ...state,
+        fail: {
+          ...initialState.fail,
+        },
       };
     default:
       return state;
