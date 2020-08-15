@@ -7,7 +7,7 @@ import BinaryButtonField from 'src/components/Utils/Field/BinaryButtonField';
 import ChangeStepButton from './ChangeStepButton';
 import SelectField from './SelectField';
 
-const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items}) => {
+const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items }) => {
   let listos = [];
 
   items.map((item) => {
@@ -16,16 +16,23 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items}) => {
     }
   });
   return (
-    <div>
+    <div className="fullform container">
       <div>
-        <h2>Question Systeme</h2>
         <div>
-          <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur vos envis.</h1>
+          <h2>D'ou vient votre personnage?</h2>
+        </div>
+        <div>
+          <h1>
+            Des contrees lointaine du desert ou de la montagne impetueuse du nord, votre personnage a une histoire, des racines!
+          <br />
+            <br />
+          Vous pouvez la definir vous meme ou votre guide peut le faire pour vous! a vous de choisir =)
+        </h1>
         </div>
         <BinaryButtonField label="Voulez vous qu’on vous install un systeme d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
         <ErrorField error={error.os[0]} />
 
-        { dataSurvey.os && (
+        {dataSurvey.os && (
           <>
             <SelectField label='OS' name='os_choice' options={listos} value={dataSurvey.os_choice} handleChange={changeDevis} />
             <ErrorField error={error.oschoice[0]} />
@@ -36,7 +43,7 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items}) => {
             <BinaryButtonField label="Voulez vous qu’on vous l'active ?" name="os_active" value={dataSurvey.os_active} handleChange={changeDevis} />
             <ErrorField error={error.osActive[0]} />
           </>
-        ) }
+        )}
 
         <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
       </div>

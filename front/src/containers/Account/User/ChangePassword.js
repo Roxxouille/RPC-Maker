@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
-import Edit from 'src/components/Account/User/Edit';
 import ChangePassword from 'src/components/Account/User/ChangePassword';
-import { changeProfile, submitProfile, getData } from 'src/actions/profile';
+import { changeProfile, submitPassword } from 'src/actions/profile';
 
 const mapStateToProps = (state) => ({
   profile: state.profile,
@@ -11,12 +10,9 @@ const mapDispatchToProps = (dispatch) => ({
   changeProfile: (name, value) => {
     dispatch(changeProfile(name, value));
   },
-  submitProfile: () => {
-    dispatch(submitProfile());
-  },
-  getData: () => {
-    dispatch(getData());
+  submitPassword: () => {
+    dispatch(submitPassword());
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Edit);
+export default connect(mapStateToProps, mapDispatchToProps)(ChangePassword);
