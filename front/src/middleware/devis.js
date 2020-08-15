@@ -24,6 +24,7 @@ export default (store) => (next) => (action) => {
           console.log(response);
           const idBuilder = response.data.builder.id;
           store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname));
+          store.dispatch(changeStepState(9));
         })
         .catch((error) => {
           console.log(error.response);

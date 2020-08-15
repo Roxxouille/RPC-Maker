@@ -1,6 +1,7 @@
 /* eslint-disable default-case */
 /* eslint-disable react/jsx-indent */
-import React, { Component } from 'react';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import Step1 from './Step/Step1';
 import Step3 from './Step/Step3';
 import Step4 from './Step/Step4';
@@ -91,6 +92,12 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
         <div>
           <Timeline step={devis.dataSurvey.step} />
           <Subscription changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        </div>
+      );
+    case 9:
+      return (
+        <div>
+          <Redirect to="/user" />
         </div>
       );
   }
