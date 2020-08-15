@@ -7,13 +7,13 @@ import Field from 'src/components/Utils/Field';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
 import ChangeStepButton from 'src/components/Devis/Step/ChangeStepButton';
 
-const Subscription = ({ dataSurvey, changeStep, error, changeDevis}) => {
+const Subscription = ({ dataSurvey, changeStep, error, changeDevis }) => {
   return (
-    <div className="fullform">
+    <div className="fullform container">
       <div>
         <h2>Entre vous et votre pc il ne reste qu’un pas!</h2>
-        <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’etait long mais avec ca rien ne sera laisser au hasard et vous aurez un environnement numerique qui vous correspond =)</h1>
-        <h1>Il ne vous reste plus qu’a vous inscrire et le  monteur vous contactera au plus vite pourfinaliser votre commande, et en plus un avatar personnaliser vous sera attribue, elle est pas belle la vie?</h1>
+        <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’etait long mais avec ca rien ne sera laisser au hasard et vous aurez un environnement numerique qui correspond a votre personnage ! =)</h1>
+        <h1>Il ne vous reste plus qu’a vous inscrire et votre guide vous contactera au plus vite pour finaliser votre commande, et en plus un avatar personnaliser vous sera attribue, elle est pas belle la vie?</h1>
       </div>
       <Form className="Form">
         <Field name="lastname" type="text" label="Nom" value={dataSurvey.lastname} placeholder="Entrez votre nom" handleChange={changeDevis} controlId="lastname" />

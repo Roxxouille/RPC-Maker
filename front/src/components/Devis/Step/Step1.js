@@ -13,12 +13,12 @@ const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
           <h2>Bienvenue voyageur !</h2>
         </div>
         <div className="fullform__header__content">
-          <h6>Vous voila rendu au tout debut de votre aventure avec nous !
+          <h1>Vous voila rendu au tout debut de votre aventure avec nous !
           <br /> <br />
            Ce guide vous servira a nous donner toutes les informations necessaires pour que nous puissions trouver ce qui vous correspond le plus donc n'hesitez pas a aller dans le detail.
            <br /> <br />
            Nos equipes pourront apres composer avec vos indications, ne vous inquietez pas, ils savent ce qu'ils font ;)
-            </h6>
+            </h1>
         </div>
       </div>
       <div className="fullform__body">
@@ -27,16 +27,17 @@ const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
           <ErrorField error={error.username[0]} />
         </div>
 
+        <hr />
 
         <div className="fullform__body__content">
-          <h6>Il est maintenant temps de rentrer dans le vif du sujet, votre personnage!
+          <h1>Il est maintenant temps de rentrer dans le vif du sujet, votre personnage!
           <br />
             <br />
           Est par personnage, nous entendons ordinateur sauf que chez nous votre ordinateur aura une identite propre.
           <br />
 
            un personnage avec qui vous allez vivre plein d'aventure, pour le meilleur et pour le pire !
-           </h6>
+           </h1>
         </div>
         {/* <Field name="" type="name" value="" label="Quoi de mieux pour creer un personnage que de lui donner un nom?" placeholder="Nom de personnage" handleChange={changeDevis} controlId="username" />
         <ErrorField error={error.username[0]} /> */}

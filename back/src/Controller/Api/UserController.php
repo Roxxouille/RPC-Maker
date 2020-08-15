@@ -173,8 +173,8 @@ class UserController extends AbstractController
         $email = (new Email())
             ->from('alienmail@example.com')
             ->to($user->getEmail())
-            ->subject('Welcome adventurer!')
-            ->text("Nice to meet you {$user->getFirstName()}! ❤️");
+            ->subject('Bienvenue aventurier !')
+            ->text("Heureux de te rentrer {$user->getUsername()}, un guide va bientôt prendre contact avec toi ! ❤️");
 
         $mailer->send($email);
 

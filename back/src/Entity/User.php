@@ -161,7 +161,7 @@ class User implements UserInterface
      *  type="integer"
      * )
      * @Assert\Regex(
-     *  "/^\d+/", message = "Entrez un nombre valid",
+     *  "/^\d+/", message = "Entrez un nombre valide",
      *  groups = {
      *      "registration",
      *      "edit-profile"
