@@ -24,6 +24,9 @@ const Step3 = ({ changeDevis, dataSurvey, changeStep, error }) => {
       <BinaryButtonField label="J'ai deja des idees d'equipements !" name="preconfiguration" value={dataSurvey.preconfiguration} handleChange={changeDevis} />
       <ErrorField error={error.preconfiguration[0]} />
       <div>
+
+        <hr />
+
         <h1>Il est temps pour votre guide d'en connaitre un peu plus sur les aventures que va vivre votre personnage.
         <br />
           <br />
