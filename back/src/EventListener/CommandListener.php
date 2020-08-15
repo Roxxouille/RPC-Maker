@@ -89,12 +89,12 @@ class CommandListener
         // Call them and see if they are not null, then add the current item to the command
         foreach($methodToCall as $method){
             if(preg_match("/Config/", $method)){
-                if($configData->{$method}()){
+                if($configData->{$method}() &&  $configData->{$method}() != "noidea"){
                     $item = $this->itemRepo->findBy(['name' => $configData->{$method}()]);
                     $command->addItem($item[0]);
                 }
             } else {
-                if($deviceData->{$method}()){
+                if($deviceData->{$method}() && $deviceData->{$method}() != "noidea"){
                     $item = $this->itemRepo->findBy(['name' => $deviceData->{$method}()]);
                     $command->addItem($item[0]);
                 }
@@ -120,7 +120,7 @@ class CommandListener
         $specData = $data->getCommandSpecData();
         $deviceData = $data->getCommandDeviceData();
 
-        $messageContent = 'Salut ! Je suis ' . $user->getUsername() . ". " . "\n";
+        $messageContent = 'Salut ! Je suis ' . $user->getUsername() . ". ";
 
         if($data->getBudget()){
             $messageContent .= "J'ai un budget de " . $data->getAmount() . " et une marge de " . $data->getGap() . ". ";
@@ -142,7 +142,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigProc())){
+                if(!empty($configData->getConfigProc()) && $configData->getConfigProc() != "noidea"){
                     $proc = $this->itemRepo->findBy(['name' => $configData->getConfigProc()]);
                     $messageContent .= "ce prossesseur : " . $proc[0]->getName() . ", le lien : " . $proc[0]->getUrl();
                 }
@@ -155,7 +155,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigBoard())){
+                if(!empty($configData->getConfigBoard())&& $configData->getConfigBoard() != "noidea"){
                     $board = $this->itemRepo->findBy(['name' => $configData->getConfigBoard()]);
                     $messageContent .= " cette carte mère  : " . $board[0]->getName() . ", le lien : " . $board[0]->getUrl();
                 }
@@ -168,7 +168,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigGc())){
+                if(!empty($configData->getConfigGc()) && $configData->getConfigGc() != "noidea"){
                     $gc = $this->itemRepo->findBy(['name' => $configData->getConfigGc()]);
                     $messageContent .= " cette carte graphique : " . $gc[0]->getName() . ", le lien : " . $gc[0]->getUrl();
                 }
@@ -181,7 +181,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigRam())){
+                if(!empty($configData->getConfigRam()) && $configData->getConfigRam() != "noidea"){
                     $ram = $this->itemRepo->findBy(['name' => $configData->getConfigRam()]);
                     $messageContent .= " cette ram  : " . $ram[0]->getName() . ", le lien : " . $ram[0]->getUrl();
                 }
@@ -194,7 +194,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigRefresh())){
+                if(!empty($configData->getConfigRefresh()) && $configData->getConfigRefresh() != "noidea"){
                     $refresh = $this->itemRepo->findBy(['name' => $configData->getConfigRefresh()]);
                     $messageContent .= " ce ventilateur : " . $refresh[0]->getName() . ", le lien : " . $refresh[0]->getUrl();
                 }
@@ -207,7 +207,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigStorage())){
+                if(!empty($configData->getConfigStorage()) && $configData->getConfigStorage() != "noidea"){
                     $storage = $this->itemRepo->findBy(['name' => $configData->getConfigStorage()]);
                     $messageContent .= " ce stockage : " . $storage[0]->getName() . ", le lien : " . $storage[0]->getUrl();
                 }
@@ -220,7 +220,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigBoardsound())){
+                if(!empty($configData->getConfigBoardsound()) && $configData->getConfigBoardsound() != "noidea"){
                     $boardsound = $this->itemRepo->findBy(['name' => $configData->getConfigBoardsound()]);
                     $messageContent .= " cette carte son: " . $boardsound[0]->getName() . ", le lien : " . $boardsound[0]->getUrl();
                 }
@@ -233,7 +233,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigCase())){
+                if(!empty($configData->getConfigCase()) && $configData->getConfigCase() != "noidea"){
                     $case = $this->itemRepo->findBy(['name' => $configData->getConfigCase()]);
                     $messageContent .= " ce boîtier : " . $case[0]->getName() . ", le lien : " . $case[0]->getUrl();
                 }
@@ -246,7 +246,7 @@ class CommandListener
                 }
             }
             else {
-                if(!empty($configData->getConfigPower())){
+                if(!empty($configData->getConfigPower()) && $configData->getConfigPower() != "noidea"){
                     $power = $this->itemRepo->findBy(['name' => $configData->getConfigPower()]);
                     $messageContent .= " cette alimentation : " . $power[0]->getName() . ", le lien : " . $power[0]->getUrl();
                 }
@@ -265,11 +265,11 @@ class CommandListener
         }
 
         if($specData->getSpecOverclock()){
-            $messageContent .= "je suis intéressé par l'overclocking. ";
+            $messageContent .= "je suis intéressé par l'overclocking, ";
         }
 
         if(!empty($specData->getSpecStorage())){
-            $messageContent .= "Je voudrais comme stockage du " . $specData->getSpecStorage();
+            $messageContent .= "je voudrais comme stockage du " . $specData->getSpecStorage();
             if(!empty($specData->getSpecStorageQuantity())){
                 $messageContent .= ", d'au moins " . $specData->getSpecStorageQuantity() . "GO. ";
             }
@@ -279,13 +279,13 @@ class CommandListener
         }
 
         if($specData->getSpecWifi()){
-            $messageContent .= "Je suis intéréssé par une carte wifi, ";
+            $messageContent .= "Je suis intéréssé par une carte wifi ";
 
             if($specData->getSpecWifiRoom()){
-                $messageContent .= "et je me trouve dans la même pièce que le routeur, ";
+                $messageContent .= "et je me trouve dans la même pièce que le routeur ";
             }
             else {
-                $messageContent .= "et je ne me trouve pas dans la même pièce que le routeur, ";
+                $messageContent .= "et je ne me trouve pas dans la même pièce que le routeur ";
             }
 
             if($specData->getSpecFiber()){
@@ -311,13 +311,13 @@ class CommandListener
         
         if($specData->getOs()){
             if(!empty($specData->getOschoice())){
-                $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme systeme d'exploitation"; 
+                $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation"; 
 
                 if($specData->getOsActive()){
-                    $messageContent .= ", et je souhaiterais que vous me l'activez. ";
+                    $messageContent .= " et je souhaiterais que vous me l'activez. ";
                 }
                 else {
-                    $messageContent .= ", et je l'activerais moi même. ";
+                    $messageContent .= " et je l'activerais moi même. ";
                 }
             }
 
@@ -327,7 +327,7 @@ class CommandListener
 
         }
         else {
-            $messageContent .= "Je n'ai pas besoin de systeme d'exploitation. ";
+            $messageContent .= "Je n'ai pas besoin de système d'exploitation. ";
         }
 
         if($deviceData->getDevice()){
@@ -341,16 +341,18 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceScreen())){
+                if(!empty($deviceData->getDeviceScreen()) && $deviceData->getDeviceScreen() != "noidea"){
                     $screen = $this->itemRepo->findBy(['name' => $deviceData->getDeviceScreen()]);
                     $messageContent .= "cet écran : " . $screen[0]->getName() . " le lien : " . $screen[0]->getUrl();
                 }
             }
-            if(!empty($deviceData->getDeviceScreenSize())){
-                $messageContent .= " Je voudrais que l'écran fasse " . $deviceData->getDeviceScreenSize(); 
-            }
-            if(!empty($deviceData->getDeviceScreenRes())){
-                $messageContent .= " Je voudrais que l'écran ait une résolution de " . $deviceData->getDeviceScreenRes();
+            if($deviceData->getDeviceScreen() == "noidea"){
+                if(!empty($deviceData->getDeviceScreenSize())){
+                    $messageContent .= " Je voudrais que l'écran fasse " . $deviceData->getDeviceScreenSize(); 
+                }
+                if(!empty($deviceData->getDeviceScreenRes())){
+                    $messageContent .= " Je voudrais que l'écran ait une résolution de " . $deviceData->getDeviceScreenRes();
+                }
             }
 
             if(!empty($deviceData->getDeviceKeyboardModel())){
@@ -360,19 +362,21 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceKeyboard())){
+                if(!empty($deviceData->getDeviceKeyboard()) && $deviceData->getDeviceKeyboard() != "noidea"){
                     $keyboard = $this->itemRepo->findBy(['name' => $deviceData->getDeviceKeyboard()]);
                     $messageContent .= " Ce clavier : " . $keyboard[0]->getName() . " le lien : " . $keyboard[0]->getUrl();
                 }
             }
-            if(!empty($deviceData->getDeviceKeyboardType())){
-                $messageContent .= " Je voudrais que le clavier soit du type " . $deviceData->getDeviceKeyboardType();
-            }
-            if(!empty($deviceData->getDeviceKeyboardSwitch())){
-                $messageContent .= " Je voudrais que le clavier ait des switchs  " . $deviceData->getDeviceKeyboardSwitch();
-            }
-            if(!empty($deviceData->getDeviceKeyboardLanguage())){
-                $messageContent .= " Je voudrais que le clavier soit en " . $deviceData->getDeviceKeyboardLanguage();
+            if($deviceData->getDeviceKeyboard() == "noidea"){
+                if(!empty($deviceData->getDeviceKeyboardType())){
+                    $messageContent .= " Je voudrais que le clavier soit du type " . $deviceData->getDeviceKeyboardType();
+                }
+                if(!empty($deviceData->getDeviceKeyboardSwitch())){
+                    $messageContent .= " Je voudrais que le clavier ait des switchs  " . $deviceData->getDeviceKeyboardSwitch();
+                }
+                if(!empty($deviceData->getDeviceKeyboardLanguage())){
+                    $messageContent .= " Je voudrais que le clavier soit en " . $deviceData->getDeviceKeyboardLanguage();
+                }
             }
 
             if(!empty($deviceData->getDeviceMouseModel())){
@@ -382,19 +386,22 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceMouse())){
+                if(!empty($deviceData->getDeviceMouse()) && $deviceData->getDeviceMouse() != "noidea"){
                     $mouse = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMouse()]);
                     $messageContent .= " Cette souris : " . $mouse[0]->getName() . " le lien : " . $mouse[0]->getUrl();
                 }
             }
-            if(!empty($deviceData->getDeviceMouseType())){
-                $messageContent .= " Je voudrais que la souris soit du type  " . $deviceData->getDeviceMouseType();
-            }
-            if($deviceData->getDeviceMouseFilaire()){
-                $messageContent .= " Je voudrais une souris filaire";                
-            }
-            else {
-                $messageContent .= " Je voudrais une souris sans fil";
+
+            if($deviceData->getDeviceMouse() == "noidea"){
+                if(!empty($deviceData->getDeviceMouseType())){
+                    $messageContent .= " Je voudrais que la souris soit du type  " . $deviceData->getDeviceMouseType();
+                }
+                if($deviceData->getDeviceMouseFilaire()){
+                    $messageContent .= " Je voudrais une souris filaire";                
+                }
+                else {
+                    $messageContent .= " Je voudrais une souris sans fil";
+                }
             }
 
             if(!empty($deviceData->getDeviceMouseModel())){
@@ -404,16 +411,18 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceMousepad())){
+                if(!empty($deviceData->getDeviceMousepad()) && $deviceData->getDeviceMousepad() != "noidea"){
                     $mousepad = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMousepad()]);
                     $messageContent .= " Ce tapis de souris : " . $mousepad[0]->getName() . " le lien : " . $mousepad[0]->getUrl();
                 }
             }
-            if(!empty($deviceData->getDeviceMousepadType())){
-                $messageContent .= " Je voudrais que le tapis de souris soit " . $deviceData->getDeviceMousepadType();
-            }
-            if(!empty($deviceData->getDeviceMousepadSize())){
-                $messageContent .= " Je voudrais que le tapis de souris ait une taille " . $deviceData->getDeviceMousepadSize();
+            if($deviceData->getDeviceMouse() == "noidea"){
+                if(!empty($deviceData->getDeviceMousepadType())){
+                    $messageContent .= " Je voudrais que le tapis de souris soit " . $deviceData->getDeviceMousepadType();
+                }
+                if(!empty($deviceData->getDeviceMousepadSize())){
+                    $messageContent .= " Je voudrais que le tapis de souris ait une taille " . $deviceData->getDeviceMousepadSize();
+                }
             }
 
             if(!empty($deviceData->getDeviceHeadphoneModel())){
@@ -423,7 +432,7 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceHeadphone())){
+                if(!empty($deviceData->getDeviceHeadphone()) && $deviceData->getDeviceHeadphone() != "noidea"){
                     $headphone = $this->itemRepo->findBy(['name' => $deviceData->getDeviceHeadphone()]);
                     $messageContent .= " Ce casque : " . $headphone[0]->getName() . " le lien : " . $headphone[0]->getUrl();
                 }
@@ -442,7 +451,7 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceEnceinte())){
+                if(!empty($deviceData->getDeviceEnceinte()) && $deviceData->getDeviceEnceinte() != "noidea"){
                     $enceinte = $this->itemRepo->findBy(['name' => $deviceData->getDeviceEnceinte()]);
                     $messageContent .= " Cette enceinte : " . $enceinte[0]->getName() . " le lien : " . $enceinte[0]->getUrl();
                 }
@@ -460,7 +469,7 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDeviceWebcam())){
+                if(!empty($deviceData->getDeviceWebcam())&& $deviceData->getDeviceScreen() != "noidea"){
                     $webcam = $this->itemRepo->findBy(['name' => $deviceData->getDeviceWebcam()]);
                     $messageContent .= " Cette webcam : " . $webcam[0]->getName() . " le lien : " . $webcam[0]->getUrl();
                 }
@@ -476,7 +485,7 @@ class CommandListener
                 }
             } 
             else {
-                if(!empty($deviceData->getDevicePrinter())){
+                if(!empty($deviceData->getDevicePrinter()) && $deviceData->getDevicePrinter() != "noidea"){
                     $printer = $this->itemRepo->findBy(['name' => $deviceData->getDevicePrinter()]);
                     $messageContent .= " Cette imprimante : " . $printer[0]->getName() . " le lien : " . $printer[0]->getUrl();
                 }
