@@ -31,7 +31,7 @@ export default (store) => (next) => (action) => {
       const slug = localStorage.getItem('slug');
       const state = store.getState();
       console.log(state.profile);
-      axios.post(`http://localhost:3000/user/edit-password/${slug}`, {
+      axios.post(`http://54.173.92.69/api/user/edit-password/${slug}`, {
         password: state.profile.infos.password,
       }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
