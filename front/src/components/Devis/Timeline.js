@@ -8,11 +8,11 @@ const Timeline = ({ step }) => {
       {/* si step superieur ou egal a 2, mettre classname active */}
       <li className={step >= 2 ? 'active' : ''}>Budget</li>
       {/* si step superieur ou egal a 3, mettre classname active */}
-      <li className={step >= 3 ? 'active' : ''}>add friends</li>
+      <li className={step >= 3 ? 'active' : ''}>Aventures</li>
       {/* si step superieur ou egal a 4, mettre classname active */}
-      <li className={step >= 4 ? 'active' : ''}>View map</li>
+      <li className={step >= 4 ? 'active' : ''}>Equipement</li>
       {/* si step superieur ou egal a 5, mettre classname active */}
-      <li className={step >= 5 ? 'active' : ''}>login</li>
+      <li className={step >= 5 ? 'active' : ''}>vos besoin</li>
       {/* si step superieur ou egal a 6, mettre classname active */}
       <li className={step >= 6 ? 'active' : ''}>choose interest</li>
       {/* si step superieur ou egal a 7, mettre classname active */}
