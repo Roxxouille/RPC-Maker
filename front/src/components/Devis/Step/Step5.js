@@ -25,7 +25,7 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         </h1>
       </div>
       <div>
-        <h6>De quelle classe sera votre personnage ?</h6>
+        <h1>De quelle classe sera votre personnage ?</h1>
         <Form>
           {['radio'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
@@ -39,25 +39,25 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       </div>
 
       <div>
-        <h6>En fonction des batailles que votre personnage va mener il peut avoir besoin de la maitrise double lame qui lui permettra d'aller au devant du danger avec plus d'assurance!</h6>
+        <h1>En fonction des batailles que votre personnage va mener il peut avoir besoin de la maitrise double lame qui lui permettra d'aller au devant du danger avec plus d'assurance!</h1>
         <BinaryButtonField label="Voulez vous faire un SLI?" name="spec_sli" value={dataSurvey.spec_sli} handleChange={changeDevis} />
         <ErrorField error={error.specSli[0]} />
       </div>
       <div>
-        <h6>
+        <h1>
           Dans des moments tres strategiques ou pour des prises de decisions importantes, pour un ultime effort ou pour affronter des ennemis plus fort que prevu,
           votre personnage pourrait avoir besoin de la maitrise berserk qui lui permettra d'avoir un boost de competence !
-        </h6>
+        </h1>
         <BinaryButtonField label="Voulez vous pouvoir effectuer de l'overclocking ?" name="specOverclock" value={dataSurvey.spec_overclock} handleChange={changeDevis} />
         <ErrorField error={error.specOverclock[0]} />
       </div>
 
       <div>
-        <h6>
+        <h1>
           Tout au long de son aventure votre personnage voudra surement ecire son recit quelque part, garder sur un parchemin des informations essentiel a ses prochaines quetes, eventuellement garder des souvenirs de sees rencontres!
           <br />
           Peut etre meme qu'il aura sa propre grosse bibliotheque !
-      </h6>
+      </h1>
         <Form>
           <Form.Label>Quel type de stockage voulez vous?</Form.Label>
           {['radio'].map((type) => (
@@ -76,10 +76,10 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
 
       </div>
       <div>
-        <h6>
+        <h1>
           Pour parcourir le monde votre personnage n'a peut etre pas de pierre de teleportation, c'est toujours mieux mais pas toujours disponible.
           Dans ce cas cela serait peut etre une bonne idee de lui acheter une monture volante !
-      </h6>
+      </h1>
         <BinaryButtonField label="Voulez vous avoir le wifi?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
         <ErrorField error={error.specWifi[0]} />
         <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
@@ -89,10 +89,10 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       </div>
 
       <div>
-        <h6>
+        <h1>
           Votre personnage a peutre des envies artistique? ou bien il veut pouvoir lire un livre de qualite !
           Pour cela il va lui falloir les bons instruments !
-      </h6>
+      </h1>
         <BinaryButtonField label="Voulez vous une carte son?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
         <ErrorField error={error.specSound[0]} />
         {dataSurvey.spec_sound && (
@@ -113,9 +113,9 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         )}
       </div>
       <div>
-        <h6>
+        <h1>
           Tout est bon ! Il ne vous reste qu'a donner des indications d'esthetique pour votre votre personnage ou nous dire tout autres informations qui nous serait utile le concernant et vous serez quasiment au bout.
-      </h6>
+      </h1>
         <Field label="Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)" name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
       </div>
       <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
