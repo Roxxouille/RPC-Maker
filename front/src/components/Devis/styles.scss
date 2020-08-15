@@ -1,5 +1,8 @@
 .fullform{
-    padding: 50px;
+    height: 100%;
+    margin-top: 20vh;
+text-align: left;
+   
     &__header{
         margin-bottom: 25px;
         &__title{
@@ -9,4 +12,75 @@
            
         }
     }
+    &__body{
+        &__content{
+
+        }
+        &__form{
+
+        }
+        &__changestep{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
+
+.progressbar {
+    counter-reset: step;
+    position: absolute;
+    top: 100px;
+    width: 100%;
+    z-index: 1;
+}
+.progressbar li {
+    list-style-type: none;
+    width: 12%;
+    float: left;
+    font-size: 12px;
+    position: relative;
+    text-align: center;
+    text-transform: uppercase;
+    color: #7d7d7d;
+}
+.progressbar li:before {
+    width: 30px;
+    height: 30px;
+    content: counter(step);
+    counter-increment: step;
+    line-height: 30px;
+    border: 2px solid #7d7d7d;
+    display: block;
+    text-align: center;
+    margin: 0 auto 10px auto;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 10;
+
+}
+.progressbar li:after {
+    width: 100%;
+    height: 2px;
+    content: '';
+    left: -50%;
+    position: absolute;
+    background-color: #7d7d7d;
+    top: 15px;
+    margin-left: 15px;
+    z-index: -1;
+
+
+}
+.progressbar li:first-child:after {
+    content: none;
+}
+.progressbar li.active {
+    color: green;
+}
+.progressbar li.active:before {
+    border-color: #55b776;
+}
+.progressbar li.active + li:after {
+    background-color: #55b776;
 }

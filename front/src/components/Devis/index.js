@@ -62,7 +62,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       return (
         <div>
           <Timeline />
-          <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
+          <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail} />
         </div>
       );
     case 5:
@@ -79,7 +79,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
           <Step6 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} items={items} />
         </div>
       );
-    case 7: 
+    case 7:
       return (
         <div>
           <Timeline />
