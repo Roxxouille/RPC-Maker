@@ -7,7 +7,7 @@ import ChangeStepButton from './ChangeStepButton';
 
 const Step3 = ({ changeDevis, dataSurvey, changeStep, error }) => {
   return (
-    <div className="fullform">
+    <div className="fullform container">
       <div>
         <h2>Question pratique</h2>
       </div>
