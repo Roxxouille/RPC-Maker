@@ -33,8 +33,7 @@ class MessageController extends AbstractController
             $messagesUser = $messageRepository->findMesByUsers($from, $to);
             //$date = $messagesUser[0]->getCreatedAt();
             //$dateToTrad = $date->format('l j F Y à H\hi');
-            //dd($dateTrad->tradDateToFr($dateToTrad));
-            foreach($messagesUser as $message){
+            foreach ($messagesUser as $message) {
                 $date = $dateToShow->whatDateToShow($message);
                 $message->setDateToShow($date);
             }
@@ -46,7 +45,7 @@ class MessageController extends AbstractController
         $to = $userRepository->find(json_decode($content, true));
 
         $messagesUser = $messageRepository->findMesByUsers($from, $to);
-        foreach($messagesUser as $message){
+        foreach ($messagesUser as $message) {
             $date = $dateToShow->whatDateToShow($message);
             $message->setDateToShow($date);
         }

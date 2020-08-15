@@ -51,8 +51,8 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
 
         // Return the user credentials
         return [
-        'username' => $content['username'],
-        'password' => $content['password'],
+            'username' => $content['username'],
+            'password' => $content['password'],
         ];
     }
 
@@ -60,8 +60,8 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
     {
         // Checking if the email is in the bdd
         $user = $this->em->getRepository(User::class)->findOneBy(['email' => $credentials['username']]);
-        
-        if(!$user){
+
+        if (!$user) {
             throw new CustomUserMessageAuthenticationException("Cet email n'existe pas");
         }
         // return user if found
@@ -71,7 +71,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
     public function checkCredentials($credentials, UserInterface $user)
     {
         // Check if the password is valid
-        if(!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])){
+        if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
             throw new CustomUserMessageAuthenticationException('Mot de passe invalide');
         }
         // if the password is valid call onAuthenticationSuccess
@@ -93,7 +93,6 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
             // or to translate this message
             // $this->translator->trans($exception->getMessageKey(), $exception->getMessageData())
         ];
-        dump($data);
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }
@@ -103,7 +102,7 @@ class LoginAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        
+
         $data = [
             // you might translate this message
             'message' => 'Authentication Required'

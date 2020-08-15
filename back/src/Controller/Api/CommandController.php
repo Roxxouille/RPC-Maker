@@ -114,7 +114,7 @@ class CommandController extends AbstractController
         //Edit the updatedat vlue to the current time
         $updatedCommand->setUpdatedAt(new \DateTime());
 
-        // dd($command);
+
 
         //save the new data to the database
         $em->persist($updatedCommand);
