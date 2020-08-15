@@ -4,6 +4,11 @@ export const SUBMIT_STEP = 'SUBMIT_STEP';
 export const SET_ERROR_STEP = 'SET_ERROR_STEP';
 export const CHANGE_ARRAY_DEVIS = 'CHANGE_ARRAY_DEVIS';
 export const SUBMIT_SURVEY = 'SUBMIT_SURVEY';
+export const RESET_ERRORS = 'RESET_ERRORS';
+
+export const resetErrors = () => ({
+  type: RESET_ERRORS,
+});
 
 export const submitSurvey = () => ({
   type: SUBMIT_SURVEY,

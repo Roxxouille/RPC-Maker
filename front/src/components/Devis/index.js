@@ -97,7 +97,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
     case 9:
       return (
         <div>
-          <Redirect to="/user" />
+          <Redirect to="/login" />
         </div>
       );
   }

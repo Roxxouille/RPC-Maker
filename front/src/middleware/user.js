@@ -11,6 +11,7 @@ import {
   SEND_MESSAGE,
   getMessages,
   cleanNewMessage,
+  desactivateLoader,
 } from '../actions/user';
 import { GET_COMMANDS } from '../actions/backoffice';
 
@@ -46,8 +47,9 @@ export default (store) => (next) => (action) => {
           store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname));
         })
         .catch((error) => {
-          console.log('autolog error:', error.response);
+          store.dispatch(desactivateLoader());
           localStorage.clear();
+          console.log('autolog error:', error.response);
         });
 
       break;

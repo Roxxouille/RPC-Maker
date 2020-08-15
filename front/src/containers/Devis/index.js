@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Devis from 'src/components/Devis';
-import { changeDevis, changeStepState, submitStep, changeArrayDevis, submitSurvey } from 'src/actions/devis';
+import { changeDevis, changeStepState, submitStep, changeArrayDevis, submitSurvey, resetErrors } from 'src/actions/devis';
 import { getItems } from 'src/actions/backoffice';
 
 
@@ -15,6 +15,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeDevis(name, value));
   },
   changeStepState: (step) => {
+    dispatch(resetErrors());
     dispatch(submitStep(step));
   },
   forceChangeStep: (step) => {
