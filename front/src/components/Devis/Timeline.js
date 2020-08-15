@@ -6,11 +6,11 @@ const Timeline = () => {
       {/* si step superieur ou egal a 1, mettre classname active */}
       <li className="active">Bienvenue !</li>
       {/* si step superieur ou egal a 2, mettre classname active */}
-      <li className="active" >Budget</li>
+      <li className="active" >Bourse</li>
       {/* si step superieur ou egal a 3, mettre classname active */}
-      <li>add friends</li>
+      <li>Aventures</li>
       {/* si step superieur ou egal a 4, mettre classname active */}
-      <li>View map</li>
+      <li>equipement</li>
       {/* si step superieur ou egal a 5, mettre classname active */}
       <li >login</li>
       {/* si step superieur ou egal a 6, mettre classname active */}
