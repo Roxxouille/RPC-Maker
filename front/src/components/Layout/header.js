@@ -26,19 +26,18 @@ const Header = ({ isLogged, logout, username, role }) => {
           <Nav className="header__navbar__menu">
             <Link className="nav-link header__navbar__menu__link" to="/">
               Accueil
-              </Link>
+            </Link>
             <Link to="/team" className="nav-link header__navbar__menu__link">
               Team
-              </Link>
+            </Link>
             <Link to="/contact" className="nav-link header__navbar__menu__link">
               Contact
+            </Link>
+            { isLogged === false && (
+              <Link to="/devis" className="nav-link header__navbar__menu__link">
+                Devis
               </Link>
-            <Link to="/subscribe" className="nav-link menu__link">
-              Subscribe
-            </Link>
-            <Link to="/devis" className="nav-link header__navbar__menu__link">
-              Devis
-            </Link>
+            ) }
           </Nav>
         </Navbar.Collapse>
 
