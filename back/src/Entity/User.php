@@ -220,7 +220,8 @@ class User implements UserInterface
      *  "avatar",
      *  "command",
      *  "user",
-     *  "message"
+     *  "message",
+     * "login"
      * })
      */
 
@@ -249,7 +250,8 @@ class User implements UserInterface
      *  "avatar", 
      *  "command",
      *  "user",
-     *  "message"
+     *  "message",
+     *  "login"
      * })
      */
 
