@@ -27,9 +27,6 @@ const Header = ({ isLogged, logout, username, role }) => {
             <Link className="nav-link header__navbar__menu__link" to="/">
               Accueil
               </Link>
-            <Link to="/survey" className="nav-link header__navbar__menu__link">
-              Devis
-              </Link>
             <Link to="/team" className="nav-link header__navbar__menu__link">
               Team
               </Link>
@@ -40,7 +37,7 @@ const Header = ({ isLogged, logout, username, role }) => {
               Subscribe
             </Link>
             <Link to="/devis" className="nav-link header__navbar__menu__link">
-              Devis2
+              Devis
             </Link>
           </Nav>
         </Navbar.Collapse>

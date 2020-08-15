@@ -15,10 +15,7 @@ import Footer from '../Layout/footer';
 // == Import
 import './styles.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Home from '../Home';
-import Survey from '../Survey';
-import Subscription from '../Survey';
 
 // == Composant
 const App = ({ autoLog, isLogged }) => {
@@ -37,23 +34,11 @@ const App = ({ autoLog, isLogged }) => {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/survey">
-            <Survey />
-          </Route>
-          <Route path="/team">
-            Team
-          </Route>
-          <Route path="/survey">
-            <Survey />
-          </Route>
           <Route path="/team">
             Team
           </Route>
           <Route path="/contact">
             <Contact />
-          </Route>
-          <Route path="/subscribe">
-            <Subscription />
           </Route>
           <Route path="/user">
             <User />
@@ -64,7 +49,7 @@ const App = ({ autoLog, isLogged }) => {
           <Route path="/backoffice">
             <BackOffice />
           </Route>
-          <Route>
+          <Route path="/devis">
             <Devis />
           </Route>
           <Route path="*">

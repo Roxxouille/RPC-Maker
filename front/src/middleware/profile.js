@@ -36,19 +36,6 @@ export default (store) => (next) => (action) => {
         });
       break;
     }
-    case SUBMIT_FORM: {
-      const state = store.getState();
-      const { infos } = state.profile;
-      axios.post('http://localhost:3000/user', { ...infos })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-          store.dispatch(errorSubscription(error.response.data));
-        });
-      break;
-    }
     default:
       next(action);
       break;
