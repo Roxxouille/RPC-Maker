@@ -19,6 +19,7 @@ import Pc from 'src/containers/Account/User/Pc.js';
 import './styles.scss';
 import { activateLoad } from 'src/actions/user';
 import EditProfile from 'src/containers/Account/User/EditProfile';
+import ChangePassword from 'src/containers/Account/User/ChangePassword';
 import Loader from 'src/components/Utils/Loader';
 import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
 import Progress from 'src/components/Account/User/Progress';
@@ -70,7 +71,7 @@ const User = ({
                 </div>
                 <div className="user__nav__content__links">
                   <Link to="/user/edit-info">Editer mes infos</Link>
-                  <a href="#">Changer de mot de passe</a>
+                  <Link to="/user/change-password">Changer de mot de passe</Link>
                   <a href="#">Se deconnecter</a>
                 </div>
               </div>
@@ -85,6 +86,9 @@ const User = ({
                 </Route>
                 <Route path="/user/edit-info">
                   <EditProfile />
+                </Route>
+                <Route path="/user/change-password">
+                  <ChangePassword />
                 </Route>
                 <Route path="/user/commands">
                   <Commands />
