@@ -12,7 +12,7 @@ export default (store) => (next) => (action) => {
       const state = store.getState();
       const zipCode = parseInt(state.profile.infos.zip_code);
       console.log(state.profile);
-      axios.put(`http://localhost:3000/user/${slug}`, { email: state.profile.infos.email, lastname: state.profile.infos.lastname, firstname: state.profile.infos.firstname, city: state.profile.infos.city, adress: state.profile.infos.adress, zipCode }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.put(`http://54.173.92.69/api/user/${slug}`, { email: state.profile.infos.email, lastname: state.profile.infos.lastname, firstname: state.profile.infos.firstname, city: state.profile.infos.city, adress: state.profile.infos.adress, zipCode }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(changeProfile(response.data.status));
@@ -26,7 +26,7 @@ export default (store) => (next) => (action) => {
     case GET_DATA: {
       const token = localStorage.getItem('token');
       const slug = localStorage.getItem('slug');
-      axios.get(`http://localhost:3000/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get(`http://54.173.92.69/api/user/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(setData(response.data));

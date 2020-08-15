@@ -12,16 +12,16 @@ const Home = () => {
   const [dataTestimony, setDataTestimony] = useState({ testimonies: [] });
   useEffect(() => {
     if (dataPres.build === '' && dataPres.quote === '') {
-      axios.get('http://localhost:3000/build').then((res) => {
+      axios.get('http://54.173.92.69/api/build').then((res) => {
         const dataBuild = res.data.build;
-        axios.get('http://localhost:3000/quote').then((response) => {
+        axios.get('http://54.173.92.69/api/quote').then((response) => {
           const dataQuote = response.data.quote;
           setDataPres({ build: dataBuild, quote: dataQuote });
         });
       });
     }
     if (dataTestimony.testimonies.length === 0) {
-      axios.get('http://localhost:3000/testimonies/random').then((res) => {
+      axios.get('http://54.173.92.69/api/testimonies/random').then((res) => {
         const dataTes = res.data;
         setDataTestimony({ testimonies: dataTes });
       });

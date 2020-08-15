@@ -4,7 +4,7 @@ export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_COMMANDS: {
       const token = localStorage.getItem('token');
-      axios.get('http://localhost:3000/commands', { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get('http://54.173.92.69/api/commands', { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(commandsToState(response.data));
@@ -17,7 +17,7 @@ export default (store) => (next) => (action) => {
     case GET_CLIENTS: {
       const token = localStorage.getItem('token');
       const slug = localStorage.getItem('slug');
-      axios.get(`http://localhost:3000/builder/${slug}/user`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get(`http://54.173.92.69/api/builder/${slug}/user`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(clientsToState(response.data));
@@ -31,7 +31,7 @@ export default (store) => (next) => (action) => {
     case GET_COMMAND: {
       const slug = action.id;
       const token = localStorage.getItem('token');
-      axios.get(`http://localhost:3000/command/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.get(`http://54.173.92.69/api/command/${slug}`, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(commandToFront(response.data));
@@ -46,7 +46,7 @@ export default (store) => (next) => (action) => {
       const state = store.getState();
       const { id } = state.user;
       const token = localStorage.getItem('token');
-      axios.post(`http:///localhost:3000/user/${slug}/messages`, { id }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.post(`http:///54.173.92.69/api/user/${slug}/messages`, { id }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           store.dispatch(setMessagesBack(response.data));
         })
@@ -58,10 +58,10 @@ export default (store) => (next) => (action) => {
     case SEND_MESSAGE_BACK: {
       const state = store.getState();
       const token = localStorage.getItem('token');
-      const {username} = state.user;
+      const { username } = state.user;
       const slug = state.backoffice.activeConv;
       const id = parseInt(state.backoffice.activeConvId);
-      axios.post(`http://localhost:3000/user/${username}/message`, { id, content: state.backoffice.newMessage }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.post(`http://54.173.92.69/api/user/${username}/message`, { id, content: state.backoffice.newMessage }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
           store.dispatch(getMessagesBack(slug));
@@ -73,7 +73,7 @@ export default (store) => (next) => (action) => {
       break;
     }
     case GET_ITEMS: {
-      axios.get('http://localhost:3000/categories')
+      axios.get('http://54.173.92.69/api/categories')
         .then((response) => {
           console.log(response);
           store.dispatch(setItems(response.data));
@@ -87,7 +87,7 @@ export default (store) => (next) => (action) => {
       const token = localStorage.getItem('token');
       const state = store.getState();
       const slug = state.backoffice.command.slug;
-      axios.put(`http://localhost:3000/command/${slug}`, { id: state.backoffice.command.id, itemToAdd: state.backoffice.command.item }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
+      axios.put(`http://54.173.92.69/api/command/${slug}`, { id: state.backoffice.command.id, itemToAdd: state.backoffice.command.item }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
         })
