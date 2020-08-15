@@ -2,6 +2,7 @@ export const SUBMIT_PROFILE = 'SUBMIT_PROFILE';
 export const CHANGE_PROFILE = 'CHANGE_PROFILE';
 export const SUBMIT_PASSWORD = 'SUBMIT_PASSWORD';
 export const ERROR_PROFILE = 'ERROR_PROFILE';
+export const GET_VALIDATION = 'GET_VALIDATION';
 export const ERROR_SUBSCRIPTION = 'ERROR_SUBSCRIPTION';
 export const GET_DATA = 'GET_DATA';
 export const SET_DATA = 'SET_DATA';
@@ -35,12 +36,11 @@ export const changeProfile = (name, value) => ({
   value,
 });
 
-export const changePassword = (name, value) => ({
-  type: CHANGE_PASSWORD,
-  name,
-  value,
-});
-
 export const submitPassword = () => ({
   type: SUBMIT_PASSWORD,
+});
+
+export const getValidation = (value) => ({
+  type: GET_VALIDATION,
+  value,
 });
