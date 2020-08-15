@@ -53,7 +53,6 @@ class CommandListener
         $commands = $user->getCommands();
         foreach($commands as $command){
             $commandsStatus[] = $command->getStatus()->getStatusNumber();
-            dump($command->getStatus()->getName());
         }
         // getting the sum of all the status to create the level of the user
         $user->setLevel(array_sum($commandsStatus));

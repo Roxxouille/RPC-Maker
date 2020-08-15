@@ -132,7 +132,6 @@ class UserController extends AbstractController
         // Set default role
         $user->setRoles(['ROLE_USER']);
 
-        $user->setLevel(1);
         //Create a new avatar
         //add an random image from lorempicsum
         //set it into the user object
@@ -160,7 +159,7 @@ class UserController extends AbstractController
         $entityManager->persist($user);
 
         //link this user to the new command
-        $command->setUser($user);
+       $user->addCommand($command);
 
         // persist the command
         $entityManager->persist($command);
