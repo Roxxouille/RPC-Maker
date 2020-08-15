@@ -54,10 +54,12 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
 
       <div>
         <h6>
-          Tout au long de son aventure votre
+          Tout au long de son aventure votre personnage voudra surement ecire son recit quelque part, garder sur un parchemin des informations essentiel a ses prochaines quetes, eventuellement garder des souvenirs de sees rencontres!
+          <br />
+          Peut etre meme qu'il aura sa propre grosse bibliotheque !
       </h6>
         <Form>
-          <Form.Label>Parlons stockage que voulez vous ?</Form.Label>
+          <Form.Label>Quel type de stockage voulez vous?</Form.Label>
           {['radio'].map((type) => (
             <div key={`inline-${type}`} className="mb-3">
               <Form.Check name="spec_storage" inline label="HDD" type={type} id={`inline-${type}-1`} value={"HDD"} onChange={changeDevis} />
@@ -73,31 +75,49 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         </Form>
 
       </div>
-      <BinaryButtonField label="En ce qui concerne le wi-fi, voulez vous une carte ?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
-      <ErrorField error={error.specWifi[0]} />
-      <BinaryButtonField label="Si oui, etes vous dans la meme piece que le router ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
-      <ErrorField error={error.specWifiRoom[0]} />
-      <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
-      <ErrorField error={error.specFiber[0]} />
-      <BinaryButtonField label="En ce qui concerne le son, voulez vous une carte ?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
-      <ErrorField error={error.specSound[0]} />
-      {dataSurvey.spec_sound && (
-        <>
-          <Form.Label>Pour quel utilisation ?</Form.Label>
-          <ErrorField error={error.specSoundUtilisation[0]} />
-          {['checkbox'].map((type) => (
-            <div key={`inline-${type}`} className="mb-3">
-              <Form.Check name="spec_sound_utilisation" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
-              <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
-              <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
-              <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
-            </div>
-          ))}
-          <Field label="Veuillez préciser les autres utilisations" name="spec_sound_utilisation_other" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
-        </>
+      <div>
+        <h6>
+          Pour parcourir le monde votre personnage n'a peut etre pas de pierre de teleportation, c'est toujours mieux mais pas toujours disponible.
+          Dans ce cas cela serait peut etre une bonne idee de lui acheter une monture volante !
+      </h6>
+        <BinaryButtonField label="Voulez vous avoir le wifi?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
+        <ErrorField error={error.specWifi[0]} />
+        <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
+        <ErrorField error={error.specWifiRoom[0]} />
+        <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
+        <ErrorField error={error.specFiber[0]} />
+      </div>
 
-      )}
-      <Field label="Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)" name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
+      <div>
+        <h6>
+          Votre personnage a peutre des envies artistique? ou bien il veut pouvoir lire un livre de qualite !
+          Pour cela il va lui falloir les bons instruments !
+      </h6>
+        <BinaryButtonField label="Voulez vous une carte son?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
+        <ErrorField error={error.specSound[0]} />
+        {dataSurvey.spec_sound && (
+          <>
+            <Form.Label>Pour quel utilisation ?</Form.Label>
+            <ErrorField error={error.specSoundUtilisation[0]} />
+            {['checkbox'].map((type) => (
+              <div key={`inline-${type}`} className="mb-3">
+                <Form.Check name="spec_sound_utilisation" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
+                <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
+                <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
+                <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
+              </div>
+            ))}
+            <Field label="Veuillez préciser les autres utilisations" name="spec_sound_utilisation_other" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
+          </>
+
+        )}
+      </div>
+      <div>
+        <h6>
+          Tout est bon ! Il ne vous reste qu'a donner des indications d'esthetique pour votre votre personnage ou nous dire tout autres informations qui nous serait utile le concernant et vous serez quasiment au bout.
+      </h6>
+        <Field label="Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)" name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
+      </div>
       <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
     </div>
   );
