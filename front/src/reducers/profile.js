@@ -1,5 +1,5 @@
 import {
-  CHANGE_PROFILE, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION, ERROR_SUBSCRIPTION,
+  CHANGE_PROFILE, GET_VALIDATION, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION, ERROR_SUBSCRIPTION,
 } from '../actions/profile';
 
 export const initialState = {
@@ -25,6 +25,9 @@ export const initialState = {
     zip_code: [''],
     adress: [''],
     password: [''],
+  },
+  validation: {
+    status: '',
   },
 };
 
@@ -52,6 +55,11 @@ const profile = (state = initialState, action = {}) => {
       return {
         ...state,
         infos: { ...state.infos, ...action.data, set: true },
+      };
+    case GET_VALIDATION:
+      return {
+        ...state,
+        validation: { status: action.value },
       };
     default:
       return state;
