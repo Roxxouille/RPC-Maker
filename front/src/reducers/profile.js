@@ -50,12 +50,6 @@ const profile = (state = initialState, action = {}) => {
         ...state,
         infos: { ...state.infos, ...action.data, set: true },
       };
-    case INPUT_SUBSCRIPTION:
-      console.log('reduceur ');
-      return {
-        ...state,
-        infos: { ...state.infos, [action.name]: action.value },
-      };
     default:
       return state;
   }
