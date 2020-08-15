@@ -7,7 +7,7 @@ import BinaryButtonField from 'src/components/Utils/Field/BinaryButtonField';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
 import ChangeStepButton from './ChangeStepButton';
 
-const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) => {
+const Step7 = ({ dataSurvey, error, changeStep, items, changeDevis, getItems }) => {
   console.log(items);
 
   if (items.length === 0) {
@@ -150,7 +150,7 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
             {dataKeyboardSwitchs}
           </Form.Control>
         </>
-      ) }
+      )}
     </Card.Body>
   );
 
@@ -165,7 +165,7 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
           </Form.Control>
           <BinaryButtonField label="Filaire ?" name="device_mouse_filaire" value={dataSurvey.device_mouse_filaire} handleChange={changeDevis} />
         </>
-      ) }
+      )}
     </Card.Body>
   );
 
@@ -183,7 +183,7 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
             {dataMousepadSizes}
           </Form.Control>
         </>
-      ) }
+      )}
     </Card.Body>
   );
 
@@ -197,7 +197,7 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
             {dataHeadphoneTypes}
           </Form.Control>
         </>
-      ) }
+      )}
     </Card.Body>
   );
   const speakerForm = (
@@ -215,7 +215,7 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
             {dataWebcamResolutions}
           </Form.Control>
         </>
-      ) }
+      )}
     </Card.Body>
   );
   const printerForm = (
@@ -228,21 +228,32 @@ const Step7 = ({dataSurvey, error, changeStep, items, changeDevis, getItems}) =>
             {dataPrinterTypes}
           </Form.Control>
         </>
-      ) }
+      )}
     </Card.Body>
   );
 
   return (
-    <div className="fullform">
+    <div className="fullform container">
       <div>
-        <h2>Question d'options</h2>
+        <h2>Quelques indispensables dans votre sa a dos?</h2>
       </div>
       <div>
-        <h1>Pour mieux vous servir nous aurions besoin d’en savoir plus sur les services tiers.</h1>
+        <h1>
+          La creation de votre personnage et presque finit !
+                  <br />
+          <br />
+          Pour partir a l'aventure sa force et ses jambes ne suffisent pas, de la corde, une tente, une plume sont tant d'element qui peuvent rendre une epopee plus facile!
+          <br />
+          <br />
+          Comme pour son histoire, ce qu'il y a dans le sac a dos de votre personnage peuvent etre choisis entierement par vous ou votre guide peut vous accompagner dans cette quete !
+          <br />
+          <br />
+          A vous de voir.
+        </h1>
       </div>
       <BinaryButtonField label="Souhaitez vous des périphériques ?" name="device" value={dataSurvey.device} handleChange={changeDevis} />
       <ErrorField error={error.device[0]} />
-      { dataSurvey.device && (
+      {dataSurvey.device && (
         <>
           <Accordion defaultActiveKey="0">
             <Collap label="Ecran(s)" content={screenForm} />

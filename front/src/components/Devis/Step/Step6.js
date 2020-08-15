@@ -19,17 +19,14 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items }) => {
     <div className="fullform container">
       <div>
         <div>
-          <h2>Qui est votre personnage?</h2>
+          <h2>D'ou vient votre personnage?</h2>
         </div>
         <div>
           <h1>
-            Aaah on arrive a un moment tres important dans la vie de votre personnage, qui est il? que peut il faire? quel sera son histoire? pour quelles types d'aventures sera t il taille?
+            Des contrees lointaine du desert ou de la montagne impetueuse du nord, votre personnage a une histoire, des racines!
           <br />
             <br />
-          Tan t de question sans reponse, mais qui en auront bientot pour que l'on puisse creer votre perssonnage et qu'il corresponde au mieux a vous et a ce que vous avez imagine pour lui!
-          <br />
-            <br />
-          Plus vous mettrez d'information et plus votre personnage sera a l'effigie de ce que vous pensez etre le mieux pour lui, donc allez y franco, n'ayez pas peur!
+          Vous pouvez la definir vous meme ou votre guide peut le faire pour vous! a vous de choisir =)
         </h1>
         </div>
         <BinaryButtonField label="Voulez vous qu’on vous install un systeme d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
