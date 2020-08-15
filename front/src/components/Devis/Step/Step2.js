@@ -14,11 +14,11 @@ const Step2 = ({ dataSurvey, changeDevis, changeStep, step, error }) => {
           <h2>Une bourse bien rempli, ou pas !</h2>
         </div>
         <div className="fullform__header__content">
-          <h6>
+          <h1>
             Pour que votre guide puisse negocier avec les artisans pour vous il a besoin de savoir combien il peut depenser !
           <br /> <br />
            Mais si vous n'avez aucune idee des prix, ou que votre bourse est vraiment bien rempli, vous pouvez juste le preciser et votre guide fera au mieux en fonction de vos besoins =)
-          </h6>
+          </h1>
         </div>
       </div>
       <BinaryButtonField name="budget" label="Alors, une idee?" value={dataSurvey.budget} handleChange={changeDevis} />
