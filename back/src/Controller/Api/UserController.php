@@ -180,7 +180,7 @@ class UserController extends AbstractController
         $mailer->send($email);
 
         // Send a Json response 
-        return $this->json(['status' => 'user created'], Response::HTTP_CREATED);
+        return $this->json($user, Response::HTTP_CREATED, ['groups' => 'login']);
     }
 
     /**
