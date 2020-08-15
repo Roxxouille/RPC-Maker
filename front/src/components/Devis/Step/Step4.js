@@ -63,16 +63,16 @@ const Step4 = ({ dataSurvey, error, changeStep, forceStepUp, getItems, items, ha
   return (
     <div className="fullform container">
       <div>
-        <h2>Un equipement ? J'ai! .. ou pas.</h2>
+        <h2>Un equipement ? J'ai!</h2>
       </div>
       <div>
-        <h1>Avoir un budget c'est bien ! Mais peut etre savez vous deja quel equipement fournir a votre personnage?
-        <br />
-          <br />
-          une epee particuliere ou un bouclier precis, vous savez peut etre meme deja tout les equipements necessaire a votre personnage!
+        <h1>
           <br />
           <br />
-          Si c'est le cas dites le a votre guide et son travail de recherche n'en sera que plus rapide :)
+          Maintenant que vous etes la, il ne vous reste plus qu'a indiquer a votre guide la liste des equipements que vous voulez pour votre personnage.
+          <br />
+          <br />
+          Mettez ce que vous voulez, votre merveilleu guide verifiera que tout va bien et vous recontactera par hiboux pour vous confirmer que tout est bon ;)
         </h1>
       </div>
       <div>
