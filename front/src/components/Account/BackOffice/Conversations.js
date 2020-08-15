@@ -1,6 +1,7 @@
 import React from 'react';
 import { ListGroup, Form, Row, Image } from 'react-bootstrap';
 import Messages from 'src/components/Account/Messages';
+import InfosClient from 'src/components/Account/BackOffice/InfosClient';
 import { FaUsers, FaUber, FaUser, FaTv } from 'react-icons/fa';
 
 const Conversations = ({ clients, getMessagesBack, messages, username, newMessage, changeMessageBack, sendMessageBack, activeConv }) => {
@@ -28,8 +29,15 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
     );
   });
 
-  return (
+  const infosClient = clients.map((client) => {
+    if (client.slug === activeConv) {
+      return (
+        <InfosClient client={client} />
+      );
+    }
+  });
 
+  return (
     <div className="backoffice__body__tchat">
       <div className="backoffice__body__tchat__clients" >
         <div className="backoffice__body__tchat__clients__header">
@@ -67,22 +75,10 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
             </div>
 
           </div>
-          <div className="backoffice__body__tchat__messages__body__profile">
-            <Image className="backoffice__body__tchat__messages__body__profile__image" src="https://picsum.photos/240" rounded />
-            <p className="backoffice__body__tchat__messages__body__profile__name">Nom Prenom</p>
-            <p className="backoffice__body__tchat__messages__body__profile__username">username</p>
-            <hr />
-            <p className="backoffice__body__tchat__messages__body__profile__email">email</p>
-            <hr />
-            <p className="backoffice__body__tchat__messages__body__profile__adress">adress</p>
-            <hr />
-            <p className="backoffice__body__tchat__messages__body__profile__dataform">dataform</p>
-
-          </div>
+          {infosClient}
         </div>
       </div>
-    </div >
-
+    </div>
   );
 };
 

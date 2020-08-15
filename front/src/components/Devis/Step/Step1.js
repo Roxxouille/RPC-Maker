@@ -38,8 +38,8 @@ const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
            un personnage avec qui vous allez vivre plein d'aventure, pour le meilleur et pour le pire !
            </h6>
         </div>
-        <Field name="" type="name" value="" label="Quoi de mieux pour creer un personnage que de lui donner un nom?" placeholder="Nom de personnage" handleChange={changeDevis} controlId="username" />
-        <ErrorField error={error.username[0]} />
+        {/* <Field name="" type="name" value="" label="Quoi de mieux pour creer un personnage que de lui donner un nom?" placeholder="Nom de personnage" handleChange={changeDevis} controlId="username" />
+        <ErrorField error={error.username[0]} /> */}
         <div className="fullform__body__changestep">
           <ChangeStepButton step={step} changeStep={changeStep} />
         </div>
