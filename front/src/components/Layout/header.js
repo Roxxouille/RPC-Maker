@@ -33,9 +33,6 @@ const Header = ({ isLogged, logout, username, role }) => {
             <Link to="/contact" className="nav-link header__navbar__menu__link">
               Contact
               </Link>
-            <Link to="/subscribe" className="nav-link menu__link">
-              Subscribe
-            </Link>
             <Link to="/devis" className="nav-link header__navbar__menu__link">
               Devis
             </Link>
