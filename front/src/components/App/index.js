@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 
 //
 import Login from 'src/containers/Account/Login';
+import Team from 'src/components/Team/index';
 import Contact from 'src/containers/Contact';
 import User from 'src/containers/Account/User';
 import BackOffice from 'src/containers/Account/BackOffice';
@@ -35,7 +36,7 @@ const App = ({ autoLog, isLogged }) => {
             <Home />
           </Route>
           <Route path="/team">
-            Team
+            <Team />
           </Route>
           <Route path="/contact">
             <Contact />

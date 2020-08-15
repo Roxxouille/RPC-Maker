@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SUBMIT_STEP, setErrorStep, changeStepState, SUBMIT_SURVEY } from 'src/actions/devis';
+import { setUser } from 'src/actions/user';
 
 export default (store) => (next) => (action) => {
   switch (action.type) {
@@ -21,6 +22,9 @@ export default (store) => (next) => (action) => {
       axios.post('http://54.173.92.69/api/user', { ...state.devis.dataSurvey })
         .then((response) => {
           console.log(response);
+          const idBuilder = response.data.builder.id;
+          store.dispatch(setUser(response.data.username, response.data.roles[0], response.data.commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname));
+          store.dispatch(changeStepState(9));
         })
         .catch((error) => {
           console.log(error.response);

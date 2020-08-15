@@ -44,7 +44,6 @@ const profile = (state = initialState, action = {}) => {
         ...state,
         error: { ...state.error, ...action.value },
       };
-    
     case SET_DATA:
       return {
         ...state,
