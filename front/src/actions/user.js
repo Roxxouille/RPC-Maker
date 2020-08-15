@@ -63,7 +63,7 @@ export const failLogin = (error) => ({
   error,
 });
 
-export const setUser = (username, role, commands, builderId, id, level) => ({
+export const setUser = (username, role, commands, builderId, id, level, firstname, lastname) => ({
   type: SET_USER,
   username,
   role,
@@ -71,6 +71,8 @@ export const setUser = (username, role, commands, builderId, id, level) => ({
   builderId,
   id,
   level,
+  firstname,
+  lastname
 });
 
 export const logout = () => ({

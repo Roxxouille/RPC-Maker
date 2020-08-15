@@ -9,6 +9,7 @@ import Step5 from './Step/Step5';
 import Step7 from './Step/Step7';
 import Step6 from './Step/Step6';
 import Subscription from './Step/Subscription';
+import Timeline from './Timeline';
 
 import './styles.scss';
 
@@ -38,35 +39,59 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
   switch (devis.dataSurvey.step) {
     case 1:
       return (
-        <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} step={devis.dataSurvey.step} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} step={devis.dataSurvey.step} error={devis.fail} />
+        </div>
       );
     case 2:
       return (
-        <Step2 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} step={devis.dataSurvey.step} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Step2 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} step={devis.dataSurvey.step} error={devis.fail} />
+        </div>
       );
     case 3:
       return (
-        <Step3 changeDevis={handleChange} changeStep={changeStep} handleChangeArray={handleChangeArray} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Step3 changeDevis={handleChange} changeStep={changeStep} handleChangeArray={handleChangeArray} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        </div>
       );
     case 4:
       return (
-        <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
+        <div>
+          <Timeline />
+          <Step4 handleChange={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} forceStepUp={forceStepUp} items={items} error={devis.fail}/>
+        </div>
       );
     case 5:
       return (
-        <Step5 changeDevis={handleChange} changeStep={changeStep} handleChangeArray={handleChangeArray} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Step5 changeDevis={handleChange} changeStep={changeStep} handleChangeArray={handleChangeArray} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        </div>
       );
     case 6:
       return (
-        <Step6 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} items={items} />
+        <div>
+          <Timeline />
+          <Step6 changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} items={items} />
+        </div>
       );
     case 7: 
       return (
-        <Step7 changeDevis={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} items={items} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Step7 changeDevis={handleChange} changeStep={changeStep} getItems={getItems} dataSurvey={devis.dataSurvey} items={items} error={devis.fail} />
+        </div>
       );
     case 8:
       return (
-        <Subscription changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        <div>
+          <Timeline />
+          <Subscription changeDevis={handleChange} changeStep={changeStep} dataSurvey={devis.dataSurvey} error={devis.fail} />
+        </div>
       );
   }
 };

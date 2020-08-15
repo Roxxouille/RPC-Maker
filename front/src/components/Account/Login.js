@@ -7,7 +7,7 @@ import Field from 'src/components/Utils/Field';
 import StateField from 'src/components/Utils/Field/StateField';
 
 const Login = ({
-  email, password, changeField, login, error, isLogged, isLoading,
+  email, password, changeField, login, error, isLogged, isLoading, role,
 }) => {
   const handleChange = (e) => {
     changeField(e.target.name, e.target.value);
@@ -20,7 +20,15 @@ const Login = ({
 
   return (
     <div className="container">
-      { isLogged === false ? (
+      { isLogged === true && role === 'ROLE_USER' && (
+        <Redirect to="/user" />
+      ) }
+
+      { isLogged === true && role === 'ROLE_BUILDER' && (
+        <Redirect to="/backoffice" />
+      ) }
+
+      { isLogged === false && (
         <Form onSubmit={handleSubmit}>
           <Field name="email" type="email" label="Email" value={email} placeholder="Entrez votre email" handleChange={handleChange} controlId="email" />
           <Field name="password" type="password" label="Mot de passe" value={password} placeholder="********" handleChange={handleChange} controlId="password" />
@@ -29,10 +37,7 @@ const Login = ({
             Se connecter
           </Button>
         </Form>
-      ) : (
-        <Redirect to="/user" />
-      )}
-
+      ) }
     </div>
   );
 };

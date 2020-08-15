@@ -44,14 +44,8 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
             <Form.Check name="spec_storage" inline label="NVME" type={type} id={`inline-${type}-4`} value={"spec_storage"} onChange={changeDevis} />
           </div>
         ))}
-        <Form.Row>
-          <Col>
-            <Form.Label>Combien ?</Form.Label>
-          </Col>
-          <Col>
-            <Field name="spec_storage_quantity" value={dataSurvey.spec_storage_quantity} type="number" placeholder="- GO" handleChange={changeDevis} controlId="spec_storage_quantity" />
-          </Col>
-        </Form.Row>
+
+        <Field label="Combien ?" name="spec_storage_quantity" value={dataSurvey.spec_storage_quantity} type="number" placeholder="- GO" handleChange={changeDevis} controlId="spec_storage_quantity" />
         <ErrorField error={error.specStorageQuantity[0]} />
       </Form>
       <BinaryButtonField label="En ce qui concerne le wi-fi, voulez vous une carte ?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
@@ -62,24 +56,23 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       <ErrorField error={error.specFiber[0]} />
       <BinaryButtonField label="En ce qui concerne le son, voulez vous une carte ?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
       <ErrorField error={error.specSound[0]} />
-      <Form>
-        <Form.Label>Pour quel utilisation ?</Form.Label>
-        <ErrorField error={error.specSoundUtilisation[0]} />
-        {['checkbox'].map((type) => (
-          <div key={`inline-${type}`} className="mb-3">
-            <Form.Check name="spec_sound_utilisation" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
-            <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
-            <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
-            <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
-          </div>
-        ))}
-        <Field name="spec_sound_utilisation_other" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
-      </Form>
+      { dataSurvey.spec_sound && (
+        <>
+          <Form.Label>Pour quel utilisation ?</Form.Label>
+          <ErrorField error={error.specSoundUtilisation[0]} />
+          {['checkbox'].map((type) => (
+            <div key={`inline-${type}`} className="mb-3">
+              <Form.Check name="spec_sound_utilisation" inline label="Jeux" type={type} id={`inline-${type}-1`} onChange={changeDevis} />
+              <Form.Check name="spec_sound_utilisation" inline label="Home cinéma" type={type} id={`inline-${type}-2`} onChange={changeDevis} />
+              <Form.Check name="spec_sound_utilisation" inline label="Musique" type={type} id={`inline-${type}-3`} onChange={changeDevis} />
+              <Form.Check name="spec_sound_utilisation" inline label="Autres" type={type} id={`inline-${type}-4`} onChange={changeDevis} />
+            </div>
+          ))}
+          <Field label="Veuillez préciser les autres utilisations" name="spec_sound_utilisation_other" value={dataSurvey.spec_sound_utilisation_other} type="name" placeholder="Précisez" handleChange={changeDevis} controlId="spec_sound_utilisation_other" />
+        </>
 
-      <Form>
-        <Form.Label>Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)</Form.Label>
-        <Field name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
-      </Form>
+      ) }
+      <Field label="Voulez vous un design particulier sur votre tour ? (lumieres,led,couleur harmonieuse, ..)" name="spec_light" type="name" value={dataSurvey.spec_light} placeholder="Message" handleChange={changeDevis} controlId="spec_light" />
 
       <ChangeStepButton step={dataSurvey.step} changeStep={changeStep} />
 

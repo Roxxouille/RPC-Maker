@@ -49,19 +49,19 @@ const Header = ({ isLogged, logout, username, role }) => {
           <Link onClick={handleClick} to="/user" className="dropdown-item">
             {textlogging}
           </Link>
-          {isLogged === true && (
+          {isLogged === true && role === "ROLE_USER" && (
             <>
               <NavDropdown.Divider />
               <h6>Espace utilisateur</h6>
               <Link to="/user/pc" className="dropdown-item">
                 Mon PC
-                  </Link>
+              </Link>
               <Link to="/user/message" className="dropdown-item">
                 Messagerie
-                  </Link>
+              </Link>
               <Link to="/user/infos" className="dropdown-item">
                 Mes informations
-                  </Link>
+              </Link>
             </>
           )}
           {isLogged === true && role === 'ROLE_BUILDER' && (
@@ -70,10 +70,10 @@ const Header = ({ isLogged, logout, username, role }) => {
               <h6>Back office</h6>
               <Link to="/backoffice/message" className="dropdown-item">
                 Messagerie
-                  </Link>
+              </Link>
               <Link to="/backoffice/clients" className="dropdown-item">
                 Mes Clients
-                  </Link>
+              </Link>
             </>
           )}
         </NavDropdown>

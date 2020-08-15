@@ -40,6 +40,8 @@ const user = (state = initialState, action = {}) => {
         builderId: action.builderId,
         id: action.id,
         level: action.level,
+        firstname: action.firstname,
+        lastname: action.lastname,
       };
     case LOGIN:
       return {

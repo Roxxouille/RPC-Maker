@@ -24,6 +24,7 @@ export default (store) => (next) => (action) => {
         })
         .catch((error) => {
           console.log(error.response);
+          store.dispatch(setErrorStep(error.response.data));
         });
       break;
     }

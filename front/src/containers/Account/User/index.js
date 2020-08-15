@@ -10,6 +10,8 @@ const mapStateToProps = (state) => ({
   commands: state.user.commands,
   builderId: state.user.builderId,
   level: state.user.level,
+  firstname: state.user.firstname,
+  lastname: state.user.lastname,
 });
 
 const mapDispatchToProps = (dispatch) => ({

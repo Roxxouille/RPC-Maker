@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { setItems, desactivateLoader, commandToFront, GET_COMMANDS, commandsToState, clientsToState, GET_CLIENTS, GET_COMMAND, GET_MESSAGES_BACK, setMessagesBack, SEND_MESSAGE_BACK, getMessagesBack, cleanNewMessage, GET_ITEMS, SUBMIT_ITEMS } from '../actions/backoffice';
-
 export default (store) => (next) => (action) => {
   switch (action.type) {
     case GET_COMMANDS: {

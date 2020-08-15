@@ -5,6 +5,7 @@ const Loader = () => {
   const divStyle = {
     color: '#edb948',
   };
+
   return (
     <div style={divStyle} className="la-pacman">
       <div></div>

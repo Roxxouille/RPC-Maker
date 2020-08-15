@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   error: state.user.error,
   isLogged: state.user.isLogged,
   isLoading: state.user.isLoading,
+  role: state.user.role,
 });
 
 const mapDispatchToProps = (dispatch) => ({

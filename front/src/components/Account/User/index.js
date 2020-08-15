@@ -24,7 +24,7 @@ import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
 import Progress from 'src/components/Account/User/Progress';
 
 const User = ({
-  isLogged, isLoading, username, level, firstname, email,
+  isLogged, isLoading, username, level, email, role, firstname, lastname
 }) => {
   if (localStorage.getItem('token')) {
     activateLoad();
@@ -36,11 +36,11 @@ const User = ({
         <Loader />
       )}
 
-      {isLoading === false && isLogged === false && !localStorage.getItem('token') && (
+      {isLoading === false && !localStorage.getItem('token') && role !== 'ROLE_USER' && (
         <Redirect to={{ pathname: '/login' }} />
       )}
 
-      {isLogged === true && isLoading === false && (
+      {isLogged === true && isLoading === false && role === 'ROLE_USER' ? (
         <div className="profile">
           <Jumbotron fluid className="jumbotron">
             <Container className="jumbotron__containr">
@@ -61,12 +61,13 @@ const User = ({
               <div className="user__nav__content">
                 <div className="user__nav__content__infos">
                   <Link to="/user">{username}</Link>
-                  <a>level {level}</a>
-                  <a>{email}</a>
-                  <a> firstname "lastname"</a>
-                  <a>"adress"</a>
+                  <ul>
+                    <li>level {level}</li>
+                    <li>{email}</li>
+                    <li>{firstname}</li>
+                    <li>{lastname}</li>
+                  </ul>
                 </div>
-
                 <div className="user__nav__content__links">
                   <Link to="/user/edit-info">Editer mes infos</Link>
                   <a href="#">Changer de mot de passe</a>
@@ -95,7 +96,7 @@ const User = ({
             </div>
           </div>
         </div>
-      )}
+      ) : (<Redirect to={{ pathname: '/login' }} />)}
     </Container>
   );
 };
