@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  SUBMIT_PROFILE, SUBMIT_PASSWORD, getValidation, errorSubscription, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
+  SUBMIT_PROFILE, SUBMIT_PASSWORD, getValidation, getValidationProfile, errorSubscription, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
 } from '../actions/profile';
 
 export default (store) => (next) => (action) => {
@@ -18,6 +18,7 @@ export default (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(changeProfile(response));
+          store.dispatch(getValidationProfile(response.data.status));
         })
         .catch((error) => {
           console.log(error.response);

@@ -1,5 +1,5 @@
 import {
-  CHANGE_PROFILE, GET_VALIDATION, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION, ERROR_SUBSCRIPTION,
+  CHANGE_PROFILE, GET_VALIDATION, GET_VALIDATION_PROFILE, ERROR_PROFILE, SET_DATA, INPUT_SUBSCRIPTION, ERROR_SUBSCRIPTION,
 } from '../actions/profile';
 
 export const initialState = {
@@ -60,6 +60,11 @@ const profile = (state = initialState, action = {}) => {
       return {
         ...state,
         validation: { status: action.value },
+      };
+    case GET_VALIDATION_PROFILE:
+      return {
+        ...state,
+        infos: { status: action.value },
       };
     default:
       return state;
