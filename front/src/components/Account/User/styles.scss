@@ -58,11 +58,13 @@ $font-text: 'Chivo', sans-serif;
 
         &__profilelinks{
           display: flex;
-          flex-flow: wrap colurowmn;
+          flex-flow: wrap row;
           border-right: solid 1px;
           border-color: lightgrey;
           width: 33%;
           justify-content: space-around;
+          height: 80%;
+          align-items: center;
           
           &__icon{
             color: rgb(122, 122, 122);
