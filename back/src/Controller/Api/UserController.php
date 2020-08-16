@@ -148,7 +148,7 @@ class UserController extends AbstractController
         $command = new Command();
         $command->setName('Pc numero 1 de ' . $username);
         $command->setCommandData($commandData);
-        $command->setStatus($statusRepository->findBy(['statusNumber' => 1])[0]);
+        $command->setStatus($statusRepository->findBy(['statusNumber' => 2])[0]);
         $commandData->setCommandConfigData($commandConfigData);
         $commandData->setCommandSpecData($commndSpecData);
         $commandData->setCommandDeviceData($commandDeviceData);
