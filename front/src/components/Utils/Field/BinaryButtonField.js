@@ -2,7 +2,7 @@ import React from 'react';
 import 'src/components/Devis/styles.scss';
 import { Form, Col, Button } from 'react-bootstrap';
 
-const BinaryButtonField = ({ dataSurvey, name, handleChange, label, value }) => {
+const BinaryButtonField = ({ name, handleChange, label, value }) => {
   return (
     <div>
       <Form.Row>
