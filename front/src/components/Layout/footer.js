@@ -6,60 +6,40 @@ const Footer = () => {
   return (
     <div className="footer">
       <div>
-        <Row>
-          <Col><Image className="img-footer" src="https://picsum.photos/250/150" /></Col>
-          <Col xs={6} className="footer__pages">
-            <div className="footer__pages__plan-site">
-              <h3>Plan du site</h3>
-              <Link className="link" to="/">
-                Accueil
-              </Link>
-              <Link to="/devis" className="link">
-                Devis
-              </Link>
-              <Link to="/team" className="link">
-                Team
-              </Link>
-              <Link to="/contact" className="link">
-                Contact
-              </Link>
-            </div>
+        <Image className="footer__img" src="https://picsum.photos/250/150" />
+      </div>
 
-            <div className="footer__pages__legal-data">
-              <h3>Informations légales</h3>
-              <Link className="link" to="/legal">
-                Mentions légales
-              </Link>
-              <Link className="link" to="/cookies">
-                Utilisation des cookies
-              </Link>
-              <Link className="link" to="cgu">
-                CGUs
-              </Link>
-              <Link className="link" to="condifential">
-                Confidentialité
-              </Link>
-            </div>
-          </Col>
-          <Col>
-            <p>1 Rue de la patatate, immeuble 3, Rennes</p>
-            <p>Tel : 06 66 66 66 66</p>
+      <div className="footer__plan">
+        <div className="footer__plan__header">
+          <h3>Plan du site</h3>
+        </div>
 
-            <p>Lundi à jeudi : 9h 18h
-            <br />
-            Vendredi: 9h - 17h
-            <br />
-            Spmedi: 10h - 17h
-            <br />
-            Dimpnche 10h - 17h</p>
+        <div className="footer__plan__content">
+          <Link to="/">Accueil</Link>
+          <Link to="/devis" >Devis</Link>
+          <Link to="/team" >Team</Link>
+          <Link to="/contact" >Contact</Link>
+        </div>
+      </div>
 
-          </Col>
-        </Row>
-        <Switch>
-          <Route path="/legal" />
-          <Route path="/team" />
-          <Route path="/contact" />
-        </Switch>
+      <div className="footer__legal">
+        <div className="footer__legal__header">
+          <h3>Informations légales</h3>
+        </div>
+
+        <div className="footer__legal__content">
+          <Link to="/legal">Mentions légales</Link>
+          <Link to="/cookies">Utilisation des cookies</Link>
+          <Link to="cgu">CGUs</Link>
+          <Link to="condifential">Confidentialité</Link>
+        </div>
+      </div>
+
+      <div>
+        <p>404 rue de l'internet mondiale, 80800, localhost</p>
+        <p>Tel : +33 1 10 01 01 00</p>
+
+        <p>Lundi à jeudi : 9h - 3h (du matin)</p>
       </div>
     </div>
   );

@@ -154,11 +154,19 @@ class Command
      *  "command_info",
      *  "command"
      * })
+     * @Assert\NotBlank(
+     *  message = "Ce champ ne peut pas être vide.",
+     *  groups = {
+     *       "registration",
+     *      },
+     * )
      * @Assert\Length(
-     *  max = 45,
-     *  maxMessage = "Le nom de la commande est trop long",
-     * groups = {
-     *      "registration", 
+     *      min = 3,
+     *      max = 25,
+     *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
+     *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
+     *      groups = {
+     *      "registration",
      *      },
      * )
      */
