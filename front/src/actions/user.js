@@ -16,7 +16,11 @@ export const SET_MESSAGES = 'SET_MESSAGES';
 export const CHANGE_NEW_MESSAGE = 'CHANGE_NEW_MESSAGE';
 export const SEND_MESSAGE = 'SEND_MESSAGE';
 export const CLEAN_NEW_MESSAGE = 'CLEAN_NEW_MESSAGE';
+export const DESACTIVATE_LOADER = 'DESACTIVATE_LOADER';
 
+export const desactivateLoader = () => ({
+  type: DESACTIVATE_LOADER,
+});
 
 export const cleanNewMessage = () => ({
   type: CLEAN_NEW_MESSAGE,

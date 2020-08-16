@@ -24,6 +24,9 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
           Plus vous mettrez d'information et plus votre personnage sera a l'effigie de ce que vous pensez etre le mieux pour lui, donc allez y franco, n'ayez pas peur!
         </h1>
       </div>
+
+      <hr />
+
       <div>
         <h1>De quelle classe sera votre personnage ?</h1>
         <Form>
@@ -38,11 +41,17 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         <ErrorField error={error.specImportant[0]} />
       </div>
 
+      <hr />
+
+
       <div>
         <h1>En fonction des batailles que votre personnage va mener il peut avoir besoin de la maitrise double lame qui lui permettra d'aller au devant du danger avec plus d'assurance!</h1>
         <BinaryButtonField label="Voulez vous faire un SLI?" name="spec_sli" value={dataSurvey.spec_sli} handleChange={changeDevis} />
         <ErrorField error={error.specSli[0]} />
       </div>
+
+      <hr />
+
       <div>
         <h1>
           Dans des moments tres strategiques ou pour des prises de decisions importantes, pour un ultime effort ou pour affronter des ennemis plus fort que prevu,
@@ -51,6 +60,8 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
         <BinaryButtonField label="Voulez vous pouvoir effectuer de l'overclocking ?" name="specOverclock" value={dataSurvey.spec_overclock} handleChange={changeDevis} />
         <ErrorField error={error.specOverclock[0]} />
       </div>
+
+      <hr />
 
       <div>
         <h1>
@@ -73,8 +84,10 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
           <Field label="Combien ?" name="spec_storage_quantity" value={dataSurvey.spec_storage_quantity} type="number" placeholder="- GO" handleChange={changeDevis} controlId="spec_storage_quantity" />
           <ErrorField error={error.specStorageQuantity[0]} />
         </Form>
-
       </div>
+
+      <hr />
+
       <div>
         <h1>
           Pour parcourir le monde votre personnage n'a peut etre pas de pierre de teleportation, c'est toujours mieux mais pas toujours disponible.
@@ -82,15 +95,21 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
       </h1>
         <BinaryButtonField label="Voulez vous avoir le wifi?" name="spec_wifi" value={dataSurvey.spec_wifi} handleChange={changeDevis} />
         <ErrorField error={error.specWifi[0]} />
-        <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
-        <ErrorField error={error.specWifiRoom[0]} />
-        <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
-        <ErrorField error={error.specFiber[0]} />
+        { dataSurvey.spec_wifi && (
+          <>
+            <BinaryButtonField label="Si oui, etes vous dans la meme piece que votre box internet ?" name="spec_wifi_room" value={dataSurvey.spec_wifi_room} handleChange={changeDevis} />
+            <ErrorField error={error.specWifiRoom[0]} />
+            <BinaryButtonField label="Si oui, avez vous la fibre optique ?" name="spec_fiber" value={dataSurvey.spec_fiber} handleChange={changeDevis} />
+            <ErrorField error={error.specFiber[0]} />
+          </>
+        ) }
       </div>
+
+      <hr />
 
       <div>
         <h1>
-          Votre personnage a peutre des envies artistique? ou bien il veut pouvoir lire un livre de qualite !
+          Votre personnage a peut etre des envies artistique? ou bien il veut pouvoir lire un livre de qualite !
           Pour cela il va lui falloir les bons instruments !
       </h1>
         <BinaryButtonField label="Voulez vous une carte son?" name="spec_sound" value={dataSurvey.spec_sound} handleChange={changeDevis} />
@@ -112,6 +131,9 @@ const Step5 = ({ changeDevis, dataSurvey, changeStep, error, step }) => {
 
         )}
       </div>
+
+      <hr />
+
       <div>
         <h1>
           Tout est bon ! Il ne vous reste qu'a donner des indications d'esthetique pour votre votre personnage ou nous dire tout autres informations qui nous serait utile le concernant et vous serez quasiment au bout.

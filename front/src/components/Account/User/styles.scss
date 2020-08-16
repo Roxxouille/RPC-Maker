@@ -1,80 +1,358 @@
 @use 'src/styles/vars';
+@import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i|Saira+Extra+Condensed:100,200,300,400,500,600,700,800|Saira:100,200,300,400,500,600,700,800');
 
-.user {
-  display: flex;
-  &__nav{
-    position: sticky;
-    display:flex;
-    flex-direction: column;
-    box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.075);              
-    height: fit-content;
-    top: 100px;
- 
-    &__avatar{
-      max-width: fit-content;
-      align-self: center;
-    }
-    &__content{
-      display: flex;
-      flex-flow: wrap column;
-      &__infos{
-        display: flex;
-        flex-flow: wrap column;
-        border-bottom: solid 1px ;
-        border-color: rgba(131, 131, 131, 0.233);
-        padding-bottom: 25px;
+/* Variables */
+
+$background: #252827;
+
+$color-primary: #001136;
+$color-hidden: lightgrey;
+$color-light: white;
+$color-dim: #6c6d6d;
+$spacing: 50px;
+$radius: 4px;
+
+$date: 120px;
+$dotborder: 4px;
+$dot: 11px;
+$line: 4px;
+
+$font-title: 'Saira', sans-serif;
+$font-text: 'Chivo', sans-serif;
+
+@media screen and (max-width: 992px) {
+  
+  .user {
+    display: flex;
+    flex-flow: wrap column;
+    &__nav{
+      display:flex;
+      flex-direction: row;
+      box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.075);              
+      height: fit-content;
+      top: 100px;
+      
+      &__avatar{
+        max-width: fit-content;
+        align-self: center;
+        height: 100px;
       }
-      &__links{
+      &__content{
         display: flex;
-        flex-flow: wrap column;
-        border-bottom: solid 1px ;
-        border-color: rgba(131, 131, 131, 0.233);
-        padding-bottom: 25px;
-        margin-top: 25px;
+        flex-flow: wrap row;
+        align-items: center;
+        width: 100%;
+        justify-content: space-around;
+       
+
+        &__infos{
+          display: flex;
+          flex-flow: wrap column;
+          border-right: solid 1px;
+          border-color: lightgrey;
+          width: 33%;
+          a{
+            color: black;
+          }
+        }
+
+        &__profilelinks{
+          display: flex;
+          flex-flow: wrap row;
+          border-right: solid 1px;
+          border-color: lightgrey;
+          width: 33%;
+          justify-content: space-around;
+          height: 80%;
+          align-items: center;
+          
+          &__icon{
+            color: rgb(122, 122, 122);
+          }
+        }
+
+        &__links{
+          display: flex;
+          flex-flow: wrap column;
+          a{
+            color: black;
+          }
+          width: 33%;
+        }
+      }
+    }
+    
+    &__body{
+      
+      &__tchat{
+        &__title{
+          margin-bottom: 25px;
+          &__hr{
+            margin: auto;
+          }
+        }
+        &__body{
+          border: solid 1px;
+          border-color: lightgrey;
+          position: relative;
+          background-color: #d6d7d846;
+          text-align: left;
+          height: 55vh;
+          overflow: scroll;
+          box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.23);
+          overflow-x: hidden;
+          &__messages{
+            &__new{
+              justify-self: center;
+              position: sticky;
+              bottom: 5px;
+              width: 95%;
+              border-radius: 5px;
+              margin: auto;
+              .form-control{
+                background-color: #ffffff;
+                box-shadow: inset 0px 0px 2px 1px rgba(104, 104, 104, 0.23);
+                height: 50px;
+              }
+          }
+          }
+        }
       }
     }
   }
+  
 
-  &__body{
-    &__tchat{
-      &__title{
-        margin-bottom: 25px;
-        &__hr{
-          margin: auto;
+  // JUMBOTRON //
+
+.jumbotron{
+  display: none;
+}
+
+.timeline {
+  border-left: $line solid $color-hidden;
+  border-bottom-right-radius: $radius;
+  border-top-right-radius: $radius;    
+  background: fade($color-light, 3%);
+  color: fade(white, 80%);
+  font-family: $font-text;  
+  margin: $spacing auto;
+  letter-spacing: 0.5px;   
+  position: relative;
+  line-height: 1.4em;
+  font-size: 1.03em;   
+  padding: $spacing;
+  list-style: none;
+  text-align: left;  
+  font-weight: 100;  
+  max-width: 100%; 
+
+  .event-notdone {
+    border-bottom: 1px dashed fade($color-light, 10%);
+    margin-bottom: 15px;  
+    position: relative;
+
+    .done{
+      margin-bottom: 25px;
+      h3{
+        color: lightgrey;
+      }
+      p{
+        color: lightgrey;
+      }
+    }
+
+    &:last-of-type { 
+      padding-bottom: 0;
+      margin-bottom: 0; 
+      border: none;      
+    }
+
+    &:before, &:after {
+      position: absolute;
+      display: block;
+      top: 0;
+    }
+
+    &:before {
+      left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;    
+      color: fade($color-light, 40%);    
+      content: attr(data-date);
+      text-align: right;
+      font-weight: 100;    
+      font-size: 0.9em;
+      min-width: $date;
+      font-family: $font-title;
+    }
+
+    &:after {
+      box-shadow: 0 0 0 $dotborder fade($color-primary,100%);    
+      left: ($spacing + $line + ($dot * 0.35)) * -1;        
+      background: lighten($color-hidden,5%);    
+      border-radius: 50%;  
+      height: $dot;
+      width: $dot;
+      content: "";
+      top: 5px;
+    }
+  }
+  
+  .event {
+    border-bottom: 1px dashed fade($color-light, 10%);
+    padding-bottom: ($spacing * 0.5);
+    margin-bottom: $spacing;  
+    position: relative;
+
+    &:last-of-type { 
+      padding-bottom: 0;
+      margin-bottom: 0; 
+      border: none;      
+    }
+
+    &:before, &:after {
+      position: absolute;
+      display: block;
+      top: 0;
+    }
+
+    &:before {
+      left: ((($date * 0.6) + $spacing + $line + $dot + ($dotborder * 2)) * 1.5) * -1;    
+      color: fade($color-light, 40%);    
+      content: attr(data-date);
+      text-align: right;
+      font-weight: 100;    
+      font-size: 0.9em;
+      min-width: $date;
+      font-family: $font-title;
+    }
+
+    &:after {
+      box-shadow: 0 0 0 $dotborder fade($color-primary,100%);    
+      left: ($spacing + $line + ($dot * 0.35)) * -1;        
+      background: lighten($color-primary,5%);    
+      border-radius: 50%;  
+      height: $dot;
+      width: $dot;
+      content: "";
+      top: 5px;
+    }
+  }
+
+  
+}
+
+
+}
+
+@media screen and (min-width: 993px) {
+
+  .user {
+    display: flex;
+    &__nav{
+      position: sticky;
+      display:flex;
+      flex-direction: column;
+      box-shadow:  0px 5px 5px 1px rgba(0, 0, 0, 0.075);              
+      height: fit-content;
+      top: 100px;
+   
+      &__avatar{
+        max-width: fit-content;
+        align-self: center;
+      }
+      &__content{
+        display: flex;
+        flex-flow: wrap column;
+        &__infos{
+          display: flex;
+          flex-flow: wrap column;
+          border-bottom: solid 1px ;
+          border-color: rgba(131, 131, 131, 0.233);
+          padding-bottom: 25px;
+        }
+        &__profilelinks{
+          display: none;
+        }
+        &__links{
+          display: flex;
+          flex-flow: wrap column;
+          border-bottom: solid 1px ;
+          border-color: rgba(131, 131, 131, 0.233);
+          padding-bottom: 25px;
+          margin-top: 25px;
         }
       }
-      &__body{
-        border: solid 1px;
-        border-color: lightgrey;
-        position: relative;
-        background-color: #d6d7d846;
-        text-align: left;
-        height: 55vh;
-        overflow: scroll;
-        box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.23);
-        overflow-x: hidden;
-        &__messages{
-          height: 100%;
-          
-
-          &__new{
-            justify-self: center;
-            position: sticky;
-            bottom: 5px;
-            width: 95%;
-            border-radius: 5px;
+    }
+  
+    &__body{
+      &__tchat{
+        &__title{
+          margin-bottom: 25px;
+          &__hr{
             margin: auto;
-            .form-control{
-              background-color: #ffffff;
-              box-shadow: inset 0px 0px 2px 1px rgba(104, 104, 104, 0.23);
-              height: 50px;
-            }
+          }
         }
+        &__body{
+          border: solid 1px;
+          border-color: lightgrey;
+          position: relative;
+          background-color: #d6d7d846;
+          text-align: left;
+          height: 55vh;
+          overflow: scroll;
+          box-shadow: inset 0px 0px 5px 1px rgba(0,0,0,0.23);
+          overflow-x: hidden;
+          &__messages{
+            &__new{
+              justify-self: center;
+              position: sticky;
+              bottom: 5px;
+              width: 95%;
+              border-radius: 5px;
+              margin: auto;
+              .form-control{
+                background-color: #ffffff;
+                box-shadow: inset 0px 0px 2px 1px rgba(104, 104, 104, 0.23);
+                height: 50px;
+              }
+          }
+          }
         }
+      }
+    }
+  }
+  
+
+  // JUMBOTRON //
+
+.jumbotron{
+  background-image: url(https://picsum.photos/1920/1080/?blur);
+
+  &__containr{
+    color: white;
+    &__title{
+  
+    }
+    &__content{
+  
+    }
+    &__links{
+      display: flex;
+      justify-content: center;
+      &__icon{
+        background-color: rgba(0, 0, 0, 0.473);
+        color: rgb(255, 255, 255);
+        padding: 5px;
+        border-radius: 20px;
+        border: solid;
+        border-color: #ffffff8e;
+        margin-right: 20px;
       }
     }
   }
 }
+
+}
+
 
 // COMMANDS //
 
@@ -157,34 +435,7 @@
   }
 }
 
-// JUMBOTRON //
 
-.jumbotron{
-  background-image: url(https://picsum.photos/1920/1080/?blur);
-
-  &__containr{
-    color: white;
-    &__title{
-  
-    }
-    &__content{
-  
-    }
-    &__links{
-      display: flex;
-      justify-content: center;
-      &__icon{
-        background-color: rgba(0, 0, 0, 0.473);
-        color: rgb(255, 255, 255);
-        padding: 5px;
-        border-radius: 20px;
-        border: solid;
-        border-color: #ffffff8e;
-        margin-right: 20px;
-      }
-    }
-  }
-}
 
 // MON PC //
 
@@ -278,42 +529,6 @@
 }
 
 
-//TCHAT//
-
-
-
-
-//timeline
-
-
-@import url('https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i|Saira+Extra+Condensed:100,200,300,400,500,600,700,800|Saira:100,200,300,400,500,600,700,800');
-
-/* Variables */
-
-$background: #252827;
-
-$color-primary: #001136;
-$color-hidden: lightgrey;
-$color-light: white;
-$color-dim: #6c6d6d;
-$spacing: 50px;
-$radius: 4px;
-
-$date: 120px;
-$dotborder: 4px;
-$dot: 11px;
-$line: 4px;
-
-$font-title: 'Saira', sans-serif;
-$font-text: 'Chivo', sans-serif;
-
-/* Base */
-
-
-
-
-
-
 #timeline-content {
   margin-top: $spacing;
   text-align: center;  
@@ -328,7 +543,8 @@ $font-text: 'Chivo', sans-serif;
   background: fade($color-light, 3%);
   color: fade(white, 80%);
   font-family: $font-text;  
-  margin: $spacing auto;  
+  margin: $spacing auto;
+  margin-left: 100px;
   letter-spacing: 0.5px;   
   position: relative;
   line-height: 1.4em;

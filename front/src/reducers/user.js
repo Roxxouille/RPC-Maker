@@ -1,4 +1,4 @@
-import { ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING, SET_MESSAGES, CHANGE_NEW_MESSAGE, CLEAN_NEW_MESSAGE } from '../actions/user';
+import { DESACTIVATE_LOADER, ACTIVATE_LOAD, CHANGE_FIELD, LOGIN, FAIL_LOGIN, SET_USER, IS_LOGGED, UNSET_USER, IS_LOADING, SET_MESSAGES, CHANGE_NEW_MESSAGE, CLEAN_NEW_MESSAGE } from '../actions/user';
 
 export const initialState = {
   id: '',
@@ -84,6 +84,11 @@ const user = (state = initialState, action = {}) => {
       return {
         ...state,
         newMessage: '',
+      };
+    case DESACTIVATE_LOADER:
+      return {
+        ...state,
+        idLoading: false,
       };
     default:
       return state;

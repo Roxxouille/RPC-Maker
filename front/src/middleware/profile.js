@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {
-  SUBMIT_PROFILE, SUBMIT_PASSWORD, errorSubscription, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
+  SUBMIT_PROFILE, SUBMIT_PASSWORD, getValidation, errorSubscription, changeProfile, errorProfile, GET_DATA, setData, SUBMIT_FORM,
 } from '../actions/profile';
 
 export default (store) => (next) => (action) => {
@@ -17,7 +17,7 @@ export default (store) => (next) => (action) => {
       }, { headers: { 'X-AUTH-TOKEN': token, 'Content-Type': 'application/json' } })
         .then((response) => {
           console.log(response);
-          store.dispatch(changeProfile(response.data.status));
+          store.dispatch(changeProfile(response));
         })
         .catch((error) => {
           console.log(error.response);
@@ -37,6 +37,8 @@ export default (store) => (next) => (action) => {
         .then((response) => {
           console.log(response);
           store.dispatch(changeProfile(response.data.status));
+          store.dispatch(getValidation(response.data.status));
+          console.log(response.data.status);
         })
         .catch((error) => {
           console.log(error.response);

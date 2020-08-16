@@ -27,7 +27,10 @@ const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
           <ErrorField error={error.username[0]} />
         </div>
 
-        <hr />
+        <div className="fullform__body__hr">
+          <hr />
+        </div>
+
 
         <div className="fullform__body__content">
           <h1>Il est maintenant temps de rentrer dans le vif du sujet, votre personnage!

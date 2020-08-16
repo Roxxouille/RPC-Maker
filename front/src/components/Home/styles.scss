@@ -50,12 +50,20 @@
 
   .team{
     margin-bottom: 75px;
+
     &__title{
       margin-bottom: 25px;
     }
       &__hr{
         margin: auto;
       }
+    &__cards{
+      display: flex;
+      flex-flow: wrap row;
+      justify-content: space-around;
+      margin-bottom: 25px;
+      
+    }
   }
 
  // TESTIMONIES //
@@ -116,15 +124,27 @@
 
  // TEAM //
 
-  .team{
+ .team{
   margin-bottom: 75px;
+
   &__title{
-    margin-bottom: 50px;
+    margin-bottom: 25px;
   }
     &__hr{
       margin: auto;
     }
+  &__cards{
+    display: flex;
+    flex-flow: wrap row;
+    justify-content: space-around;
+    margin-bottom: 25px;
+    .card{
+      height: 300px;
+      width: 200px;
+    }
+    
   }
+}
 
   // TESTIMONIES //
 
