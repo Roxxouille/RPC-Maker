@@ -9,8 +9,9 @@
     }
 
     .binarybutton{
-        
+    
     }
+
     
     h1{
         font-style: italic;
@@ -59,7 +60,7 @@
     position: relative;
     text-align: center;
     text-transform: uppercase;
-    color: #7d7d7d;
+    color: #d3d3d3;
 }
 .progressbar li:before {
     width: 30px;
@@ -67,7 +68,7 @@
     content: counter(step);
     counter-increment: step;
     line-height: 30px;
-    border: 2px solid #7d7d7d;
+    border: 2px solid #d3d3d3;
     display: block;
     text-align: center;
     margin: 0 auto 10px auto;
@@ -82,7 +83,7 @@
     content: '';
     left: -50%;
     position: absolute;
-    background-color: #7d7d7d;
+    background-color: #d3d3d3;
     top: 15px;
     margin-left: 15px;
     z-index: -1;
@@ -99,5 +100,15 @@
     border-color: #55b776;
 }
 .progressbar li.active + li:after {
-    background-color: #55b776;
+    background: linear-gradient(90deg, rgba(85,183,118,1) 0%, #d3d3d3 75%);
+}
+
+.progressbar li.actived {
+    color: green;
+}
+.progressbar li.actived:before {
+    border-color: #55b776;
+}
+.progressbar li.actived + li:after {
+    background: #55b776;
 }
