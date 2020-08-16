@@ -58,7 +58,7 @@ const User = ({
           </Jumbotron>
           <div className="user">
             <div className="user__nav">
-              <Image className="user__nav__avatar" src={`http://http://54.173.92.69/api/assets/gifs/${image}`} rounded />
+              <Image className="user__nav__avatar" src={`http://54.173.92.69/api/assets/gifs/${image}`} rounded />
               <div className="user__nav__content">
                 <div className="user__nav__content__infos">
                   <a> {firstname} {lastname}</a>
