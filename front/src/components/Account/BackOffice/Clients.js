@@ -7,8 +7,6 @@ import {
 import Loader from 'src/components/Utils/Loader';
 
 const Clients = ({ clients, isLoading }) => {
-  console.log(clients);
-  console.log('loading:', isLoading);
 
   const dataClients1 = clients.map((client) => {
     const command = client.commands[0];
