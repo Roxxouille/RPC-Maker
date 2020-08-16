@@ -2,6 +2,7 @@ import { CHANGE_ARRAY_DEVIS, CHANGE_DEVIS, CHANGE_STEP_STATE, SET_ERROR_STEP, RE
 
 export const initialState = {
   dataSurvey: {
+    name: '',
     step: 1,
     budget: false,
     amount: null,
@@ -103,6 +104,7 @@ export const initialState = {
     zip_code: null,
   },
   fail: {
+    name: '',
     budget: [''],
     amount: [''],
     gap: [''],
