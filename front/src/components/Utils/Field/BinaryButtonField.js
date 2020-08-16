@@ -6,14 +6,14 @@ const BinaryButtonField = ({ name, handleChange, label, value }) => {
   return (
     <div>
       <Form.Row>
-        <Form.Label>{label}</Form.Label>
-      </Form.Row>
-      <Form.Row>
-        <Col>
-          <Button name={name} className="binarybutton" variant={value === true ? 'dark' : 'light'} value={true} onClick={handleChange}>Oui</Button>
+        <Col md={6}>
+          <Form.Label>{label}</Form.Label>
         </Col>
-        <Col>
-          <Button name={name} className="binarybutton" variant={value === false ? 'dark' : 'light'} value={false} onClick={handleChange}>Non</Button>
+        <Col md="auto">
+          <Button name={name} className="binarybutton" variant="light" value={true} onClick={handleChange}>Oui</Button>
+        </Col>
+        <Col md="auto">
+          <Button name={name} className="binarybutton" variant="light" value={false} onClick={handleChange}>Non</Button>
         </Col>
       </Form.Row>
     </div>
