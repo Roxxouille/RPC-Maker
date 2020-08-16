@@ -5,7 +5,7 @@ import { Row, Col, Image } from 'react-bootstrap';
 const Footer = () => {
   return (
     <div className="footer">
-      <div className="container">
+      <div>
         <Row>
           <Col><Image className="img-footer" src="https://picsum.photos/250/150" /></Col>
           <Col xs={6} className="footer__pages">

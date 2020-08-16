@@ -14,7 +14,7 @@ const Clients = ({ clients, isLoading }) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
-      <div className={client.level === 1 ? 'clients' : 'clients d-none'} key={client.id}>
+      <div className={client.level === 2 ? 'clients' : 'clients d-none'} key={client.id}>
         <Card >
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
@@ -30,7 +30,7 @@ const Clients = ({ clients, isLoading }) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
-      <div className={client.level === 2 ? 'clients' : 'clients d-none'} key={client.id}>
+      <div className={client.level === 3 ? 'clients' : 'clients d-none'} key={client.id}>
         <Card >
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
@@ -46,7 +46,7 @@ const Clients = ({ clients, isLoading }) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
-      <div className={client.level === 3 ? 'clients' : 'clients d-none'} key={client.id}>
+      <div className={client.level === 4 ? 'clients' : 'clients d-none'} key={client.id}>
         <Card >
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>

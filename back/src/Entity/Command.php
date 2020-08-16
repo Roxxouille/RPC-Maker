@@ -152,11 +152,14 @@ class Command
      *  "user",
      *  "login",
      *  "command_info",
-     * "command"
+     *  "command"
      * })
      * @Assert\Length(
      *  max = 45,
      *  maxMessage = "Le nom de la commande est trop long",
+     * groups = {
+     *      "registration", 
+     *      },
      * )
      */
     private $name;
