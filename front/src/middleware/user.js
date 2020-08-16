@@ -44,7 +44,7 @@ export default (store) => (next) => (action) => {
           const idBuilder = response.data.builder === null ? 0 : response.data.builder.id;
           console.log(idBuilder);
           const commands = response.data.commands;
-          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname));
+          store.dispatch(setUser(response.data.username, response.data.roles[0], commands, idBuilder, response.data.id, response.data.level, response.data.firstname, response.data.lastname, response.data.avatar.image, response.data.email));
         })
         .catch((error) => {
           store.dispatch(desactivateLoader());

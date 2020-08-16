@@ -14,6 +14,8 @@ export const initialState = {
   messages: [],
   newMessage: '',
   level: 0,
+  image: '',
+  email: '',
 };
 
 const user = (state = initialState, action = {}) => {
@@ -42,6 +44,8 @@ const user = (state = initialState, action = {}) => {
         level: action.level,
         firstname: action.firstname,
         lastname: action.lastname,
+        image: action.image,
+        email: action.email,
       };
     case LOGIN:
       return {

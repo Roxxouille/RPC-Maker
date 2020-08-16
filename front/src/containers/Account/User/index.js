@@ -12,6 +12,8 @@ const mapStateToProps = (state) => ({
   level: state.user.level,
   firstname: state.user.firstname,
   lastname: state.user.lastname,
+  image: state.user.image,
+  email: state.user.email,
 });
 
 const mapDispatchToProps = (dispatch) => ({
