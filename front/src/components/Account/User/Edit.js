@@ -3,6 +3,7 @@ import { Form, Button } from 'react-bootstrap';
 import StateField from 'src/components/Utils/Field/StateField';
 import Field from 'src/components/Utils/Field';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
+import Validation from 'src/components/Utils/Field/Validation';
 
 const Edit = ({
   changeProfile, submitProfile, profile, getData,
@@ -38,6 +39,7 @@ const Edit = ({
         <Button variant="primary" type="submit">
           Mettre à jour
         </Button>
+        <Validation validate={profile.infos.status} />
       </Form>
     </div>
   );

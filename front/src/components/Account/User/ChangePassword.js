@@ -19,7 +19,7 @@ const ChangePassword = ({ changeProfile, profile, submitPassword }) => {
   return (
     <div className="container">
       <Form onSubmit={handleSubmit}>
-        <Field label="Nouveau mot de passe :" handleChange={handleChange} name="password" value={profile.infos.password} type="password" controlId="password" />
+        <Field label="Nouveau mot de passe :" handleChange={handleChange} placeholder="********" name="password" value={profile.infos.password} type="password" controlId="password" />
         <ErrorField error={profile.error.password[0]} />
         <Button variant="primary" type="submit">
           Changer de mot de passe
