@@ -5,7 +5,7 @@ const InfosClient = ({ client }) => {
   console.log('info client', client);
   return (
     <div className="backoffice__body__tchat__messages__body__profile">
-      <Image className="backoffice__body__tchat__messages__body__profile__image" src={`http://localhost:3000/assets/gifs/${client.avatar.image}`} rounded />
+      <Image className="backoffice__body__tchat__messages__body__profile__image" src={`http://http://54.173.92.69/api/assets/gifs/${client.avatar.image}`} rounded />
       <p className="backoffice__body__tchat__messages__body__profile__name">{client.lastname} {client.firstname}</p>
       <p className="backoffice__body__tchat__messages__body__profile__username">{client.username}</p>
       <hr />
