@@ -25,7 +25,7 @@ import { FaEnvelope, FaScroll, FaRobot } from 'react-icons/fa';
 import Progress from 'src/components/Account/User/Progress';
 
 const User = ({
-  isLogged, isLoading, username, level, email, role, firstname, lastname
+  isLogged, isLoading, username, level, email, role, firstname, lastname, image
 }) => {
   if (localStorage.getItem('token')) {
     activateLoad();
@@ -58,7 +58,7 @@ const User = ({
           </Jumbotron>
           <div className="user">
             <div className="user__nav">
-              <Image className="user__nav__avatar" src="https://picsum.photos/240" rounded />
+              <Image className="user__nav__avatar" src={`http://localhost:3000/assets/gifs/${image}`} rounded />
               <div className="user__nav__content">
                 <div className="user__nav__content__infos">
                   <a> {firstname} {lastname}</a>
