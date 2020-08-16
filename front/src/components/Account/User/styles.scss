@@ -325,7 +325,7 @@ $font-text: 'Chivo', sans-serif;
   // JUMBOTRON //
 
 .jumbotron{
-  background-image: url(https://picsum.photos/1920/1080/?blur);
+  background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.308) ), url(https://picsum.photos/1920/1080/?blur);
 
   &__containr{
     color: white;

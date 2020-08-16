@@ -14,7 +14,7 @@ const Footer = () => {
               <Link className="link" to="/">
                 Accueil
               </Link>
-              <Link to="/survey" className="link">
+              <Link to="/devis" className="link">
                 Devis
               </Link>
               <Link to="/team" className="link">
@@ -44,12 +44,15 @@ const Footer = () => {
           <Col>
             <p>1 Rue de la patatate, immeuble 3, Rennes</p>
             <p>Tel : 06 66 66 66 66</p>
-            <ul>
-              <li>Lundi a jeudi : 9h 18h</li>
-              <li>Vendre: 9h - 17h</li>
-              <li>Samedi: 10h - 17h</li>
-              <li>Dimanche 10h - 17h</li>
-            </ul>
+
+            <p>Lundi à jeudi : 9h 18h
+            <br />
+            Vendredi: 9h - 17h
+            <br />
+            Spmedi: 10h - 17h
+            <br />
+            Dimpnche 10h - 17h</p>
+
           </Col>
         </Row>
         <Switch>

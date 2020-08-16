@@ -56,6 +56,52 @@
 
             &__verify{
                 width: 100%;
+                p{
+                    margin-top: 25px;
+                    text-align: left;
+                    margin-left: 15px;
+                }
+                &__title{
+                    text-align: left;
+                }
+                &__body{
+                    display: flex;
+                    flex-flow: wrap row;
+                    .clients{
+                        margin: 20px;
+                        width: auto;
+                        text-align: left;
+                    }
+                }
+            }
+
+            &__edit{
+                width: 100%;
+                p{
+                    margin-top: 25px;
+                    text-align: left;
+                    margin-left: 15px;
+                }
+                &__title{
+                    text-align: left;
+                }
+                &__body{
+                    display: flex;
+                    flex-flow: wrap row;
+                    .clients{
+                        margin: 20px;
+                        width: auto;
+                        text-align: left;
+                    }
+                }
+            }
+            &__mount{
+                width: 100%;
+                p{
+                    margin-top: 25px;
+                    text-align: left;
+                    margin-left: 15px;
+                }
                 &__title{
                     text-align: left;
                 }

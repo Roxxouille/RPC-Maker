@@ -469,7 +469,7 @@ class CommandListener
                 $messageContent .= " Je voudrais  que l'imprimante soit de type " . $deviceData->getDevicePrinterType();
             }
         }
-
+        $command->setData(['dataform' => $messageContent]);
         $message = new Message;
 
         $message->setContent($messageContent);
