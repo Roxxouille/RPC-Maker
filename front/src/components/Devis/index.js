@@ -25,7 +25,11 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
 
   const changeStep = (actionStep) => {
     const newStep = actionStep === 'next' ? devis.dataSurvey.step + 1 : devis.dataSurvey.step - 1;
-    newStep === 9 ? submitSurvey() : changeStepState(newStep);
+    if (actionStep === 'next') {
+      newStep === 9 ? submitSurvey() : changeStepState(newStep);
+    } else {
+      forceChangeStep(newStep);
+    }
   };
 
   const handleChangeArray = (e) => {
