@@ -1,8 +1,10 @@
 import React from 'react'
+import { FaDivide } from 'react-icons/fa'
 
 const Timeline = ({ step }) => {
   return (
-    <ul className="progressbar">
+    <div className="wrap">
+      <ul className="progressbar" style={(step === 1) ? 'right : 200px' : ''}}>
       {/* si step superieur ou egal a 1, mettre classname active */}
       <li className={(step === 1) ? 'active' : (step >= 2) ? 'actived' : ''}>Bienvenue !</li>
       {/* si step superieur ou egal a 2, mettre classname active */}
@@ -19,7 +21,9 @@ const Timeline = ({ step }) => {
       <li className={(step === 7) ? 'active' : (step >= 8) ? 'actived' : ''}>sac a dos</li>
       {/* si step superieur ou egal a 8, mettre classname active */}
       <li className={(step === 8) ? 'active' : (step >= 9) ? 'actived' : ''}>Informations personnelles</li>
-    </ul>
+      </ul>
+    </div >
+
   );
 };
 
