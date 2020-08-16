@@ -7,26 +7,8 @@ import {
 import Loader from 'src/components/Utils/Loader';
 
 const Clients = ({ clients, isLoading }) => {
-  console.log(clients);
-  console.log('loading:', isLoading);
 
   const dataClients1 = clients.map((client) => {
-    const command = client.commands[0];
-    const link = `/backoffice/client/order/${command.slug}`;
-    return (
-      <div className={client.level === 1 ? 'clients' : 'clients d-none'} key={client.id}>
-        <Card >
-          <Card.Body>
-            <Card.Title>{client.firstname} {client.lastname}</Card.Title>
-            <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
-            <Link to={link}>voir</Link>
-            <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
-          </Card.Body>
-        </Card>
-      </div>
-    );
-  });
-  const dataClients2 = clients.map((client) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
@@ -42,11 +24,27 @@ const Clients = ({ clients, isLoading }) => {
       </div>
     );
   });
-  const dataClients3 = clients.map((client) => {
+  const dataClients2 = clients.map((client) => {
     const command = client.commands[0];
     const link = `/backoffice/client/order/${command.slug}`;
     return (
       <div className={client.level === 3 ? 'clients' : 'clients d-none'} key={client.id}>
+        <Card >
+          <Card.Body>
+            <Card.Title>{client.firstname} {client.lastname}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
+            <Link to={link}>voir</Link>
+            <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
+          </Card.Body>
+        </Card>
+      </div>
+    );
+  });
+  const dataClients3 = clients.map((client) => {
+    const command = client.commands[0];
+    const link = `/backoffice/client/order/${command.slug}`;
+    return (
+      <div className={client.level === 4 ? 'clients' : 'clients d-none'} key={client.id}>
         <Card >
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>

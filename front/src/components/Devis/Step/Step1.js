@@ -4,7 +4,7 @@ import Field from 'src/components/Utils/Field';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
 import ChangeStepButton from 'src/components/Devis/Step/ChangeStepButton';
 
-const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
+const Step1 = ({ changeDevis, username, step, changeStep, error, name }) => {
   console.log('error:', error);
   return (
     <div className="fullform container">
@@ -42,8 +42,8 @@ const Step1 = ({ changeDevis, username, step, changeStep, error }) => {
            un personnage avec qui vous allez vivre plein d'aventure, pour le meilleur et pour le pire !
            </h1>
         </div>
-        {/* <Field name="" type="name" value="" label="Quoi de mieux pour creer un personnage que de lui donner un nom?" placeholder="Nom de personnage" handleChange={changeDevis} controlId="username" />
-        <ErrorField error={error.username[0]} /> */}
+        <Field name="name" type="text" value={name} label="Quoi de mieux pour creer un personnage que de lui donner un nom?" placeholder="Nom de personnage" handleChange={changeDevis} controlId="username" />
+        <ErrorField error={error.name[0]} />
         <div className="fullform__body__changestep">
           <ChangeStepButton step={step} changeStep={changeStep} />
         </div>

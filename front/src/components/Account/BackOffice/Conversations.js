@@ -5,8 +5,6 @@ import InfosClient from 'src/components/Account/BackOffice/InfosClient';
 import { FaUsers, FaUber, FaUser, FaTv } from 'react-icons/fa';
 
 const Conversations = ({ clients, getMessagesBack, messages, username, newMessage, changeMessageBack, sendMessageBack, activeConv }) => {
-  console.log('Clients component conv', clients);
-  console.log('messages conv: ', messages);
   const handleClick = (e) => {
     getMessagesBack(e.target.id, e.target.title);
   };
