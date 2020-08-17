@@ -6,8 +6,16 @@
   position: relative;
 }
 
-.content-wrap{
-  padding-bottom: 20rem;
+@media screen and (max-width: 992px) { 
+
+  .content-wrap{
+    padding-bottom: 40rem;
+  }
 }
 
+@media screen and (min-width: 992px) { 
+  .content-wrap{
+    padding-bottom: 20rem;
+  }
+}
 

@@ -3,9 +3,11 @@ import Proptypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './styles.scss';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import logo from 'src/assets/images/rpcmaker.png';
 
-
-const Header = ({ isLogged, logout, username, role }) => {
+const Header = ({
+  isLogged, logout, username, role,
+}) => {
   const handleClick = () => {
     if (isLogged === true) {
       logout();
@@ -15,11 +17,21 @@ const Header = ({ isLogged, logout, username, role }) => {
 
   return (
     <div className="header">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="header__navbar">
+      <Navbar collapseOnSelect expand="lg" bg="light" variant="light" className="header__navbar">
 
-        <div className="header__navbar__navbrand"><Navbar.Brand href="/" >RPC Maker</Navbar.Brand></div>
+        <div className="header__navbar__navbrand">
+          <Navbar.Brand href="/">
+            <img
+              alt=""
+              src={logo}
+              width="80"
+              height="45"
+              className="d-inline-block align-top"
+            />{''}
+          </Navbar.Brand>
+        </div>
 
-        <span className="header__navbar__vr" ></span>
+        <span className="header__navbar__vr" />
 
         <Navbar.Toggle aria-controls="responsive-navbar-nav" className="header__navbar__burger" />
         <Navbar.Collapse id="responsive-navbar-nav" bg="dark">
@@ -45,7 +57,7 @@ const Header = ({ isLogged, logout, username, role }) => {
           <Link onClick={handleClick} to="/user" className="dropdown-item">
             {textlogging}
           </Link>
-          {isLogged === true && role === "ROLE_USER" && (
+          {isLogged === true && role === 'ROLE_USER' && (
             <>
               <NavDropdown.Divider />
               <h6>Espace utilisateur</h6>

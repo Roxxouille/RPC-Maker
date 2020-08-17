@@ -25,7 +25,11 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
 
   const changeStep = (actionStep) => {
     const newStep = actionStep === 'next' ? devis.dataSurvey.step + 1 : devis.dataSurvey.step - 1;
-    newStep === 9 ? submitSurvey() : changeStepState(newStep);
+    if (actionStep === 'next') {
+      newStep === 9 ? submitSurvey() : changeStepState(newStep);
+    } else {
+      forceChangeStep(newStep);
+    }
   };
 
   const handleChangeArray = (e) => {
@@ -42,7 +46,7 @@ const Devis = ({ devis, changeDevis, changeStepState, forceChangeStep, changeArr
       return (
         <div>
           <Timeline step={devis.dataSurvey.step} />
-          <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} step={devis.dataSurvey.step} error={devis.fail} />
+          <Step1 changeDevis={handleChange} changeStep={changeStep} username={devis.dataSurvey.username} name={devis.dataSurvey.name} step={devis.dataSurvey.step} error={devis.fail} />
         </div>
       );
     case 2:

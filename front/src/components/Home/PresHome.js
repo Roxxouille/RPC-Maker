@@ -22,6 +22,7 @@ const PresHome = ({ build, quote }) => (
           Et c'es ca que represente ce nombre, les personnes qui a raison nous on fait confiance pour faire un travail long et ereintant mais essentiel a toute personne qui veut un ordinateur de qualite pour un prix juste!
         </Row>
       </Col>
+      <hr />
       <span className="presHome__body__vr"></span>
       <Col>
         <Row className="presHome__body__header">
