@@ -190,7 +190,7 @@ class CommandListener
             $command->addItem($power[0]);
         } 
 
-        if($deviceData->getDeviceScreen() && $configData->getDeviceScreen() != "noidea"){
+        if($deviceData->getDeviceScreen() && $deviceData->getDeviceScreen() != "noidea"){
             $screen = $this->itemRepo->findBy(['name' => $deviceData->getDeviceScreen()]);
             $command->addItem($screen[0]);
         }
@@ -199,7 +199,7 @@ class CommandListener
             $command->addItem($screen[0]);
         } 
 
-        if($deviceData->getDeviceKeyboard() && $configData->getDeviceKeyboard() != "noidea"){
+        if($deviceData->getDeviceKeyboard() && $deviceData->getDeviceKeyboard() != "noidea"){
             $keyboard = $this->itemRepo->findBy(['name' => $deviceData->getDeviceKeyboard()]);
             $command->addItem($keyboard[0]);
         }
@@ -208,7 +208,7 @@ class CommandListener
             $command->addItem($keyboard[0]);
         } 
 
-        if($deviceData->getDeviceMouse() && $configData->getDeviceMouse() != "noidea"){
+        if($deviceData->getDeviceMouse() && $deviceData->getDeviceMouse() != "noidea"){
             $mouse = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMouse()]);
             $command->addItem($mouse[0]);
         }
@@ -217,7 +217,7 @@ class CommandListener
             $command->addItem($mouse[0]);
         } 
 
-        if($deviceData->getDeviceMousepad() && $configData->getDeviceMousepad() != "noidea"){
+        if($deviceData->getDeviceMousepad() && $deviceData->getDeviceMousepad() != "noidea"){
             $mousepad = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMousepad()]);
             $command->addItem($mousepad[0]);
         }
@@ -226,7 +226,7 @@ class CommandListener
             $command->addItem($mousepad[0]);
         } 
 
-        if($deviceData->getDeviceHeadphone() && $configData->getDeviceHeadphone() != "noidea"){
+        if($deviceData->getDeviceHeadphone() && $deviceData->getDeviceHeadphone() != "noidea"){
             $headphone = $this->itemRepo->findBy(['name' => $deviceData->getDeviceHeadphone()]);
             $command->addItem($headphone[0]);
         }
@@ -235,7 +235,7 @@ class CommandListener
             $command->addItem($headphone[0]);
         } 
 
-        if($deviceData->getDeviceEnceinte() && $configData->getDeviceEnceinte() != "noidea"){
+        if($deviceData->getDeviceEnceinte() && $deviceData->getDeviceEnceinte() != "noidea"){
             $enceinte = $this->itemRepo->findBy(['name' => $deviceData->getDeviceEnceinte()]);
             $command->addItem($enceinte[0]);
         }
@@ -244,7 +244,7 @@ class CommandListener
             $command->addItem($enceinte[0]);
         } 
 
-        if($deviceData->getDeviceWebcam() && $configData->getDeviceWebcam() != "noidea"){
+        if($deviceData->getDeviceWebcam() && $deviceData->getDeviceWebcam() != "noidea"){
             $webcam = $this->itemRepo->findBy(['name' => $deviceData->getDeviceWebcam()]);
             $command->addItem($webcam[0]);
         }
@@ -253,7 +253,7 @@ class CommandListener
             $command->addItem($webcam[0]);
         } 
 
-        if($deviceData->getDevicePrinter() && $configData->getDevicePrinter() != "noidea"){
+        if($deviceData->getDevicePrinter() && $deviceData->getDevicePrinter() != "noidea"){
             $printer = $this->itemRepo->findBy(['name' => $deviceData->getDevicePrinter()]);
             $command->addItem($printer[0]);
         }
@@ -262,7 +262,7 @@ class CommandListener
             $command->addItem($printer[0]);
         } 
         // Check if there is a os and add it to command if needed
-        if($specData->getOschoice() && $configData->getOschoice() != "noidea"){
+        if($specData->getOschoice() && $specData->getOschoice() != "noidea"){
             $item = $this->itemRepo->findBy(['name' => $specData->getOschoice()]);
             $command->addItem($item[0]);
         }

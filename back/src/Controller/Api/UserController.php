@@ -96,7 +96,7 @@ class UserController extends AbstractController
 
         // Get the content of the request
         $content = $request->getContent();
-
+        $contentArray = (array) json_decode($request->getContent());
         // Match the content with their entity
         $user = $serializer->deserialize($content, User::class, 'json');
         $commandData = $serializer->deserialize($content, CommandData::class, 'json');
@@ -146,7 +146,7 @@ class UserController extends AbstractController
         //set this info to the new command
         $username = $user->getUsername();
         $command = new Command();
-        $command->setName('Pc numero 1 de ' . $username);
+        $command->setName($contentArray['name']);
         $command->setCommandData($commandData);
         $command->setStatus($statusRepository->findBy(['statusNumber' => 2])[0]);
         $commandData->setCommandConfigData($commandConfigData);

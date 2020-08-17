@@ -157,7 +157,7 @@ class Command
      * @Assert\NotBlank(
      *  message = "Ce champ ne peut pas être vide.",
      *  groups = {
-     *       "registration",
+     *       "validation_one",
      *      },
      * )
      * @Assert\Length(
@@ -166,7 +166,7 @@ class Command
      *      minMessage = "Votre nom d'utilisateur doit au moins faire {{ limit }} caractère",
      *      maxMessage = "Votre nom d'utilisateur doit faire {{ limit }} caractère maximum",
      *      groups = {
-     *      "registration",
+     *      "validation_one",
      *      },
      * )
      */
