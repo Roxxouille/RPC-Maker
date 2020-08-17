@@ -59,8 +59,8 @@ const Progress = ({ level }) => {
             <p>La premiere etape de la creation de votre personnage fut un succes!
           <br />
           Vous n'avez plus qu'a attendrela reponse de votre guide qui vous aidera tout au long de votre aventure!</p>
-             Qu<FaExclamation /> ete accomplis: <br />
-            <h6>Inscritpion</h6>
+            <FaExclamation /> Quete accomplis: <br />
+            <h6>Envoi du devis</h6>
             <br />
             <FaTrophy />  +1 niveau!
             <br />
