@@ -32,9 +32,9 @@ const Step5 = ({
       <div>
         <h1>De quelle classe sera votre personnage ?</h1>
         <Form>
-          <Form.Check inline name="spec_important" label="Silencieux" value="Le silence" onChange={changeDevis} />
-          <Form.Check inline name="spec_important" label="Un juste milieux" value="Un juste milieux" onChange={changeDevis} />
-          <Form.Check inline name="spec_important" label="Puissant" value="Les performances" onChange={changeDevis} />
+          <Form.Check inline name="spec_important" type="radio" label="Silencieux" value="Le silence" onChange={changeDevis} />
+          <Form.Check inline name="spec_important" type="radio" label="Un juste milieux" value="Un juste milieux" onChange={changeDevis} />
+          <Form.Check inline name="spec_important" type="radio" label="Puissant" value="Les performances" onChange={changeDevis} />
         </Form>
         <ErrorField error={error.specImportant[0]} />
       </div>
