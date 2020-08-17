@@ -3,6 +3,7 @@ import { ListGroup, Form, Row, Image } from 'react-bootstrap';
 import Messages from 'src/components/Account/Messages';
 import InfosClient from 'src/components/Account/BackOffice/InfosClient';
 import { FaUsers, FaUber, FaUser, FaTv } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Conversations = ({ clients, getMessagesBack, messages, username, newMessage, changeMessageBack, sendMessageBack, activeConv }) => {
   const handleClick = (e) => {
@@ -27,7 +28,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
       </ListGroup.Item>
     );
   });
-  
+
   const infosClient = clients.map((client) => {
     if (client.slug === activeConv) {
       return (
@@ -62,8 +63,8 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
         <div className="backoffice__body__tchat__messages__header">
           {headerInfosClient}
           <div className="backoffice__body__tchat__messages__header__icons">
-            <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaUser /></h3>
-            <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaTv /></h3>
+            <h3 className="backoffice__body__tchat__messages__header__icons__icon"></h3>
+            <h3 className="backoffice__body__tchat__messages__header__icons__icon" style={{ color: '#0000' }}><Link to="clients"><FaTv /></Link></h3>
 
           </div>
 
