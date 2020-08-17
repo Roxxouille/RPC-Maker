@@ -18,6 +18,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
     sendMessageBack();
   };
 
+
   const dataClients = clients.map((client) => {
     const activate = client.slug === activeConv;
     return (
@@ -26,11 +27,22 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
       </ListGroup.Item>
     );
   });
-
+  
   const infosClient = clients.map((client) => {
     if (client.slug === activeConv) {
       return (
         <InfosClient client={client} />
+      );
+    }
+  });
+
+  const headerInfosClient = clients.map((client) => {
+    if (client.slug === activeConv) {
+      return (
+        <div className="backoffice__body__tchat__messages__header__info">
+          <h2>{client.firstname} {client.lastname}</h2>
+          <p>{client.username}</p>
+        </div>
       );
     }
   });
@@ -48,10 +60,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
       </div>
       <div className="backoffice__body__tchat__messages" >
         <div className="backoffice__body__tchat__messages__header">
-          <div className="backoffice__body__tchat__messages__header__info">
-            <h2>Jean Dupont</h2>
-            <p>username</p>
-          </div>
+          {headerInfosClient}
           <div className="backoffice__body__tchat__messages__header__icons">
             <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaUser /></h3>
             <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaTv /></h3>
