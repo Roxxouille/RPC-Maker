@@ -457,7 +457,12 @@ class CommandListener
         
         if($specData->getOs()){
             if(!empty($specData->getOschoice())){
-                $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation"; 
+                if($specData->getOschoice() == "noidea"){
+                    $messageContent .= "Je voudrais un système d'exploitation mais j'aimerais plus de renseignement";
+                }
+                else{
+                    $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation"; 
+                }
 
                 if($specData->getOsActive()){
                     $messageContent .= " et je souhaiterais que vous me l'activez. ";
