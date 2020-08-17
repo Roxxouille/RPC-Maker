@@ -10,8 +10,8 @@ const InfosClient = ({ client }) => {
       <p className="backoffice__body__tchat__messages__body__profile__username">{client.username}</p>
       <hr />
       <p className="backoffice__body__tchat__messages__body__profile__email">{client.email}</p>
-      <hr />
-      <p className="backoffice__body__tchat__messages__body__profile__dataform">{client.commands[0].data['dataform']}</p>
+      {/* <hr />
+      <p className="backoffice__body__tchat__messages__body__profile__dataform">{client.commands[0].data['dataform']}</p> */}
     </div>
   );
 };

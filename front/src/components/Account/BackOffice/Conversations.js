@@ -3,6 +3,7 @@ import { ListGroup, Form, Row, Image } from 'react-bootstrap';
 import Messages from 'src/components/Account/Messages';
 import InfosClient from 'src/components/Account/BackOffice/InfosClient';
 import { FaUsers, FaUber, FaUser, FaTv } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Conversations = ({ clients, getMessagesBack, messages, username, newMessage, changeMessageBack, sendMessageBack, activeConv }) => {
   const handleClick = (e) => {
@@ -17,6 +18,7 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
     e.preventDefault();
     sendMessageBack();
   };
+
 
   const dataClients = clients.map((client) => {
     const activate = client.slug === activeConv;
@@ -35,6 +37,17 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
     }
   });
 
+  const headerInfosClient = clients.map((client) => {
+    if (client.slug === activeConv) {
+      return (
+        <div className="backoffice__body__tchat__messages__header__info">
+          <h2>{client.firstname} {client.lastname}</h2>
+          <p>{client.username}</p>
+        </div>
+      );
+    }
+  });
+
   return (
     <div className="backoffice__body__tchat">
       <div className="backoffice__body__tchat__clients" >
@@ -48,13 +61,10 @@ const Conversations = ({ clients, getMessagesBack, messages, username, newMessag
       </div>
       <div className="backoffice__body__tchat__messages" >
         <div className="backoffice__body__tchat__messages__header">
-          <div className="backoffice__body__tchat__messages__header__info">
-            <h2>Jean Dupont</h2>
-            <p>username</p>
-          </div>
+          {headerInfosClient}
           <div className="backoffice__body__tchat__messages__header__icons">
-            <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaUser /></h3>
-            <h3 className="backoffice__body__tchat__messages__header__icons__icon"><FaTv /></h3>
+            <h3 className="backoffice__body__tchat__messages__header__icons__icon"></h3>
+            <h3 className="backoffice__body__tchat__messages__header__icons__icon" style={{ color: '#0000' }}><Link to="clients"><FaTv /></Link></h3>
 
           </div>
 
