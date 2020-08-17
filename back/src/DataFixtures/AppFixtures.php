@@ -48,8 +48,17 @@ class AppFixtures extends Fixture
             $category->setCreatedAt(new \DateTime);
             $category->setUpdatedAt(new \DateTime);
             $manager->persist($category);
+            $item = new Item;
+            $item->setCreatedAt(new \DateTime);
+            $item->setUpdatedAt(new \DateTime);
+            $item->setName("default");
+            $item->setCategory($category);
+            $item->setPrice(1);
+            $item->setUrl($faker->url());
+            $manager->persist($item);
             $categoryList[] = $category;
         }
+        
         $itemList = [];
         // fixtures for Item
         for ($i = 0; $i < 600; $i++) {

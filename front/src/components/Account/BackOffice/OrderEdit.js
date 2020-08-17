@@ -39,7 +39,7 @@ const OrderEdit = ({ command, getCommand, items, getItems, changeItem, submitIte
       }
     });
     return (
-      <div className="backoffice__body__orderedit__forms__one" key={data.name}>
+      <div className="backoffice__body__orderedit__forms__one" key={data.id}>
         <Form.Group>
           <Form.Label> <h5>{data.category.name}</h5> </Form.Label>
           <Form.Control onChange={handleChange} id={index} value={data.id} name={data.category.name} as='select'>
