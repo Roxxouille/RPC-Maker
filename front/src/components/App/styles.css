@@ -9,13 +9,13 @@
 @media screen and (max-width: 992px) { 
 
   .content-wrap{
-    padding-bottom: 20rem;
+    padding-bottom: 40rem;
   }
 }
 
-@media screen and (max-width: 992px) { 
+@media screen and (min-width: 992px) { 
   .content-wrap{
-    padding-bottom: 35rem;
+    padding-bottom: 20rem;
   }
 }
 
