@@ -28,13 +28,6 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
 
       {user.isLoading === false && user.isLogged === true && user.role === 'ROLE_BUILDER' && (
         <div className="backoffice">
-          <div className="backoffice__nav">
-            <div className="backoffice__nav__link">
-              <Link to="/backoffice/clients" style={{ color: '#ffffff' }}><FaUsers /></Link>
-              <Link to="/backoffice/message" style={{ color: '#ffffff' }}><FaComments /></Link>
-            </div>
-
-          </div>
           <div className="backoffice__body">
             <Switch>
               <Route exact path="/backoffice">

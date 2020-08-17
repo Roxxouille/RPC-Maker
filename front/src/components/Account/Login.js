@@ -20,15 +20,15 @@ const Login = ({
 
   return (
     <div className="container">
-      { isLogged === true && role === 'ROLE_USER' && (
+      {isLogged === true && role === 'ROLE_USER' && (
         <Redirect to="/user" />
-      ) }
+      )}
 
-      { isLogged === true && role === 'ROLE_BUILDER' && (
-        <Redirect to="/backoffice" />
-      ) }
+      {isLogged === true && role === 'ROLE_BUILDER' && (
+        <Redirect to="/backoffice/clients" />
+      )}
 
-      { isLogged === false && (
+      {isLogged === false && (
         <Form onSubmit={handleSubmit}>
           <Field name="email" type="email" label="Email" value={email} placeholder="Entrez votre email" handleChange={handleChange} controlId="email" />
           <Field name="password" type="password" label="Mot de passe" value={password} placeholder="********" handleChange={handleChange} controlId="password" />
@@ -37,7 +37,7 @@ const Login = ({
             Se connecter
           </Button>
         </Form>
-      ) }
+      )}
     </div>
   );
 };
