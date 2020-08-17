@@ -159,7 +159,7 @@ class UserController extends AbstractController
         $entityManager->persist($user);
 
         //link this user to the new command
-       $user->addCommand($command);
+        $user->addCommand($command);
 
         // persist the command
         $entityManager->persist($command);
@@ -268,7 +268,16 @@ class UserController extends AbstractController
         // do the validation for the first step of the quote form
         if($contentDecode['step'] == "1"){
             $user = $serializer->deserialize($content, User::class, 'json');
-            $errors = $validator->validate($user, null, ['validation_one']);
+            $command = $serializer->deserialize($content, Command::class, 'json');
+            $errorsUser = $validator->validate($user, null, ['validation_one']);
+            $errors = [];
+            foreach($errorsUser as $error){
+                $errors[] = $error;
+            }
+            $errorsCommand = $validator->validate($command, null, ['validation_one']);
+            foreach($errorsCommand as $error){
+                $errors[] = $error;
+            }
         }
 
         // do the validation for the second step of the quote form

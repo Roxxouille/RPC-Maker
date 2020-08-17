@@ -294,7 +294,7 @@ class CommandSpecData
      *  "command_info"
      * })
      * @Assert\NotBlank(
-     *  message="Veuillez indiquezsi vous voulez que l'on vous l'active",
+     *  message="Veuillez indiquez si vous voulez que l'on vous l'active",
      *  groups = {
      *      "validation_six_os_true"
      *      }

@@ -8,9 +8,18 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=CommandRepository::class)
+ * @UniqueEntity(
+ * "name",
+ *  message="Ce nom de personnage {{ value }} est déjà utilisé",
+ *  groups = {
+ *      "registration", 
+ *      "validation_one"
+ *      }
+ * )
  */
 class Command
 {
