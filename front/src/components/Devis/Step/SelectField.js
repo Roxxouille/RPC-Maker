@@ -30,7 +30,7 @@ const SelectField = ({
       </Form.Control>
       { value === 'autre' && (
         <>
-          <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
+          <Form.Label className="Form__inside">Un autre modèle ?</Form.Label>
           <Form.Control placeholder="Preciser" value={valueModel} name={nameConfigModel} onChange={handleChange} />
           <Form.Label className="Form__inside">Un lien ?</Form.Label>
           <Form.Control placeholder="Si non laissez vide" value={valueLink} name={nameConfigLink} onChange={handleChange} />

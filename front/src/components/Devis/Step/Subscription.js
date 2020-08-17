@@ -11,9 +11,9 @@ const Subscription = ({ dataSurvey, changeStep, error, changeDevis }) => {
   return (
     <div className="fullform container">
       <div>
-        <h2>Entre vous et votre pc il ne reste qu’un pas!</h2>
-        <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’etait long mais avec ca rien ne sera laisser au hasard et vous aurez un environnement numerique qui correspond a votre personnage ! =)</h1>
-        <h1>Il ne vous reste plus qu’a vous inscrire et votre guide vous contactera au plus vite pour finaliser votre commande, et en plus un avatar personnaliser vous sera attribue, elle est pas belle la vie?</h1>
+        <h2>Entre vous et votre pc, il ne reste qu’un pas !</h2>
+        <h1>Merci d’avoir rempli ce formulaire jusqu’au bout, on est conscient que c’était long mais avec ça, rien ne sera laissé au hasard et vous aurez un environnement numérique qui correspond à votre personnage ! =)</h1>
+        <h1>Il ne vous reste plus qu’à vous inscrire et votre guide vous contactera au plus vite pour finaliser votre commande, et en plus un avatar personnalisé vous sera attribué, elle est pas belle la vie ?</h1>
       </div>
       <Form className="Form">
         <Field name="lastname" type="text" label="Nom" value={dataSurvey.lastname} placeholder="Entrez votre nom" handleChange={changeDevis} controlId="lastname" />
@@ -22,13 +22,13 @@ const Subscription = ({ dataSurvey, changeStep, error, changeDevis }) => {
         <ErrorField error={error.firstname[0]} />
         <Field name="email" type="text" label="Email" value={dataSurvey.email} placeholder="Entrez votre Email" handleChange={changeDevis} controlId="email" />
         <ErrorField error={error.email[0]} />
-        <Field name="password" type="password" label="mot de passe" value={dataSurvey.password} placeholder="Entrez votre mot de passe" handleChange={changeDevis} controlId="password" />
+        <Field name="password" type="password" label="Mot de passe" value={dataSurvey.password} placeholder="Entrez votre mot de passe" handleChange={changeDevis} controlId="password" />
         <ErrorField error={error.password[0]} />
         <Field name="adress" type="text" label="Adresse" value={dataSurvey.adress} placeholder="Entrez votre adresse" handleChange={changeDevis} controlId="adress" />
         <ErrorField error={error.adress[0]} />
         <Field name="city" type="text" label="Ville" value={dataSurvey.city} placeholder="Entrez votre ville" handleChange={changeDevis} controlId="city" />
         <ErrorField error={error.city[0]} />
-        <Field name="zip_code" type="number" label="code postal" value={dataSurvey.zip_code} placeholder="Entrez votre code postal" handleChange={changeDevis} controlId="zip_code" />
+        <Field name="zip_code" type="number" label="Code postal" value={dataSurvey.zip_code} placeholder="Entrez votre code postal" handleChange={changeDevis} controlId="zip_code" />
         <ErrorField error={error.zip_code[0]} />
 
         <Form.Group id="formGridCheckbox">

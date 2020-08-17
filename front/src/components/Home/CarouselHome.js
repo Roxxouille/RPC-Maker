@@ -31,9 +31,9 @@ const CarouselHome = () => {
         <div className="carou__item__img">
           <div className="carou__item__img__content">
             <h3>Donnez vie a votre envie.</h3>
-            <p>Une iddee, une envi, un besoin? Faite confiance a notre equipe pour vous guider de A a Z dans le monde du montage sur mesure!</p>
+            <p>Une idée, une envie un besoin? Faite confiance a notre équipe pour vous guider de A a Z dans le monde du montage sur mesure !</p>
             <Button><Link to="/devis" className="nav-link" style={{ color: '#ffffff' }}>
-              Guidez-moi!
+              Guidez-moi !
                     </Link>
             </Button>
           </div>
@@ -42,12 +42,12 @@ const CarouselHome = () => {
       <div className="carou__item">
         <div className="carou__item__img">
           <div className="carou__item__img__content">
-            <h3>Il y en a pour tout le monde!</h3>
-            <p>Que vous soyez neophyte ou experimente nous avons la formule qu'il vous faut. <br />
-              Un montage, pas de montage, une idee, un budget, pas d'idee, pas de budget, laissez nous nous adapter!
+            <h3>Il y en a pour tout le monde !</h3>
+            <p>Que vous soyez néophyte ou expérimenté, nous avons la formule qu'il vous faut. <br />
+              Un montage, une idee, un budget, ou pas ? laissez nous nous adapter !
             </p>
             <Button><Link to="/devis" className="nav-link" style={{ color: '#ffffff' }}>
-              Guidez-moi!
+              Guidez-moi !
                     </Link>
             </Button>
           </div>
@@ -56,9 +56,9 @@ const CarouselHome = () => {
       <div className="carou__item">
         <div className="carou__item__img">
           <div className="carou__item__img__content">
-            <h3>Pret a l'emploi!</h3>
-            <p>Le bonheur de pouvoir sortie de son carton un ordinateur deja pret a conquerir le monde du web du jeu ou meme du design 3D?<br />
-              Si vous le desirez alors cela sera notre volonte!
+            <h3>Prêt à l'emploi !</h3>
+            <p>Le bonheur de pouvoir sortir de son carton un ordinateur déjà pret à conquérir le monde du web du jeu ou même du design 3D ?<br />
+              Si vous le désirez alors cela sera notre volonté !
             </p>
             <Button><Link to="/devis" className="nav-link" style={{ color: '#ffffff' }}>
               Guidez-moi!

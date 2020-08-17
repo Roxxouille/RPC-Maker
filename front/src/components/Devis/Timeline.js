@@ -12,13 +12,13 @@ const Timeline = ({ step }) => {
         {/* si step superieur ou egal a 3, mettre classname active */}
         <li className={(step === 3) ? 'active' : (step >= 4) ? 'actived' : ''}>Aventures</li>
         {/* si step superieur ou egal a 4, mettre classname active */}
-        <li className={(step === 4) ? 'active' : (step >= 5) ? 'actived' : ''}>Equipement</li>
+        <li className={(step === 4) ? 'active' : (step >= 5) ? 'actived' : ''}>Équipement</li>
         {/* si step superieur ou egal a 5, mettre classname active */}
-        <li className={(step === 5) ? 'active' : (step >= 6) ? 'actived' : ''}>vos besoin</li>
+        <li className={(step === 5) ? 'active' : (step >= 6) ? 'actived' : ''}>Vos besoin</li>
         {/* si step superieur ou egal a 6, mettre classname active */}
         <li className={(step === 6) ? 'active' : (step >= 7) ? 'actived' : ''}>Historique</li>
         {/* si step superieur ou egal a 7, mettre classname active */}
-        <li className={(step === 7) ? 'active' : (step >= 8) ? 'actived' : ''}>sac a dos</li>
+        <li className={(step === 7) ? 'active' : (step >= 8) ? 'actived' : ''}>Sac à dos</li>
         {/* si step superieur ou egal a 8, mettre classname active */}
         <li className={(step === 8) ? 'active' : (step >= 9) ? 'actived' : ''}>Informations personnelles</li>
       </ul>

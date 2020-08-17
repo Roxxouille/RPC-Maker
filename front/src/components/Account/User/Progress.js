@@ -28,11 +28,11 @@ const Progress = ({ level }) => {
           <div className={level < 1 ? 'done d-none' : 'done'}>
             <h3>Inscription</h3>
             <p>
-              Bienvenue dans l'aventure et merci d'avoir rejoins notre monde!
+              Bienvenue dans l'aventure et merci d'avoir rejoint notre monde !
               <br />
-              Vous et vore personnage allez vivre des aventures merveilleuses ensembles.
+              Vous et votre personnage allez vivre des aventures merveilleuses ensembles.
             </p>
-            <FaExclamation /> Quete accomplis: <br />
+            <FaExclamation /> Quête accomplie: <br />
             <h6>Inscription</h6>
 
             <br />
@@ -45,7 +45,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 1 ? 'done d-none' : 'done'}>
             <h3>Inscription</h3>
-            <FaExclamation /> <p>Quete : inscription</p>
+            <FaExclamation /> <p>Quête : inscription</p>
           </div>
 
         </li>
@@ -56,11 +56,11 @@ const Progress = ({ level }) => {
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level < 2 ? 'done d-none' : 'done'}>
             <h3>Envoi du formulaire</h3>
-            <p>La premiere etape de la creation de votre personnage fut un succes!
+            <p>La première étape de la création de votre personnage fût un succès!
           <br />
-          Vous n'avez plus qu'a attendrela reponse de votre guide qui vous aidera tout au long de votre aventure!</p>
-             Qu<FaExclamation /> ete accomplis: <br />
-            <h6>Inscritpion</h6>
+          Vous n'avez plus qu'à attendre la réponse de votre guide qui vous aidera tout au long de votre aventure !</p>
+            <FaExclamation /> Quête accomplie : <br />
+            <h6>Inscription</h6>
             <br />
             <FaTrophy />  +1 niveau!
             <br />
@@ -71,7 +71,7 @@ const Progress = ({ level }) => {
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 2 ? 'done d-none' : 'done'}>
             <h3>Envoi du formulaire</h3>
-            <p><FaExclamation /> Quete : inscription</p>
+            <p><FaExclamation /> Quête : inscription</p>
           </div>
 
         </li>
@@ -81,9 +81,9 @@ const Progress = ({ level }) => {
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level < 3 ? 'done d-none' : 'done'}>
-            <h3>Presentation faite</h3>
-            <p>Apres moulte ou non moulte discussion avec votre guide vous etes finalement arriver a un accord!</p>
-            <FaExclamation /> Quete accomplis: <br />
+            <h3>Présentation faite</h3>
+            <p>Après discussion avec votre guide vous êtes finalement arrivé à un accord!</p>
+            <FaExclamation /> Quête accomplie : <br />
             <h6>Envoi du formulaire</h6>
             <br />
             <FaTrophy />  +1 niveau!
@@ -94,8 +94,8 @@ const Progress = ({ level }) => {
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 3 ? 'done d-none' : 'done'}>
-            <h3>Presentation faite</h3>
-            <p><FaExclamation /> Quete : Envoi du formulaire</p>
+            <h3>Présentation faite</h3>
+            <p><FaExclamation /> Quête : Envoi du formulaire</p>
           </div>
 
         </li>
@@ -106,10 +106,10 @@ const Progress = ({ level }) => {
 
           {/* si le level est strictement superieur au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level < 4 ? 'done d-none' : 'done'}>
-            <h3>Paiement effectue</h3>
-            <p>Bientot votre personnge et vous pourront parcourir le monde ensemble, ayez foi en votre guide qui a trover pour vous les meilleurs artisans!</p>
-            <FaExclamation /> Quete accomplis: <br />
-            <h6>Paiement effectue</h6>
+            <h3>Paiement effectué</h3>
+            <p>Bientôt votre personnge et vous pourront parcourir le monde ensemble, ayez foi en votre guide qui a trouver pour vous les meilleurs artisans !</p>
+            <FaExclamation /> Quete accomplie : <br />
+            <h6>Paiement effectué</h6>
             <br />
             <FaTrophy />  +1 niveau!
             <br />
@@ -119,8 +119,8 @@ const Progress = ({ level }) => {
 
           {/* si le level est inferieur ou egal au status de l'utilisateur, ajouter d-none au classname  */}
           <div className={level >= 4 ? 'done d-none' : 'done'}>
-            <h3>Paiement effectue</h3>
-            <p><FaExclamation /> Quete : presentation faite</p>
+            <h3>Paiement effectué</h3>
+            <p><FaExclamation /> Quête : présentation faite</p>
           </div>
 
         </li>

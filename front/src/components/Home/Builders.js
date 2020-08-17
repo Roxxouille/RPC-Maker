@@ -42,7 +42,7 @@ const Builders = () => {
         </Row>
       </div>
 
-      <p>Notre equipe de monteurs travaille tout les jours pour réaliser le PC de vous réves dans les régles de l'art !</p>
+      <p>Notre équipe de monteurs travaille tous les jours pour réaliser le PC de vos réves dans les régles de l'art !</p>
       <Row className="team__title">
         <Col className="team__title__hr"><hr /></Col>
         <Col> <h2>A votre service</h2> </Col>
@@ -68,7 +68,7 @@ const Builders = () => {
           </Card>
         </Col>
       </Row>
-      <p>Notre super equipe administrative est la tout les jours pour repondre a toutes vos questions en cas de besoins</p>
+      <p>Notre super équipe administrative est la tous les jours pour répondre à toutes vos questions en cas de besoins</p>
     </div>
   );
 };

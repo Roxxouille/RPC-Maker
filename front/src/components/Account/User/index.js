@@ -45,9 +45,9 @@ const User = ({
         <div className="profile">
           <Jumbotron fluid className="jumbotron">
             <Container className="jumbotron__containr">
-              <h1>Bienvenu {username}</h1>
+              <h1>Bienvenue {username}</h1>
               <p>
-                Dans cette section vous pouvez gerer tout ce qui vous concerne et aussi contacter nos brillant monteur!
+                Dans cette section vous pouvez gérer tout ce qui vous concerne et aussi contacter nos brillant monteurs !
               </p>
               <div className="jumbotron__containr__links">
                 <Link to="/user/commands" className="jumbotron__containr__links__icon"><FaScroll fontSize="40" /></Link>
@@ -74,7 +74,7 @@ const User = ({
                 <div className="user__nav__content__links">
                   <Link to="/user/edit-info">Editer mes infos</Link>
                   <Link to="/user/change-password">Changer de mot de passe</Link>
-                  <a href="#">Se deconnecter</a>
+                  <a href="#">Se déconnecter</a>
                 </div>
               </div>
             </div>

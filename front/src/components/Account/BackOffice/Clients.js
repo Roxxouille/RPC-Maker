@@ -17,7 +17,7 @@ const Clients = ({ clients, isLoading }) => {
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
-            <Link to={link}>voir</Link>
+            <Link to={link}>Voir</Link>
             <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
           </Card.Body>
         </Card>
@@ -33,7 +33,7 @@ const Clients = ({ clients, isLoading }) => {
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
-            <Link to={link}>voir</Link>
+            <Link to={link}>Voir</Link>
             <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
           </Card.Body>
         </Card>
@@ -49,7 +49,7 @@ const Clients = ({ clients, isLoading }) => {
           <Card.Body>
             <Card.Title>{client.firstname} {client.lastname}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{client.username}</Card.Subtitle>
-            <Link to={link}>voir</Link>
+            <Link to={link}>Voir</Link>
             <footer className="blockquote-footer"> <cite title="Source Title">le {client.createdAt}</cite></footer>
           </Card.Body>
         </Card>
@@ -66,11 +66,11 @@ const Clients = ({ clients, isLoading }) => {
       </Row>
       <div className="backoffice__body__clients__verify">
         <div className="backoffice__body__clients__verify__title">
-          <Col sm={2} > <h4>A verfier</h4> </Col>
+          <Col sm={2} > <h4>A vérifier</h4> </Col>
           <Col className="backoffice__body__clients__title__hr"><hr /></Col>
         </div>
         <p>
-          Vous retrouverz ici tout les nouveaux clients qui vous ont ete assigne, il est temp pour vous de faire les presentation, verifier que la demande des clients soient valable, est la valide pour pouvoir passer a la suite.
+          Vous retrouverez ici tous les nouveaux clients qui vous ont été assigné, il est temps pour vous de faire les présentations, vérifier que les demandes des clients soient valables, et les valider pour pouvoir passer à la suite.
         </p>
 
         <div >
@@ -85,11 +85,11 @@ const Clients = ({ clients, isLoading }) => {
       </div>
       <div className="backoffice__body__clients__edit">
         <div className="backoffice__body__clients__edit__title">
-          <Col sm={2} > <h4>A editer</h4> </Col>
+          <Col sm={2} > <h4>A éditer</h4> </Col>
           <Col className="backoffice__body__clients__title__hr"><hr /></Col>
         </div>
         <p>
-          Maintent que vous vous etes mis d'accord sur les besoins du client il est temps de rechercher les composants et de les ajouter a sa commande, puis une fois que le client est d'accord avec ce que vous lui proposer, valider la commande.
+          Maintenant que vous vous êtes mis d'accord sur les besoins du client, il est temps de rechercher les composants et de les ajouter à sa commande, puis une fois que le client est d'accord avec ce que vous lui proposer, valider la commande.
         </p>
 
         <div >
@@ -108,7 +108,7 @@ const Clients = ({ clients, isLoading }) => {
           <Col className="backoffice__body__clients__title__hr"><hr /></Col>
         </div>
         <p>
-          Tout a ete decide et la conmmande a ete valide et payer, il faut maintenant monter le pc et l'envoyer au client.
+          Tout a été décidé et la commande a été validé et payé, il faut maintenant monter le pc et l'envoyer au client.
         </p>
 
         <div >

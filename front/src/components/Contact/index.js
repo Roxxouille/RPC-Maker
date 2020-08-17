@@ -23,8 +23,8 @@ const Contact = ({
   return (
     <div className="container">
       <div className="contact__space">
-        <h1>Une Question, Une Envie, Une Idee ? <br /> contactez-nous!</h1>
-        <p>Grace a notre systeme super sophistique et l'entrainement intensif de nos oiseaux voyageurs vos lettres sont envoye en rien de temps! <br /> Profitez-en!</p>
+        <h1>Une Question, une envie, une idée ? <br /> Contactez-nous!</h1>
+        <p>Grâce à notre système super sophistiqué et l'entrainement intensif de nos oiseaux voyageurs vos lettres sont envoyés en un rien de temps ! <br /> Profitez-en !</p>
       </div>
       <Form onSubmit={handleSubmit} className="contact">
         <Form.Row>

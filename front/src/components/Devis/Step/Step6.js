@@ -19,17 +19,17 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items }) => {
     <div className="fullform container">
       <div>
         <div>
-          <h2>D'ou vient votre personnage?</h2>
+          <h2>D'où vient votre personnage ?</h2>
         </div>
         <div>
           <h1>
-            Des contrees lointaine du desert ou de la montagne impetueuse du nord, votre personnage a une histoire, des racines!
+            Des contrées lointaine du desert ou de la montagne impétueuse du nord, votre personnage a une histoire, des racines !
           <br />
             <br />
-          Vous pouvez la definir vous meme ou votre guide peut le faire pour vous! a vous de choisir =)
+          Vous pouvez la définir vous même ou votre guide peut le faire pour vous ! À vous de choisir =)
         </h1>
         </div>
-        <BinaryButtonField label="Voulez vous qu’on vous install un systeme d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
+        <BinaryButtonField label="Voulez-vous qu’on vous installe un système d’exploitation ?" name="os" value={dataSurvey.os} handleChange={changeDevis} />
         <ErrorField error={error.os[0]} />
 
         {dataSurvey.os && (
@@ -37,10 +37,10 @@ const Step6 = ({ dataSurvey, changeDevis, error, changeStep, items }) => {
             <SelectField label='OS' name='os_choice' options={listos} value={dataSurvey.os_choice} handleChange={changeDevis} />
             <ErrorField error={error.oschoice[0]} />
 
-            <Field name="os_name" type="text" value={dataSurvey.os_name} label="Une autre idée ?" placeholder="Si vous laissez vide, on vous installera un windows allege, windows arium 10." handleChange={changeDevis} controlId="os_name" />
+            <Field name="os_name" type="text" value={dataSurvey.os_name} label="Une autre idée ?" placeholder="Une autre idée ?" handleChange={changeDevis} controlId="os_name" />
             <ErrorField error={error.osName[0]} />
 
-            <BinaryButtonField label="Voulez vous qu’on vous l'active ?" name="os_active" value={dataSurvey.os_active} handleChange={changeDevis} />
+            <BinaryButtonField label="Voulez-vous qu’on vous l'active ?" name="os_active" value={dataSurvey.os_active} handleChange={changeDevis} />
             <ErrorField error={error.osActive[0]} />
           </>
         )}

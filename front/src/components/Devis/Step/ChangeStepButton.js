@@ -9,7 +9,7 @@ const ChangeStepButton = ({ step, changeStep }) => {
     <Form.Row className="Form__button">
       {step > 1 && (
         <Col>
-          <Button className="Form__button" value="previous" variant="primary" onClick={handleClick}> Precedent </Button>
+          <Button className="Form__button" value="previous" variant="primary" onClick={handleClick}> Précedent </Button>
         </Col>
       )}
       {step < 8 && (
@@ -19,7 +19,7 @@ const ChangeStepButton = ({ step, changeStep }) => {
       )}
       {step === 8 && (
         <Col>
-          <Button className="Form__button" value="next" variant="primary" onClick={handleClick}> Partir a l'aventure ! </Button>
+          <Button className="Form__button" value="next" variant="primary" onClick={handleClick}> Partir à l'aventure ! </Button>
         </Col>
       )}
     </Form.Row>

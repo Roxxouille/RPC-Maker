@@ -31,7 +31,7 @@ const Command = ({ commands }) => {
     return (
       <Card key={key} className="command">
         <Accordion.Toggle as={Card.Header} eventKey="0" className="command__header">
-          "nom de la commande" :
+          "Nom de la commande" :
           <FaDownload />
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0" className="command__content">

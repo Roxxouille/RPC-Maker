@@ -159,7 +159,7 @@ const Step7 = ({ dataSurvey, error, changeStep, items, changeDevis, getItems }) 
       <SelectField label='Souris' name='device_mouse' options={mouse} value={dataSurvey.device_mouse} valueModel={dataSurvey.device_mouse_model} valueLink={dataSurvey.device_mouse_link} errorLink={error.deviceMouseLink[0]} handleChange={changeDevis} />
       {dataSurvey.device_mouse === 'noidea' && (
         <>
-          <Form.Label>Langue</Form.Label>
+          <Form.Label>Type de capteurs</Form.Label>
           <Form.Control name='device_mouse_type' as="select" onChange={changeDevis} value={dataSurvey.device_keyboard_type}>
             {dataMouseTypes}
           </Form.Control>
@@ -210,7 +210,7 @@ const Step7 = ({ dataSurvey, error, changeStep, items, changeDevis, getItems }) 
       <SelectField label='Webcam' name='device_webcam' options={cam} value={dataSurvey.device_webcam} valueModel={dataSurvey.device_webcam_model} valueLink={dataSurvey.device_webcam_link} errorLink={error.deviceWebcamLink[0]} handleChange={changeDevis} />
       {dataSurvey.device_webcam === 'noidea' && (
         <>
-          <Form.Label>Resolution</Form.Label>
+          <Form.Label>Résolution</Form.Label>
           <Form.Control name='device_webcam_resolution' as="select" onChange={changeDevis} value={dataSurvey.device_webcam_resolution}>
             {dataWebcamResolutions}
           </Form.Control>
@@ -235,20 +235,20 @@ const Step7 = ({ dataSurvey, error, changeStep, items, changeDevis, getItems }) 
   return (
     <div className="fullform container">
       <div>
-        <h2>Quelques indispensables dans votre sa a dos?</h2>
+        <h2>Quelques indispensables dans votre sac à dos?</h2>
       </div>
       <div>
         <h1>
-          La creation de votre personnage et presque finit !
+          La création de votre personnage est presque fini !
                   <br />
           <br />
-          Pour partir a l'aventure sa force et ses jambes ne suffisent pas, de la corde, une tente, une plume sont tant d'element qui peuvent rendre une epopee plus facile!
+          Pour partir à l'aventure sa force et ses jambes ne suffisent pas, de la corde, une tente, une plume sont tant d'éléments qui peuvent rendre une épopée plus facile !
           <br />
           <br />
-          Comme pour son histoire, ce qu'il y a dans le sac a dos de votre personnage peuvent etre choisis entierement par vous ou votre guide peut vous accompagner dans cette quete !
+          Comme pour son histoire, ce qu'il y a dans le sac à dos de votre personnage peuvent-être choisis entièrement par vous, ou votre guide peut vous accompagner dans cette quete !
           <br />
           <br />
-          A vous de voir.
+          À vous de voir.
         </h1>
       </div>
       <BinaryButtonField label="Souhaitez vous des périphériques ?" name="device" value={dataSurvey.device} handleChange={changeDevis} />

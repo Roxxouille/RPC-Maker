@@ -59,7 +59,7 @@ const Pc = ({ commands }) => {
                 <Row className="pc__accordion__card__body__category">
                   <Col sm={3} className="pc__accordion__card__body__category__title">
                     <FaPencilRuler />
-                    <h4>Equipement</h4>
+                    <h4>Équipement</h4>
                   </Col>
                   <Col sm={9} className="pc__accordion__card__body__category__list">
                     {dataEquipments}

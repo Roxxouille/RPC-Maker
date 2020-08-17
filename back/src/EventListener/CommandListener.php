@@ -442,18 +442,13 @@ class CommandListener
             $messageContent .= "J'aimerais tel spécificités en plus : " . $specData->getSpecLight() . ". ";
         }
         
-        if($specData->getOs()){
-            if(!empty($specData->getOschoice())){
-                if($specData->getOschoice() == "noidea"){
-                    $messageContent .= "Je voudrais un système d'exploitation mais j'aimerais plus de renseignement";
-                }
-                else{
-                    $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation"; 
-                }
-
         if ($specData->getOs()) {
             if (!empty($specData->getOschoice())) {
-                $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation";
+                if ($specData->getOschoice() == "noidea") {
+                    $messageContent .= "Je voudrais un système d'exploitation mais j'aimerais plus de renseignement";
+                } else {
+                    $messageContent .= "Je voudrais " . $specData->getOschoice() . " comme système d'exploitation";
+                }
 
                 if ($specData->getOsActive()) {
                     $messageContent .= " et je souhaiterais que vous me l'activez. ";

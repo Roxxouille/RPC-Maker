@@ -15,7 +15,7 @@ const Cards = () => {
           <Card.Img variant="top" src="https://picsum.photos/160/120" />
           <Card.Body>
             <Card.Title>Alexis</Card.Title>
-            <p>Developpeur Symfony</p>
+            <p>Développeur Symfony</p>
           </Card.Body>
         </Card>
 
@@ -23,7 +23,7 @@ const Cards = () => {
           <Card.Img variant="top" src="https://picsum.photos/160/120" />
           <Card.Body>
             <Card.Title>Raphaël</Card.Title>
-            <p>Developpeur Symfony</p>
+            <p>Développeur Symfony</p>
           </Card.Body>
         </Card>
       </div>
@@ -32,7 +32,7 @@ const Cards = () => {
           <Card.Img variant="top" src="https://picsum.photos/160/120" />
           <Card.Body>
             <Card.Title>Sébastien</Card.Title>
-            <p>développeur React</p>
+            <p>Développeur React</p>
           </Card.Body>
         </Card>
 
@@ -40,7 +40,7 @@ const Cards = () => {
           <Card.Img variant="top" src="https://picsum.photos/160/120" />
           <Card.Body>
             <Card.Title>Paul</Card.Title>
-            <p>développeur React</p>
+            <p>Développeur React</p>
           </Card.Body>
         </Card>
 

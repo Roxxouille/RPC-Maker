@@ -63,16 +63,16 @@ const Step4 = ({ dataSurvey, error, changeStep, forceStepUp, getItems, items, ha
   return (
     <div className="fullform container">
       <div>
-        <h2>Un equipement ? J'ai!</h2>
+        <h2>Un équipement ? J'ai !</h2>
       </div>
       <div>
         <h1>
           <br />
           <br />
-          Maintenant que vous etes la, il ne vous reste plus qu'a indiquer a votre guide la liste des equipements que vous voulez pour votre personnage.
+          Maintenant que vous êtes la, il ne vous reste plus qu'à indiquer à votre guide la liste des équipements que vous voulez pour votre personnage.
           <br />
           <br />
-          Mettez ce que vous voulez, votre merveilleu guide verifiera que tout va bien et vous recontactera par hiboux pour vous confirmer que tout est bon ;)
+          Mettez ce que vous voulez, votre merveilleux guide vérifiera que tout va bien et vous recontactera par hiboux pour vous confirmer que tout est bon ;)
         </h1>
       </div>
       <div>

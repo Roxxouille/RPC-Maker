@@ -17,9 +17,9 @@ const PresHome = ({ build, quote }) => (
           <Col><h2><FaScroll /></h2></Col>
         </Row>
         <Row className="presHome__body__content">
-          Nos monteurs sont aussi des cherheurs! et oui apres chaque inscription un guide vous est attibue et definis avec vous vos besoin pour trouver les composants les plus adapte pour vous! <br />
-          Apres avoir definit vos objectifs avec votre guide attitre, il utilisera toutes ses connaissances et son experience pour trouver les meilleurs prix et le meilleur equilibre entre tout ce qui existe sur internet aujourd'hui. <br />
-          Et c'es ca que represente ce nombre, les personnes qui a raison nous on fait confiance pour faire un travail long et ereintant mais essentiel a toute personne qui veut un ordinateur de qualite pour un prix juste!
+          Nos monteurs sont aussi des chercheurs ! Après chaque inscription un guide vous est attibué et il définit avec vous vos besoins pour trouver les composants les plus adaptés pour vous! <br />
+          Apres avoir défini vos objectifs avec votre guide attitré, il utilisera toutes ses connaissances et son expérience pour trouver le meilleur rapport qualité-prix sur internet aujourd'hui. <br />
+          Le nombre affiché représente les personnes qui nous ont choisies pour leur trouver un ordinateur de qualité pour un prix juste. Nous les remercions pour leur confiance.
         </Row>
       </Col>
       <hr />
@@ -31,8 +31,8 @@ const PresHome = ({ build, quote }) => (
           <Col><h2>{build}</h2></Col>
         </Row>
         <Row className="presHome__body__content">
-          Et nos chercheurs sont aussi des monteurs! Passione et qui ont l'envi de faire un travail propre, professionel et avec l'amour des choses bien faite. <br />
-          Que vous n'y connaissiez rien, que vous ne soyez pas sur ou que vous n'ayez juste pas l'envie de mettre les mains dans le camboui, faites comme toutes ces personnes avant vous,  n'hesitez plus et laissez les passionne faire ce qui les passionnes !
+          Nos chercheurs sont aussi des monteurs professionnels, passionnés et consciencieux/rigoureux <br />
+          Vous n’y connaissez rien ? Vous n’êtes pas sûr de vous ? Vous n’avez pas le temps de vous en occuper ? N’hésitez plus, faites confiance à notre équipe de monteurs passionnés
         </Row>
       </Col>
     </Row>

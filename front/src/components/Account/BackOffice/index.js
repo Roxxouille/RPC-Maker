@@ -31,7 +31,7 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
           <div className="backoffice__body">
             <Switch>
               <Route exact path="/backoffice">
-                backoffice
+                Backoffice
               </Route>
               <Route path="/backoffice/clients">
                 <Clients clients={clients} isLoading={backLoading} />
