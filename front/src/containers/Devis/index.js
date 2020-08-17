@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(getItems());
   },
   submitSurvey: () => {
+    dispatch(resetErrors());
     dispatch(submitSurvey());
   },
 });

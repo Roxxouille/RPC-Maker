@@ -10,36 +10,28 @@ const Builders = () => {
         <Col> <h2>Nos Monteurs</h2> </Col>
         <Col className="team__title__hr"><hr /></Col>
       </Row>
-      <div >
-        <Row className="team__content">
-          <Col>
-            <Card className="team__content__card">
-              <Card.Img variant="top" src="https://picsum.photos/160/120" />
-              <Card.Body>
-                <Card.Title>Antoine</Card.Title>
-                <p>Monteur</p>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card className="team__content__card">
-              <Card.Img variant="top" src="https://picsum.photos/160/120" />
-              <Card.Body>
-                <Card.Title>Patrick</Card.Title>
-                <p>Monteur</p>
-              </Card.Body>
-            </Card>
-          </Col>
-          <Col>
-            <Card className="team__content__card">
-              <Card.Img variant="top" src="https://picsum.photos/160/120" />
-              <Card.Body>
-                <Card.Title>Roger</Card.Title>
-                <p>Monteur</p>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
+      <div className="team__cards">
+        <Card >
+          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Body>
+            <Card.Title>Antoine</Card.Title>
+            <p>Monteur</p>
+          </Card.Body>
+        </Card>
+        <Card >
+          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Body>
+            <Card.Title>Patrick</Card.Title>
+            <p>Monteur</p>
+          </Card.Body>
+        </Card>
+        <Card >
+          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Body>
+            <Card.Title>Roger</Card.Title>
+            <p>Monteur</p>
+          </Card.Body>
+        </Card>
       </div>
 
       <p>Notre équipe de monteurs travaille tous les jours pour réaliser le PC de vos réves dans les régles de l'art !</p>

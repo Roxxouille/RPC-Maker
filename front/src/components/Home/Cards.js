@@ -1,6 +1,10 @@
 import React from 'react';
 import { Card, Col, Row, Container } from 'react-bootstrap';
 import "./styles.scss";
+import seb from 'src/assets/images/seb.png';
+import alex from 'src/assets/images/alex.png';
+import raph from 'src/assets/images/raph.png';
+import paul from 'src/assets/images/paul.jpg';
 
 const Cards = () => {
   return (
@@ -12,7 +16,7 @@ const Cards = () => {
       </Row>
       <div className="team__cards">
         <Card>
-          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Img variant="top" src={alex} />
           <Card.Body>
             <Card.Title>Alexis</Card.Title>
             <p>Développeur Symfony</p>
@@ -20,7 +24,7 @@ const Cards = () => {
         </Card>
 
         <Card>
-          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Img variant="top" src={raph} />
           <Card.Body>
             <Card.Title>Raphaël</Card.Title>
             <p>Développeur Symfony</p>
@@ -29,7 +33,7 @@ const Cards = () => {
       </div>
       <div className="team__cards">
         <Card>
-          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Img variant="top" src={seb} />
           <Card.Body>
             <Card.Title>Sébastien</Card.Title>
             <p>Développeur React</p>
@@ -37,7 +41,7 @@ const Cards = () => {
         </Card>
 
         <Card>
-          <Card.Img variant="top" src="https://picsum.photos/160/120" />
+          <Card.Img variant="top" src={paul} />
           <Card.Body>
             <Card.Title>Paul</Card.Title>
             <p>Développeur React</p>

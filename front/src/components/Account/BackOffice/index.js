@@ -15,7 +15,7 @@ const BackOffice = ({ getClients, clients, user, activateLoad, backLoading, }) =
     if (clients.length === 0 && user.isLogged === true) {
       getClients();
     }
-  });
+  }, []);
   return (
     <div className="">
       {user.isLoading === true && (
