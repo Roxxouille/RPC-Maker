@@ -45,11 +45,22 @@ const Header = ({
             <Link to="/contact" className="nav-link header__navbar__menu__link">
               Contact
             </Link>
-            { isLogged === false && (
+            {isLogged === false && (
               <Link to="/devis" className="nav-link header__navbar__menu__link">
                 Devis
               </Link>
-            ) }
+            )}
+            {isLogged === true && role === 'ROLE_BUILDER' && (
+              <>
+                <Link to="/backoffice/message" className="nav-link header__navbar__menu__link">
+                  Messagerie
+              </Link>
+                <Link to="/backoffice/clients" className="nav-link header__navbar__menu__link">
+                  Mes Clients
+              </Link>
+              </>
+            )}
+
           </Nav>
         </Navbar.Collapse>
 
