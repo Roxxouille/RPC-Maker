@@ -2,13 +2,20 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import ErrorField from 'src/components/Utils/Field/ErrorField';
 
-const SelectField = ({label, name, handleChange, options, value, valueModel, valueLink, errorLink}) => {
+const SelectField = ({
+  label, name, handleChange, options, value, valueModel, valueLink, errorLink,
+}) => {
   const nameConfig = `${name}`;
   const nameConfigModel = `${name}_model`;
   const nameConfigLink = `${name}_link`;
 
   const dataOptions = options.map((option) => {
-    return <option key={option.id} value={option.name} >{option.name}</option>
+    if (option.name == 'default') {
+
+    }
+    else {
+      return <option key={option.id} value={option.name}>{option.name}</option>;
+    }
   });
 
   return (
@@ -21,7 +28,7 @@ const SelectField = ({label, name, handleChange, options, value, valueModel, val
         <option value="autre">Autre</option>
         {dataOptions}
       </Form.Control>
-      { value === "autre" && (
+      { value === 'autre' && (
         <>
           <Form.Label className="Form__inside">Un autre modele ?</Form.Label>
           <Form.Control placeholder="Preciser" value={valueModel} name={nameConfigModel} onChange={handleChange} />

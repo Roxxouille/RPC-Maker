@@ -4,6 +4,7 @@ namespace App\EventListener;
 
 use App\Entity\Command;
 use App\Entity\Message;
+use App\Repository\CategoryRepository;
 use App\Repository\ItemRepository;
 use App\Service\MySlugger;
 use App\Repository\UserRepository;
@@ -16,13 +17,15 @@ class CommandListener
     private $userRepo;
     private $em;
     private $itemRepo;
+    private $categoryRepo;
 
-    public function __construct(MySlugger $slugger, UserRepository $userRepo, ItemRepository $itemRepo, EntityManagerInterface $em)
+    public function __construct(MySlugger $slugger, UserRepository $userRepo, ItemRepository $itemRepo, EntityManagerInterface $em, CategoryRepository $categoryRepo)
     {
         $this->slugger = $slugger;
         $this->userRepo = $userRepo;
         $this->em = $em;
         $this->itemRepo = $itemRepo;
+        $this->categoryRepo = $categoryRepo;
     }
 
     /**
@@ -63,12 +66,13 @@ class CommandListener
 
     public function setItemsOnUserCreation(Command $command, LifecycleEventArgs $event)
     {
+
         // get all object needed
         $data = $command->getCommandData();
         $configData = $data->getCommandConfigData();
         $deviceData = $data->getCommandDeviceData();
         $specData = $data->getCommandSpecData();
-
+        /*
         // get all methods from object
         $configClassMethods = get_class_methods($configData);
         $deviceClassMethods = get_class_methods($deviceData);
@@ -93,17 +97,159 @@ class CommandListener
                     $item = $this->itemRepo->findBy(['name' => $configData->{$method}()]);
                     $command->addItem($item[0]);
                 }
+                else {
+                    $item = $this->itemRepo->findBy(['name' => 'default']);
+                    $command->addItem($item[0]);
+                }
             } else {
                 if ($deviceData->{$method}() && $deviceData->{$method}() != "noidea") {
                     $item = $this->itemRepo->findBy(['name' => $deviceData->{$method}()]);
                     $command->addItem($item[0]);
                 }
             }
+        }*/
+
+        if ($configData->getConfigProc() && $configData->getConfigProc() != "noidea") {
+            $proc = $this->itemRepo->findBy(['name' => $configData->getConfigProc()]);
+            $command->addItem($proc[0]);
+        } else {
+            $proc = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Processeur'])]);
+            $command->addItem($proc[0]);
         }
 
+        if ($configData->getConfigBoard() && $configData->getConfigBoard() != "noidea") {
+            $board = $this->itemRepo->findBy(['name' => $configData->getConfigBoard()]);
+            $command->addItem($board[0]);
+        } else {
+            $board = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Carte mère'])]);
+            $command->addItem($board[0]);
+        }
+
+        if ($configData->getConfigGc() && $configData->getConfigGc() != "noidea") {
+            $gc = $this->itemRepo->findBy(['name' => $configData->getConfigGc()]);
+            $command->addItem($gc[0]);
+        } else {
+            $gc = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Carte graphique'])]);
+            $command->addItem($gc[0]);
+        }
+
+        if ($configData->getConfigRam() && $configData->getConfigRam() != "noidea") {
+            $ram = $this->itemRepo->findBy(['name' => $configData->getConfigRam()]);
+            $command->addItem($ram[0]);
+        } else {
+            $ram = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'RAM'])]);
+            $command->addItem($ram[0]);
+        }
+
+        if ($configData->getConfigRefresh() && $configData->getConfigRefresh() != "noidea") {
+            $refresh = $this->itemRepo->findBy(['name' => $configData->getConfigRefresh()]);
+            $command->addItem($refresh[0]);
+        } else {
+            $refresh = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Ventirad / Watercooling'])]);
+            $command->addItem($refresh[0]);
+        }
+
+        if ($configData->getConfigStorage() && $configData->getConfigStorage() != "noidea") {
+            $storage = $this->itemRepo->findBy(['name' => $configData->getConfigStorage()]);
+            $command->addItem($storage[0]);
+        } else {
+            $storage = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'HDDs'])]);
+            $command->addItem($storage[0]);
+        }
+
+        if ($configData->getConfigBoardsound() && $configData->getConfigBoardsound() != "noidea") {
+            $boardsound = $this->itemRepo->findBy(['name' => $configData->getConfigBoardsound()]);
+            $command->addItem($boardsound[0]);
+        } else {
+            $boardsound = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Carte son'])]);
+            $command->addItem($boardsound[0]);
+        }
+
+        if ($configData->getConfigCase() && $configData->getConfigCase() != "noidea") {
+            $case = $this->itemRepo->findBy(['name' => $configData->getConfigCase()]);
+            $command->addItem($case[0]);
+        } else {
+            $case = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Boitier'])]);
+            $command->addItem($case[0]);
+        }
+
+        if ($configData->getConfigPower() && $configData->getConfigPower() != "noidea") {
+            $power = $this->itemRepo->findBy(['name' => $configData->getConfigPower()]);
+            $command->addItem($power[0]);
+        } else {
+            $power = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Alimentation'])]);
+            $command->addItem($power[0]);
+        }
+
+        if ($deviceData->getDeviceScreen() && $deviceData->getDeviceScreen() != "noidea") {
+            $screen = $this->itemRepo->findBy(['name' => $deviceData->getDeviceScreen()]);
+            $command->addItem($screen[0]);
+        } else {
+            $screen = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Ecran'])]);
+            $command->addItem($screen[0]);
+        }
+
+        if ($deviceData->getDeviceKeyboard() && $deviceData->getDeviceKeyboard() != "noidea") {
+            $keyboard = $this->itemRepo->findBy(['name' => $deviceData->getDeviceKeyboard()]);
+            $command->addItem($keyboard[0]);
+        } else {
+            $keyboard = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Clavier'])]);
+            $command->addItem($keyboard[0]);
+        }
+
+        if ($deviceData->getDeviceMouse() && $deviceData->getDeviceMouse() != "noidea") {
+            $mouse = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMouse()]);
+            $command->addItem($mouse[0]);
+        } else {
+            $mouse = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Souris'])]);
+            $command->addItem($mouse[0]);
+        }
+
+        if ($deviceData->getDeviceMousepad() && $deviceData->getDeviceMousepad() != "noidea") {
+            $mousepad = $this->itemRepo->findBy(['name' => $deviceData->getDeviceMousepad()]);
+            $command->addItem($mousepad[0]);
+        } else {
+            $mousepad = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Tapis'])]);
+            $command->addItem($mousepad[0]);
+        }
+
+        if ($deviceData->getDeviceHeadphone() && $deviceData->getDeviceHeadphone() != "noidea") {
+            $headphone = $this->itemRepo->findBy(['name' => $deviceData->getDeviceHeadphone()]);
+            $command->addItem($headphone[0]);
+        } else {
+            $headphone = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Micro-Casque'])]);
+            $command->addItem($headphone[0]);
+        }
+
+        if ($deviceData->getDeviceEnceinte() && $deviceData->getDeviceEnceinte() != "noidea") {
+            $enceinte = $this->itemRepo->findBy(['name' => $deviceData->getDeviceEnceinte()]);
+            $command->addItem($enceinte[0]);
+        } else {
+            $enceinte = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Enceintes'])]);
+            $command->addItem($enceinte[0]);
+        }
+
+        if ($deviceData->getDeviceWebcam() && $deviceData->getDeviceWebcam() != "noidea") {
+            $webcam = $this->itemRepo->findBy(['name' => $deviceData->getDeviceWebcam()]);
+            $command->addItem($webcam[0]);
+        } else {
+            $webcam = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Webcam'])]);
+            $command->addItem($webcam[0]);
+        }
+
+        if ($deviceData->getDevicePrinter() && $deviceData->getDevicePrinter() != "noidea") {
+            $printer = $this->itemRepo->findBy(['name' => $deviceData->getDevicePrinter()]);
+            $command->addItem($printer[0]);
+        } else {
+            $printer = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Imprimante'])]);
+            $command->addItem($printer[0]);
+        }
         // Check if there is a os and add it to command if needed
-        if ($specData->getOschoice()) {
+        if ($specData->getOschoice() && $specData->getOschoice() != "noidea") {
             $item = $this->itemRepo->findBy(['name' => $specData->getOschoice()]);
+            $command->addItem($item[0]);
+        } else {
+            $item = $this->itemRepo->findBy(['name' => 'default', 'category' => $this->categoryRepo->findBy(['name' => 'Systeme d\'exploitation'])]);
             $command->addItem($item[0]);
         }
 
